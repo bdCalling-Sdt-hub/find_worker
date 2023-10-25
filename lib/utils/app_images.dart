@@ -37,7 +37,7 @@ class AppImages{
   static const String privateTutor = "$basePath/Private_Tutor.png";
   static const String profileJhon = "$basePath/profile_jhon.png";
   static const String profileSmith = "$basePath/profile_smith.png";
-  static const String rafiKi = "$basePath/rafiKi.png";
+  static const String rafiKi = "$basePath/rafiki.png";
   static const String smithJhon = "$basePath/smith_jhon.png";
   static const String success = "$basePath/Success.png";
   static const String trash = "$basePath/trash.png";
