@@ -1,3 +1,4 @@
+import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -9,7 +10,7 @@ class CustomTextField extends StatefulWidget {
     this.focusNode,
     this.keyboardType = TextInputType.text,
     this.textInputAction = TextInputAction.next,
-    this.cursorColor =const Color(0xff0668E3),
+    this.cursorColor = AppColors.black_100,
     this.inputTextStyle,
     this.textAlignVertical = TextAlignVertical.center,
     this.textAlign = TextAlign.start,

@@ -39,7 +39,7 @@ class CustomText extends StatelessWidget {
         textAlign: textAlign,
         text,maxLines: maxLines,
         overflow: overflow,
-        style: GoogleFonts.montserrat(
+        style: GoogleFonts.poppins(
             fontSize: fontSize,
             fontWeight: fontWeight,
             color: color,

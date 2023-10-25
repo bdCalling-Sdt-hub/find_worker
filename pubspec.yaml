@@ -38,6 +38,7 @@ dependencies:
   get:
   flutter_svg:
   google_fonts:
+  pin_code_fields:
 
 dev_dependencies:
   flutter_test:
