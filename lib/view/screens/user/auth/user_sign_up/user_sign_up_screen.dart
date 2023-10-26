@@ -80,7 +80,7 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                               const CustomText(
                                 text: AppStrings.fullName,
                                 color: AppColors.black_100,
-                                fontWeight: FontWeight.w400,
+                                fontWeight: FontWeight.w500,
                                 bottom: 8,
                               ),
                               CustomTextField(
@@ -100,7 +100,7 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                               const CustomText(
                                 text: AppStrings.dateOfBirth,
                                 color: AppColors.black_100,
-                                fontWeight: FontWeight.w400,
+                                fontWeight: FontWeight.w500,
                                 bottom: 8,
                                 top: 16,
                               ),
@@ -161,7 +161,7 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                               const CustomText(
                                 text: AppStrings.gender,
                                 color: AppColors.black_100,
-                                fontWeight: FontWeight.w400,
+                                fontWeight: FontWeight.w500,
                                 bottom: 8,
                                 top: 16,
                               ),
@@ -232,6 +232,7 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                               const CustomText(
                                 text: AppStrings.phoneNumber,
                                 color: AppColors.black_100,
+                                fontWeight: FontWeight.w500,
                                 top: 16,
                                 bottom: 8,
                               ),
@@ -286,6 +287,27 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                                 ],
                               ),
                               const CustomText(
+                                text: AppStrings.address,
+                                color: AppColors.black_100,
+                                fontWeight: FontWeight.w500,
+                                top: 16,
+                                bottom: 8,
+                              ),
+                              CustomTextField(
+                                textAlign: TextAlign.start,
+                                hintText: 'Enter your address',
+                                hintStyle: GoogleFonts.montserrat(
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w500,
+                                    color: AppColors.black_40),
+                                inputTextStyle: GoogleFonts.montserrat(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 14,
+                                    color: AppColors.black_100),
+                                fieldBorderColor: AppColors.blue_10,
+                                fieldBorderRadius: 8,
+                              ),
+                              const CustomText(
                                 text: AppStrings.password,
                                 color: AppColors.black_100,
                                 fontWeight: FontWeight.w500,
@@ -335,7 +357,7 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                               CustomButton(
                                 buttonWidth: MediaQuery.of(context).size.width,
                                 onPressed: () {
-                                  Get.toNamed(AppRoute.userSignIn);
+                                  Get.toNamed(AppRoute.userEmailOtpScreen);
                                 },
                                 titleText: AppStrings.signUp,
                                 titleColor: AppColors.white,

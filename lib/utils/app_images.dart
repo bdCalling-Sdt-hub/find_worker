@@ -42,4 +42,6 @@ class AppImages{
   static const String success = "$basePath/Success.png";
   static const String trash = "$basePath/trash.png";
   static const String womanDriver = "$basePath/Woman_Driver.png";
+  static const String settings = "$basePath/settings.png";
+  static const String extra = "$basePath/extra.png";
 }

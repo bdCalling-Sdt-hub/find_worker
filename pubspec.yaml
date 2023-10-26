@@ -39,6 +39,7 @@ dependencies:
   flutter_svg:
   google_fonts:
   intl_phone_field:
+  pin_code_fields:
 
 dev_dependencies:
   flutter_test:

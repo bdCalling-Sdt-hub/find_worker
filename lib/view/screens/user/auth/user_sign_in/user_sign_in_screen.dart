@@ -41,7 +41,7 @@ class _UserSignInState extends State<UserSignIn> {
               padding: const EdgeInsets.symmetric(vertical: 24,horizontal: 20),
               child: Column(
                 children: [
-                  SizedBox(height: 44,),
+                 const SizedBox(height: 44,),
                   const CustomText(
                     text: AppStrings.welcomeToFindWorker,
                     fontSize: 18,

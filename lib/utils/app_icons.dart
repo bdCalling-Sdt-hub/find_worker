@@ -20,7 +20,6 @@ class AppIcons{
   static const String phone = "$basePath/phone.svg";
   static const String plusCircle = "$basePath/plus-circle.svg";
   static const String service = "$basePath/Service.svg";
-  static const String settings = "$basePath/settings.png";
   static const String speakerphone = "$basePath/speakerphone.svg";
   static const String star = "$basePath/star.svg";
   static const String trash = "$basePath/trash.svg";
@@ -28,4 +27,5 @@ class AppIcons{
   static const String userCircle = "$basePath/user-circle.svg";
   static const String userGroup = "$basePath/user-group.svg";
   static const String viewGrid = "$basePath/view-grid.svg";
+  static const String settings = "$basePath/settings.svg";
 }

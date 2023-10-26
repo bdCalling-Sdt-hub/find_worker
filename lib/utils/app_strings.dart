@@ -13,8 +13,10 @@ class AppStrings{
   static const String password = "Password";
   static const String enterYourEmail = "Enter your email";
   static const String email = "Email";
+  static const String verifyEmail = "Verify Email";
   static const String signIn = "Sign In";
   static const String fullName = "Full Name";
+  static const String history = "History";
   static const String enterYourFullName = "Enter your full name";
 
   static const String dateOfBirth = "Date of Birth";
@@ -116,7 +118,7 @@ class AppStrings{
   static const String   enterYourEmailAddressToVerifyOTP = "Enter your E-mail address to verify OTP";
   static const String   save = "Save";
 
-  static const String   weSentaVerification = "We sent a verification code to your email. Please";
+  static const String   weSentaVerification = "We sent a verification code to your email. Please check your email and enter the verification code.";
   static const String   jobHistory = "Job History";
   static const String   recentJobs = "Recent Jobs";
   static const String   noJobsHereYet = "No jobs here yet.";
