@@ -20,6 +20,29 @@ class SpSignUpScreen extends StatefulWidget {
 }
 
 class _SpSignUpScreenState extends State<SpSignUpScreen> {
+  int selectedItem = 0;
+  List<String> serviceType = [
+    'Home Clean',
+    'Car Wash',
+    'Farmer',
+    'Air Condition Maintenance',
+    'Pipe Fitter',
+    'Jens Salon',
+    'Man Driver',
+    'Woman Driver',
+    'Ladies Salon',
+    'Home Business',
+    'Butcher',
+    'Private Tutor',
+    'Henna',
+    'Movers',
+    'Gypsum Board & Floor',
+    'Car Tires Repair',
+    'Car Recovery',
+    'Catering',
+    'Cable Fixing',
+  ];
+
   List<String> genderList = ["Male", "Female", "Others"];
   int selectedGender = 0;
   bool isClicked = false;
@@ -353,8 +376,7 @@ class _SpSignUpScreenState extends State<SpSignUpScreen> {
 
                                   ),
                                   isSelected ? Container(
-                                    height: 100,
-                                      decoration: ShapeDecoration(
+                                      decoration:const ShapeDecoration(
                                         color: Colors.white,
                                         shape: RoundedRectangleBorder(
                                           side: BorderSide(width: 1, color: Color(0xFF0668E3)),
@@ -364,7 +386,55 @@ class _SpSignUpScreenState extends State<SpSignUpScreen> {
                                             bottomRight: Radius.circular(8),
                                           ),
                                         )
-                                  )): Container(),
+                                  ),
+                                  child: Column(
+                                    children: List.generate(
+                                      serviceType.length,
+                                          (index) {
+                                        return GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              selectedItem = index;
+                                            });
+                                          },
+                                          child: Container(
+                                            margin: const EdgeInsets.only(bottom: 8),
+                                            width: MediaQuery.of(context).size.width,
+                                            decoration: ShapeDecoration(
+                                              color: AppColors.white,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.circular(8),
+                                              ),
+                                            ),
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(
+                                                  left: 16, right: 16, top: 12,),
+                                              child: Row(
+                                                children: [
+                                                  Container(
+                                                    height: 20,
+                                                    width: 20,
+                                                    decoration: BoxDecoration(
+                                                      borderRadius: BorderRadius.circular(50),
+                                                      border: Border.all(
+                                                          color: AppColors.blue_100, width: 1),
+                                                      color: index == selectedItem ? AppColors.blue_100 : AppColors.white,
+                                                    ),
+                                                  ),
+                                                  CustomText(
+                                                    text: serviceType[index],
+                                                    color: AppColors.black_100,
+                                                    left: 10,
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                  ): Container(),
                                   const CustomText(
                                     text: AppStrings.password,
                                     color: AppColors.black_100,
