@@ -44,4 +44,6 @@ class AppImages{
   static const String womanDriver = "$basePath/Woman_Driver.png";
   static const String settings = "$basePath/settings.png";
   static const String extra = "$basePath/extra.png";
+  static const String historyImg = "$basePath/histoy_img.png";
+  static const String chevronDown = "$basePath/chevron-down.png";
 }

@@ -40,6 +40,8 @@ dependencies:
   google_fonts:
   intl_phone_field:
   pin_code_fields:
+  flutter_rating_bar:
+  percent_indicator:
 
 dev_dependencies:
   flutter_test:

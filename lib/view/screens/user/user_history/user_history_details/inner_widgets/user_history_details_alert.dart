@@ -3,14 +3,14 @@ import 'package:find_worker/utils/app_strings.dart';
 import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
 
-class LogOutAlert extends StatefulWidget {
-  const LogOutAlert({super.key});
+class UserHistoryDetailsAlert extends StatefulWidget {
+  const UserHistoryDetailsAlert({super.key});
 
   @override
-  State<LogOutAlert> createState() => _LogOutAlertState();
+  State<UserHistoryDetailsAlert> createState() => _UserHistoryDetailsAlertState();
 }
 
-class _LogOutAlertState extends State<LogOutAlert> {
+class _UserHistoryDetailsAlertState extends State<UserHistoryDetailsAlert> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -23,8 +23,8 @@ class _LogOutAlertState extends State<LogOutAlert> {
       title: Column(
         children: [
           const CustomText(
-            maxLines: 1,
-            text: 'Do you want to logout your profile?',
+            maxLines: 2,
+            text: 'Do you want to remove this job details?',
             fontWeight: FontWeight.w600,
             fontSize: 18,
             color: AppColors.black_100,

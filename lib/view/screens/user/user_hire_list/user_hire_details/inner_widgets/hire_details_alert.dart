@@ -17,6 +17,12 @@ class _HireDetailsAlertState extends State<HireDetailsAlert> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      backgroundColor: AppColors.white,
+      clipBehavior: Clip.none,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8)
+      ),
+      elevation: 0,
       title: Column(
         children: [
             const CustomImage(imageSrc: AppImages.success,imageType: ImageType.png,size: 100,),
