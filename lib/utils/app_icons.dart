@@ -28,4 +28,6 @@ class AppIcons{
   static const String userCircle = "$basePath/user-circle.svg";
   static const String userGroup = "$basePath/user-group.svg";
   static const String viewGrid = "$basePath/view-grid.svg";
+  static const String search = "$basePath/search.svg";
+  static const String adjustments = "$basePath/adjustments.svg";
 }

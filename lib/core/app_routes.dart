@@ -5,8 +5,11 @@ import 'package:find_worker/view/screens/splash/splash_screen.dart';
 import 'package:find_worker/view/screens/user/auth/user_forget_password/user_forget_password_screen.dart';
 import 'package:find_worker/view/screens/user/auth/user_otp/user_otp_screen.dart';
 import 'package:find_worker/view/screens/user/auth/user_reset_password/user_reset_password_screen.dart';
-import 'package:find_worker/view/screens/user/home/home_screen.dart';
+import 'package:find_worker/view/screens/user/category/category_screen.dart';
+import 'package:find_worker/view/screens/user/home/car_wash_details/car_wash_details_screen.dart';
+import 'package:find_worker/view/screens/user/home/home/home_screen.dart';
 import 'package:find_worker/view/screens/user/notification/notification_screen.dart';
+import 'package:find_worker/view/screens/user/search/search_screen.dart';
 import 'package:find_worker/view/screens/user/settings/about_us/about_us_screen.dart';
 import 'package:find_worker/view/screens/user/settings/change_forget_password/change_forget_password_screen.dart';
 import 'package:find_worker/view/screens/user/settings/change_otp/change_otp_screen.dart';
@@ -15,9 +18,10 @@ import 'package:find_worker/view/screens/user/settings/change_reset_password/cha
 import 'package:find_worker/view/screens/user/settings/privacy_policy/privacy_policy_screen.dart';
 import 'package:find_worker/view/screens/user/settings/settings/settings_screen.dart';
 import 'package:find_worker/view/screens/user/settings/support/support_screen.dart';
+import 'package:find_worker/view/screens/user/settings/terms_of_conditions/terms_of_conditions_screen.dart';
 import 'package:get/get.dart';
 
-import '../view/screens/user/settings/terms_of_conditions/terms_of_conditions_screen.dart';
+
 class AppRoute {
    static String splashScreen = "/splash_screen";
    static String userForgetPasswordScreen = "/user_forget_password_screen";
@@ -34,6 +38,9 @@ class AppRoute {
    static String supportScreen = "/support_screen";
    static String notificationScreen = "/notification_screen";
    static String homeScreen = "/home_screen";
+   static String carWashDetailsScreen = "/car_wash_details_screen";
+   static String categoryScreen = "/category_screen";
+   static String searchScreen = "/search_screen";
 
 
   static List<GetPage> routes = [
@@ -52,5 +59,8 @@ class AppRoute {
      GetPage(name: supportScreen, page: () => const SupportScreen()),
      GetPage(name: notificationScreen, page: () => const NotificationScreen()),
      GetPage(name: homeScreen, page: () => const HomeScreen()),
+     GetPage(name: carWashDetailsScreen, page: () => const CarWashDetailsScreen()),
+     GetPage(name: categoryScreen, page: () => const CategoryScreen()),
+     GetPage(name: searchScreen, page: () => const SearchScreen()),
   ];
 }
