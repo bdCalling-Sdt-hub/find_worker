@@ -100,7 +100,7 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         CustomText(
-                          text: 'Contact',
+                          text: 'Location',
                         ),
                         CustomText(
                           text: 'Abu Dhabi',
@@ -116,7 +116,7 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         CustomText(
-                          text: AppStrings.address,
+                          text: AppStrings.service,
                         ),
                         CustomText(
                           text: AppStrings.carWash,
@@ -302,7 +302,6 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
                               borderWidth: 1,
                               leftPadding: 32,
                             rightPadding: 32,
-
                           ),
                         ),
                        const SizedBox(width: 16,),

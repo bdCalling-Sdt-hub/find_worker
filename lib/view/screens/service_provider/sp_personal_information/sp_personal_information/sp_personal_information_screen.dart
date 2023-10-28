@@ -8,19 +8,19 @@ import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class UserPersonalInformationScreen extends StatefulWidget {
-  const UserPersonalInformationScreen({super.key});
+class SpPersonalInformationScreen extends StatefulWidget {
+  const SpPersonalInformationScreen({super.key});
 
   @override
-  State<UserPersonalInformationScreen> createState() => _UserPersonalInformationScreenState();
+  State<SpPersonalInformationScreen> createState() => _SpPersonalInformationScreenState();
 }
 
-class _UserPersonalInformationScreenState extends State<UserPersonalInformationScreen> {
+class _SpPersonalInformationScreenState extends State<SpPersonalInformationScreen> {
 
   List<Map<String,String>> categoryInfo =[
     {
       'icon':AppIcons.user,
-      'info':'Smith Jhon',
+      'info':'Smith John',
     },
     {
       'icon':AppIcons.dateOfBirth,
@@ -40,7 +40,7 @@ class _UserPersonalInformationScreenState extends State<UserPersonalInformationS
     },
     {
       'icon':AppIcons.location,
-      'info':'Abu Dhabi',
+      'info':'Dubai',
     },
   ];
   @override
@@ -52,23 +52,23 @@ class _UserPersonalInformationScreenState extends State<UserPersonalInformationS
           appBar: CustomAppBar(
             appBarBgColor: AppColors.blue_100,
             appBarContent:Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              GestureDetector(
-                onTap: (){
-                  Get.back();
-                },
-                child: const Icon(Icons.arrow_back_ios_new_outlined,size: 16,color: AppColors.white,),
-              ),
-              const CustomText(
-                text: AppStrings.personalInformation,
-                color: AppColors.white,
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                GestureDetector(
+                  onTap: (){
+                    Get.back();
+                  },
+                  child: const Icon(Icons.arrow_back_ios_new_outlined,size: 16,color: AppColors.white,),
+                ),
+                const CustomText(
+                  text: AppStrings.personalInformation,
+                  color: AppColors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
 
-              ),
-              const SizedBox()
-            ],),),
+                ),
+                const SizedBox()
+              ],),),
           body: LayoutBuilder(
               builder: (BuildContext context, BoxConstraints constraints) {
                 return SingleChildScrollView(
@@ -103,7 +103,7 @@ class _UserPersonalInformationScreenState extends State<UserPersonalInformationS
                               ),
                               GestureDetector(
                                 onTap: (){
-                                  Get.toNamed(AppRoute.userEditPersonalInformationScreen);
+                                  Get.toNamed(AppRoute.spEditPersonalInformationScreen);
                                 },
                                 child: Container(
                                   padding: const EdgeInsets.symmetric(vertical: 8,horizontal: 24),
@@ -125,25 +125,25 @@ class _UserPersonalInformationScreenState extends State<UserPersonalInformationS
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 24,horizontal: 20),
                           child: Container(
-                            padding: const EdgeInsets.symmetric(vertical: 16,horizontal: 20),
-                            child: Column(
-                              children: List.generate(categoryInfo.length, (index) => Container(
-                                margin: const EdgeInsets.only(bottom: 16),
-                                padding: const EdgeInsets.only(bottom: 16),
-                                decoration: const BoxDecoration(
-                                    border: Border(bottom: BorderSide(color: AppColors.blue_20,width: 1))
-                                ),
-                                child:   Row(
-                                  children: [
-                                    CustomImage(imageSrc: categoryInfo[index]['icon'].toString(),size: 18,),
-                                    CustomText(
-                                      text: categoryInfo[index]['info'].toString(),
-                                      left: 12,
-                                    )
-                                  ],
-                                ),
-                              ),),
-                            )
+                              padding: const EdgeInsets.symmetric(vertical: 16,horizontal: 20),
+                              child: Column(
+                                children: List.generate(categoryInfo.length, (index) => Container(
+                                  margin: const EdgeInsets.only(bottom: 16),
+                                  padding: const EdgeInsets.only(bottom: 16),
+                                  decoration: const BoxDecoration(
+                                      border: Border(bottom: BorderSide(color: AppColors.blue_20,width: 1))
+                                  ),
+                                  child:   Row(
+                                    children: [
+                                      CustomImage(imageSrc: categoryInfo[index]['icon'].toString(),size: 18,),
+                                      CustomText(
+                                        text: categoryInfo[index]['info'].toString(),
+                                        left: 12,
+                                      )
+                                    ],
+                                  ),
+                                ),),
+                              )
                           ),
                         ),
 

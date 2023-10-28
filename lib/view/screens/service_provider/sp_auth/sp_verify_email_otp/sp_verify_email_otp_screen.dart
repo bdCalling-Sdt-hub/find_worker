@@ -10,14 +10,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 
-class UserEmailOtpScreen extends StatefulWidget {
-  const UserEmailOtpScreen({super.key});
+class SpVerifyEmailOtpScreen extends StatefulWidget {
+  const SpVerifyEmailOtpScreen({super.key});
 
   @override
-  State<UserEmailOtpScreen> createState() => _UserEmailOtpScreenState();
+  State<SpVerifyEmailOtpScreen> createState() => _SpVerifyEmailOtpScreenState();
 }
 
-class _UserEmailOtpScreenState extends State<UserEmailOtpScreen> {
+class _SpVerifyEmailOtpScreenState extends State<SpVerifyEmailOtpScreen> {
 /*  @override
   void initState() {
     DeviceUtils.allScreenUtils();
@@ -153,7 +153,7 @@ class _UserEmailOtpScreenState extends State<UserEmailOtpScreen> {
                       ),
                       child: InkWell(
                         onTap: (){
-                          Get.toNamed(AppRoute.spSignInScreen);
+                          Get.toNamed(AppRoute.userSignUp);
                         },
                         child: const Center(
                             child: CustomText(

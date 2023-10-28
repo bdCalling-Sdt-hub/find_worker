@@ -75,7 +75,6 @@ class _SpSignInScreenState extends State<SpSignInScreen> {
                                   color: AppColors.black_100),
                               fieldBorderColor: AppColors.blue_10,
                               fieldBorderRadius: 8,
-
                             ),
                             const CustomText(
                               text: AppStrings.password,
