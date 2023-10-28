@@ -28,4 +28,5 @@ class AppIcons{
   static const String userGroup = "$basePath/user-group.svg";
   static const String viewGrid = "$basePath/view-grid.svg";
   static const String settings = "$basePath/settings.svg";
+  static const String bell = "$basePath/bell.svg";
 }

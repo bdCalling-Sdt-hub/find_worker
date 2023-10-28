@@ -275,7 +275,9 @@ class _SpEditServiceDetailsScreenState extends State<SpEditServiceDetailsScreen>
                         ],
                       ));
                 }),
-            bottomNavigationBar: BottomNavButton(buttonText: AppStrings.update, onTap: (){})
+            bottomNavigationBar: BottomNavButton(buttonText: AppStrings.update, onTap: (){
+              Get.toNamed(AppRoute.spServiceDetailsScreen);
+            })
         ));
   }
 }

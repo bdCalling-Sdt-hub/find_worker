@@ -4,6 +4,7 @@ import 'package:find_worker/view/screens/service_provider/sp_add_new_service/sp_
 import 'package:find_worker/view/screens/service_provider/sp_auth/sp_sign_in/sp_sign_in_screen.dart';
 import 'package:find_worker/view/screens/service_provider/sp_auth/sp_sign_up/sp_sign_up_screen.dart';
 import 'package:find_worker/view/screens/service_provider/sp_auth/sp_verify_email_otp/sp_verify_email_otp_screen.dart';
+import 'package:find_worker/view/screens/service_provider/sp_home/sp_home_screen.dart';
 import 'package:find_worker/view/screens/service_provider/sp_job_details/sp_job_details_screen.dart';
 import 'package:find_worker/view/screens/service_provider/sp_notification/sp_notification_screen.dart';
 import 'package:find_worker/view/screens/service_provider/sp_personal_information/sp_edit_personal_information/sp_edit_personal_information_screen.dart';
@@ -52,6 +53,7 @@ class AppRoute {
    static String spServiceDetailsScreen = "/sp_service_details_screen";
    static String spEditServiceDetailsScreen = "/sp_edit_service_details_screen";
    static String spAddNewServiceScreen = "/sp_add_new_service_screen";
+   static String spHomeScreen = "/sp_home_screen";
 
   static List<GetPage> routes = [
      GetPage(name: splashScreen, page: () => const SplashScreen()),
@@ -79,5 +81,6 @@ class AppRoute {
      GetPage(name: spServiceDetailsScreen, page: () => const SpServiceDetailsScreen()),
      GetPage(name: spEditServiceDetailsScreen, page: () => const SpEditServiceDetailsScreen()),
      GetPage(name: spAddNewServiceScreen, page: () => const SpAddNewServiceScreen()),
+     GetPage(name: spHomeScreen, page: () => const SpHomeScreen()),
   ];
 }

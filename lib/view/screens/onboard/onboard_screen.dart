@@ -93,7 +93,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                     ),
                     GestureDetector(
                       onTap: (){
-                        Get.toNamed(AppRoute.spProfileScreen);
+                        Get.toNamed(AppRoute.spHomeScreen );
                       },
                       child: Container(
                         height: 56,

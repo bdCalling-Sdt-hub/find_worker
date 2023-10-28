@@ -1,3 +1,4 @@
+import 'package:find_worker/core/app_routes.dart';
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_icons.dart';
 import 'package:find_worker/utils/app_strings.dart';
@@ -88,10 +89,11 @@ class _SpAddNewServiceScreenState extends State<SpAddNewServiceScreen> {
                                   height: 200,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(8),
-                                      image: const DecorationImage(
-                                          image: AssetImage(
-                                              'assets/images/hire_details_profile.png'),
-                                          fit: BoxFit.cover)),
+                                      // image: const DecorationImage(
+                                      //     image: AssetImage(
+                                      //         'assets/images/hire_details_profile.png'),
+                                      //     fit: BoxFit.cover),
+                                  ),
                                 ),
                                 Container(
                                   height: 200,
@@ -273,7 +275,9 @@ class _SpAddNewServiceScreenState extends State<SpAddNewServiceScreen> {
                         ],
                       ));
                 }),
-            bottomNavigationBar: BottomNavButton(buttonText: AppStrings.update, onTap: (){})
+            bottomNavigationBar: BottomNavButton(buttonText: AppStrings.addService, onTap: (){
+              Get.toNamed(AppRoute.spServiceDetailsScreen);
+            })
         ));
   }
 }
