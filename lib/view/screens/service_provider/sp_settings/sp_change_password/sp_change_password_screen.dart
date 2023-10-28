@@ -11,14 +11,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ChangePasswordScreen extends StatefulWidget {
-  const ChangePasswordScreen({super.key});
+class SpChangePasswordScreen extends StatefulWidget {
+  const SpChangePasswordScreen({super.key});
 
   @override
-  State<ChangePasswordScreen> createState() => _ChangePasswordScreenState();
+  State<SpChangePasswordScreen> createState() => _SpChangePasswordScreenState();
 }
 
-class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
+class _SpChangePasswordScreenState extends State<SpChangePasswordScreen> {
 /*  @override
   void initState() {
     DeviceUtils.authUtils();
@@ -32,32 +32,32 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
         child: Scaffold(
           backgroundColor: AppColors.white,
           appBar:  CustomAppBar(
-              appBarContent:
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Get.back();
-                    },
-                    child: const Icon(
-                      Icons.arrow_back_ios_new_outlined,
-                      size: 18,
-                      color: AppColors.blue_100,
-                    ),
+            appBarContent:
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Get.back();
+                  },
+                  child: const Icon(
+                    Icons.arrow_back_ios_new_outlined,
+                    size: 18,
+                    color: AppColors.blue_100,
                   ),
-                  Text(
-                    AppStrings.changePassword,
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.poppins(
-                      color: AppColors.blue_100,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
-                    ),
+                ),
+                Text(
+                  AppStrings.changePassword,
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.poppins(
+                    color: AppColors.blue_100,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
                   ),
-                  const SizedBox()
-                ],
-              ),
+                ),
+                const SizedBox()
+              ],
+            ),
           ),
           body:  LayoutBuilder(
               builder: (BuildContext context,BoxConstraints constraints){
@@ -90,7 +90,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                         fieldBorderRadius: 8,
 
                       ),
-                       const CustomText(
+                      const CustomText(
                         text: "New Password",
                         color: AppColors.black_100,
                         fontWeight: FontWeight.w500,
@@ -140,7 +140,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       ),
                       GestureDetector(
                         onTap: (){
-                          Get.toNamed(AppRoute.spChangeForgetPasswordScreen);
+                          Get.toNamed(AppRoute.changeForgetPasswordScreen);
                         } ,
                         child: const CustomText(
                           text: AppStrings.forgetPassword,

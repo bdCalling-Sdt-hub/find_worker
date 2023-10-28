@@ -147,9 +147,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               )
             ],
-            toolbarHeight: 150,
             bottom: TabBar(
-              physics: const BouncingScrollPhysics(),
+                physics: const BouncingScrollPhysics(),
                 automaticIndicatorColorAdjustment: false,
                 tabAlignment: TabAlignment.start,
                 indicatorColor: Colors.transparent,
@@ -157,28 +156,29 @@ class _HomeScreenState extends State<HomeScreen> {
                 isScrollable: true,
                 tabs: List.generate(category.length, (index) => SizedBox(
                   width: 70,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Container(
-                        width: 60,
-                        height: 60,
-                        alignment: Alignment.center,
-                        padding: const EdgeInsetsDirectional.symmetric(horizontal: 2, vertical: 2),
-                        decoration: const ShapeDecoration(
-                          color: Colors.white,
-                          shape: OvalBorder(
-                            side: BorderSide(width: 1, color: Color(0xFF6AA4EE)),
+                  child: GestureDetector(
+                    onTap: (){
+                      setState(() {
+                        selectedIndex = index;
+                        print(selectedIndex);
+                        isCliked=true;
+                      });
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Container(
+
+                          width: 60,
+                          height: 60,
+                          alignment: Alignment.center,
+                          padding: const EdgeInsetsDirectional.symmetric(horizontal: 2, vertical: 2),
+                          decoration: const ShapeDecoration(
+                            color: Colors.white,
+                            shape: OvalBorder(
+                              side: BorderSide(width: 1, color: Color(0xFF6AA4EE)),
+                            ),
                           ),
-                        ),
-                        child: GestureDetector(
-                          onTap: (){
-                            setState(() {
-                              selectedIndex = index;
-                              print(selectedIndex);
-                              isCliked=!isCliked;
-                            });
-                          },
                           child: index == selectedIndex? Stack(
                             clipBehavior: Clip.none,
                             alignment: Alignment.center,
@@ -205,17 +205,18 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 8,),
-                      CustomText(
-                        maxLines: 1,
-                        text: category[index]["text"].toString(),
-                        bottom: 44,
-                      ),
-                    ],
+                        const SizedBox(height: 8,),
+                        CustomText(
+                          maxLines: 1,
+                          text: category[index]["text"].toString(),
+                          bottom: 44,
+                        ),
+                      ],
+                    ),
                   ),
                 ))
             ),
+            toolbarHeight: 150,
           ),
           body:LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
             return  SingleChildScrollView(
@@ -223,7 +224,10 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  isCliked? CarWashSection(selectedIndex: selectedIndex,):const HomeScreenData(),
+                  selectedIndex == -1? const HomeScreenData() : selectedIndex == 0 ? CarWashSection(selectedIndex: selectedIndex, text: "Home Clean",)
+                      : selectedIndex == 1 ? CarWashSection(selectedIndex: selectedIndex, text: "Car Wash",)  :
+                  selectedIndex == 2 ? CarWashSection(selectedIndex: selectedIndex, text: "Air Condition") : const Text("Same way others data"),
+
                 ],
               ),
             );

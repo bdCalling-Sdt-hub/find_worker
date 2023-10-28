@@ -312,26 +312,31 @@ class _HomeScreenDataState extends State<HomeScreenData> {
         ),
         const SizedBox(height: 24),
         Center(
-          child: Text.rich(
-            textAlign: TextAlign.center,
-            TextSpan(
-              children: [
-                TextSpan(
-                  text: 'Didn’t see what you’re looking for?\nGo to ',
-                  style: GoogleFonts.poppins(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
+          child: GestureDetector(
+            onTap: (){
+              Get.toNamed(AppRoute.categoryScreen);
+            },
+            child: Text.rich(
+              textAlign: TextAlign.center,
+              TextSpan(
+                children: [
+                  TextSpan(
+                    text: 'Didn’t see what you’re looking for?\nGo to ',
+                    style: GoogleFonts.poppins(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
-                ),
-                TextSpan(
-                  text: 'Categories',
-                  style: GoogleFonts.poppins(
-                    color: AppColors.blue_100,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
+                  TextSpan(
+                    text: 'Categories',
+                    style: GoogleFonts.poppins(
+                      color: AppColors.blue_100,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         )
