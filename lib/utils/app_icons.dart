@@ -30,4 +30,5 @@ class AppIcons{
   static const String viewGrid = "$basePath/view-grid.svg";
   static const String search = "$basePath/search.svg";
   static const String adjustments = "$basePath/adjustments.svg";
+  static const String calendar = "$basePath/calendar.svg";
 }

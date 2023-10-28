@@ -1,4 +1,3 @@
-/*
 import 'package:find_worker/utils/app_icons.dart';
 import 'package:find_worker/utils/app_images.dart';
 import 'package:find_worker/view/widgets/image/custom_image.dart';
@@ -56,7 +55,7 @@ class _HomeCleanSectionState extends State<HomeCleanSection> {
                 ),
               ),
               const SizedBox(height: 8),
-               Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   CustomText(
@@ -101,4 +100,3 @@ class _HomeCleanSectionState extends State<HomeCleanSection> {
     );
   }
 }
-*/

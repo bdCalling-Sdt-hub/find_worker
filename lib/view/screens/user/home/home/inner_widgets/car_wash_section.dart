@@ -9,13 +9,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CarWashSection extends StatefulWidget {
-  const CarWashSection({super.key, required this.selectedIndex});
+  const CarWashSection({super.key, required this.selectedIndex, required this.text});
   final int selectedIndex;
+  final String text;
   @override
   State<CarWashSection> createState() => _CarWashSectionState();
 }
 
 class _CarWashSectionState extends State<CarWashSection> {
+
+
+
   @override
   Widget build(BuildContext context) {
     print(widget.selectedIndex);
@@ -26,8 +30,8 @@ class _CarWashSectionState extends State<CarWashSection> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const CustomText(
-                text: AppStrings.carWash,
+               CustomText(
+                text: widget.text,
                 fontWeight: FontWeight.w500,
                 fontSize: 18,
               ),
@@ -74,7 +78,7 @@ class _CarWashSectionState extends State<CarWashSection> {
                     decoration: ShapeDecoration(
                       image: const DecorationImage(
                         image: AssetImage(
-                            AppImages.homeClean1
+                            AppImages.carWah1
                         ),
                         fit: BoxFit.fill,
                       ),
