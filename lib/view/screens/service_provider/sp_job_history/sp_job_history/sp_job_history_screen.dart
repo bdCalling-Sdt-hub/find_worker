@@ -23,7 +23,9 @@ class _SpJobHistoryScreenState extends State<SpJobHistoryScreen> {
       top: false,
       bottom: false,
       child: Scaffold(
+        backgroundColor: AppColors.white,
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           title: const CustomText(
             color: AppColors.blue_100,
              fontWeight: FontWeight.w500,

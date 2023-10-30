@@ -76,14 +76,19 @@ class _SpSignUpScreenState extends State<SpSignUpScreen> {
                       const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
                       child: Column(children: [
                         const SizedBox(
-                          height: 44,
+                          height: 24,
                         ),
-                        const Row(
+                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            CustomImage(
-                              imageSrc: AppIcons.chevronLeft,
-                              size: 18,
+                            GestureDetector(
+                              onTap: (){
+                                Get.back();
+                              },
+                              child:const CustomImage(
+                                imageSrc: AppIcons.chevronLeft,
+                                size: 18,
+                              ),
                             ),
                             CustomText(
                               text: AppStrings.signUp,

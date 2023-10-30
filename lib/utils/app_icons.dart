@@ -32,4 +32,8 @@ class AppIcons{
   static const String search = "$basePath/search.svg";
   static const String adjustments = "$basePath/adjustments.svg";
   static const String calendar = "$basePath/calendar.svg";
+  static const String history_s = "$basePath/history_s.svg";
+  static const String home_un = "$basePath/home_un.svg";
+  static const String profile_s = "$basePath/profile_s.svg";
+
 }

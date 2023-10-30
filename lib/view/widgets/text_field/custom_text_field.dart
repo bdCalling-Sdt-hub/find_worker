@@ -86,7 +86,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
           onTap: toggle,
           child: Padding(
             padding: const EdgeInsets.only(left: 16,right: 16,top: 16,bottom: 16),
-            child: SvgPicture.asset(obscureText ? AppIcons.eyeOff : AppIcons.eye,height: 18,width: 18),
+            child: SvgPicture.asset(obscureText ? AppIcons.eyeOff : AppIcons.eye,height: 22,width: 22),
           ),
         ) : widget.suffixIcon,
         suffixIconColor: widget.suffixIconColor,

@@ -12,12 +12,16 @@ import 'inner_widgets/car_wash_section.dart';
 
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+
+   HomeScreen({super.key, required this.selectedIndex});
+
+  int selectedIndex = -1;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 class _HomeScreenState extends State<HomeScreen> {
+
   List<Map<String,String>> category = [
     {
       'image': AppImages.cleanHome,
@@ -109,9 +113,6 @@ class _HomeScreenState extends State<HomeScreen> {
     },
 
   ];
-  int selectedIndex = -1;
-
-  bool isCliked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -145,7 +146,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                    const SizedBox(width: 16,),
                     GestureDetector(
-                      onTap: (){},
+                      onTap: (){
+                        Get.toNamed(AppRoute.userNotificationScreen);
+                      },
                         child:const Icon(Icons.notifications_outlined))
                   ],
                 ),
@@ -163,9 +166,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: GestureDetector(
                     onTap: (){
                       setState(() {
-                        selectedIndex = index;
-                        print(selectedIndex);
-                        isCliked=true;
+                        widget.selectedIndex = index;
                       });
                     },
                     child: Column(
@@ -182,7 +183,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               side: BorderSide(width: 1, color: Color(0xFF6AA4EE)),
                             ),
                           ),
-                          child: index == selectedIndex? Stack(
+                          child: index == widget.selectedIndex? Stack(
                             clipBehavior: Clip.none,
                             alignment: Alignment.center,
                             children: [
@@ -197,7 +198,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 width: 60,
                                 decoration: BoxDecoration(
                                     shape: BoxShape.circle,
-                                    color: isCliked?AppColors.blue_60.withOpacity(0.5):AppColors.white.withOpacity(0)
+                                    color: index == widget.selectedIndex ? AppColors.blue_60.withOpacity(0.5):AppColors.white.withOpacity(0)
                                 ),
                               ),
                             ],
@@ -208,7 +209,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                         ),
-                        const SizedBox(height: 8,),
+                        const SizedBox(height: 8),
                         CustomText(
                           maxLines: 1,
                           text: category[index]["text"].toString(),
@@ -227,9 +228,9 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  selectedIndex == -1? const HomeScreenData() : selectedIndex == 0 ? CarWashSection(selectedIndex: selectedIndex, text: "Home Clean",)
-                  : selectedIndex == 1 ? CarWashSection(selectedIndex: selectedIndex, text: "Car Wash",)  :
-                  selectedIndex == 2 ? CarWashSection(selectedIndex: selectedIndex, text: "Air Condition") : const Text("Same way others data"),
+                  widget.selectedIndex == -1 ? const HomeScreenData() : widget.selectedIndex == 0 ? CarWashSection(selectedIndex: widget.selectedIndex, text: "Home Clean",)
+                  : widget.selectedIndex == 1 ? CarWashSection(selectedIndex: widget.selectedIndex, text: "Car Wash",)  :
+                  widget.selectedIndex == 2 ? CarWashSection(selectedIndex: widget.selectedIndex, text: "Air Condition") : const Text("Same way others data"),
 
                 ],
               ),

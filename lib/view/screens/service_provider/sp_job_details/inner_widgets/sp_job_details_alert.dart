@@ -1,10 +1,12 @@
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_images.dart';
 import 'package:find_worker/utils/app_strings.dart';
+import 'package:find_worker/view/screens/service_provider/sp_bottom_nav_bar/sp_bottom_nav_bar_screen.dart';
 import 'package:find_worker/view/widgets/buttons/custom_button.dart';
 import 'package:find_worker/view/widgets/image/custom_image.dart';
 import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SpJobDetailsAlert extends StatefulWidget {
   const SpJobDetailsAlert({super.key});
@@ -39,7 +41,9 @@ class _SpJobDetailsAlertState extends State<SpJobDetailsAlert> {
             color: AppColors.blue_100,
             bottom: 24,
           ),
-          CustomButton(onPressed: (){}, titleText: 'Go to Home',buttonBgColor: AppColors.blue_100,buttonHeight: 36,leftPadding: 18,rightPadding: 18,)
+          CustomButton(onPressed: (){
+            Get.to(SpBottomNavBarScreen(currentIndex: 0));
+          }, titleText: 'Go to Home',buttonBgColor: AppColors.blue_100,buttonHeight: 36,leftPadding: 18,rightPadding: 18,)
         ],
       ),
     );

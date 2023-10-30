@@ -36,7 +36,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                 padding: const EdgeInsets.symmetric(vertical: 24,horizontal: 20),
                 child: Column(
                   children: [
-                   const SizedBox(height: 44,),
+                   const SizedBox(height: 24,),
                     const CustomText(
                       text: AppStrings.welcomeToFindWorker,
                       fontSize: 18,
@@ -53,7 +53,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                     const CustomImage(
                       imageSrc: AppImages.rafiKi,
                       imageType: ImageType.png,
-                      size: 258,
+                      size: 250,
                     ),
                     const CustomText(
                       text: AppStrings.loginAs,
@@ -65,10 +65,10 @@ class _OnboardScreenState extends State<OnboardScreen> {
                     ),
                     GestureDetector(
                       onTap: (){
-                        Get.toNamed(AppRoute.userServiceDetailsScreen );
+                        Get.toNamed(AppRoute.userSignIn);
                       },
                       child: Container(
-                        margin: EdgeInsets.only(bottom: 16),
+                        margin: const EdgeInsets.only(bottom: 16),
                         height: 56,
                         width: MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(
@@ -93,7 +93,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                     ),
                     GestureDetector(
                       onTap: (){
-                        Get.toNamed(AppRoute.spHomeScreen );
+                        Get.toNamed(AppRoute.spSignInScreen );
                       },
                       child: Container(
                         height: 56,

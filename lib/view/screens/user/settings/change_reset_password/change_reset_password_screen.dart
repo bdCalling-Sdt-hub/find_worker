@@ -1,3 +1,7 @@
+
+
+
+import 'package:find_worker/core/app_routes.dart';
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_strings.dart';
 import 'package:find_worker/view/widgets/app_bar/custom_app_bar.dart';
@@ -17,7 +21,7 @@ class ChangeResetPasswordScreen extends StatefulWidget {
 }
 
 class _ChangeResetPasswordScreenState extends State<ChangeResetPasswordScreen> {
- /* @override
+  /* @override
   void initState() {
     DeviceUtils.authUtils();
     super.initState();
@@ -40,7 +44,7 @@ class _ChangeResetPasswordScreenState extends State<ChangeResetPasswordScreen> {
                     child:  const Icon(
                       Icons.arrow_back_ios_new_outlined,
                       size: 18,
-                      color: AppColors.blue_100,
+                      color: AppColors.black_100,
                     ),
                   ),
                   const CustomText(
@@ -59,7 +63,7 @@ class _ChangeResetPasswordScreenState extends State<ChangeResetPasswordScreen> {
                   child:Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                       const CustomText(
+                      const CustomText(
                         text: "New Password",
                         color: AppColors.black_100,
                         fontWeight: FontWeight.w500,
@@ -112,8 +116,8 @@ class _ChangeResetPasswordScreenState extends State<ChangeResetPasswordScreen> {
                 );
               }
           ),
-          bottomNavigationBar: BottomNavButton(buttonText: 'Save', onTap: (){
-            /*Get.toNamed(AppRoute.settingsScreen);*/
+          bottomNavigationBar: BottomNavButton(buttonText: 'Update', onTap: (){
+            Get.toNamed(AppRoute.settingScreen);
           }),
         ));
   }

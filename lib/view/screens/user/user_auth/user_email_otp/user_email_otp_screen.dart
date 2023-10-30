@@ -44,10 +44,9 @@ class _UserEmailOtpScreenState extends State<UserEmailOtpScreen> {
           ),
           child: LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
             return SingleChildScrollView(
-              padding: const EdgeInsetsDirectional.symmetric(horizontal: 20,vertical: 24),
+              padding:const EdgeInsets.only(left: 20,right: 20,top: 44,bottom: 24),
               child: Column(
                 children: [
-                  const SizedBox(height: 44,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -144,7 +143,7 @@ class _UserEmailOtpScreenState extends State<UserEmailOtpScreen> {
                     ],
                   ),
                   Container(
-                      margin: const EdgeInsets.only(top: 260),
+                      margin: const EdgeInsets.only(top: 216),
                       height: 56 ,
                       width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(

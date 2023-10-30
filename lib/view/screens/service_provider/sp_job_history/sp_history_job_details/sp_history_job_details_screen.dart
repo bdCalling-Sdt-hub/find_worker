@@ -39,6 +39,7 @@ class _SpHistoryDetailsScreenState extends State<SpHistoryDetailsScreen> {
               ),
               GestureDetector(
                   onTap: (){
+
                     showDialog(context: context,
                         builder: (BuildContext context){
                           return const SpHistoryDetailsAlert();

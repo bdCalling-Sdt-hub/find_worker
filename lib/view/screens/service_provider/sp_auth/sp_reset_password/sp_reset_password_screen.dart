@@ -1,3 +1,4 @@
+import 'package:find_worker/core/app_routes.dart';
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_images.dart';
 import 'package:find_worker/utils/app_strings.dart';
@@ -145,7 +146,7 @@ class _SpResetPasswordScreenState extends State<SpResetPasswordScreen> {
                       ),
                       child: InkWell(
                         onTap: (){
-                          /*Get.toNamed(AppRoute.resetPasswordScreen);*/
+                          Get.toNamed(AppRoute.spSignInScreen);
                         },
                         child: const Center(
                             child: CustomText(

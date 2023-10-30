@@ -140,7 +140,7 @@ class _SpChangePasswordScreenState extends State<SpChangePasswordScreen> {
                       ),
                       GestureDetector(
                         onTap: (){
-                          Get.toNamed(AppRoute.changeForgetPasswordScreen);
+                          Get.toNamed(AppRoute.spChangeForgetPasswordScreen);
                         } ,
                         child: const CustomText(
                           text: AppStrings.forgetPassword,
@@ -155,7 +155,9 @@ class _SpChangePasswordScreenState extends State<SpChangePasswordScreen> {
                 );
               }
           ),
-          bottomNavigationBar: BottomNavButton(buttonText: 'Save', onTap: (){}),
+          bottomNavigationBar: BottomNavButton(buttonText: 'Save', onTap: (){
+            Get.toNamed(AppRoute.spSettingScreen);
+          }),
         ));
   }
 }

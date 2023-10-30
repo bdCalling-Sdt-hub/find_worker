@@ -1,5 +1,7 @@
+import 'package:find_worker/core/app_routes.dart';
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_strings.dart';
+import 'package:find_worker/view/screens/service_provider/sp_bottom_nav_bar/sp_bottom_nav_bar_screen.dart';
 import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -36,7 +38,7 @@ class _SpHistoryDetailsAlertState extends State<SpHistoryDetailsAlert> {
               Expanded(
                   child:InkWell(
                     onTap: (){
-                      Get.back();
+                      Get.to(SpBottomNavBarScreen(currentIndex: 1));
                     },
                     child: Container(
                         decoration: BoxDecoration(

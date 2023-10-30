@@ -1,7 +1,9 @@
+import 'package:find_worker/core/app_routes.dart';
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_strings.dart';
 import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class UserHistoryDetailsAlert extends StatefulWidget {
   const UserHistoryDetailsAlert({super.key});
@@ -35,7 +37,7 @@ class _UserHistoryDetailsAlertState extends State<UserHistoryDetailsAlert> {
               Expanded(
                   child:InkWell(
                     onTap: (){
-                      Navigator.pop(context);
+                      Get.toNamed(AppRoute.userHistoryScreen);
                     },
                     child: Container(
                         decoration: BoxDecoration(

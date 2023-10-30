@@ -47,7 +47,7 @@ class _SpVerifyEmailOtpScreenState extends State<SpVerifyEmailOtpScreen> {
               padding: const EdgeInsetsDirectional.symmetric(horizontal: 20,vertical: 24),
               child: Column(
                 children: [
-                  const SizedBox(height: 44,),
+                  const SizedBox(height: 24,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -144,7 +144,7 @@ class _SpVerifyEmailOtpScreenState extends State<SpVerifyEmailOtpScreen> {
                     ],
                   ),
                   Container(
-                      margin: const EdgeInsets.only(top: 260),
+                      margin: const EdgeInsets.only(top: 216),
                       height: 56 ,
                       width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
@@ -153,7 +153,7 @@ class _SpVerifyEmailOtpScreenState extends State<SpVerifyEmailOtpScreen> {
                       ),
                       child: InkWell(
                         onTap: (){
-                          Get.toNamed(AppRoute.userSignUp);
+                          Get.toNamed(AppRoute.spSignInScreen);
                         },
                         child: const Center(
                             child: CustomText(

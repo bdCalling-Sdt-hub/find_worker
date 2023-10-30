@@ -30,7 +30,7 @@ class _UserHireListScreenState extends State<UserHireListScreen> {
                 text: AppStrings.hireList,
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
-                color: AppColors.blue_100,
+                color: AppColors.black_100,
               ),
             ),),
           body: LayoutBuilder(

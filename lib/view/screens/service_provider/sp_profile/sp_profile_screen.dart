@@ -1,6 +1,7 @@
 import 'package:find_worker/core/app_routes.dart';
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_icons.dart';
+import 'package:find_worker/utils/app_images.dart';
 import 'package:find_worker/utils/app_strings.dart';
 import 'package:find_worker/view/screens/service_provider/sp_profile/inner_widgets/sp_profile_log_out_alert.dart';
 import 'package:find_worker/view/widgets/app_bar/custom_app_bar.dart';
@@ -132,7 +133,9 @@ class _SpProfileScreenState extends State<SpProfileScreen> {
                                   ),
                                 ),
                                 GestureDetector(
-                                  onTap: (){},
+                                  onTap: (){
+                                    Get.toNamed(AppRoute.spSettingScreen);
+                                  },
                                   child: Container(
                                     margin: const EdgeInsets.only(bottom: 16),
                                     padding: const EdgeInsets.only(bottom: 16),
@@ -141,7 +144,10 @@ class _SpProfileScreenState extends State<SpProfileScreen> {
                                     ),
                                     child:  const Row(
                                       children: [
-                                        CustomImage(imageSrc: AppIcons.settings,size: 18,),
+                                        CustomImage(
+                                          imageType: ImageType.png,
+                                          imageSrc: AppImages.settings,size: 18,
+                                        ),
                                         CustomText(
                                           text: AppStrings.settings,
                                           left: 12,

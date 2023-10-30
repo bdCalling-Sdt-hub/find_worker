@@ -1,3 +1,5 @@
+
+import 'package:find_worker/core/app_routes.dart';
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_strings.dart';
 import 'package:find_worker/view/widgets/app_bar/custom_app_bar.dart';
@@ -112,8 +114,8 @@ class _SpChangeResetPasswordScreenState extends State<SpChangeResetPasswordScree
                 );
               }
           ),
-          bottomNavigationBar: BottomNavButton(buttonText: 'Save', onTap: (){
-            /*Get.toNamed(AppRoute.settingsScreen);*/
+          bottomNavigationBar: BottomNavButton(buttonText: 'Update', onTap: (){
+            Get.toNamed(AppRoute.spChangePasswordScreen);
           }),
         ));
   }

@@ -1,3 +1,4 @@
+import 'package:find_worker/core/app_routes.dart';
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_icons.dart';
 import 'package:find_worker/utils/app_strings.dart';
@@ -38,10 +39,10 @@ class _UserEditPersonalInformationState extends State<UserEditPersonalInformatio
           body: LayoutBuilder(
               builder: (BuildContext context, BoxConstraints constraints) {
                 return SingleChildScrollView(
-                  padding: EdgeInsets.symmetric(vertical: 24,horizontal: 20),
+                  padding: const EdgeInsets.only(top: 44,left: 20,right: 20,bottom: 24),
                     child: Column(
                       children: [
-                        SizedBox(height: 34,),
+
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -60,9 +61,9 @@ class _UserEditPersonalInformationState extends State<UserEditPersonalInformatio
                             ),
                             const SizedBox()
                           ],),
-                        SizedBox(height: 34,),
+                       const SizedBox(height: 34,),
                         Center(
-                          child: Container(
+                          child: SizedBox(
                             height: 130,
                             width: 130,
                             child: Stack(
@@ -346,6 +347,7 @@ class _UserEditPersonalInformationState extends State<UserEditPersonalInformatio
                                   CustomButton(
                                     buttonWidth: MediaQuery.of(context).size.width,
                                     onPressed: () {
+                                      Get.toNamed(AppRoute.userPersonalInformationScreen);
                                     },
                                     titleText: AppStrings.update,
                                     titleColor: AppColors.white,
@@ -353,10 +355,9 @@ class _UserEditPersonalInformationState extends State<UserEditPersonalInformatio
                                     titleSize: 18,
                                     titleWeight: FontWeight.w600,
                                   ),
-                                ]))
-
-
-
+                                ]
+                            )
+                        )
                       ],
                     )
                 );

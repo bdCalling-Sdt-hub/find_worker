@@ -1,3 +1,4 @@
+import 'package:find_worker/core/app_routes.dart';
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_icons.dart';
 import 'package:find_worker/utils/app_images.dart';
@@ -56,74 +57,79 @@ class _CarWashDetailsScreenState extends State<CarWashDetailsScreen> {
                 mainAxisExtent: 180
             ),
             itemCount: 20, itemBuilder: (BuildContext context, int index) {
-           return Container(
-              width: MediaQuery.of(context).size.width*.5,
-              padding: const EdgeInsetsDirectional.symmetric(horizontal:8,vertical: 8 ),
-              decoration: ShapeDecoration(
-                color: Colors.white,
-                shape: RoundedRectangleBorder(
-                  side: const BorderSide(width: 1, color: Color(0xFF6AA4EE)),
-                  borderRadius: BorderRadius.circular(8),
+           return GestureDetector(
+             onTap: (){
+               Get.toNamed(AppRoute.userServiceDetailsScreen);
+             },
+             child: Container(
+                width: MediaQuery.of(context).size.width*.5,
+                padding: const EdgeInsetsDirectional.symmetric(horizontal:8,vertical: 8 ),
+                decoration: ShapeDecoration(
+                  color: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    side: const BorderSide(width: 1, color: Color(0xFF6AA4EE)),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 100,
+                      decoration: ShapeDecoration(
+                        image: const DecorationImage(
+                          image: AssetImage(
+                              AppImages.homeClean1
+                          ),
+                          fit: BoxFit.fill,
+                        ),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        CustomText(
+                          text: "Jubayed",
+                          fontWeight: FontWeight.w500,
+                          fontSize: 14,
+                        ),
+                        Row(
+                          children: [
+                            CustomImage(
+                                imageType: ImageType.svg,
+                                imageSrc: AppIcons.star),
+                            CustomText(
+                              text: "(4.5)",
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 12,
+                    ),
+                    const Row(
+
+                      children: [
+                        CustomImage(
+                            imageType: ImageType.svg,
+                            imageSrc: AppIcons.location),
+                        CustomText(
+                          left: 4,
+                          text: "Abu Dhabi",
+                          fontSize: 10,
+                          fontWeight: FontWeight.w400,
+                        )
+
+                      ],
+                    )
+                  ],
                 ),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: 100,
-                    decoration: ShapeDecoration(
-                      image: const DecorationImage(
-                        image: AssetImage(
-                            AppImages.homeClean1
-                        ),
-                        fit: BoxFit.fill,
-                      ),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      CustomText(
-                        text: "Jubayed",
-                        fontWeight: FontWeight.w500,
-                        fontSize: 14,
-                      ),
-                      Row(
-                        children: [
-                          CustomImage(
-                              imageType: ImageType.svg,
-                              imageSrc: AppIcons.star),
-                          CustomText(
-                            text: "(4.5)",
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  const Row(
-
-                    children: [
-                      CustomImage(
-                          imageType: ImageType.svg,
-                          imageSrc: AppIcons.location),
-                      CustomText(
-                        left: 4,
-                        text: "Abu Dhabi",
-                        fontSize: 10,
-                        fontWeight: FontWeight.w400,
-                      )
-
-                    ],
-                  )
-                ],
-              ),
-            );
+           );
           },
           ),
         );

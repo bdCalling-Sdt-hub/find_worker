@@ -159,7 +159,7 @@ class AppRoute {
      GetPage(name: termsOfConditionsScreen, page: () => const TermsOfConditionsScreen()),
      GetPage(name: aboutUsScreen, page: () => const AboutUsScreen()),
      GetPage(name: supportScreen, page: () => const SupportScreen()),
-     GetPage(name: homeScreen, page: () => const HomeScreen()),
+     GetPage(name: homeScreen, page: () => HomeScreen(selectedIndex: -1,)),
      GetPage(name: carWashDetailsScreen, page: () => const CarWashDetailsScreen()),
      GetPage(name: categoryScreen, page: () => const CategoryScreen()),
      GetPage(name: searchScreen, page: () => const SearchScreen()),

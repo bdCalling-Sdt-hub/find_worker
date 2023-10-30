@@ -1,3 +1,4 @@
+import 'package:find_worker/core/app_routes.dart';
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_icons.dart';
 import 'package:find_worker/utils/app_images.dart';
@@ -5,6 +6,7 @@ import 'package:find_worker/utils/app_strings.dart';
 import 'package:find_worker/view/widgets/image/custom_image.dart';
 import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CategoryScreen extends StatefulWidget {
   const CategoryScreen({super.key});
@@ -114,6 +116,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
       child: Scaffold(
         backgroundColor: AppColors.white,
         appBar: AppBar(
+          backgroundColor: AppColors.white,
+          automaticallyImplyLeading: false,
           centerTitle: true,
           title:const CustomText(
             fontWeight: FontWeight.w500,
@@ -139,21 +143,21 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Container(
-                      width: 80,
-                      height: 80,
-                      alignment: Alignment.center,
-                      padding: const EdgeInsetsDirectional.symmetric(horizontal: 2, vertical: 2),
-                      decoration: const ShapeDecoration(
-                        color: Colors.white,
-                        shape: OvalBorder(
-                          side: BorderSide(width: 1, color: Color(0xFF6AA4EE)),
+                    GestureDetector(
+                      onTap: (){
+                        Get.toNamed(AppRoute.carWashDetailsScreen);
+                      },
+                      child: Container(
+                        width: 80,
+                        height: 80,
+                        alignment: Alignment.center,
+                        padding: const EdgeInsetsDirectional.symmetric(horizontal: 2, vertical: 2),
+                        decoration: const ShapeDecoration(
+                          color: Colors.white,
+                          shape: OvalBorder(
+                            side: BorderSide(width: 1, color: Color(0xFF6AA4EE)),
+                          ),
                         ),
-                      ),
-                      child: GestureDetector(
-                        onTap: (){
-
-                        },
                         child: Container(
                           margin: const EdgeInsetsDirectional.symmetric(horizontal: 12, vertical: 12),
                           decoration: BoxDecoration(
