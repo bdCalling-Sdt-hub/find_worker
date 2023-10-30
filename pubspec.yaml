@@ -43,6 +43,7 @@ dependencies:
   flutter_rating_bar:
   percent_indicator:
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -3,8 +3,8 @@ import 'package:flutter/animation.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 
-class AdvancedSwitch extends StatefulWidget {
-  const AdvancedSwitch({
+class OnOffSwitch extends StatefulWidget {
+  const OnOffSwitch({
     Key? key,
     this.controller,
     this.activeColor = const Color(0xFF4CAF50),
@@ -19,10 +19,13 @@ class AdvancedSwitch extends StatefulWidget {
     this.enabled = true,
     this.disabledOpacity = 0.5,
     this.thumb,
+    this.changeColor=true,
   }) : super(key: key);
 
   /// Determines if widget is enabled
   final bool enabled;
+  final bool changeColor;
+
 
   /// Determines current state.
   final ValueNotifier<bool>? controller;
@@ -61,10 +64,10 @@ class AdvancedSwitch extends StatefulWidget {
   final Widget? thumb;
 
   @override
-  _AdvancedSwitchState createState() => _AdvancedSwitchState();
+  _OnOffSwitchState createState() => _OnOffSwitchState();
 }
 
-class _AdvancedSwitchState extends State<AdvancedSwitch>
+class _OnOffSwitchState extends State<OnOffSwitch>
     with SingleTickerProviderStateMixin {
   static const _duration = Duration(milliseconds: 250);
   late ValueNotifier<bool> _controller;
@@ -90,7 +93,7 @@ class _AdvancedSwitchState extends State<AdvancedSwitch>
   }
 
   @override
-  void didUpdateWidget(covariant AdvancedSwitch oldWidget) {
+  void didUpdateWidget(covariant OnOffSwitch oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     _initAnimation();
@@ -111,7 +114,6 @@ class _AdvancedSwitchState extends State<AdvancedSwitch>
             animation: _animationController,
             builder: (_, child) {
               return ClipRRect(
-
                 borderRadius: widget.borderRadius,
                 clipBehavior: Clip.antiAlias,
                 child: Container(
@@ -128,25 +130,25 @@ class _AdvancedSwitchState extends State<AdvancedSwitch>
                   ValueListenableBuilder<bool>(
                     valueListenable: _controller,
                     builder: (_, __, ___) {
-                      return AnimatedCrossFade(
-                        crossFadeState: _controller.value
-                            ? CrossFadeState.showSecond
-                            : CrossFadeState.showFirst,
-                        duration: _duration,
-                        firstChild: Image(
-                          width: widget.width,
-                          height: widget.height,
-                          image: widget.inactiveImage ?? widget.activeImage!,
-                          fit: BoxFit.cover,
-                        ),
-                        secondChild: Image(
-                          width: widget.width,
-                          height: widget.height,
-                          image: widget.activeImage ?? widget.inactiveImage!,
-                          fit: BoxFit.cover,
-                        ),
-                      );
-                    },
+                  return AnimatedCrossFade(
+                  crossFadeState: _controller.value
+                  ? CrossFadeState.showSecond
+                      : CrossFadeState.showFirst,
+                  duration: _duration,
+                  firstChild: Image(
+                  width: widget.width,
+                  height: widget.height,
+                  image: widget.inactiveImage ?? widget.activeImage!,
+                  fit: BoxFit.cover,
+                  ),
+                  secondChild: Image(
+                  width: widget.width,
+                  height: widget.height,
+                  image: widget.activeImage ?? widget.inactiveImage!,
+                  fit: BoxFit.cover,
+                  ),
+                  );
+                  },
                   ),
                 AnimatedBuilder(
                   animation: _animationController,
@@ -157,6 +159,7 @@ class _AdvancedSwitchState extends State<AdvancedSwitch>
                     );
                   },
                   child: OverflowBox(
+
                     minWidth: containerSize,
                     maxWidth: containerSize,
                     minHeight: widget.height,
@@ -190,9 +193,7 @@ class _AdvancedSwitchState extends State<AdvancedSwitch>
                           child: widget.thumb ??
                               Container(
                                 decoration: BoxDecoration(
-                                  border: Border.all(
-                                      width: 1, color: AppColors.black_60),
-                                  color: AppColors.black_60,
+                                  color:  AppColors.white,
                                   borderRadius: widget.borderRadius
                                       .subtract(BorderRadius.circular(1)),
                                   boxShadow: const [

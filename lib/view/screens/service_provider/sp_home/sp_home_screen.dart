@@ -1,9 +1,10 @@
+import 'package:find_worker/core/app_routes.dart';
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_icons.dart';
 import 'package:find_worker/utils/app_strings.dart';
-import 'package:find_worker/view/widgets/advanced_switch/advanced_switch.dart';
 import 'package:find_worker/view/widgets/app_bar/custom_app_bar.dart';
 import 'package:find_worker/view/widgets/image/custom_image.dart';
+import 'package:find_worker/view/widgets/on_off_switch/on_off_switch.dart';
 import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -17,6 +18,7 @@ class SpHomeScreen extends StatefulWidget {
 }
 
 class _SpHomeScreenState extends State<SpHomeScreen> {
+  bool status = false;
   final _controller = ValueNotifier<bool>(false);
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class _SpHomeScreenState extends State<SpHomeScreen> {
         bottom: false,
         child: Scaffold(
           backgroundColor: AppColors.white,
-          appBar: CustomAppBar(appBarContent:Row(
+          appBar:  CustomAppBar(appBarContent:Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const CustomText(
@@ -34,29 +36,35 @@ class _SpHomeScreenState extends State<SpHomeScreen> {
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
               ),
-              AdvancedSwitch(
+              OnOffSwitch(
                 controller: _controller,
-                activeColor: AppColors.blue_60.withOpacity(.5),
-                inactiveColor: AppColors.black_60.withOpacity(.5),
-                activeChild: const CustomText(
-                  text: 'Online',
-                  color: AppColors.blue_100,
-                  fontSize: 12,
-                  fontWeight: FontWeight.w500,
+                activeColor: AppColors.blue_100,
+                inactiveColor: AppColors.black_100,
+                activeChild:  Text('Online'
+                  ,style: GoogleFonts.poppins(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.white
+                  ),
                 ),
-                inactiveChild: const CustomText(
-                  text: 'Offline',
-                  color: AppColors.black_60,
-                  fontSize: 12,
-                  fontWeight: FontWeight.w500,
+                inactiveChild:  Text('Offline',
+                  style: GoogleFonts.poppins(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: AppColors.white
+                  ),
                 ),
                 borderRadius: const BorderRadius.all(Radius.circular(20)),
-                width: 100,
-                height: 30.0,
+                width: 80,
+                height: 26.0,
                 enabled: true,
-                disabledOpacity: 0.5,
+                disabledOpacity: 0.8,
               ),
-              const CustomImage(imageSrc:AppIcons.bell,size: 24,)
+              GestureDetector(
+                onTap: (){
+                  Get.toNamed(AppRoute.spNotificationScreen);
+                },
+                  child: CustomImage(imageSrc:AppIcons.bell,size: 24,))
             ],),),
           body: LayoutBuilder(
               builder: (BuildContext context, BoxConstraints constraints) {
