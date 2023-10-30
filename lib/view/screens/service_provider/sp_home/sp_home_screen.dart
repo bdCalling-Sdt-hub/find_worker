@@ -16,7 +16,6 @@ class SpHomeScreen extends StatefulWidget {
   @override
   State<SpHomeScreen> createState() => _SpHomeScreenState();
 }
-
 class _SpHomeScreenState extends State<SpHomeScreen> {
   bool status = false;
   final _controller = ValueNotifier<bool>(false);

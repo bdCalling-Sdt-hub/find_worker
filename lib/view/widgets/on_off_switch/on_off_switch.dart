@@ -2,7 +2,6 @@ import 'package:find_worker/utils/app_colors.dart';
 import 'package:flutter/animation.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
-
 class OnOffSwitch extends StatefulWidget {
   const OnOffSwitch({
     Key? key,

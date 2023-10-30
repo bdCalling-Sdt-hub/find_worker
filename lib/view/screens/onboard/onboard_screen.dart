@@ -65,7 +65,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                     ),
                     GestureDetector(
                       onTap: (){
-                        Get.toNamed(AppRoute.userServiceDetailsScreen );
+                        Get.toNamed(AppRoute.userSignIn );
                       },
                       child: Container(
                         margin: EdgeInsets.only(bottom: 16),
@@ -93,7 +93,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                     ),
                     GestureDetector(
                       onTap: (){
-                        Get.toNamed(AppRoute.spHomeScreen );
+                        Get.toNamed(AppRoute.spSignInScreen );
                       },
                       child: Container(
                         height: 56,
