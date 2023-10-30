@@ -2,6 +2,7 @@ import 'package:find_worker/core/app_routes.dart';
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_icons.dart';
 import 'package:find_worker/utils/app_strings.dart';
+import 'package:find_worker/view/screens/user/settings/change_forget_password/change_forget_password_screen.dart';
 import 'package:find_worker/view/widgets/app_bar/custom_app_bar.dart';
 import 'package:find_worker/view/widgets/buttons/bottom_nav_button.dart';
 import 'package:find_worker/view/widgets/image/custom_image.dart';
@@ -10,6 +11,8 @@ import 'package:find_worker/view/widgets/text_field/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../change_forget_password/change_forget_password_screen.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
   const ChangePasswordScreen({super.key});
@@ -140,7 +143,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       ),
                       GestureDetector(
                         onTap: (){
-                          Get.toNamed(AppRoute.spChangeForgetPasswordScreen);
+                          Get.toNamed(AppRoute.changeForgetPasswordScreen);
                         } ,
                         child: const CustomText(
                           text: AppStrings.forgetPassword,

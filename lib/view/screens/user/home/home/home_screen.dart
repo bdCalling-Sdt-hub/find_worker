@@ -1,3 +1,4 @@
+import 'package:find_worker/core/app_routes.dart';
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_images.dart';
 import 'package:find_worker/utils/app_strings.dart';
@@ -5,6 +6,7 @@ import 'package:find_worker/view/screens/user/home/home/home_screen_data/home_sc
 
 import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'inner_widgets/car_wash_section.dart';
 
@@ -134,7 +136,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Row(
                   children: [
                     GestureDetector(
-                      onTap: (){},
+                      onTap: (){
+                        Get.toNamed(AppRoute.searchScreen);
+                      },
                       child:const Icon(
                           Icons.search
                       ),
@@ -168,7 +172,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Container(
-
                           width: 60,
                           height: 60,
                           alignment: Alignment.center,
@@ -225,7 +228,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   selectedIndex == -1? const HomeScreenData() : selectedIndex == 0 ? CarWashSection(selectedIndex: selectedIndex, text: "Home Clean",)
-                      : selectedIndex == 1 ? CarWashSection(selectedIndex: selectedIndex, text: "Car Wash",)  :
+                  : selectedIndex == 1 ? CarWashSection(selectedIndex: selectedIndex, text: "Car Wash",)  :
                   selectedIndex == 2 ? CarWashSection(selectedIndex: selectedIndex, text: "Air Condition") : const Text("Same way others data"),
 
                 ],

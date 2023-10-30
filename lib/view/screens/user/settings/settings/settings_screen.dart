@@ -85,7 +85,7 @@ class _SettingScreenState extends State<SettingScreen> {
                     ),
                     ),
                     borderRadius: const BorderRadius.all(Radius.circular(20)),
-                    width: 80,
+                    width: 90 ,
                     height: 30.0,
                     enabled: true,
                     disabledOpacity: 0.8,
@@ -96,7 +96,7 @@ class _SettingScreenState extends State<SettingScreen> {
               const SizedBox(height: 30,),
               GestureDetector(
                 onTap: (){
-                  Get.toNamed(AppRoute.changeResetPasswordScreen);
+                  Get.toNamed(AppRoute.changePasswordScreen);
                 },
                 child:   const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
