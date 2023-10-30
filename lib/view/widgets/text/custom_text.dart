@@ -1,4 +1,5 @@
 
+import 'package:find_worker/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -13,7 +14,7 @@ class CustomText extends StatelessWidget {
         this.bottom = 0,
         this.fontSize = 14,
         this.fontWeight =FontWeight.w400,
-        this.color = Colors.black,
+        this.color = AppColors.black_100,
         this.text = "",
         this.overflow = TextOverflow.ellipsis,
         this.textDecoration = TextDecoration.none

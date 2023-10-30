@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class AppColors{
   static const Color blue_100 = Color(0xff0668E3);
@@ -46,14 +46,6 @@ class AppColors{
   static const Color black_5 = Color(0xffECECEC);
 
   static const Color white = Color(0xffFFFFFF);
-
-  // Gradient color
-  static const bg = LinearGradient(
-  begin: Alignment(0.87, 0.50),
-  end: Alignment(-0.87, -0.5),
-  colors: [Color(0xFFF3F3F3), Color(0xFFCCE0F9)],
-  );
-
 
 
 }

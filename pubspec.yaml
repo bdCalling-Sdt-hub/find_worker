@@ -41,6 +41,11 @@ dependencies:
   pin_code_fields:
   lite_rolling_switch:
 
+  intl_phone_field:
+  pin_code_fields:
+  flutter_rating_bar:
+  percent_indicator:
+
 
 dev_dependencies:
   flutter_test:

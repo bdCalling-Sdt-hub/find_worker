@@ -37,10 +37,14 @@ class AppImages{
   static const String privateTutor = "$basePath/Tutor.png";
   static const String profileJhon = "$basePath/profile_jhon.png";
   static const String profileSmith = "$basePath/profile_smith.png";
-  static const String rafiKi = "$basePath/rafiKi.png";
+  static const String rafiKi = "$basePath/rafiki.png";
   static const String smithJhon = "$basePath/smith_jhon.png";
   static const String success = "$basePath/Success.png";
   static const String trash = "$basePath/trash.png";
   static const String womanDriver = "$basePath/Woman_Driver.png";
 
+  static const String settings = "$basePath/settings.png";
+  static const String extra = "$basePath/extra.png";
+  static const String historyImg = "$basePath/histoy_img.png";
+  static const String chevronDown = "$basePath/chevron-down.png";
 }
