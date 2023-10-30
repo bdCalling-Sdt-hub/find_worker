@@ -71,38 +71,49 @@ class _SpJobHistoryScreenState extends State<SpJobHistoryScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                         const Expanded(
-                            child:  CustomText(
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            CustomText(
                               text: 'Smith John',
                               fontSize: 12,
                               fontWeight: FontWeight.w500,
                             ),
-                          ),
-                          const Expanded(
-                              child: Column(
-                                children: [
-                                  CustomImage(
-                                      imageSrc: AppIcons.calendar
-                                  ),
-                                  CustomText(
-                                    left: 4,
-                                    text:  '12-Sept',
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                  CustomImage(
-                                      imageSrc: AppIcons.clock
-                                  ),
-                                  CustomText(
-                                    left: 4,
-                                    text: '12:00 AM',
-                                    textAlign: TextAlign.right,
-                                    fontSize: 10,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ],
-                              )
-                          ),
+                            Column(
+                              children: [
+                             Row(
+                               children: [
+                                 CustomImage(
+                                     imageSrc: AppIcons.calendar
+                                 ),
+                                 CustomText(
+                                   left: 4,
+                                   text:  '12-Sept',
+                                   fontSize: 10,
+                                   fontWeight: FontWeight.w400,
+                                 ),
+                               ],
+                             ),
+                               Row(
+                                 children: [
+                                   CustomImage(
+                                       imageSrc: AppIcons.clock
+                                   ),
+                                   CustomText(
+                                     left: 4,
+                                     text: '12:00 AM',
+                                     textAlign: TextAlign.right,
+                                     fontSize: 10,
+                                     fontWeight: FontWeight.w400,
+                                   ),
+                                 ],
+                               )
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
                           Expanded(
                             child: Container(
                               padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
