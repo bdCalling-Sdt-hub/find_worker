@@ -41,14 +41,14 @@ class _SpSignInScreenState extends State<SpSignInScreen> {
                   padding: const EdgeInsets.symmetric(vertical: 44,horizontal: 20),
                   child: Column(
                     children: [
-                      const CustomText(
-                        text: AppStrings.welcomeToFindWorker,
+                       CustomText(
+                        text: 'Welcome to Find Worker!'.tr,
                         fontSize: 18,
                         fontWeight: FontWeight.w500,
                         bottom: 66,
                       ),
-                      const CustomText(
-                        text: AppStrings.logo,
+                       CustomText(
+                        text: 'Logo'.tr,
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
                         color: AppColors.blue_100,
@@ -59,14 +59,14 @@ class _SpSignInScreenState extends State<SpSignInScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const CustomText(
-                              text: AppStrings.email,
+                             CustomText(
+                              text: 'Email'.tr,
                               fontWeight: FontWeight.w500,
                               bottom: 8,
                             ),
                             CustomTextField(
                               textAlign: TextAlign.start,
-                              hintText: AppStrings.enterYourEmail,
+                              hintText: 'Enter your email'.tr,
                               hintStyle: GoogleFonts.montserrat(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,
@@ -76,8 +76,8 @@ class _SpSignInScreenState extends State<SpSignInScreen> {
                               fieldBorderColor: AppColors.blue_10,
                               fieldBorderRadius: 8,
                             ),
-                            const CustomText(
-                              text: AppStrings.password,
+                             CustomText(
+                              text: 'Password'.tr,
                               fontWeight: FontWeight.w500,
                               top: 16,
                               bottom: 8,
@@ -85,7 +85,7 @@ class _SpSignInScreenState extends State<SpSignInScreen> {
                             CustomTextField(
                               isPassword: true,
                               textAlign: TextAlign.start,
-                              hintText: AppStrings.enterYourPassword,
+                              hintText: 'Enter your password'.tr,
                               hintStyle: GoogleFonts.montserrat(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,
@@ -101,10 +101,10 @@ class _SpSignInScreenState extends State<SpSignInScreen> {
                               onTap: (){
                                 Get.toNamed(AppRoute.spForgetPasswordScreen);
                               },
-                              child: const Align(
+                              child:  Align(
                                 alignment: Alignment.topLeft,
                                 child: CustomText(
-                                  text: AppStrings.forgetPassword,
+                                  text: 'Forget Password'.tr,
                                   fontWeight: FontWeight.w500,
                                   color: AppColors.blue_100,
                                   top: 16,
@@ -115,18 +115,19 @@ class _SpSignInScreenState extends State<SpSignInScreen> {
                             CustomButton(
                               buttonWidth: MediaQuery.of(context).size.width,
                               onPressed: () {
-                                 Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_)=> SpBottomNavBarScreen(currentIndex: 0)), (route) => false);
+                                 /*Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_)=> SpBottomNavBarScreen(currentIndex: 0)), (route) => false);*/
+                                Get.to(SpBottomNavBarScreen(currentIndex: 0));
                               },
-                              titleText: AppStrings.signIn,
+                              titleText: 'Sign In'.tr,
                               titleColor: AppColors.white,
                               buttonBgColor: AppColors.blue_100,
                               titleSize: 18,
                               titleWeight: FontWeight.w600,
                             ),
-                            const Align(
+                             Align(
                               alignment: Alignment.center,
                               child: CustomText(
-                                text: AppStrings.orContinueWith,
+                                text: 'Or continue with'.tr,
                                 fontWeight: FontWeight.w500,
                                 color: AppColors.black_80,
                                 top: 32,
@@ -164,19 +165,20 @@ class _SpSignInScreenState extends State<SpSignInScreen> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                const CustomText(
-                                  text: AppStrings.didNotHaveAnAccount,
+                                 CustomText(
+                                  text: 'Didn’t have an account?'.tr,
                                   color: AppColors.black_100,
                                 ),
                                 GestureDetector(
                                   onTap: (){
                                     Get.toNamed(AppRoute.spSignUpScreen);
                                   },
-                                  child: const CustomText(
-                                    text: AppStrings.signUp,
+                                  child:  CustomText(
+                                    text: 'Sign Up'.tr,
                                     fontWeight: FontWeight.w600,
                                     color: AppColors.blue_100,
                                     left: 4,
+                                    right: 4,
                                   ),
                                 ),
                               ],

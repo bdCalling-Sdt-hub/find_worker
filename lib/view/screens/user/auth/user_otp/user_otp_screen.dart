@@ -59,7 +59,7 @@ class _UserOtpScreenState extends State<UserOtpScreen> {
                           child: const Icon(Icons.arrow_back_ios_new_outlined,size: 16,color: AppColors.black_100,),
                         ),
                         Text(
-                          AppStrings.oTP,
+                          'OTP'.tr,
                           textAlign: TextAlign.center,
                           style: GoogleFonts.poppins(
                             color:  AppColors.black_100,
@@ -78,12 +78,12 @@ class _UserOtpScreenState extends State<UserOtpScreen> {
                       ),
                     ),
                     const SizedBox(height: 44,),
-                     const Center(
+                      Center(
                       child: CustomText(
                         fontSize: 14,
                         fontWeight:FontWeight.w500,
                         color: AppColors.black_100,
-                        text: AppStrings.pleaseEnterTheOTPCode,
+                        text: 'Please enter the OTP code.'.tr,
                       ),
                     ),
                     const SizedBox(height: 44,),
@@ -123,8 +123,8 @@ class _UserOtpScreenState extends State<UserOtpScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                         const CustomText(
-                          text: AppStrings.didNotGetTheCode ,
+                          CustomText(
+                          text: "Did not get the code?".tr ,
                           fontSize: 14,
                           fontWeight: FontWeight.w600,
                           color: AppColors.black_100,
@@ -133,8 +133,8 @@ class _UserOtpScreenState extends State<UserOtpScreen> {
                           onTap: () {
                             /*Get.to(()=> const OtpScreen());*/
                           },
-                          child: const CustomText(
-                            text: AppStrings.resend,
+                          child: CustomText(
+                            text: "Resend".tr,
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
                             color: AppColors.blue_100,
@@ -158,9 +158,9 @@ class _UserOtpScreenState extends State<UserOtpScreen> {
                           onTap: (){
                             Get.toNamed(AppRoute.userResetPasswordScreen);
                           },
-                          child: const Center(
+                          child:  Center(
                               child: CustomText(
-                                text: AppStrings.verify,
+                                text: "Verify".tr,
                                 color: Colors.white,
                                 fontSize: 18,
                                 fontWeight: FontWeight.w600,

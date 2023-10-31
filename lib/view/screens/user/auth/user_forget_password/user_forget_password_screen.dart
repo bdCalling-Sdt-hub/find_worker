@@ -2,8 +2,6 @@ import 'package:find_worker/core/app_routes.dart';
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_images.dart';
 import 'package:find_worker/utils/app_strings.dart';
-import 'package:find_worker/view/widgets/app_bar/custom_app_bar.dart';
-import 'package:find_worker/view/widgets/buttons/bottom_nav_button.dart';
 import 'package:find_worker/view/widgets/image/custom_image.dart';
 import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:find_worker/view/widgets/text_field/custom_text_field.dart';
@@ -67,7 +65,7 @@ class _UserForgetPasswordScreenState extends State<UserForgetPasswordScreen> {
                             ),
                           ),
                           Text(
-                            AppStrings.forgetPassword,
+                            'Forget Password'.tr,
                             textAlign: TextAlign.center,
                             style: GoogleFonts.poppins(
                               color: AppColors.black_100,
@@ -90,17 +88,17 @@ class _UserForgetPasswordScreenState extends State<UserForgetPasswordScreen> {
                       const SizedBox(
                         height: 44,
                       ),
-                       const CustomText(
+                        CustomText(
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
                         color: AppColors.black_100,
-                        text: AppStrings.enterEmailAddressToResetPassword,
+                        text: 'Enter email address to reset password.'.tr,
                       ),
                       const SizedBox(
                         height: 44,
                       ),
-                      const CustomText(
-                        text: AppStrings.email,
+                       CustomText(
+                        text: 'Email'.tr,
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
                         color: AppColors.black_100,
@@ -108,7 +106,7 @@ class _UserForgetPasswordScreenState extends State<UserForgetPasswordScreen> {
                       const SizedBox(height: 8),
                       CustomTextField(
                         textAlign: TextAlign.start,
-                        hintText: 'Enter your email',
+                        hintText: 'Enter your email'.tr,
                         hintStyle: GoogleFonts.poppins(
                             fontSize: 14,
                             fontWeight: FontWeight.w400,
@@ -133,9 +131,9 @@ class _UserForgetPasswordScreenState extends State<UserForgetPasswordScreen> {
                         onTap: (){
                           Get.toNamed(AppRoute.userOtpScreen);
                         },
-                        child: const Center(
+                        child:  Center(
                           child: CustomText(
-                          text: AppStrings.getOTP,
+                          text: 'Get OTP'.tr,
                           color: Colors.white,
                           fontSize: 18,
                           fontWeight: FontWeight.w600,

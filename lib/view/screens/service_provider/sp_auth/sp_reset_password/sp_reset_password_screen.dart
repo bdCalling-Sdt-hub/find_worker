@@ -61,7 +61,7 @@ class _SpResetPasswordScreenState extends State<SpResetPasswordScreen> {
                         child: const Icon(Icons.arrow_back_ios_new_outlined,size: 16,color: AppColors.black_100,),
                       ),
                       Text(
-                        AppStrings.resetPassword,
+                        'Reset Password'.tr,
                         textAlign: TextAlign.center,
                         style: GoogleFonts.poppins(
                           color:  AppColors.black_100,
@@ -80,17 +80,17 @@ class _SpResetPasswordScreenState extends State<SpResetPasswordScreen> {
                     ),
                   ),
                   const SizedBox(height: 44,),
-                  const Center(
+                   Center(
                     child: CustomText(
                       fontSize: 14,
                       fontWeight:FontWeight.w500,
                       color: AppColors.black_100,
-                      text: AppStrings.passwordMustHaveCharacters,
+                      text: 'Password must have 8-10 characters.'.tr,
                     ),
                   ),
                   const SizedBox(height: 44,),
-                  const CustomText(
-                    text: AppStrings.password,
+                   CustomText(
+                    text: 'Password'.tr,
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
                     color: AppColors.black_100,
@@ -100,7 +100,7 @@ class _SpResetPasswordScreenState extends State<SpResetPasswordScreen> {
                     isPassword: true,
                     isPrefixIcon: false,
                     textAlign: TextAlign.start,
-                    hintText: 'Enter your password',
+                    hintText: 'Enter your password'.tr,
                     hintStyle: GoogleFonts.montserrat(
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
@@ -113,8 +113,8 @@ class _SpResetPasswordScreenState extends State<SpResetPasswordScreen> {
                     fieldBorderRadius: 8,
                   ),
                   const SizedBox(height: 24,),
-                  const CustomText(
-                    text: AppStrings.confirmPassword,
+                   CustomText(
+                    text: "Confirm Password".tr,
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
                     color: AppColors.black_100,
@@ -124,7 +124,7 @@ class _SpResetPasswordScreenState extends State<SpResetPasswordScreen> {
                     isPassword: true,
                     isPrefixIcon: false,
                     textAlign: TextAlign.start,
-                    hintText: 'Confirm your password',
+                    hintText: "Confirm your password".tr,
                     hintStyle: GoogleFonts.montserrat(
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
@@ -148,9 +148,9 @@ class _SpResetPasswordScreenState extends State<SpResetPasswordScreen> {
                         onTap: (){
                           Get.toNamed(AppRoute.spSignInScreen);
                         },
-                        child: const Center(
+                        child:  Center(
                             child: CustomText(
-                              text: AppStrings.verify,
+                              text: 'Reset Password'.tr,
                               color: Colors.white,
                               fontSize: 18,
                               fontWeight: FontWeight.w600,

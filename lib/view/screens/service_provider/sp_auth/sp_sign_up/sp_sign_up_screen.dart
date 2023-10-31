@@ -22,28 +22,28 @@ class SpSignUpScreen extends StatefulWidget {
 class _SpSignUpScreenState extends State<SpSignUpScreen> {
   int selectedItem = 0;
   List<String> serviceType = [
-    'Home Clean',
-    'Car Wash',
-    'Farmer',
-    'Air Condition Maintenance',
-    'Pipe Fitter',
-    'Jens Salon',
-    'Man Driver',
-    'Woman Driver',
-    'Ladies Salon',
-    'Home Business',
-    'Butcher',
-    'Private Tutor',
-    'Henna',
-    'Movers',
-    'Gypsum Board & Floor',
-    'Car Tires Repair',
-    'Car Recovery',
-    'Catering',
-    'Cable Fixing',
+    'Home Clean'.tr,
+    'Car Wash'.tr,
+    'Farmer'.tr,
+    'Air Condition Maintenance'.tr,
+    'Pipe Fitter'.tr,
+    'Jens Salon'.tr,
+    'Man Driver'.tr,
+    'Woman Driver'.tr,
+    'Ladies Salon'.tr,
+    'Home Business'.tr,
+    'Butcher'.tr,
+    'Private Tutor'.tr,
+    'Henna'.tr,
+    'Movers'.tr,
+    'Gypsum Board & Floor'.tr,
+    'Car Tires Repair'.tr,
+    'Car Recovery'.tr,
+    'Catering'.tr,
+    'Cable Fixing'.tr,
   ];
 
-  List<String> genderList = ["Male", "Female", "Others"];
+  List<String> genderList = ["Male".tr, "Female".tr, "Others".tr];
   int selectedGender = 0;
   bool isClicked = false;
   void changeGender(int index) {
@@ -91,7 +91,7 @@ class _SpSignUpScreenState extends State<SpSignUpScreen> {
                               ),
                             ),
                             CustomText(
-                              text: AppStrings.signUp,
+                              text: 'Sign Up'.tr,
                               fontSize: 18,
                               fontWeight: FontWeight.w500,
                             ),
@@ -106,15 +106,15 @@ class _SpSignUpScreenState extends State<SpSignUpScreen> {
                             child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const CustomText(
-                                    text: AppStrings.fullName,
+                                   CustomText(
+                                    text: 'Full Name'.tr,
                                     color: AppColors.black_100,
                                     fontWeight: FontWeight.w500,
                                     bottom: 8,
                                   ),
                                   CustomTextField(
                                     textAlign: TextAlign.start,
-                                    hintText: AppStrings.enterYourFullName,
+                                    hintText: 'Enter your full name'.tr,
                                     hintStyle: GoogleFonts.montserrat(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w500,
@@ -126,8 +126,8 @@ class _SpSignUpScreenState extends State<SpSignUpScreen> {
                                     fieldBorderColor: AppColors.blue_10,
                                     fieldBorderRadius: 8,
                                   ),
-                                  const CustomText(
-                                    text: AppStrings.dateOfBirth,
+                                   CustomText(
+                                    text: 'Date of Birth'.tr,
                                     color: AppColors.black_100,
                                     fontWeight: FontWeight.w500,
                                     bottom: 8,
@@ -138,7 +138,7 @@ class _SpSignUpScreenState extends State<SpSignUpScreen> {
                                       Expanded(
                                         child: CustomTextField(
                                           textAlign: TextAlign.center,
-                                          hintText: AppStrings.dd,
+                                          hintText: 'DD'.tr,
                                           hintStyle: GoogleFonts.montserrat(
                                               fontSize: 14,
                                               fontWeight: FontWeight.w500,
@@ -155,7 +155,7 @@ class _SpSignUpScreenState extends State<SpSignUpScreen> {
                                       Expanded(
                                         child: CustomTextField(
                                           textAlign: TextAlign.center,
-                                          hintText: AppStrings.mm,
+                                          hintText: 'MM'.tr,
                                           hintStyle: GoogleFonts.montserrat(
                                               fontSize: 14,
                                               fontWeight: FontWeight.w500,
@@ -172,7 +172,7 @@ class _SpSignUpScreenState extends State<SpSignUpScreen> {
                                       Expanded(
                                         child: CustomTextField(
                                           textAlign: TextAlign.center,
-                                          hintText: AppStrings.yyyy,
+                                          hintText: 'YYYY'.tr,
                                           hintStyle: GoogleFonts.poppins(
                                               fontSize: 14,
                                               fontWeight: FontWeight.w500,
@@ -187,8 +187,8 @@ class _SpSignUpScreenState extends State<SpSignUpScreen> {
                                       ),
                                     ],
                                   ),
-                                  const CustomText(
-                                    text: AppStrings.gender,
+                                   CustomText(
+                                    text: 'Gender'.tr,
                                     color: AppColors.black_100,
                                     fontWeight: FontWeight.w500,
                                     bottom: 8,
@@ -237,8 +237,8 @@ class _SpSignUpScreenState extends State<SpSignUpScreen> {
                                           ),
                                         )),
                                   ),
-                                  const CustomText(
-                                    text: AppStrings.email,
+                                   CustomText(
+                                    text: 'Email'.tr,
                                     color: AppColors.black_100,
                                     fontWeight: FontWeight.w500,
                                     top: 16,
@@ -246,20 +246,20 @@ class _SpSignUpScreenState extends State<SpSignUpScreen> {
                                   ),
                                   CustomTextField(
                                     textAlign: TextAlign.start,
-                                    hintText: AppStrings.enterYourEmail,
+                                    hintText: 'Enter your email'.tr,
                                     hintStyle: GoogleFonts.montserrat(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w500,
                                         color: AppColors.black_40),
-                                    inputTextStyle: GoogleFonts.montserrat(
+                                    inputTextStyle: GoogleFonts.poppins(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 14,
                                         color: AppColors.black_100),
                                     fieldBorderColor: AppColors.blue_10,
                                     fieldBorderRadius: 8,
                                   ),
-                                  const CustomText(
-                                    text: AppStrings.phoneNumber,
+                                   CustomText(
+                                    text: 'Phone number'.tr,
                                     color: AppColors.black_100,
                                     fontWeight: FontWeight.w500,
                                     top: 16,
@@ -300,7 +300,7 @@ class _SpSignUpScreenState extends State<SpSignUpScreen> {
                                         flex: 2,
                                         child: CustomTextField(
                                           textAlign: TextAlign.start,
-                                          hintText: AppStrings.enterYourEmail,
+                                          hintText: 'Phone number'.tr,
                                           hintStyle: GoogleFonts.montserrat(
                                               fontSize: 14,
                                               fontWeight: FontWeight.w500,
@@ -315,8 +315,8 @@ class _SpSignUpScreenState extends State<SpSignUpScreen> {
                                       ),
                                     ],
                                   ),
-                                  const CustomText(
-                                    text: AppStrings.address,
+                                   CustomText(
+                                    text: 'Address'.tr,
                                     color: AppColors.black_100,
                                     fontWeight: FontWeight.w500,
                                     top: 16,
@@ -324,7 +324,7 @@ class _SpSignUpScreenState extends State<SpSignUpScreen> {
                                   ),
                                   CustomTextField(
                                     textAlign: TextAlign.start,
-                                    hintText: 'Enter your address',
+                                    hintText: 'Enter your address'.tr,
                                     hintStyle: GoogleFonts.montserrat(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w500,
@@ -336,8 +336,8 @@ class _SpSignUpScreenState extends State<SpSignUpScreen> {
                                     fieldBorderColor: AppColors.blue_10,
                                     fieldBorderRadius: 8,
                                   ),
-                                  const CustomText(
-                                    text: AppStrings.serviceType,
+                                   CustomText(
+                                    text: 'Service Type'.tr,
                                     color: AppColors.black_100,
                                     fontWeight: FontWeight.w500,
                                     top: 16,
@@ -355,7 +355,7 @@ class _SpSignUpScreenState extends State<SpSignUpScreen> {
                                       ),
                                       filled: true,
                                       fillColor: AppColors.white,
-                                      hintText: AppStrings.enterYourService,
+                                      hintText:'Enter your service'.tr,
                                       hintStyle: GoogleFonts.montserrat(
                                               fontSize: 14,
                                                fontWeight: FontWeight.w500,
@@ -426,6 +426,7 @@ class _SpSignUpScreenState extends State<SpSignUpScreen> {
                                                       color: index == selectedItem ? AppColors.blue_100 : AppColors.white,
                                                     ),
                                                   ),
+                                                  SizedBox(width: 16,),
                                                   CustomText(
                                                     text: serviceType[index],
                                                     color: AppColors.black_100,
@@ -440,8 +441,8 @@ class _SpSignUpScreenState extends State<SpSignUpScreen> {
                                     ),
                                   ),
                                   ): Container(),
-                                  const CustomText(
-                                    text: AppStrings.password,
+                                   CustomText(
+                                    text: 'Password'.tr,
                                     color: AppColors.black_100,
                                     fontWeight: FontWeight.w500,
                                     top: 16,
@@ -450,7 +451,7 @@ class _SpSignUpScreenState extends State<SpSignUpScreen> {
                                   CustomTextField(
                                     isPassword: true,
                                     textAlign: TextAlign.start,
-                                    hintText: 'Enter 8 digit password',
+                                    hintText: 'Enter 8-10 digit password'.tr,
                                     hintStyle: GoogleFonts.montserrat(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w500,
@@ -462,8 +463,8 @@ class _SpSignUpScreenState extends State<SpSignUpScreen> {
                                     fieldBorderColor: AppColors.blue_10,
                                     fieldBorderRadius: 8,
                                   ),
-                                  const CustomText(
-                                    text: AppStrings.confirmPassword,
+                                   CustomText(
+                                    text: 'Confirm Password'.tr,
                                     color: AppColors.black_100,
                                     fontWeight: FontWeight.w500,
                                     top: 16,
@@ -472,7 +473,7 @@ class _SpSignUpScreenState extends State<SpSignUpScreen> {
                                   CustomTextField(
                                     isPassword: true,
                                     textAlign: TextAlign.start,
-                                    hintText: AppStrings.enterYourPassword,
+                                    hintText: 'Confirm your password'.tr,
                                     hintStyle: GoogleFonts.montserrat(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w500,
@@ -492,7 +493,7 @@ class _SpSignUpScreenState extends State<SpSignUpScreen> {
                                     onPressed: () {
                                       Get.toNamed(AppRoute.spVerifyEmailOtpScreen);
                                     },
-                                    titleText: AppStrings.signUp,
+                                    titleText: 'Sign Up'.tr,
                                     titleColor: AppColors.white,
                                     buttonBgColor: AppColors.blue_100,
                                     titleSize: 18,
@@ -502,20 +503,21 @@ class _SpSignUpScreenState extends State<SpSignUpScreen> {
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      const CustomText(
-                                        text: AppStrings.alreadyHaveAnAccount,
+                                       CustomText(
+                                        text: 'Already have an account?'.tr,
                                         color: AppColors.black_100,
                                       ),
                                       GestureDetector(
                                         onTap: () {
-                                          Get.toNamed(AppRoute.userSignIn);
+                                          Get.toNamed(AppRoute.spSignInScreen);
                                         },
-                                        child: const CustomText(
-                                          text: AppStrings.signIn,
+                                        child:  CustomText(
+                                          text: 'Sign In'.tr,
                                           color: AppColors.blue_100,
                                           fontWeight: FontWeight.w600,
                                           fontSize: 16,
                                           left: 4,
+                                          right: 4,
                                         ),
                                       ),
                                     ],

@@ -37,14 +37,14 @@ class _OnboardScreenState extends State<OnboardScreen> {
                 child: Column(
                   children: [
                    const SizedBox(height: 44,),
-                    const CustomText(
-                      text: AppStrings.welcomeToFindWorker,
+                     CustomText(
+                      text: 'Welcome to Find Worker!'.tr,
                       fontSize: 18,
                       fontWeight: FontWeight.w500,
                       bottom: 67,
                     ),
-                    const CustomText(
-                      text: AppStrings.logo,
+                     CustomText(
+                      text: 'Logo'.tr,
                       fontSize: 18,
                       fontWeight: FontWeight.w600,
                       color: AppColors.blue_100,
@@ -55,8 +55,8 @@ class _OnboardScreenState extends State<OnboardScreen> {
                       imageType: ImageType.png,
                       size: 258,
                     ),
-                    const CustomText(
-                      text: AppStrings.loginAs,
+                     CustomText(
+                      text: 'Login As'.tr,
                       fontSize: 18,
                       fontWeight: FontWeight.w500,
                       color: AppColors.blue_100,
@@ -68,24 +68,25 @@ class _OnboardScreenState extends State<OnboardScreen> {
                         Get.toNamed(AppRoute.userSignIn );
                       },
                       child: Container(
-                        margin: EdgeInsets.only(bottom: 16),
+                        margin:const EdgeInsets.only(bottom: 16),
                         height: 56,
                         width: MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(
                           color: AppColors.blue_100,
                           borderRadius: BorderRadius.circular(8),
                         ),
-                        child:const Row(
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             CustomImage(imageSrc: AppIcons.userGroup,size: 24,),
                              CustomText(
-                              text: AppStrings.user,
+                              text: 'User'.tr,
                               fontSize: 18,
                               fontWeight: FontWeight.w600,
                               color: AppColors.white,
                                left: 12,
+                               right: 12,
                             ),
                           ],
                         ),
@@ -103,17 +104,18 @@ class _OnboardScreenState extends State<OnboardScreen> {
                           border: Border.all(width: 1,color: AppColors.blue_100),
                           borderRadius: BorderRadius.circular(8),
                         ),
-                        child:const Row(
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             CustomImage(imageSrc: AppIcons.service,size: 24,),
                             CustomText(
-                              text: AppStrings.serviceProvider,
+                              text: 'Service Provider'.tr,
                               fontSize: 18,
                               fontWeight: FontWeight.w600,
                               color: AppColors.black_100,
                               left: 12,
+                              right: 12,
                             ),
                           ],
                         ),

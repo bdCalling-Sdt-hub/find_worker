@@ -1,6 +1,7 @@
 import 'package:flutter/animation.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 
 class AdvancedSwitch extends StatefulWidget {
   const AdvancedSwitch({
@@ -254,16 +255,27 @@ class _AdvancedSwitchState extends State<AdvancedSwitch>
   void _handleControllerValueChanged() {
     if (_controller.value) {
       _animationController.forward();
-    } else {
+
+      Get.updateLocale( Locale("en","US"));
+    }
+    else {
       _animationController.reverse();
+      Get.updateLocale( Locale("ar","SA"));
     }
   }
-
   void _handlePressed() {
     if (widget.controller != null && widget.enabled) {
       _controller.value = !_controller.value;
+
     }
   }
+
+  /*void _handlePressed() {
+    if(widget.enabled==true){
+      Get.updateLocale( Locale("ar","SA"));
+
+    }
+  }*/
 
   @override
   void dispose() {

@@ -19,14 +19,14 @@ class UserSignUpScreen extends StatefulWidget {
 }
 
 class _UserSignUpScreenState extends State<UserSignUpScreen> {
-  List<String> genderList = ["Male", "Female", "Others"];
+  List<String> genderList = ["Male".tr, "Female".tr, "Others".tr];
   int selectedGender = 0;
   bool isClicked = false;
   void changeGender(int index) {
     selectedGender = index;
     setState(() {});
   }
-
+  bool isSelected = false;
   final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -47,132 +47,135 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
             ),
             child: LayoutBuilder(
                 builder: (BuildContext context, BoxConstraints constraints) {
-              return SingleChildScrollView(
-                  padding:
-                      const EdgeInsets.only(top: 44, left: 20,right: 20,bottom: 24),
-                  child: Column(children: [
-                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        GestureDetector(
-                          onTap: (){
-                            Get.back();
-                          },
-                          child: CustomImage(
-                            imageSrc: AppIcons.chevronLeft,
-                            size: 18,
-                          ),
+                  return SingleChildScrollView(
+                      padding:
+                      const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
+                      child: Column(children: [
+                        const SizedBox(
+                          height: 24,
                         ),
-                        CustomText(
-                          text: AppStrings.signUp,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            GestureDetector(
+                              onTap: (){
+                                Get.back();
+                              },
+                              child:const CustomImage(
+                                imageSrc: AppIcons.chevronLeft,
+                                size: 18,
+                              ),
+                            ),
+                            CustomText(
+                              text: 'Sign Up'.tr,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            SizedBox()
+                          ],
                         ),
-                        SizedBox()
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 34,
-                    ),
-                    Form(
-                        key: _formKey,
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const CustomText(
-                                text: AppStrings.fullName,
-                                color: AppColors.black_100,
-                                fontWeight: FontWeight.w500,
-                                bottom: 8,
-                              ),
-                              CustomTextField(
-                                textAlign: TextAlign.start,
-                                hintText: AppStrings.enterYourFullName,
-                                hintStyle: GoogleFonts.montserrat(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
-                                    color: AppColors.black_40),
-                                inputTextStyle: GoogleFonts.montserrat(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 14,
-                                    color: AppColors.black_100),
-                                fieldBorderColor: AppColors.blue_10,
-                                fieldBorderRadius: 8,
-                              ),
-                              const CustomText(
-                                text: AppStrings.dateOfBirth,
-                                color: AppColors.black_100,
-                                fontWeight: FontWeight.w500,
-                                bottom: 8,
-                                top: 16,
-                              ),
-                              Row(
+                        const SizedBox(
+                          height: 34,
+                        ),
+                        Form(
+                            key: _formKey,
+                            child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Expanded(
-                                    child: CustomTextField(
-                                      textAlign: TextAlign.center,
-                                      hintText: AppStrings.dd,
-                                      hintStyle: GoogleFonts.montserrat(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w500,
-                                          color: AppColors.black_40),
-                                      inputTextStyle: GoogleFonts.montserrat(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 14,
-                                          color: AppColors.black_100),
-                                      fieldBorderColor: AppColors.blue_10,
-                                      fieldBorderRadius: 8,
-                                    ),
+                                  CustomText(
+                                    text: 'Full Name'.tr,
+                                    color: AppColors.black_100,
+                                    fontWeight: FontWeight.w500,
+                                    bottom: 8,
                                   ),
-                                  const SizedBox(width: 10),
-                                  Expanded(
-                                    child: CustomTextField(
-                                      textAlign: TextAlign.center,
-                                      hintText: AppStrings.mm,
-                                      hintStyle: GoogleFonts.montserrat(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w500,
-                                          color: AppColors.black_40),
-                                      inputTextStyle: GoogleFonts.montserrat(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 14,
-                                          color: AppColors.black_100),
-                                      fieldBorderColor: AppColors.blue_10,
-                                      fieldBorderRadius: 8,
-                                    ),
+                                  CustomTextField(
+                                    textAlign: TextAlign.start,
+                                    hintText: 'Enter your full name'.tr,
+                                    hintStyle: GoogleFonts.montserrat(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                        color: AppColors.black_40),
+                                    inputTextStyle: GoogleFonts.montserrat(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 14,
+                                        color: AppColors.black_100),
+                                    fieldBorderColor: AppColors.blue_10,
+                                    fieldBorderRadius: 8,
                                   ),
-                                  const SizedBox(width: 10),
-                                  Expanded(
-                                    child: CustomTextField(
-                                      textAlign: TextAlign.center,
-                                      hintText: AppStrings.yyyy,
-                                      hintStyle: GoogleFonts.poppins(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w500,
-                                          color: AppColors.black_40),
-                                      inputTextStyle: GoogleFonts.montserrat(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 14,
-                                          color: AppColors.black_100),
-                                      fieldBorderColor: AppColors.blue_10,
-                                      fieldBorderRadius: 8,
-                                    ),
+                                  CustomText(
+                                    text: 'Date of Birth'.tr,
+                                    color: AppColors.black_100,
+                                    fontWeight: FontWeight.w500,
+                                    bottom: 8,
+                                    top: 16,
                                   ),
-                                ],
-                              ),
-                              const CustomText(
-                                text: AppStrings.gender,
-                                color: AppColors.black_100,
-                                fontWeight: FontWeight.w500,
-                                bottom: 8,
-                                top: 16,
-                              ),
-                              Row(
-                                mainAxisAlignment:
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: CustomTextField(
+                                          textAlign: TextAlign.center,
+                                          hintText: 'DD'.tr,
+                                          hintStyle: GoogleFonts.montserrat(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500,
+                                              color: AppColors.black_40),
+                                          inputTextStyle: GoogleFonts.montserrat(
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 14,
+                                              color: AppColors.black_100),
+                                          fieldBorderColor: AppColors.blue_10,
+                                          fieldBorderRadius: 8,
+                                        ),
+                                      ),
+                                      const SizedBox(width: 10),
+                                      Expanded(
+                                        child: CustomTextField(
+                                          textAlign: TextAlign.center,
+                                          hintText: 'MM'.tr,
+                                          hintStyle: GoogleFonts.montserrat(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500,
+                                              color: AppColors.black_40),
+                                          inputTextStyle: GoogleFonts.montserrat(
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 14,
+                                              color: AppColors.black_100),
+                                          fieldBorderColor: AppColors.blue_10,
+                                          fieldBorderRadius: 8,
+                                        ),
+                                      ),
+                                      const SizedBox(width: 10),
+                                      Expanded(
+                                        child: CustomTextField(
+                                          textAlign: TextAlign.center,
+                                          hintText: 'YYYY'.tr,
+                                          hintStyle: GoogleFonts.poppins(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500,
+                                              color: AppColors.black_40),
+                                          inputTextStyle: GoogleFonts.montserrat(
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 14,
+                                              color: AppColors.black_100),
+                                          fieldBorderColor: AppColors.blue_10,
+                                          fieldBorderRadius: 8,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  CustomText(
+                                    text: 'Gender'.tr,
+                                    color: AppColors.black_100,
+                                    fontWeight: FontWeight.w500,
+                                    bottom: 8,
+                                    top: 16,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
-                                children: List.generate(
-                                    genderList.length,
-                                    (index) => GestureDetector(
+                                    children: List.generate(
+                                        genderList.length,
+                                            (index) => GestureDetector(
                                           onTap: () => changeGender(index),
                                           child: Row(
                                             children: [
@@ -180,18 +183,18 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                                                 height: 20,
                                                 width: 20,
                                                 padding:
-                                                    const EdgeInsetsDirectional
-                                                        .all(0.5),
+                                                const EdgeInsetsDirectional
+                                                    .all(0.5),
                                                 decoration: BoxDecoration(
                                                     color: Colors.transparent,
                                                     border: Border.all(
                                                         color:
-                                                            AppColors.blue_100),
+                                                        AppColors.blue_100),
                                                     shape: BoxShape.circle),
                                                 child: Container(
                                                   decoration: BoxDecoration(
                                                       color: index ==
-                                                              selectedGender
+                                                          selectedGender
                                                           ? AppColors.blue_100
                                                           : Colors.transparent,
                                                       shape: BoxShape.circle),
@@ -204,194 +207,196 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                                                     color: AppColors.black_100,
                                                     fontSize: 14,
                                                     fontWeight:
-                                                        FontWeight.w500),
+                                                    FontWeight.w500),
                                               )
                                             ],
                                           ),
                                         )),
-                              ),
-                              const CustomText(
-                                text: AppStrings.email,
-                                color: AppColors.black_100,
-                                fontWeight: FontWeight.w500,
-                                top: 16,
-                                bottom: 8,
-                              ),
-                              CustomTextField(
-                                textAlign: TextAlign.start,
-                                hintText: AppStrings.enterYourEmail,
-                                hintStyle: GoogleFonts.montserrat(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
-                                    color: AppColors.black_40),
-                                inputTextStyle: GoogleFonts.montserrat(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 14,
-                                    color: AppColors.black_100),
-                                fieldBorderColor: AppColors.blue_10,
-                                fieldBorderRadius: 8,
-                              ),
-                              const CustomText(
-                                text: AppStrings.phoneNumber,
-                                color: AppColors.black_100,
-                                fontWeight: FontWeight.w500,
-                                top: 16,
-                                bottom: 8,
-                              ),
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Expanded(
-                                      flex: 1,
-                                      child: Container(
-                                          height: 60,
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 6, horizontal: 8),
-                                          decoration: BoxDecoration(
-                                              color: AppColors.white,
-                                              borderRadius:
-                                                  BorderRadius.circular(8),
-                                              border: Border.all(
-                                                  color: AppColors.blue_10)),
-                                          child: IntlPhoneField(
-                                            initialCountryCode: 'MX',
-                                            disableLengthCheck: true,
-                                            showDropdownIcon: false,
-                                            showCountryFlag: true,
-                                            decoration: const InputDecoration(
-                                                border: OutlineInputBorder(
-                                              borderSide: BorderSide.none,
-                                            )),
-                                            onChanged: (phone) {
-                                              print(phone.completeNumber);
-                                            },
-                                          ))),
-                                  const SizedBox(
-                                    width: 10,
                                   ),
-                                  Expanded(
-                                    flex: 2,
-                                    child: CustomTextField(
-                                      textAlign: TextAlign.start,
-                                      hintText: AppStrings.enterYourEmail,
-                                      hintStyle: GoogleFonts.montserrat(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w500,
-                                          color: AppColors.black_40),
-                                      inputTextStyle: GoogleFonts.montserrat(
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 14,
-                                          color: AppColors.black_100),
-                                      fieldBorderColor: AppColors.blue_10,
-                                      fieldBorderRadius: 8,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              const CustomText(
-                                text: AppStrings.address,
-                                color: AppColors.black_100,
-                                fontWeight: FontWeight.w500,
-                                top: 16,
-                                bottom: 8,
-                              ),
-                              CustomTextField(
-                                textAlign: TextAlign.start,
-                                hintText: 'Enter your address',
-                                hintStyle: GoogleFonts.montserrat(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
-                                    color: AppColors.black_40),
-                                inputTextStyle: GoogleFonts.montserrat(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 14,
-                                    color: AppColors.black_100),
-                                fieldBorderColor: AppColors.blue_10,
-                                fieldBorderRadius: 8,
-                              ),
-                              const CustomText(
-                                text: AppStrings.password,
-                                color: AppColors.black_100,
-                                fontWeight: FontWeight.w500,
-                                top: 16,
-                                bottom: 8,
-                              ),
-                              CustomTextField(
-                                isPassword: true,
-                                textAlign: TextAlign.start,
-                                hintText: 'Enter 8 digit password',
-                                hintStyle: GoogleFonts.montserrat(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
-                                    color: AppColors.black_40),
-                                inputTextStyle: GoogleFonts.montserrat(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 14,
-                                    color: AppColors.black_100),
-                                fieldBorderColor: AppColors.blue_10,
-                                fieldBorderRadius: 8,
-                              ),
-                              const CustomText(
-                                text: AppStrings.confirmPassword,
-                                color: AppColors.black_100,
-                                fontWeight: FontWeight.w500,
-                                top: 16,
-                                bottom: 8,
-                              ),
-                              CustomTextField(
-                                isPassword: true,
-                                textAlign: TextAlign.start,
-                                hintText: AppStrings.enterYourPassword,
-                                hintStyle: GoogleFonts.montserrat(
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w500,
-                                    color: AppColors.black_40),
-                                inputTextStyle: GoogleFonts.montserrat(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 14,
-                                    color: AppColors.black_100),
-                                fieldBorderColor: AppColors.blue_10,
-                                fieldBorderRadius: 8,
-                              ),
-                              const SizedBox(
-                                height: 24,
-                              ),
-                              CustomButton(
-                                buttonWidth: MediaQuery.of(context).size.width,
-                                onPressed: () {
-                                  Get.toNamed(AppRoute.userEmailOtpScreen);
-                                },
-                                titleText: AppStrings.signUp,
-                                titleColor: AppColors.white,
-                                buttonBgColor: AppColors.blue_100,
-                                titleSize: 18,
-                                titleWeight: FontWeight.w600,
-                              ),
-                              const SizedBox(height: 24,),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  const CustomText(
-                                    text: AppStrings.alreadyHaveAnAccount,
+                                  CustomText(
+                                    text: 'Email'.tr,
                                     color: AppColors.black_100,
+                                    fontWeight: FontWeight.w500,
+                                    top: 16,
+                                    bottom: 8,
                                   ),
-                                  GestureDetector(
-                                    onTap: () {
-                                      Get.toNamed(AppRoute.userSignIn);
+                                  CustomTextField(
+                                    textAlign: TextAlign.start,
+                                    hintText: 'Enter your email'.tr,
+                                    hintStyle: GoogleFonts.montserrat(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                        color: AppColors.black_40),
+                                    inputTextStyle: GoogleFonts.poppins(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 14,
+                                        color: AppColors.black_100),
+                                    fieldBorderColor: AppColors.blue_10,
+                                    fieldBorderRadius: 8,
+                                  ),
+                                  CustomText(
+                                    text: 'Phone number'.tr,
+                                    color: AppColors.black_100,
+                                    fontWeight: FontWeight.w500,
+                                    top: 16,
+                                    bottom: 8,
+                                  ),
+                                  Row(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Expanded(
+                                          flex: 1,
+                                          child: Container(
+                                              height: 60,
+                                              padding: const EdgeInsets.symmetric(
+                                                  vertical: 6, horizontal: 8),
+                                              decoration: BoxDecoration(
+                                                  color: AppColors.white,
+                                                  borderRadius:
+                                                  BorderRadius.circular(8),
+                                                  border: Border.all(
+                                                      color: AppColors.blue_10)),
+                                              child: IntlPhoneField(
+                                                initialCountryCode: 'MX',
+                                                disableLengthCheck: true,
+                                                showDropdownIcon: false,
+                                                showCountryFlag: true,
+                                                decoration: const InputDecoration(
+                                                    border: OutlineInputBorder(
+                                                      borderSide: BorderSide.none,
+                                                    )),
+                                                onChanged: (phone) {
+                                                  print(phone.completeNumber);
+                                                },
+                                              ))),
+                                      const SizedBox(
+                                        width: 10,
+                                      ),
+                                      Expanded(
+                                        flex: 2,
+                                        child: CustomTextField(
+                                          textAlign: TextAlign.start,
+                                          hintText: 'Phone number'.tr,
+                                          hintStyle: GoogleFonts.montserrat(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500,
+                                              color: AppColors.black_40),
+                                          inputTextStyle: GoogleFonts.montserrat(
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: 14,
+                                              color: AppColors.black_100),
+                                          fieldBorderColor: AppColors.blue_10,
+                                          fieldBorderRadius: 8,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  CustomText(
+                                    text: 'Address'.tr,
+                                    color: AppColors.black_100,
+                                    fontWeight: FontWeight.w500,
+                                    top: 16,
+                                    bottom: 8,
+                                  ),
+                                  CustomTextField(
+                                    textAlign: TextAlign.start,
+                                    hintText: 'Enter your address'.tr,
+                                    hintStyle: GoogleFonts.montserrat(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                        color: AppColors.black_40),
+                                    inputTextStyle: GoogleFonts.montserrat(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 14,
+                                        color: AppColors.black_100),
+                                    fieldBorderColor: AppColors.blue_10,
+                                    fieldBorderRadius: 8,
+                                  ),
+
+                                  CustomText(
+                                    text: 'Password'.tr,
+                                    color: AppColors.black_100,
+                                    fontWeight: FontWeight.w500,
+                                    top: 16,
+                                    bottom: 8,
+                                  ),
+                                  CustomTextField(
+                                    isPassword: true,
+                                    textAlign: TextAlign.start,
+                                    hintText: 'Enter 8-10 digit password'.tr,
+                                    hintStyle: GoogleFonts.montserrat(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                        color: AppColors.black_40),
+                                    inputTextStyle: GoogleFonts.montserrat(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 14,
+                                        color: AppColors.black_100),
+                                    fieldBorderColor: AppColors.blue_10,
+                                    fieldBorderRadius: 8,
+                                  ),
+                                  CustomText(
+                                    text: 'Confirm Password'.tr,
+                                    color: AppColors.black_100,
+                                    fontWeight: FontWeight.w500,
+                                    top: 16,
+                                    bottom: 8,
+                                  ),
+                                  CustomTextField(
+                                    isPassword: true,
+                                    textAlign: TextAlign.start,
+                                    hintText: 'Confirm your password'.tr,
+                                    hintStyle: GoogleFonts.montserrat(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                        color: AppColors.black_40),
+                                    inputTextStyle: GoogleFonts.montserrat(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 14,
+                                        color: AppColors.black_100),
+                                    fieldBorderColor: AppColors.blue_10,
+                                    fieldBorderRadius: 8,
+                                  ),
+                                  const SizedBox(
+                                    height: 24,
+                                  ),
+                                  CustomButton(
+                                    buttonWidth: MediaQuery.of(context).size.width,
+                                    onPressed: () {
+                                      Get.toNamed(AppRoute.userEmailOtpScreen);
                                     },
-                                    child: const CustomText(
-                                      text: AppStrings.signIn,
-                                      color: AppColors.blue_100,
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 16,
-                                      left: 4,
-                                    ),
+                                    titleText: 'Sign Up'.tr,
+                                    titleColor: AppColors.white,
+                                    buttonBgColor: AppColors.blue_100,
+                                    titleSize: 18,
+                                    titleWeight: FontWeight.w600,
                                   ),
-                                ],
-                              )
-                            ]))
-                  ]));
-            }),
+                                  const SizedBox(height: 24,),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      CustomText(
+                                        text: 'Already have an account?'.tr,
+                                        color: AppColors.black_100,
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          Get.toNamed(AppRoute.userSignIn);
+                                        },
+                                        child:  CustomText(
+                                          text: 'Sign In'.tr,
+                                          color: AppColors.blue_100,
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 16,
+                                          left: 4,
+                                          right: 4,
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                ]))
+                      ]));
+                }),
           ),
         ));
   }

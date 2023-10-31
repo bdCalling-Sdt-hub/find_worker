@@ -42,8 +42,8 @@ class _SpSettingScreenState extends State<SpSettingScreen> {
                     color: AppColors.blue_100,
                   ),
                 ),
-                const CustomText(
-                  text: AppStrings.settings,
+                 CustomText(
+                  text: "Setting".tr,
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
                   color: AppColors.blue_100,
@@ -59,8 +59,8 @@ class _SpSettingScreenState extends State<SpSettingScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const CustomText(
-                      text: AppStrings.language,
+                     CustomText(
+                      text: "Language".tr,
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
                       color: AppColors.black_100,
@@ -70,14 +70,13 @@ class _SpSettingScreenState extends State<SpSettingScreen> {
                       controller: _controller,
                       activeColor: AppColors.blue_10,
                       inactiveColor: AppColors.blue_10,
-                      activeChild:  Text('English'
-                        ,style: GoogleFonts.poppins(
+                      activeChild:  Text('Arabic'.tr,style: GoogleFonts.poppins(
                             fontSize: 12,
                             fontWeight: FontWeight.w400,
                             color: AppColors.black_100
                         ),
                       ),
-                      inactiveChild:  Text('Arabic',
+                      inactiveChild:  Text('English'.tr,
                         style: GoogleFonts.poppins(
                             fontSize: 12,
                             fontWeight: FontWeight.w400,
@@ -87,7 +86,6 @@ class _SpSettingScreenState extends State<SpSettingScreen> {
                       borderRadius: const BorderRadius.all(Radius.circular(20)),
                       width: 90,
                       height: 30.0,
-                      enabled: true,
                       disabledOpacity: 0.8,
                     ),
                     //Customized
@@ -98,16 +96,16 @@ class _SpSettingScreenState extends State<SpSettingScreen> {
                   onTap: (){
                     Get.toNamed(AppRoute.spChangePasswordScreen);
                   },
-                  child:   const Row(
+                  child:    Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CustomText(
-                        text: AppStrings.changePassword,
+                        text:'Change Password'.tr,
                         fontSize: 14,
                         fontWeight: FontWeight.w400,
                         color: AppColors.black_100,
                       ),
-                      CustomImage(imageSrc: AppIcons.chevronRight,
+                      const CustomImage(imageSrc: AppIcons.chevronRight,
                         size: 18,
                         imageType: ImageType.svg,
                         imageColor: AppColors.black_100,
@@ -119,16 +117,16 @@ class _SpSettingScreenState extends State<SpSettingScreen> {
                   onTap: (){
                     Get.toNamed(AppRoute.spTermsOfConditionsScreen);
                   },
-                  child:  const Row(
+                  child:   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CustomText(
-                        text: "Terms of Conditions",
+                        text: "Terms of Conditions".tr,
                         fontSize: 14,
                         fontWeight: FontWeight.w400,
                         color: AppColors.black_100,
                       ),
-                      CustomImage(imageSrc: AppIcons.chevronRight,
+                      const CustomImage(imageSrc: AppIcons.chevronRight,
                         size: 18,
                         imageType: ImageType.svg,
                         imageColor: AppColors.black_100,
@@ -141,16 +139,16 @@ class _SpSettingScreenState extends State<SpSettingScreen> {
                   onTap: (){
                     Get.toNamed(AppRoute.spPrivacyPolicyScreen);
                   },
-                  child:  const Row(
+                  child:   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CustomText(
-                        text: AppStrings.privacyPolicy,
+                        text: 'Privacy Policy'.tr,
                         fontSize: 14,
                         fontWeight: FontWeight.w400,
                         color: AppColors.black_100,
                       ),
-                      CustomImage(imageSrc: AppIcons.chevronRight,
+                      const CustomImage(imageSrc: AppIcons.chevronRight,
                         size: 18,
                         imageType: ImageType.svg,
                         imageColor: AppColors.black_100,
@@ -163,16 +161,16 @@ class _SpSettingScreenState extends State<SpSettingScreen> {
                   onTap: (){
                     Get.toNamed(AppRoute.spAboutUsScreen);
                   },
-                  child:const Row(
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CustomText(
-                        text: AppStrings.aboutUs,
+                        text: 'About us'.tr,
                         fontSize: 14,
                         fontWeight: FontWeight.w400,
                         color: AppColors.black_100,
                       ),
-                      CustomImage(imageSrc: AppIcons.chevronRight,
+                      const CustomImage(imageSrc: AppIcons.chevronRight,
                         size: 18,
                         imageType: ImageType.svg,
                         imageColor: AppColors.black_100,
@@ -184,16 +182,16 @@ class _SpSettingScreenState extends State<SpSettingScreen> {
                   onTap: (){
                     Get.toNamed(AppRoute.spSupportScreen);
                   },
-                  child:   const Row(
+                  child:    Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CustomText(
-                        text: AppStrings.support,
+                        text: 'Support'.tr,
                         fontSize: 14,
                         fontWeight: FontWeight.w400,
                         color: AppColors.black_100,
                       ),
-                      CustomImage(imageSrc: AppIcons.chevronRight,
+                      const CustomImage(imageSrc: AppIcons.chevronRight,
                         size: 18,
                         imageType: ImageType.svg,
                         imageColor: AppColors.black_100,
@@ -202,6 +200,12 @@ class _SpSettingScreenState extends State<SpSettingScreen> {
                   ),),
 
                 const SizedBox(height:30,),
+                // ElevatedButton(onPressed: (){
+                //   Get.updateLocale( Locale("en","US"));
+                // }, child: Text("english")),
+                // ElevatedButton(onPressed: (){
+                //   Get.updateLocale( Locale("ar","SA"));
+                // }, child: Text("Arabi")),
               ],
             ),
           );
