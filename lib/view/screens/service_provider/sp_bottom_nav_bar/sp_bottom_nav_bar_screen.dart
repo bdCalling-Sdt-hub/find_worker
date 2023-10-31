@@ -39,18 +39,21 @@ class _SpBottomNavBarScreenState extends State<SpBottomNavBarScreen> {
           index: 0,
           selectedIndex: widget.currentIndex,
           image:  AppIcons.home_un,
+          icon: AppIcons.home,
       ),
       MenuBarItems(
           text:AppStrings.history,
           index: 1,
           selectedIndex: widget.currentIndex,
-          image: AppIcons.clock
+          image: AppIcons.clock,
+        icon: AppIcons.history_s,
       ),
       MenuBarItems(
           text: AppStrings.profile,
           index: 2,
           selectedIndex: widget.currentIndex,
-          image: AppIcons.userCircle
+          image: AppIcons.userCircle,
+        icon: AppIcons.profile_s,
       ),
 
     ];
@@ -93,22 +96,22 @@ class MenuBarItems extends StatelessWidget {
         required this.image,
         required this.index,
         required this.selectedIndex,
-        required this.text});
+        required this.text, required this.icon});
   final String image;
   final String text;
-
+  final String icon;
   final int index;
   final int selectedIndex;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return selectedIndex ==index ? Row(
       children: [
-       selectedIndex == index ?  Column(
+        Column(
           children: [
             CustomImage(
                 imageColor:selectedIndex == index  ? AppColors.white:AppColors.white,size:24,
-                imageSrc: image),
+                imageSrc: icon),
             CustomText(
               fontSize: 12,
               fontWeight:selectedIndex == index ? FontWeight.w600 : FontWeight.w400,
@@ -118,10 +121,14 @@ class MenuBarItems extends StatelessWidget {
               bottom: 4,
             ),
           ],
-        ): Center(
+        )
+      ],
+    ) : Row(
+      children: [
+        Center(
           child: CustomImage(
 
-          imageColor:selectedIndex == index  ? AppColors.white:AppColors.white,size:24, imageSrc: image),
+              imageColor:selectedIndex == index  ? AppColors.white:AppColors.white,size:24, imageSrc: image),
         ),
       ],
     );

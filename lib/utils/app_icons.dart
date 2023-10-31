@@ -35,5 +35,7 @@ class AppIcons{
   static const String history_s = "$basePath/history_s.svg";
   static const String home_un = "$basePath/home_un.svg";
   static const String profile_s = "$basePath/profile_s.svg";
+  static const String speakerphoneS = "$basePath/speakerphone_s.svg";
+  static const String viewGridS = "$basePath/view-grid_s.svg";
 
 }

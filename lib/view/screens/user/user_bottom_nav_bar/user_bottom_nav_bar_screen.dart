@@ -42,24 +42,29 @@ class _UserBottomNavBarScreenState extends State<UserBottomNavBarScreen> {
           text: AppStrings.home,
           index: 0,
           selectedIndex: widget.currentIndex,
-          image:  AppIcons.home_un),
+          image:  AppIcons.home_un,
+          icon: AppIcons.home,
+      ),
       MenuBarItems(
           text:AppStrings.category,
           index: 1,
           selectedIndex: widget.currentIndex,
-          image: AppIcons.viewGrid
+          image: AppIcons.viewGrid,
+        icon: AppIcons.viewGridS,
       ),
       MenuBarItems(
           text: AppStrings.hireList,
           index: 2,
           selectedIndex: widget.currentIndex,
-          image: AppIcons.speakerphone
+          image: AppIcons.speakerphone,
+        icon: AppIcons.speakerphoneS,
       ),
       MenuBarItems(
           text: AppStrings.profile,
           index: 3,
           selectedIndex: widget.currentIndex,
-          image: AppIcons.userCircle
+          image: AppIcons.userCircle,
+        icon: AppIcons.profile_s,
       ),
 
     ];
@@ -102,22 +107,22 @@ class MenuBarItems extends StatelessWidget {
         required this.image,
         required this.index,
         required this.selectedIndex,
-        required this.text});
+        required this.text, required this.icon});
   final String image;
   final String text;
-
+  final String icon;
   final int index;
   final int selectedIndex;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return selectedIndex == index ? Row(
       children: [
-        selectedIndex == index ?  Column(
+         Column(
           children: [
             CustomImage(
                 imageColor:selectedIndex == index  ? AppColors.white:AppColors.white,size:24,
-                imageSrc: image),
+                imageSrc: icon),
             CustomText(
               fontSize: 12,
               fontWeight:selectedIndex == index ? FontWeight.w600 : FontWeight.w400,
@@ -127,7 +132,11 @@ class MenuBarItems extends StatelessWidget {
               bottom: 4,
             ),
           ],
-        ): CustomImage(
+        )
+      ],
+    ) : Row(
+      children: [
+        CustomImage(
 
             imageColor:selectedIndex == index  ? AppColors.white:AppColors.white,size:24, imageSrc: image),
       ],
