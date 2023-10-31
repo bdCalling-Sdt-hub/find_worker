@@ -41,7 +41,7 @@ class _SpEditPersonalInformationScreenState extends State<SpEditPersonalInformat
                     padding: EdgeInsets.symmetric(vertical: 24,horizontal: 20),
                     child: Column(
                       children: [
-                        SizedBox(height: 34,),
+                       const SizedBox(height: 24,),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [

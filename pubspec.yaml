@@ -38,6 +38,9 @@ dependencies:
   get:
   flutter_svg:
   google_fonts:
+
+  lite_rolling_switch:
+
   intl_phone_field:
   pin_code_fields:
   flutter_rating_bar:

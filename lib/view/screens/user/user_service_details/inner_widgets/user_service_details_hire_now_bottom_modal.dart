@@ -1,6 +1,7 @@
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_icons.dart';
 import 'package:find_worker/utils/app_strings.dart';
+import 'package:find_worker/view/screens/user/user_service_details/inner_widgets/user_service_details_hire_cancel_alert.dart';
 import 'package:find_worker/view/widgets/buttons/custom_button.dart';
 import 'package:find_worker/view/widgets/image/custom_image.dart';
 import 'package:find_worker/view/widgets/text/custom_text.dart';
@@ -63,7 +64,14 @@ class _UserServiceDetailsHireNoeBottomModalState extends State<UserServiceDetail
             bottom: 40,
           ),
           CustomButton(
-            onPressed: (){},
+            onPressed: (){
+              showDialog(
+                  context: context,
+                  builder: (BuildContext contect){
+                    return const UserServiceDetailsHireCancelAlert();
+                  });
+             
+            },
             titleText: 'Cancel',
             buttonWidth: MediaQuery.of(context).size.width,
             buttonBgColor: AppColors.blue_100,

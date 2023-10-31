@@ -1,7 +1,9 @@
+import 'package:find_worker/core/app_routes.dart';
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_strings.dart';
 import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SpProfileLogOutAlert extends StatefulWidget {
   const SpProfileLogOutAlert({super.key});
@@ -23,7 +25,7 @@ class _SpProfileLogOutAlertState extends State<SpProfileLogOutAlert> {
       title: Column(
         children: [
           const CustomText(
-            maxLines: 1,
+            maxLines: 2,
             text: 'Do you want to logout your profile?',
             fontWeight: FontWeight.w600,
             fontSize: 18,
@@ -35,7 +37,7 @@ class _SpProfileLogOutAlertState extends State<SpProfileLogOutAlert> {
               Expanded(
                   child:InkWell(
                     onTap: (){
-                      Navigator.pop(context);
+                     Get.toNamed(AppRoute.spSignInScreen);
                     },
                     child: Container(
                         decoration: BoxDecoration(

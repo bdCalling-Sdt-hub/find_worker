@@ -19,22 +19,22 @@ class AppImages{
   static const String henna = "$basePath/Henna.png";
   static const String hireDetailsProfile = "$basePath/hire_details_profile.png";
   static const String hireListProfile = "$basePath/hire_list_profile.png";
-  static const String homeBusiness = "$basePath/Home_Business.png";
+  static const String homeBusiness = "$basePath/Home_business.png";
   static const String homeClean1 = "$basePath/home_clean1.png";
   static const String homeClean2 = "$basePath/home_clean2.png";
   static const String homeMaintenance = "$basePath/Home_Maintenance.png";
   static const String homePainter = "$basePath/Home_Painter.png";
   static const String housekeeper = "$basePath/Housekeeper.png";
-  static const String jensSalon = "$basePath/Jens_Salon.png";
+  static const String jensSalon = "$basePath/Man_Barber.png";
   static const String johnDoe = "$basePath/john_doe.png";
   static const String johnDoeProfile = "$basePath/john_doe_profile.png";
-  static const String ladiesSalon = "$basePath/Ladies_Salon.png";
+  static const String ladiesSalon = "$basePath/Woman_Salon.png";
   static const String manDriver = "$basePath/Man_Driver.png";
-  static const String moverService = "$basePath/Mover_Service.png";
+  static const String moverService = "$basePath/Movers.png";
   static const String newMessageOutline = "$basePath/new_message_outline.png";
   static const String passwordOutline = "$basePath/password_outline.png";
   static const String pipeFitter = "$basePath/Pipe_Fitter.png";
-  static const String privateTutor = "$basePath/Private_Tutor.png";
+  static const String privateTutor = "$basePath/Tutor.png";
   static const String profileJhon = "$basePath/profile_jhon.png";
   static const String profileSmith = "$basePath/profile_smith.png";
   static const String rafiKi = "$basePath/rafiki.png";
@@ -42,6 +42,7 @@ class AppImages{
   static const String success = "$basePath/Success.png";
   static const String trash = "$basePath/trash.png";
   static const String womanDriver = "$basePath/Woman_Driver.png";
+
   static const String settings = "$basePath/settings.png";
   static const String extra = "$basePath/extra.png";
   static const String historyImg = "$basePath/histoy_img.png";

@@ -2,6 +2,7 @@ import 'package:find_worker/core/app_routes.dart';
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_icons.dart';
 import 'package:find_worker/utils/app_strings.dart';
+import 'package:find_worker/view/screens/service_provider/sp_bottom_nav_bar/sp_bottom_nav_bar_screen.dart';
 import 'package:find_worker/view/widgets/buttons/custom_button.dart';
 import 'package:find_worker/view/widgets/image/custom_image.dart';
 import 'package:find_worker/view/widgets/text/custom_text.dart';
@@ -37,15 +38,14 @@ class _SpSignInScreenState extends State<SpSignInScreen> {
             child: LayoutBuilder(
               builder: (BuildContext context, BoxConstraints constraints){
                 return  SingleChildScrollView(
-                  padding: const EdgeInsets.symmetric(vertical: 24,horizontal: 20),
+                  padding: const EdgeInsets.symmetric(vertical: 44,horizontal: 20),
                   child: Column(
                     children: [
-                      const SizedBox(height: 44,),
                       const CustomText(
                         text: AppStrings.welcomeToFindWorker,
                         fontSize: 18,
                         fontWeight: FontWeight.w500,
-                        bottom: 67,
+                        bottom: 66,
                       ),
                       const CustomText(
                         text: AppStrings.logo,
@@ -99,7 +99,7 @@ class _SpSignInScreenState extends State<SpSignInScreen> {
                             ),
                             GestureDetector(
                               onTap: (){
-
+                                Get.toNamed(AppRoute.spForgetPasswordScreen);
                               },
                               child: const Align(
                                 alignment: Alignment.topLeft,
@@ -115,7 +115,7 @@ class _SpSignInScreenState extends State<SpSignInScreen> {
                             CustomButton(
                               buttonWidth: MediaQuery.of(context).size.width,
                               onPressed: () {
-                                // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_)=>CustomNavBar(currentIndex: 0)), (route) => false);
+                                 Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_)=> SpBottomNavBarScreen(currentIndex: 0)), (route) => false);
                               },
                               titleText: AppStrings.signIn,
                               titleColor: AppColors.white,
@@ -129,8 +129,8 @@ class _SpSignInScreenState extends State<SpSignInScreen> {
                                 text: AppStrings.orContinueWith,
                                 fontWeight: FontWeight.w500,
                                 color: AppColors.black_80,
-                                top: 44,
-                                bottom: 44,
+                                top: 32,
+                                bottom: 32,
                               ),
                             ),
                             Row(
@@ -160,7 +160,7 @@ class _SpSignInScreenState extends State<SpSignInScreen> {
                                 ),
                               ],
                             ),
-                            const SizedBox(height: 72,),
+                            const SizedBox(height: 64),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [

@@ -49,17 +49,19 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                 builder: (BuildContext context, BoxConstraints constraints) {
               return SingleChildScrollView(
                   padding:
-                      const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
+                      const EdgeInsets.only(top: 44, left: 20,right: 20,bottom: 24),
                   child: Column(children: [
-                    const SizedBox(
-                      height: 44,
-                    ),
-                    const Row(
+                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        CustomImage(
-                          imageSrc: AppIcons.chevronLeft,
-                          size: 18,
+                        GestureDetector(
+                          onTap: (){
+                            Get.back();
+                          },
+                          child: CustomImage(
+                            imageSrc: AppIcons.chevronLeft,
+                            size: 18,
+                          ),
                         ),
                         CustomText(
                           text: AppStrings.signUp,

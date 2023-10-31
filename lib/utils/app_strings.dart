@@ -49,7 +49,7 @@ class AppStrings{
   static const String homeBusiness = "Home Business";
   static const String butcher = "Butcher";
   static const String privateTutor = "Private Tutor";
-  static const String henna = "THenna";
+  static const String henna = "Henna";
   static const String movers = "Movers";
   static const String gypsumBoardFloor = "Gypsum Board & Floor";
   static const String carTiresRepair = "Car Tires Repair";

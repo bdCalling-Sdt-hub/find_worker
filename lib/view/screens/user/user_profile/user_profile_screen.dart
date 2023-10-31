@@ -112,7 +112,9 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                              ),
                            ),
                             GestureDetector(
-                              onTap: (){},
+                              onTap: (){
+                                Get.toNamed(AppRoute.userHistoryScreen);
+                              },
                               child: Container(
                                 margin: const EdgeInsets.only(bottom: 16),
                                 padding: const EdgeInsets.only(bottom: 16),
@@ -131,7 +133,9 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                               ),
                             ),
                             GestureDetector(
-                              onTap: (){},
+                              onTap: (){
+                                Get.toNamed(AppRoute.settingScreen);
+                              },
                               child: Container(
                                 margin: const EdgeInsets.only(bottom: 16),
                                 padding: const EdgeInsets.only(bottom: 16),
@@ -140,7 +144,10 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                 ),
                                 child:  const Row(
                                   children: [
-                                    CustomImage(imageSrc: AppIcons.settings,size: 18,),
+                                    CustomImage(
+                                      imageColor: AppColors.black_100,
+                                      imageType: ImageType.png,
+                                      imageSrc: AppImages.settings,size: 18,),
                                     CustomText(
                                       text: AppStrings.settings,
                                       left: 12,
