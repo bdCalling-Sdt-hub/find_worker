@@ -1,96 +1,3 @@
-/*
-
-
-import 'package:find_worker/utils/app_colors.dart';
-import 'package:find_worker/utils/app_icons.dart';
-import 'package:find_worker/view/screens/service_provider/sp_home/sp_home_screen.dart';
-import 'package:find_worker/view/screens/service_provider/sp_job_history/sp_job_history/sp_job_history_screen.dart';
-import 'package:find_worker/view/screens/service_provider/sp_profile/sp_profile_screen.dart';
-import 'package:find_worker/view/widgets/image/custom_image.dart';
-import 'package:flutter/material.dart';
-
-class SpBottomNavBarScreen extends StatefulWidget {
-  const SpBottomNavBarScreen({super.key, required int currentIndex});
-
-  @override
-  State<SpBottomNavBarScreen> createState() => _SpBottomNavBarScreenState();
-}
-
-class _SpBottomNavBarScreenState extends State<SpBottomNavBarScreen> {
-  late int currentIndex = 0;
-  List screens = [
-    const SpHomeScreen(),
-    const SpJobHistoryScreen(),
-    const SpProfileScreen(),
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-        child: Scaffold(
-          bottomNavigationBar: BottomNavigationBar(
-            currentIndex: currentIndex,
-            backgroundColor: AppColors.blue_100,
-            showSelectedLabels: false,
-            showUnselectedLabels: false,
-            onTap: (updateIndex) {
-              setState(() {
-                currentIndex = updateIndex;
-              });
-            },
-            items: [
-              BottomNavigationBarItem(
-                  icon: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: CustomImage(
-                        imageSrc: currentIndex == 0
-                            ? AppIcons.home
-                            : AppIcons.home_un,
-                        size: 24,imageColor: currentIndex == 0 ? AppColors.white: AppColors.white
-                    ),
-                  ),
-                  label: "asdfg"),
-              BottomNavigationBarItem(
-                  icon: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: CustomImage(
-                        imageSrc:
-                        currentIndex == 1 ? AppIcons.clock : AppIcons.history_s,
-                        size: 24,imageColor: currentIndex == 1 ? AppColors.white: AppColors.white
-                    ),
-                  ),
-                  label: "sdfgh"),
-              BottomNavigationBarItem(
-                  icon: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: CustomImage(
-                      imageSrc:
-                      currentIndex == 2 ? AppIcons.userCircle : AppIcons.profile_s,
-                      size: 24,imageColor: currentIndex == 2 ? AppColors.white: AppColors.white
-                    ),
-                  ),
-                  label: ""),
-            ],
-          ),
-          body: screens[currentIndex],
-        ));
-  }
-}
-
-
-*/
-
-
-
-
-
-
-
-
-
-
-
-
 
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_icons.dart';
@@ -131,7 +38,8 @@ class _SpBottomNavBarScreenState extends State<SpBottomNavBarScreen> {
           text: AppStrings.home,
           index: 0,
           selectedIndex: widget.currentIndex,
-          image:  AppIcons.home_un),
+          image:  AppIcons.home_un,
+      ),
       MenuBarItems(
           text:AppStrings.history,
           index: 1,
