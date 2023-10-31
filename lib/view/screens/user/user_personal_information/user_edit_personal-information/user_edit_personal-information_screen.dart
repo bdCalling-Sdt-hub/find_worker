@@ -344,6 +344,7 @@ class _UserEditPersonalInformationState extends State<UserEditPersonalInformatio
                                   const SizedBox(
                                     height: 24,
                                   ),
+
                                   CustomButton(
                                     buttonWidth: MediaQuery.of(context).size.width,
                                     onPressed: () {
