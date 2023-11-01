@@ -40,8 +40,8 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
                     color: AppColors.blue_100,
                   ),
                 ),
-                const CustomText(
-                  text: AppStrings.jobDetails,
+                 CustomText(
+                  text: "Service Details".tr,
                   color: AppColors.blue_100,
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
@@ -96,11 +96,11 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
                     const SizedBox(
                       height: 10,
                     ),
-                    const Row(
+                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         CustomText(
-                          text: 'Location',
+                          text: 'Location'.tr,
                         ),
                         CustomText(
                           text: 'Abu Dhabi',
@@ -112,11 +112,11 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
                     const SizedBox(
                       height: 10,
                     ),
-                    const Row(
+                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         CustomText(
-                          text: AppStrings.service,
+                          text: "Service".tr,
                         ),
                         CustomText(
                           text: AppStrings.carWash,
@@ -130,8 +130,8 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
                       height: 1,
                       color: AppColors.blue_20,
                     ),
-                    const CustomText(
-                      text: 'Top Reviews',
+                     CustomText(
+                      text: 'Top Reviews'.tr,
                       fontSize: 18,
                       fontWeight: FontWeight.w500,
                       bottom: 16,
@@ -269,8 +269,8 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
                       height: 1,
                       color: AppColors.blue_20,
                     ),
-                    const CustomText(
-                      text: AppStrings.description,
+                      CustomText(
+                      text: 'Description'.tr,
                       fontSize: 18,
                       fontWeight: FontWeight.w500,
                       bottom: 16,
@@ -294,7 +294,7 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
                                     }
                                 );
                               },
-                              titleText: AppStrings.rateUs,
+                              titleText: 'Rate Us'.tr,
                               titleWeight: FontWeight.w600,
                               titleSize: 18,
                               titleColor: AppColors.blue_100,
@@ -315,7 +315,7 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
                                     return const UserServiceDetailsHireNoeBottomModal();
                                   });
                             },
-                            titleText: 'Hire Now',
+                            titleText: 'Hire Now'.tr,
                             titleWeight: FontWeight.w600,
                             titleSize: 18,
                             titleColor: AppColors.white,

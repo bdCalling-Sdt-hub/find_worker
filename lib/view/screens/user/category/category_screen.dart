@@ -1,9 +1,7 @@
 import 'package:find_worker/core/app_routes.dart';
 import 'package:find_worker/utils/app_colors.dart';
-import 'package:find_worker/utils/app_icons.dart';
 import 'package:find_worker/utils/app_images.dart';
 import 'package:find_worker/utils/app_strings.dart';
-import 'package:find_worker/view/widgets/image/custom_image.dart';
 import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -32,7 +30,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
     },
     {
       'image': AppImages.housekeeper,
-      'text':"HouseKeeper",
+      'text':"Housekeeper".tr,
     },
     {
       'image': AppImages.farmer,
@@ -119,10 +117,10 @@ class _CategoryScreenState extends State<CategoryScreen> {
           backgroundColor: AppColors.white,
           automaticallyImplyLeading: false,
           centerTitle: true,
-          title:const CustomText(
+          title: CustomText(
             fontWeight: FontWeight.w500,
               fontSize: 18,
-              text:AppStrings.category,
+              text:'Categories'.tr,
               color: AppColors.blue_100,
           ),
         ),
@@ -169,7 +167,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     const SizedBox(height: 8,),
                     CustomText(
                       maxLines: 1,
-                      text: category[index]["text"].toString(),
+                      text: category[index]["text"].toString().tr,
                       bottom: 44,
                     ),
                   ],

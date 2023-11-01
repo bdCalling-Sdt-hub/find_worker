@@ -1,6 +1,5 @@
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_icons.dart';
-import 'package:find_worker/utils/app_images.dart';
 import 'package:find_worker/utils/app_strings.dart';
 import 'package:find_worker/view/screens/user/user_hire_list/user_hire_details/inner_widgets/hire_details_alert.dart';
 import 'package:find_worker/view/widgets/app_bar/custom_app_bar.dart';
@@ -33,8 +32,8 @@ class _UserHireDetailsScreenState extends State<UserHireDetailsScreen> {
               },
               child: const Icon(Icons.arrow_back_ios_new_outlined,size: 16,color: AppColors.blue_100,),
             ),
-            const CustomText(
-              text: AppStrings.hireDetails,
+             CustomText(
+              text: 'Hire Details'.tr,
               color: AppColors.blue_100,
               fontSize: 18,
               fontWeight: FontWeight.w500,
@@ -81,11 +80,11 @@ class _UserHireDetailsScreenState extends State<UserHireDetailsScreen> {
                          ],
                        ),
                         const SizedBox(height: 10,),
-                        const Row(
+                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             CustomText(
-                              text: 'Contact',
+                              text: 'Contact'.tr,
                             ),
                             CustomText(
                               text: '+44 12344 1234',
@@ -95,11 +94,11 @@ class _UserHireDetailsScreenState extends State<UserHireDetailsScreen> {
                           ],
                         ),
                         const SizedBox(height: 10,),
-                        const Row(
+                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             CustomText(
-                              text: AppStrings.address,
+                              text: 'Address'.tr,
                             ),
                             CustomText(
                               text: 'Abu Dhabi',
@@ -113,8 +112,8 @@ class _UserHireDetailsScreenState extends State<UserHireDetailsScreen> {
                           height: 1,
                           color: AppColors.blue_20,
                         ),
-                        const CustomText(
-                          text: AppStrings.aboutJob,
+                         CustomText(
+                          text: 'About Job'.tr,
                           fontSize: 18,
                           fontWeight: FontWeight.w500,
                           bottom: 16,
@@ -122,8 +121,8 @@ class _UserHireDetailsScreenState extends State<UserHireDetailsScreen> {
                          Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const CustomText(
-                              text: AppStrings.status,
+                              CustomText(
+                              text: 'Status'.tr,
                             ),
                             Container(
                               padding: const EdgeInsets.symmetric(vertical: 4,horizontal: 11),
@@ -140,11 +139,11 @@ class _UserHireDetailsScreenState extends State<UserHireDetailsScreen> {
                           ],
                         ),
                         const SizedBox(height: 10,),
-                        const Row(
+                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             CustomText(
-                              text: AppStrings.service,
+                              text: 'Service'.tr,
                             ),
                             CustomText(
                               text: AppStrings.carWash,
@@ -154,11 +153,11 @@ class _UserHireDetailsScreenState extends State<UserHireDetailsScreen> {
                           ],
                         ),
                         const SizedBox(height: 10,),
-                        const Row(
+                          Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             CustomText(
-                              text: AppStrings.time,
+                              text: 'Time'.tr,
                             ),
                             CustomText(
                               text: '12:00 am',
@@ -168,11 +167,11 @@ class _UserHireDetailsScreenState extends State<UserHireDetailsScreen> {
                           ],
                         ),
                         const SizedBox(height: 10,),
-                        const Row(
+                          Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             CustomText(
-                              text: AppStrings.date,
+                              text: 'Date'.tr,
                             ),
                             CustomText(
                               text: '12 September',
@@ -192,7 +191,7 @@ class _UserHireDetailsScreenState extends State<UserHireDetailsScreen> {
                                 }
                             );
                           },
-                          titleText: AppStrings.complete,
+                          titleText: 'Complete'.tr,
                           titleColor: AppColors.white,
                           buttonBgColor: AppColors.green_100,
                           titleSize: 18,
@@ -203,12 +202,12 @@ class _UserHireDetailsScreenState extends State<UserHireDetailsScreen> {
                           text: TextSpan(
                             text: '',
                             style: DefaultTextStyle.of(context).style,
-                            children: const <TextSpan>[
-                              TextSpan(text: 'Click on the ',style: TextStyle(
+                            children: <TextSpan>[
+                              TextSpan(text: 'Click on the'.tr,style: TextStyle(
                                 fontSize: 12, fontWeight: FontWeight.w400,color: Color(0xff5A5A5A),
                               )),
-                              TextSpan(text: '“Complete”', style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600,color: Color(0xff5A5A5A),)),
-                              TextSpan(text: 'button after getting your current service to complete the service status.',style: TextStyle(
+                              TextSpan(text: 'Complete'.tr, style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600,color: Color(0xff5A5A5A),)),
+                              TextSpan(text: 'button after getting your current service to complete the service status.'.tr,style: TextStyle(
                                 fontSize: 12, fontWeight: FontWeight.w400,color: Color(0xff5A5A5A),
                               )),
                             ],

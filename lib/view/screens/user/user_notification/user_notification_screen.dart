@@ -28,12 +28,12 @@ class _UserNotificationScreenState extends State<UserNotificationScreen> {
                 },
                 child: const Icon(Icons.arrow_back_ios_new_outlined,size: 16,color: AppColors.black_100,),
               ),
-             const CustomText(
-               text: AppStrings.notification,
-               color: AppColors.blue_100,
-               fontSize: 18,
-               fontWeight: FontWeight.w500,
-             ),
+              CustomText(
+                text: 'Notification'.tr,
+                color: AppColors.blue_100,
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
+              ),
               const SizedBox()
             ],),),
           body: LayoutBuilder(
@@ -43,19 +43,19 @@ class _UserNotificationScreenState extends State<UserNotificationScreen> {
                     child: Column(
                       children: [
                         Container(
-                          padding: EdgeInsets.all(16),
+                          padding: const EdgeInsets.all(16),
                           decoration: BoxDecoration(
                             border: Border.all(color: AppColors.blue_60,width: 1),
                             borderRadius: BorderRadius.circular(8),
                           ),
-                          child: Column(
+                          child:  Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               CustomText(
-                                text: 'Welcome to the Find Worker.',
+                                text: 'Welcome to the Find Worker.'.tr,
                                 bottom: 8,
                               ),
-                              Row(
+                              const Row(
                                 children: [
                                   CustomText(
                                     text: 'Fri,',
@@ -73,18 +73,18 @@ class _UserNotificationScreenState extends State<UserNotificationScreen> {
                             ],
                           ),
                         ),
-                        SizedBox(height: 8,),
+                        const SizedBox(height: 8,),
                         Container(
-                          padding: EdgeInsets.all(16),
+                          padding: const EdgeInsets.all(16),
                           decoration: BoxDecoration(
                             border: Border.all(color: AppColors.blue_60,width: 1),
                             borderRadius: BorderRadius.circular(8),
                           ),
-                          child: Column(
+                          child:  Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               CustomText(
-                                text: 'Welcome to the Find Worker.',
+                                text: 'Welcome to the Find Worker.'.tr,
                                 bottom: 8,
                               ),
                               Row(
@@ -109,6 +109,6 @@ class _UserNotificationScreenState extends State<UserNotificationScreen> {
                     )
                 );
               }),
-    ));
+        ));
   }
 }

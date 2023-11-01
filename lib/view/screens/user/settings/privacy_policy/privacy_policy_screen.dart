@@ -40,8 +40,8 @@ class _PrivacyPolicyScreenState extends State<PrivacyPolicyScreen> {
                       color: AppColors.blue_100,
                     ),
                   ),
-                  const CustomText(
-                    text: AppStrings.privacyPolicy,
+                   CustomText(
+                    text: "Privacy Policy".tr,
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
                     color: AppColors.blue_100,

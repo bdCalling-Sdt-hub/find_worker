@@ -63,8 +63,8 @@ class _SpAddNewServiceScreenState extends State<SpAddNewServiceScreen> {
                       color: AppColors.blue_100,
                     ),
                   ),
-                  const CustomText(
-                    text: AppStrings.addNewService,
+                   CustomText(
+                    text: 'Add New Service'.tr,
                     color: AppColors.blue_100,
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
@@ -107,8 +107,8 @@ class _SpAddNewServiceScreenState extends State<SpAddNewServiceScreen> {
                               ],
                             ),
                           ),
-                          const CustomText(
-                            text: AppStrings.serviceType,
+                           CustomText(
+                            text: 'Service Type'.tr,
                             color: AppColors.black_100,
                             fontWeight: FontWeight.w500,
                             top: 16,
@@ -126,7 +126,7 @@ class _SpAddNewServiceScreenState extends State<SpAddNewServiceScreen> {
                               ),
                               filled: true,
                               fillColor: AppColors.white,
-                              hintText: AppStrings.enterYourService,
+                              hintText: 'Car Wash'.tr,
                               hintStyle: GoogleFonts.poppins(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,
@@ -198,9 +198,10 @@ class _SpAddNewServiceScreenState extends State<SpAddNewServiceScreen> {
                                               ),
                                             ),
                                             CustomText(
-                                              text: serviceType[index],
+                                              text: serviceType[index].tr,
                                               color: AppColors.black_100,
                                               left: 10,
+                                              right: 10,
                                             ),
                                           ],
                                         ),
@@ -211,8 +212,8 @@ class _SpAddNewServiceScreenState extends State<SpAddNewServiceScreen> {
                               ),
                             ),
                           ): Container(),
-                          const CustomText(
-                            text: AppStrings.location,
+                           CustomText(
+                            text: 'Location'.tr,
                             color: AppColors.black_100,
                             fontWeight: FontWeight.w500,
                             top: 16,
@@ -220,7 +221,7 @@ class _SpAddNewServiceScreenState extends State<SpAddNewServiceScreen> {
                           ),
                           CustomTextField(
                             textAlign: TextAlign.start,
-                            hintText: 'Enter your address',
+                            hintText: 'Enter your address'.tr,
                             hintStyle: GoogleFonts.montserrat(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w500,
@@ -232,8 +233,8 @@ class _SpAddNewServiceScreenState extends State<SpAddNewServiceScreen> {
                             fieldBorderColor: AppColors.blue_10,
                             fieldBorderRadius: 8,
                           ),
-                          const CustomText(
-                            text: AppStrings.description,
+                           CustomText(
+                            text: 'Description'.tr,
                             color: AppColors.black_100,
                             fontWeight: FontWeight.w500,
                             top: 16,
@@ -243,11 +244,11 @@ class _SpAddNewServiceScreenState extends State<SpAddNewServiceScreen> {
                             maxLines: 7,
                             textAlign: TextAlign.start,
                             hintText: AppStrings.loremIpsumDolor,
-                            hintStyle: GoogleFonts.montserrat(
+                            hintStyle: GoogleFonts.poppins(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w500,
                                 color: AppColors.black_40),
-                            inputTextStyle: GoogleFonts.montserrat(
+                            inputTextStyle: GoogleFonts.poppins(
                                 fontWeight: FontWeight.w400,
                                 fontSize: 14,
                                 color: AppColors.black_100),
@@ -259,14 +260,15 @@ class _SpAddNewServiceScreenState extends State<SpAddNewServiceScreen> {
                             onTap: (){
 
                             },
-                            child: const Row(
+                            child: Row(
                               children: [
                                 CustomImage(imageSrc: AppIcons.plusCircle,size: 24,),
                                 CustomText(
-                                  text: AppStrings.addNewService,
+                                  text: 'Add New Service'.tr,
                                   color: AppColors.blue_100,
                                   fontSize: 18,
                                   left: 4,
+                                  right: 4,
                                 )
                               ],
                             ),
@@ -275,7 +277,7 @@ class _SpAddNewServiceScreenState extends State<SpAddNewServiceScreen> {
                         ],
                       ));
                 }),
-            bottomNavigationBar: BottomNavButton(buttonText: AppStrings.addService, onTap: (){
+            bottomNavigationBar: BottomNavButton(buttonText: 'Add Service'.tr, onTap: (){
               Get.toNamed(AppRoute.spServiceDetailsScreen);
             })
         ));

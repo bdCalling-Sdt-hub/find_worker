@@ -40,8 +40,8 @@ class _TermsOfConditionsScreenState extends State<TermsOfConditionsScreen> {
                       color: AppColors.blue_100,
                     ),
                   ),
-                  const CustomText(
-                    text: "Terms of Conditions",
+                  CustomText(
+                    text: "Terms of Conditions".tr,
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
                     color: AppColors.blue_100,

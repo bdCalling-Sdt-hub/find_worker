@@ -12,6 +12,7 @@ import 'package:find_worker/view/screens/user/user_profile/user_profile_screen.d
 import 'package:find_worker/view/widgets/image/custom_image.dart';
 import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 
 class UserBottomNavBarScreen extends StatefulWidget {
@@ -39,28 +40,28 @@ class _UserBottomNavBarScreenState extends State<UserBottomNavBarScreen> {
 
     List<Widget> manuBarItems = [
       MenuBarItems(
-          text: AppStrings.home,
+          text: 'Home'.tr,
           index: 0,
           selectedIndex: widget.currentIndex,
           image:  AppIcons.home_un,
           icon: AppIcons.home,
       ),
       MenuBarItems(
-          text:AppStrings.category,
+          text:'Category'.tr,
           index: 1,
           selectedIndex: widget.currentIndex,
           image: AppIcons.viewGrid,
         icon: AppIcons.viewGridS,
       ),
       MenuBarItems(
-          text: AppStrings.hireList,
+          text: 'Hire List'.tr,
           index: 2,
           selectedIndex: widget.currentIndex,
           image: AppIcons.speakerphone,
         icon: AppIcons.speakerphoneS,
       ),
       MenuBarItems(
-          text: AppStrings.profile,
+          text: 'Profile'.tr,
           index: 3,
           selectedIndex: widget.currentIndex,
           image: AppIcons.userCircle,

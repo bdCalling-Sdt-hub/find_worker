@@ -34,8 +34,8 @@ class _CarWashDetailsScreenState extends State<CarWashDetailsScreen> {
                   color: AppColors.blue_100,
                 ),
               ),
-              const CustomText(
-                text: AppStrings.carWash,
+               CustomText(
+                text: 'Car Wash'.tr,
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
                 color: AppColors.blue_100,
@@ -92,7 +92,7 @@ class _CarWashDetailsScreenState extends State<CarWashDetailsScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         CustomText(
-                          text: "Jubayed",
+                          text: "Jhon doy",
                           fontWeight: FontWeight.w500,
                           fontSize: 14,
                         ),
@@ -103,6 +103,8 @@ class _CarWashDetailsScreenState extends State<CarWashDetailsScreen> {
                                 imageSrc: AppIcons.star),
                             CustomText(
                               text: "(4.5)",
+                              left: 4,
+                              right: 4,
                             )
                           ],
                         )
@@ -112,7 +114,6 @@ class _CarWashDetailsScreenState extends State<CarWashDetailsScreen> {
                       height: 12,
                     ),
                     const Row(
-
                       children: [
                         CustomImage(
                             imageType: ImageType.svg,
@@ -122,6 +123,7 @@ class _CarWashDetailsScreenState extends State<CarWashDetailsScreen> {
                           text: "Abu Dhabi",
                           fontSize: 10,
                           fontWeight: FontWeight.w400,
+                          right: 4,
                         )
 
                       ],

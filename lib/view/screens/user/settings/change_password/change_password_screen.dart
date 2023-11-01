@@ -1,18 +1,13 @@
 import 'package:find_worker/core/app_routes.dart';
 import 'package:find_worker/utils/app_colors.dart';
-import 'package:find_worker/utils/app_icons.dart';
 import 'package:find_worker/utils/app_strings.dart';
-import 'package:find_worker/view/screens/user/settings/change_forget_password/change_forget_password_screen.dart';
 import 'package:find_worker/view/widgets/app_bar/custom_app_bar.dart';
 import 'package:find_worker/view/widgets/buttons/bottom_nav_button.dart';
-import 'package:find_worker/view/widgets/image/custom_image.dart';
 import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:find_worker/view/widgets/text_field/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../change_forget_password/change_forget_password_screen.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
   const ChangePasswordScreen({super.key});
@@ -50,7 +45,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                     ),
                   ),
                   Text(
-                    AppStrings.changePassword,
+                    'Change Password'.tr,
                     textAlign: TextAlign.center,
                     style: GoogleFonts.poppins(
                       color: AppColors.blue_100,
@@ -69,8 +64,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                   child:Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const CustomText(
-                        text: 'Current Password',
+                       CustomText(
+                         text: 'Current Password'.tr,
                         color: AppColors.black_100,
                         fontWeight: FontWeight.w500,
                         fontSize: 14,
@@ -80,7 +75,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       CustomTextField(
                         isPassword: true,
                         textAlign: TextAlign.start,
-                        hintText: AppStrings.enterYourPassword,
+                        hintText: 'Enter your password'.tr,
                         hintStyle: GoogleFonts.poppins(
                             fontSize: 14,
                             fontWeight: FontWeight.w500,
@@ -93,8 +88,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                         fieldBorderRadius: 8,
 
                       ),
-                       const CustomText(
-                        text: "New Password",
+                        CustomText(
+                          text: "New Password".tr,
                         color: AppColors.black_100,
                         fontWeight: FontWeight.w500,
                         fontSize: 14,
@@ -104,7 +99,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       CustomTextField(
                         isPassword: true,
                         textAlign: TextAlign.start,
-                        hintText: "Enter your new password",
+                        hintText: "Enter your new password".tr,
                         hintStyle: GoogleFonts.poppins(
                             fontSize: 14,
                             fontWeight: FontWeight.w400,
@@ -117,8 +112,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                         fieldBorderRadius: 8,
 
                       ),
-                      const CustomText(
-                        text: AppStrings.confirmPassword,
+                       CustomText(
+                        text: 'Confirm Password'.tr,
                         color: AppColors.black_100,
                         fontWeight: FontWeight.w500,
                         fontSize: 14,
@@ -128,7 +123,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       CustomTextField(
                         isPassword: true,
                         textAlign: TextAlign.start,
-                        hintText: AppStrings.reEnterYourNewPassword,
+                        hintText: 'Re-enter your new password'.tr,
                         hintStyle: GoogleFonts.poppins(
                             fontSize: 14,
                             fontWeight: FontWeight.w400,
@@ -145,8 +140,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                         onTap: (){
                           Get.toNamed(AppRoute.changeForgetPasswordScreen);
                         } ,
-                        child: const CustomText(
-                          text: AppStrings.forgetPassword,
+                        child:  CustomText(
+                          text: 'Forget Password'.tr,
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
                           color: AppColors.blue_100,
@@ -158,7 +153,9 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                 );
               }
           ),
-          bottomNavigationBar: BottomNavButton(buttonText: 'Save', onTap: (){}),
+          bottomNavigationBar: BottomNavButton(buttonText: 'Save'.tr, onTap: (){
+            Get.toNamed(AppRoute.changeForgetPasswordScreen);
+          }),
         ));
   }
 }

@@ -37,7 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
     },
     {
       'image': AppImages.housekeeper,
-      'text':"HouseKeeper",
+      'text':"Housekeeper".tr,
     },
     {
       'image': AppImages.farmer,
@@ -125,11 +125,12 @@ class _HomeScreenState extends State<HomeScreen> {
           backgroundColor: AppColors.white,
           appBar: AppBar(
             backgroundColor: AppColors.white,
-            title: const CustomText(
+            title: CustomText(
               color: AppColors.blue_100,
-              text: AppStrings.logo,
+              text: 'Logo'.tr,
               fontSize: 18,
               fontWeight: FontWeight.w500,
+
             ) ,
             actions:  [
               Padding(
@@ -211,8 +212,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         const SizedBox(height: 8),
                         CustomText(
-                          maxLines: 1,
-                          text: category[index]["text"].toString(),
+                          maxLines: 2,
+                          text: category[index]["text"].toString().tr,
                           bottom: 44,
                         ),
                       ],

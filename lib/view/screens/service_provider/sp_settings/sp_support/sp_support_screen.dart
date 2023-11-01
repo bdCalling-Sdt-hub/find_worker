@@ -40,8 +40,8 @@ class _SpSupportScreenState extends State<SpSupportScreen> {
                       color: AppColors.blue_100,
                     ),
                   ),
-                  const CustomText(
-                    text: "Support",
+                   CustomText(
+                    text: "Support".tr,
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
                     color: AppColors.blue_100,

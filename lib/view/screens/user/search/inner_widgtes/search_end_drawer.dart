@@ -63,7 +63,7 @@ class _SearchEndDrawerState extends State<SearchEndDrawer> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Filter',
+                'Filter'.tr,
                 style: GoogleFonts.poppins(
                   color: const Color(0xFF333333),
                   fontSize: 18,
@@ -89,7 +89,7 @@ class _SearchEndDrawerState extends State<SearchEndDrawer> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Category',
+                    'Category'.tr,
                     style: GoogleFonts.poppins(
                       color: const Color(0xFF333333),
                       fontSize: 16,
@@ -131,7 +131,7 @@ class _SearchEndDrawerState extends State<SearchEndDrawer> {
                             ),
                           ),
                           child: Text(
-                            genderList[index],
+                            genderList[index].tr,
                             textAlign: TextAlign.center,
                             style: GoogleFonts.raleway(
                               color: index == selectedGender ? AppColors.white : AppColors.blue_100,
@@ -144,7 +144,7 @@ class _SearchEndDrawerState extends State<SearchEndDrawer> {
                   ),
                   const SizedBox(height: 200),
                   BottomNavButton(
-                    buttonText: AppStrings.apply,
+                    buttonText: 'Apply'.tr,
                     onTap: () {
                       /*Get.to(()=> const OtpScreen());*/
                     },

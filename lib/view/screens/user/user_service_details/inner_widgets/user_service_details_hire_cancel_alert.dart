@@ -30,8 +30,8 @@ class _UserServiceDetailsHireCancelAlertState extends State<UserServiceDetailsHi
       title: Column(
         children: [
           const CustomImage(imageSrc: AppIcons.oops,imageType: ImageType.svg,size: 100,),
-          const CustomText(
-            text: 'Oops...Something went wrong',
+            CustomText(
+            text: 'Oops...Something went wrong'.tr,
             fontSize: 18,
             fontWeight: FontWeight.w600,
             color: AppColors.blue_100,
@@ -41,7 +41,7 @@ class _UserServiceDetailsHireCancelAlertState extends State<UserServiceDetailsHi
           CustomButton(onPressed: (){
             Get.back();
           },
-            titleText: 'Try Again',buttonBgColor: AppColors.blue_100,buttonHeight: 36,leftPadding: 18,rightPadding: 18,)
+            titleText: 'Try Again'.tr,buttonBgColor: AppColors.blue_100,buttonHeight: 36,leftPadding: 18,rightPadding: 18,)
         ],
       ),
     );

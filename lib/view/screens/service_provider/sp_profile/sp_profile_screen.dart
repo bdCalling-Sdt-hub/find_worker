@@ -2,7 +2,6 @@ import 'package:find_worker/core/app_routes.dart';
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_icons.dart';
 import 'package:find_worker/utils/app_images.dart';
-import 'package:find_worker/utils/app_strings.dart';
 import 'package:find_worker/view/screens/service_provider/sp_profile/inner_widgets/sp_profile_log_out_alert.dart';
 import 'package:find_worker/view/widgets/app_bar/custom_app_bar.dart';
 import 'package:find_worker/view/widgets/image/custom_image.dart';
@@ -24,11 +23,11 @@ class _SpProfileScreenState extends State<SpProfileScreen> {
         top: false,
         bottom: false,
         child: Scaffold(
-          appBar: const CustomAppBar(
+          appBar:  CustomAppBar(
               appBarBgColor: AppColors.blue_100,
               appBarContent: Center(
                 child:  CustomText(
-                  text: AppStrings.profile,
+                  text: 'Profile'.tr,
                   fontWeight: FontWeight.w500,
                   fontSize: 18,
                   color: AppColors.white,
@@ -67,14 +66,13 @@ class _SpProfileScreenState extends State<SpProfileScreen> {
                                 bottom: 16,
                               ),
                               Container(
-
                                 padding: const EdgeInsets.symmetric(vertical: 8,horizontal: 24),
                                 decoration: BoxDecoration(
                                   color: AppColors.white,
                                   borderRadius: BorderRadius.circular(8),
                                 ),
-                                child:  const CustomText(
-                                  text: AppStrings.serviceProvider,
+                                child: CustomText(
+                                  text: 'Service Provider'.tr,
                                   fontWeight: FontWeight.w600,
                                   fontSize: 14,
                                   color: AppColors.blue_100,
@@ -100,12 +98,13 @@ class _SpProfileScreenState extends State<SpProfileScreen> {
                                     decoration: const BoxDecoration(
                                         border: Border(bottom: BorderSide(color: AppColors.blue_20,width: 1))
                                     ),
-                                    child:  const Row(
+                                    child:   Row(
                                       children: [
                                         CustomImage(imageSrc: AppIcons.user,size: 18,),
                                         CustomText(
-                                          text: AppStrings.personalInformation,
+                                          text:'Personal Information'.tr,
                                           left: 12,
+                                          right: 12,
                                         )
                                       ],
                                     ),
@@ -121,12 +120,13 @@ class _SpProfileScreenState extends State<SpProfileScreen> {
                                     decoration: const BoxDecoration(
                                         border: Border(bottom: BorderSide(color: AppColors.blue_20,width: 1))
                                     ),
-                                    child:  const Row(
+                                    child:   Row(
                                       children: [
                                         CustomImage(imageSrc: AppIcons.service,size: 18,imageColor: AppColors.black_100,),
                                         CustomText(
-                                          text: AppStrings.serviceProvider,
+                                          text: 'Service Provider'.tr,
                                           left: 12,
+                                          right: 12,
                                         )
                                       ],
                                     ),
@@ -142,15 +142,16 @@ class _SpProfileScreenState extends State<SpProfileScreen> {
                                     decoration: const BoxDecoration(
                                         border: Border(bottom: BorderSide(color: AppColors.blue_20,width: 1))
                                     ),
-                                    child:  const Row(
+                                    child:   Row(
                                       children: [
                                         CustomImage(
                                           imageType: ImageType.png,
                                           imageSrc: AppImages.settings,size: 18,
                                         ),
                                         CustomText(
-                                          text: AppStrings.settings,
+                                          text: 'Setting'.tr,
                                           left: 12,
+                                          right: 12,
                                         )
                                       ],
                                     ),
@@ -172,13 +173,14 @@ class _SpProfileScreenState extends State<SpProfileScreen> {
                                     decoration: const BoxDecoration(
                                         border: Border(bottom: BorderSide(color: AppColors.blue_20,width: 1))
                                     ),
-                                    child:  const Row(
+                                    child:   Row(
                                       children: [
                                         CustomImage(imageSrc: AppIcons.logout,size: 18,imageColor: AppColors.red_100,),
                                         CustomText(
-                                          text: AppStrings.logout,
+                                          text: 'Logout'.tr,
                                           color: AppColors.red_100,
                                           left: 12,
+                                          right: 12,
                                         )
                                       ],
                                     ),

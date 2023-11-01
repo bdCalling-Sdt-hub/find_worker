@@ -6,6 +6,7 @@ import 'package:find_worker/view/widgets/buttons/custom_button.dart';
 import 'package:find_worker/view/widgets/image/custom_image.dart';
 import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 class UserServiceDetailsHireNoeBottomModal extends StatefulWidget {
@@ -45,10 +46,8 @@ class _UserServiceDetailsHireNoeBottomModalState extends State<UserServiceDetail
                 colors: [
                   Color(0xff9DC9FF),
                   Color(0xff0668E3),
-
                 ]
             ),
-
              backgroundColor: AppColors.black_10,
              barRadius:const Radius.circular(4),
             animation: true,
@@ -58,8 +57,8 @@ class _UserServiceDetailsHireNoeBottomModalState extends State<UserServiceDetail
             linearStrokeCap: LinearStrokeCap.butt,
           ),
           const SizedBox(height: 8,),
-          const CustomText(
-            text: AppStrings.keepPatienceWaitingForApproval,
+            CustomText(
+            text: 'Keep patience. Waiting for approval.'.tr,
             color: AppColors.black_60,
             bottom: 40,
           ),
@@ -72,12 +71,12 @@ class _UserServiceDetailsHireNoeBottomModalState extends State<UserServiceDetail
                   });
              
             },
-            titleText: 'Cancel',
+            titleText: 'Cancel'.tr,
             buttonWidth: MediaQuery.of(context).size.width,
             buttonBgColor: AppColors.blue_100,
           ),
-          const CustomText(
-            text: AppStrings.or,
+           CustomText(
+            text: 'Or'.tr,
             fontSize: 18,
             fontWeight: FontWeight.w500,
             bottom: 20,
@@ -92,13 +91,13 @@ class _UserServiceDetailsHireNoeBottomModalState extends State<UserServiceDetail
                 border: Border.all(width: 1,color: AppColors.blue_100),
                 borderRadius: BorderRadius.circular(8),
               ),
-              child:const Row(
+              child:  Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   CustomImage(imageSrc: AppIcons.phone,size: 24,imageColor: AppColors.blue_100,),
                   CustomText(
-                    text: AppStrings.directCall,
+                    text: 'Direct Call'.tr,
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
                     color: AppColors.blue_100,

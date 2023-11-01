@@ -26,11 +26,11 @@ class _SpJobHistoryScreenState extends State<SpJobHistoryScreen> {
         backgroundColor: AppColors.white,
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          title: const CustomText(
+          title:  CustomText(
             color: AppColors.blue_100,
              fontWeight: FontWeight.w500,
               fontSize: 18,
-              text: AppStrings.jobHistory
+            text: 'Job Details'.tr,
           ),
           centerTitle: true,
         ),
@@ -47,12 +47,14 @@ class _SpJobHistoryScreenState extends State<SpJobHistoryScreen> {
                   ),
                   padding: const EdgeInsets.only(left: 12,top: 16,bottom: 16),
 
-                  child:const CustomText(
+                  child: CustomText(
                     color: AppColors.white,
                     textAlign: TextAlign.start,
-                    text: "Recent Jobs",
+                    text: "Recent Jobs".tr,
                     fontWeight: FontWeight.w500,
                     fontSize: 18,
+                    left: 16,
+                    right: 16,
                   ),
                 ),
                 GestureDetector(
@@ -88,6 +90,7 @@ class _SpJobHistoryScreenState extends State<SpJobHistoryScreen> {
                                  text:  '12-Sept',
                                  fontSize: 10,
                                  fontWeight: FontWeight.w400,
+                                 right: 4,
                                ),
                              ],
                            ),
@@ -104,6 +107,7 @@ class _SpJobHistoryScreenState extends State<SpJobHistoryScreen> {
                                    textAlign: TextAlign.right,
                                    fontSize: 10,
                                    fontWeight: FontWeight.w400,
+                                   right: 4,
                                  ),
                                ],
                              )

@@ -35,7 +35,7 @@ class _SearchScreenState extends State<SearchScreen> {
     },
     {
       'image': AppImages.housekeeper,
-      'text':"HouseKeeper",
+      'text':"Housekeeper".tr,
     },
     {
       'image': AppImages.farmer,
@@ -146,9 +146,9 @@ class _SearchScreenState extends State<SearchScreen> {
                         ),
                       ),
                      const SizedBox(width: 16),
-                      const Expanded(
+                        Expanded(
                         flex: 4,
-                        child: CustomSearchField(hint: 'Search by categories'),
+                        child: CustomSearchField(hint: 'Search by categories'.tr),
                       ),
                       const SizedBox(width: 12),
                       GestureDetector(
@@ -170,10 +170,10 @@ class _SearchScreenState extends State<SearchScreen> {
                     ],
                   ),
                  const SizedBox(height: 32,),
-                 const CustomText(
+                   CustomText(
                     fontSize: 18,
                     fontWeight: FontWeight.w600,
-                    text: 'Top Featured Services',
+                    text: 'Top Featured Services'.tr,
                   ),
                  const SizedBox(height:  16),
                   GridView.builder(
@@ -215,7 +215,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         const SizedBox(height: 8,),
                         CustomText(
                           maxLines: 1,
-                          text: category[index]["text"].toString(),
+                          text: category[index]["text"].toString().tr,
                           bottom: 44,
                         ),
                       ],

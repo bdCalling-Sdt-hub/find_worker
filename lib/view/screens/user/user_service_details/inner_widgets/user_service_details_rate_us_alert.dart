@@ -7,6 +7,7 @@ import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:find_worker/view/widgets/text_field/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class UserServiceDetailsRateUsAlert extends StatefulWidget {
@@ -29,8 +30,8 @@ class _UserServiceDetailsRateUsAlertState extends State<UserServiceDetailsRateUs
       title: Column(
         children: [
           const CustomImage(imageSrc: AppImages.success,imageType: ImageType.png,size: 100,),
-          const CustomText(
-            text: AppStrings.giveRatingOutOf,
+            CustomText(
+            text: 'Give rating out of 5!'.tr,
             fontSize: 18,
             fontWeight: FontWeight.w600,
             top: 24,
@@ -54,7 +55,7 @@ class _UserServiceDetailsRateUsAlertState extends State<UserServiceDetailsRateUs
           CustomTextField(
             maxLines: 3,
             textAlign: TextAlign.start,
-            hintText: AppStrings.writeYourFeedback,
+            hintText: 'Write your feedback'.tr,
             hintStyle: GoogleFonts.poppins(
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
@@ -68,7 +69,7 @@ class _UserServiceDetailsRateUsAlertState extends State<UserServiceDetailsRateUs
           const SizedBox(height: 24,),
           CustomButton(onPressed: (){
             Navigator.pop(context);
-          }, titleText: AppStrings.submit,buttonBgColor: AppColors.blue_100,buttonHeight: 36,leftPadding: 34,rightPadding: 34,)
+          }, titleText: 'Submit'.tr,buttonBgColor: AppColors.blue_100,buttonHeight: 36,leftPadding: 34,rightPadding: 34,)
         ],
       ),
     );

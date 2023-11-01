@@ -1,5 +1,4 @@
 import 'package:find_worker/utils/app_colors.dart';
-import 'package:find_worker/utils/app_strings.dart';
 import 'package:find_worker/view/widgets/app_bar/custom_app_bar.dart';
 import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
@@ -28,8 +27,8 @@ class _SpNotificationScreenState extends State<SpNotificationScreen> {
                 },
                 child: const Icon(Icons.arrow_back_ios_new_outlined,size: 16,color: AppColors.black_100,),
               ),
-              const CustomText(
-                text: AppStrings.notification,
+               CustomText(
+                text: 'Notification'.tr,
                 color: AppColors.blue_100,
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
@@ -48,14 +47,14 @@ class _SpNotificationScreenState extends State<SpNotificationScreen> {
                             border: Border.all(color: AppColors.blue_60,width: 1),
                             borderRadius: BorderRadius.circular(8),
                           ),
-                          child: const Column(
+                          child:  Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               CustomText(
-                                text: 'Welcome to the Find Worker.',
+                                text: 'Welcome to the Find Worker.'.tr,
                                 bottom: 8,
                               ),
-                              Row(
+                              const Row(
                                 children: [
                                   CustomText(
                                     text: 'Fri,',
@@ -80,11 +79,11 @@ class _SpNotificationScreenState extends State<SpNotificationScreen> {
                             border: Border.all(color: AppColors.blue_60,width: 1),
                             borderRadius: BorderRadius.circular(8),
                           ),
-                          child: const Column(
+                          child:  Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               CustomText(
-                                text: 'Welcome to the Find Worker.',
+                                text: 'Welcome to the Find Worker.'.tr,
                                 bottom: 8,
                               ),
                               Row(

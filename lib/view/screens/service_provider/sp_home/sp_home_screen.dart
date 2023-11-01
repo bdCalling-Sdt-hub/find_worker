@@ -30,8 +30,8 @@ class _SpHomeScreenState extends State<SpHomeScreen> {
           appBar:  CustomAppBar(appBarContent:Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const CustomText(
-                text: AppStrings.logo,
+               CustomText(
+                text: 'Logo'.tr,
                 color: AppColors.blue_100,
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
@@ -40,14 +40,17 @@ class _SpHomeScreenState extends State<SpHomeScreen> {
                 controller: _controller,
                 activeColor: AppColors.blue_100,
                 inactiveColor: AppColors.black_100,
-                activeChild:  Text('Online'
+                activeChild:  Text('Online'.tr,
+                  maxLines: 1
                   ,style: GoogleFonts.poppins(
+
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
                       color: AppColors.white
                   ),
                 ),
-                inactiveChild:  Text('Offline',
+                inactiveChild:  Text('Offline'.tr,
+                  maxLines: 1,
                   style: GoogleFonts.poppins(
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
@@ -101,7 +104,7 @@ class _SpHomeScreenState extends State<SpHomeScreen> {
                                   ),
                                 ),
                                 const SizedBox(width: 16,),
-                                const Expanded(
+                                 Expanded(
                                     child: Column(
                                   children: [
                                     Row(
@@ -131,11 +134,11 @@ class _SpHomeScreenState extends State<SpHomeScreen> {
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         CustomText(
-                                          text: AppStrings.service,
+                                          text: 'Service'.tr,
                                           color: AppColors.black_60,
                                         ),
                                         CustomText(
-                                          text: AppStrings.carWash,
+                                          text: 'Car Wash'.tr,
                                           fontSize: 18,
                                           fontWeight: FontWeight.w500,
                                         ),
@@ -162,7 +165,7 @@ class _SpHomeScreenState extends State<SpHomeScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 const CustomText(
-                                  text: AppStrings.aboutJob,
+                                  text: 'Nadim Hasan',
                                   fontSize: 18,
                                   fontWeight: FontWeight.w500,
                                   bottom: 16,
@@ -170,8 +173,8 @@ class _SpHomeScreenState extends State<SpHomeScreen> {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
-                                    const CustomText(
-                                      text: AppStrings.status,
+                                     CustomText(
+                                      text: 'Status'.tr,
                                     ),
                                     Container(
                                       padding: const EdgeInsets.symmetric(vertical: 4,horizontal: 11),
@@ -188,11 +191,11 @@ class _SpHomeScreenState extends State<SpHomeScreen> {
                                   ],
                                 ),
                                 const SizedBox(height: 10,),
-                                const Row(
+                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     CustomText(
-                                      text: AppStrings.service,
+                                      text: 'Service'.tr,
                                     ),
                                     CustomText(
                                       text: AppStrings.carWash,
@@ -202,11 +205,11 @@ class _SpHomeScreenState extends State<SpHomeScreen> {
                                   ],
                                 ),
                                 const SizedBox(height: 10,),
-                                const Row(
+                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     CustomText(
-                                      text: AppStrings.time,
+                                      text: 'Time'.tr,
                                     ),
                                     CustomText(
                                       text: '12:00 am',
@@ -216,11 +219,11 @@ class _SpHomeScreenState extends State<SpHomeScreen> {
                                   ],
                                 ),
                                 const SizedBox(height: 10,),
-                                const Row(
+                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     CustomText(
-                                      text: AppStrings.date,
+                                      text: 'Date'.tr,
                                     ),
                                     CustomText(
                                       text: '12 September',

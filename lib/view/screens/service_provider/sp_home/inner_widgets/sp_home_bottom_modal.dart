@@ -34,7 +34,7 @@ class _SpHomeBottomModalSheetState extends State<SpHomeBottomModalSheet> {
         child: Column(
           children: [
             Container(
-              child:  const Row(
+              child:   Row(
                 children: [
                   CustomImage(imageSrc: AppImages.profileJhon,imageType: ImageType.png,size: 65,),
                   SizedBox(width: 16,),
@@ -53,7 +53,7 @@ class _SpHomeBottomModalSheetState extends State<SpHomeBottomModalSheet> {
                           children: [
                             CustomText(
                               color: AppColors.black_60,
-                              text: 'location',
+                              text: 'Location'.tr,
                             ),
                             CustomText(
                               text: 'Abu Dhabi',
@@ -68,7 +68,7 @@ class _SpHomeBottomModalSheetState extends State<SpHomeBottomModalSheet> {
                           children: [
                             CustomText(
                               color: AppColors.black_60,
-                              text: AppStrings.service,
+                              text: 'Service'.tr,
                             ),
                             CustomText(
                               fontSize: 14,
@@ -93,7 +93,7 @@ class _SpHomeBottomModalSheetState extends State<SpHomeBottomModalSheet> {
                     onPressed: () {
                       Get.back();
                     },
-                    titleText: 'Accept',
+                    titleText: 'Accept'.tr,
                     titleWeight: FontWeight.w600,
                     titleSize: 18,
                     titleColor: AppColors.blue_100,
@@ -108,7 +108,7 @@ class _SpHomeBottomModalSheetState extends State<SpHomeBottomModalSheet> {
                     onPressed: () {
                       Get.back();
                     },
-                    titleText: 'Reject',
+                    titleText: 'Reject'.tr,
                     titleWeight: FontWeight.w600,
                     titleSize: 18,
                     titleColor: AppColors.white,

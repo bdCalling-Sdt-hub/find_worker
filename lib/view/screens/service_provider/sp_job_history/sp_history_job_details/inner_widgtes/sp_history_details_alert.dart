@@ -25,9 +25,9 @@ class _SpHistoryDetailsAlertState extends State<SpHistoryDetailsAlert> {
       elevation: 0,
       title: Column(
         children: [
-          const CustomText(
+           CustomText(
             maxLines: 2,
-            text: 'Do you want to remove this job details?',
+            text: 'Do you want to remove this job details?'.tr,
             fontWeight: FontWeight.w600,
             fontSize: 18,
             color: AppColors.black_100,
@@ -45,10 +45,10 @@ class _SpHistoryDetailsAlertState extends State<SpHistoryDetailsAlert> {
                             border: Border.all(width: 1,color: AppColors.blue_100),
                             borderRadius: BorderRadius.circular(8)
                         ),
-                        child: const Padding(
+                        child:  Padding(
                           padding: EdgeInsets.symmetric(vertical: 12),
                           child: CustomText(
-                            text: AppStrings.yes,
+                            text: 'Yes'.tr,
                             fontWeight: FontWeight.w600,
                             color: AppColors.blue_100,
                           ),
@@ -69,11 +69,11 @@ class _SpHistoryDetailsAlertState extends State<SpHistoryDetailsAlert> {
                             color: AppColors.blue_100,
                             borderRadius:
                             BorderRadius.circular(8)),
-                        child: const Padding(
+                        child:  Padding(
                           padding: EdgeInsets.symmetric(
                               vertical: 12),
                           child:CustomText(
-                            text: AppStrings.no,
+                            text: 'No'.tr,
                             fontWeight: FontWeight.w600,
                             color: AppColors.white,
                           ),

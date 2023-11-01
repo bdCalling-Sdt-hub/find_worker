@@ -47,8 +47,8 @@ class _ChangeResetPasswordScreenState extends State<ChangeResetPasswordScreen> {
                       color: AppColors.black_100,
                     ),
                   ),
-                  const CustomText(
-                    text: AppStrings.resetPassword,
+                   CustomText(
+                    text: "Reset Password".tr,
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
                     color: AppColors.blue_100,
@@ -63,8 +63,8 @@ class _ChangeResetPasswordScreenState extends State<ChangeResetPasswordScreen> {
                   child:Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const CustomText(
-                        text: "New Password",
+                        CustomText(
+                        text: "New Password".tr,
                         color: AppColors.black_100,
                         fontWeight: FontWeight.w500,
                         fontSize: 14,
@@ -74,7 +74,7 @@ class _ChangeResetPasswordScreenState extends State<ChangeResetPasswordScreen> {
                       CustomTextField(
                         isPassword: true,
                         textAlign: TextAlign.start,
-                        hintText: "Enter your new password",
+                        hintText: "Enter your new password".tr,
                         hintStyle: GoogleFonts.poppins(
                             fontSize: 14,
                             fontWeight: FontWeight.w400,
@@ -87,8 +87,8 @@ class _ChangeResetPasswordScreenState extends State<ChangeResetPasswordScreen> {
                         fieldBorderRadius: 8,
 
                       ),
-                      const CustomText(
-                        text: AppStrings.confirmPassword,
+                        CustomText(
+                          text: "Confirm Password".tr,
                         color: AppColors.black_100,
                         fontWeight: FontWeight.w500,
                         fontSize: 14,
@@ -98,7 +98,7 @@ class _ChangeResetPasswordScreenState extends State<ChangeResetPasswordScreen> {
                       CustomTextField(
                         isPassword: true,
                         textAlign: TextAlign.start,
-                        hintText: 'Re-write password',
+                        hintText: 'Re-write password'.tr,
                         hintStyle: GoogleFonts.poppins(
                             fontSize: 14,
                             fontWeight: FontWeight.w400,
@@ -116,7 +116,7 @@ class _ChangeResetPasswordScreenState extends State<ChangeResetPasswordScreen> {
                 );
               }
           ),
-          bottomNavigationBar: BottomNavButton(buttonText: 'Update', onTap: (){
+          bottomNavigationBar: BottomNavButton(buttonText: 'Update'.tr, onTap: (){
             Get.toNamed(AppRoute.settingScreen);
           }),
         ));

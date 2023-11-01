@@ -31,8 +31,8 @@ class _SpHistoryDetailsScreenState extends State<SpHistoryDetailsScreen> {
                 },
                 child: const Icon(Icons.arrow_back_ios_new_outlined,size: 16,color: AppColors.blue_100,),
               ),
-              const CustomText(
-                text: AppStrings.jobDetails,
+               CustomText(
+                text: 'Job Details'.tr,
                 color: AppColors.blue_100,
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
@@ -71,11 +71,11 @@ class _SpHistoryDetailsScreenState extends State<SpHistoryDetailsScreen> {
                           fontWeight: FontWeight.w500,
                         ),
                         const SizedBox(height: 10,),
-                        const Row(
+                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             CustomText(
-                              text: 'Contact',
+                              text: 'Contact'.tr,
                             ),
                             CustomText(
                               text: '+44 12344 1234',
@@ -85,11 +85,11 @@ class _SpHistoryDetailsScreenState extends State<SpHistoryDetailsScreen> {
                           ],
                         ),
                         const SizedBox(height: 10,),
-                        const Row(
+                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             CustomText(
-                              text: AppStrings.address,
+                              text: 'Address'.tr,
                             ),
                             CustomText(
                               text: 'Abu Dhabi',
@@ -103,8 +103,8 @@ class _SpHistoryDetailsScreenState extends State<SpHistoryDetailsScreen> {
                           height: 1,
                           color: AppColors.blue_20,
                         ),
-                        const CustomText(
-                          text: AppStrings.aboutJob,
+                         CustomText(
+                          text: 'About Job'.tr,
                           fontSize: 18,
                           fontWeight: FontWeight.w500,
                           bottom: 16,
@@ -112,8 +112,8 @@ class _SpHistoryDetailsScreenState extends State<SpHistoryDetailsScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const CustomText(
-                              text: AppStrings.status,
+                             CustomText(
+                              text: 'Status'.tr,
                             ),
                             Container(
                               padding: const EdgeInsets.symmetric(vertical: 4,horizontal: 11),
@@ -130,11 +130,11 @@ class _SpHistoryDetailsScreenState extends State<SpHistoryDetailsScreen> {
                           ],
                         ),
                         const SizedBox(height: 10,),
-                        const Row(
+                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             CustomText(
-                              text: AppStrings.service,
+                              text: 'Service'.tr,
                             ),
                             CustomText(
                               text: AppStrings.carWash,
@@ -144,11 +144,11 @@ class _SpHistoryDetailsScreenState extends State<SpHistoryDetailsScreen> {
                           ],
                         ),
                         const SizedBox(height: 10,),
-                        const Row(
+                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             CustomText(
-                              text: AppStrings.time,
+                              text: 'Time'.tr,
                             ),
                             CustomText(
                               text: '12:00 am',
@@ -158,11 +158,11 @@ class _SpHistoryDetailsScreenState extends State<SpHistoryDetailsScreen> {
                           ],
                         ),
                         const SizedBox(height: 10,),
-                        const Row(
+                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             CustomText(
-                              text: AppStrings.date,
+                              text: 'Date'.tr,
                             ),
                             CustomText(
                               text: '12 September',

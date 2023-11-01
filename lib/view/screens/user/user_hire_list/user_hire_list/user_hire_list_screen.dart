@@ -1,4 +1,3 @@
-import 'package:find_worker/core/app_routes.dart';
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_icons.dart';
 import 'package:find_worker/utils/app_images.dart';
@@ -24,10 +23,10 @@ class _UserHireListScreenState extends State<UserHireListScreen> {
         top: false,
         bottom: false,
         child: Scaffold(
-          appBar: const CustomAppBar(
+          appBar:CustomAppBar(
             appBarContent:Center(
               child: CustomText(
-                text: AppStrings.hireList,
+                text: 'Hire List'.tr,
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
                 color: AppColors.black_100,
@@ -91,11 +90,11 @@ class _UserHireListScreenState extends State<UserHireListScreen> {
                                         ],
                                       ),
                                       const SizedBox(height: 22,),
-                                      const Row(
+                                       Row(
                                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                         children: [
                                           CustomText(
-                                            text: AppStrings.service,
+                                            text: 'Service'.tr,
                                             fontSize: 12,
                                             fontWeight: FontWeight.w500,
                                             color: AppColors.black_60,

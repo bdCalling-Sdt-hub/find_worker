@@ -32,8 +32,8 @@ class _UserHistoryScreenState extends State<UserHistoryScreen> {
                 },
                 child: const Icon(Icons.arrow_back_ios_new_outlined,size: 16,color: AppColors.blue_100,),
               ),
-              const CustomText(
-                text: AppStrings.history,
+               CustomText(
+                text: 'History'.tr,
                 color: AppColors.blue_100,
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
@@ -93,6 +93,7 @@ class _UserHistoryScreenState extends State<UserHistoryScreen> {
                                             text: '(4.5)',
                                             fontSize: 10,
                                             left: 4,
+                                            right: 4,
                                           )
                                         ],
                                       ),
@@ -104,6 +105,7 @@ class _UserHistoryScreenState extends State<UserHistoryScreen> {
                                             text: AppStrings.carWash,
                                             fontSize: 10,
                                             left: 8,
+                                            right: 8,
                                           )
                                         ],
                                       ),
@@ -119,6 +121,7 @@ class _UserHistoryScreenState extends State<UserHistoryScreen> {
                                                 fontSize: 10,
                                                 color: AppColors.black_60,
                                                 left: 8,
+                                                right: 8,
                                               ),
                                             ],
                                           ),
@@ -130,6 +133,7 @@ class _UserHistoryScreenState extends State<UserHistoryScreen> {
                                                 fontSize: 10,
                                                 color: AppColors.black_60,
                                                 left: 8,
+                                                right: 8,
                                               ),
                                             ],
                                           ),

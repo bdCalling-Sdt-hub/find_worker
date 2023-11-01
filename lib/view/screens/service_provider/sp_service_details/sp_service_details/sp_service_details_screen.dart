@@ -40,8 +40,8 @@ class _SpServiceDetailsScreenState extends State<SpServiceDetailsScreen> {
                     color: AppColors.blue_100,
                   ),
                 ),
-                const CustomText(
-                  text: AppStrings.serviceDetails,
+                 CustomText(
+                  text: 'Service Details'.tr,
                   color: AppColors.blue_100,
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
@@ -70,11 +70,11 @@ class _SpServiceDetailsScreenState extends State<SpServiceDetailsScreen> {
                         const SizedBox(
                           height: 16,
                         ),
-                        const Row(
+                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             CustomText(
-                              text: AppStrings.location,
+                              text: 'Location'.tr,
                             ),
                             CustomText(
                               text: 'Abu Dhabi',
@@ -86,11 +86,11 @@ class _SpServiceDetailsScreenState extends State<SpServiceDetailsScreen> {
                         const SizedBox(
                           height: 10,
                         ),
-                        const Row(
+                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             CustomText(
-                              text: AppStrings.service,
+                              text: 'Service'.tr,
                             ),
                             CustomText(
                               text: AppStrings.carWash,
@@ -99,8 +99,8 @@ class _SpServiceDetailsScreenState extends State<SpServiceDetailsScreen> {
                             ),
                           ],
                         ),
-                        const CustomText(
-                          text: AppStrings.description,
+                         CustomText(
+                          text: 'Description'.tr,
                           fontSize: 18,
                           fontWeight: FontWeight.w500,
                           bottom: 8,
@@ -114,7 +114,7 @@ class _SpServiceDetailsScreenState extends State<SpServiceDetailsScreen> {
                       ],
                     ));
               }),
-          bottomNavigationBar: BottomNavButton(buttonText: AppStrings.edit, onTap: (){
+          bottomNavigationBar: BottomNavButton(buttonText: 'Edit'.tr, onTap: (){
             Get.toNamed(AppRoute.spEditServiceDetailsScreen);
           })
         ));

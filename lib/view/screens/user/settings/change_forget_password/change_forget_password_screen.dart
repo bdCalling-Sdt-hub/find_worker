@@ -3,12 +3,10 @@ import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_strings.dart';
 import 'package:find_worker/view/widgets/app_bar/custom_app_bar.dart';
 import 'package:find_worker/view/widgets/buttons/bottom_nav_button.dart';
-import 'package:find_worker/view/widgets/image/custom_image.dart';
 import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:find_worker/view/widgets/text_field/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_navigation/get_navigation.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 
@@ -46,8 +44,8 @@ class _ChangeForgetPasswordScreenState extends State<ChangeForgetPasswordScreen>
                       color: AppColors.blue_100,
                     ),
                   ),
-                  const CustomText(
-                    text: AppStrings.forgetPassword,
+                   CustomText(
+                    text: 'Forget Password'.tr,
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
                     color: AppColors.blue_100,
@@ -62,15 +60,15 @@ class _ChangeForgetPasswordScreenState extends State<ChangeForgetPasswordScreen>
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const CustomText(
+                       CustomText(
                         textAlign: TextAlign.start,
-                        text: AppStrings.enterYourEmailAddressToVerifyOTP,
+                        text: 'Enter your E-mail address to verify OTP'.tr,
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                         color: AppColors.black_100,
                       ),
-                      const CustomText(
-                        text: AppStrings.email,
+                        CustomText(
+                        text: 'Email'.tr,
                         color: AppColors.black_100,
                         fontWeight: FontWeight.w500,
                         fontSize: 14,
@@ -79,7 +77,7 @@ class _ChangeForgetPasswordScreenState extends State<ChangeForgetPasswordScreen>
                       ),
                       CustomTextField(
                         textAlign: TextAlign.start,
-                        hintText: AppStrings.enterYourEmail,
+                        hintText:'Enter your email'.tr,
                         hintStyle: GoogleFonts.poppins(
                             fontSize: 14,
                             fontWeight: FontWeight.w500,
@@ -98,7 +96,7 @@ class _ChangeForgetPasswordScreenState extends State<ChangeForgetPasswordScreen>
                 );
               }
           ),
-          bottomNavigationBar: BottomNavButton(buttonText: 'Send OTP', onTap: (){
+          bottomNavigationBar: BottomNavButton(buttonText: 'Get OTP'.tr, onTap: (){
             Get.toNamed(AppRoute.changeOtpScreen);
           }),
         ));

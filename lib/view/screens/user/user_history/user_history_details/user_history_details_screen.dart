@@ -31,8 +31,8 @@ class _UserHistoryDetailsScreenState extends State<UserHistoryDetailsScreen> {
                 },
                 child: const Icon(Icons.arrow_back_ios_new_outlined,size: 16,color: AppColors.blue_100,),
               ),
-              const CustomText(
-                text: AppStrings.jobDetails,
+               CustomText(
+                text: "Job Details".tr,
                 color: AppColors.blue_100,
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
@@ -70,13 +70,13 @@ class _UserHistoryDetailsScreenState extends State<UserHistoryDetailsScreen> {
                           fontWeight: FontWeight.w500,
                         ),
                         const SizedBox(height: 10,),
-                        const Row(
+                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             CustomText(
-                              text: 'Contact',
+                              text: "Contact".tr,
                             ),
-                            CustomText(
+                            const CustomText(
                               text: '+44 12344 1234',
                               fontWeight: FontWeight.w500,
                               left: 4,
@@ -84,13 +84,13 @@ class _UserHistoryDetailsScreenState extends State<UserHistoryDetailsScreen> {
                           ],
                         ),
                         const SizedBox(height: 10,),
-                        const Row(
+                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             CustomText(
-                              text: AppStrings.address,
+                              text: 'Address'.tr,
                             ),
-                            CustomText(
+                            const CustomText(
                               text: 'Abu Dhabi',
                               fontWeight: FontWeight.w500,
                               left: 4,
@@ -102,8 +102,8 @@ class _UserHistoryDetailsScreenState extends State<UserHistoryDetailsScreen> {
                           height: 1,
                           color: AppColors.blue_20,
                         ),
-                        const CustomText(
-                          text: AppStrings.aboutJob,
+                          CustomText(
+                          text: "About Job".tr,
                           fontSize: 18,
                           fontWeight: FontWeight.w500,
                           bottom: 16,
@@ -111,8 +111,8 @@ class _UserHistoryDetailsScreenState extends State<UserHistoryDetailsScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const CustomText(
-                              text: AppStrings.status,
+                             CustomText(
+                              text: "Status".tr,
                             ),
                             Container(
                               padding: const EdgeInsets.symmetric(vertical: 4,horizontal: 11),
@@ -129,13 +129,13 @@ class _UserHistoryDetailsScreenState extends State<UserHistoryDetailsScreen> {
                           ],
                         ),
                         const SizedBox(height: 10,),
-                        const Row(
+                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             CustomText(
-                              text: AppStrings.service,
+                              text: "Service".tr,
                             ),
-                            CustomText(
+                            const CustomText(
                               text: AppStrings.carWash,
                               fontWeight: FontWeight.w500,
                               left: 4,
@@ -143,13 +143,13 @@ class _UserHistoryDetailsScreenState extends State<UserHistoryDetailsScreen> {
                           ],
                         ),
                         const SizedBox(height: 10,),
-                        const Row(
+                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             CustomText(
-                              text: AppStrings.time,
+                              text: "Time".tr,
                             ),
-                            CustomText(
+                            const CustomText(
                               text: '12:00 am',
                               fontWeight: FontWeight.w500,
                               left: 4,
@@ -157,13 +157,13 @@ class _UserHistoryDetailsScreenState extends State<UserHistoryDetailsScreen> {
                           ],
                         ),
                         const SizedBox(height: 10,),
-                        const Row(
+                          Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             CustomText(
-                              text: AppStrings.date,
+                              text: "Date".tr,
                             ),
-                            CustomText(
+                            const CustomText(
                               text: '12 September',
                               fontWeight: FontWeight.w500,
                               left: 4,

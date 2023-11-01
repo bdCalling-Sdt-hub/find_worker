@@ -1,7 +1,6 @@
 import 'package:find_worker/core/app_routes.dart';
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_icons.dart';
-import 'package:find_worker/utils/app_strings.dart';
 import 'package:find_worker/view/widgets/buttons/custom_button.dart';
 import 'package:find_worker/view/widgets/image/custom_image.dart';
 import 'package:find_worker/view/widgets/text/custom_text.dart';
@@ -19,7 +18,7 @@ class SpEditPersonalInformationScreen extends StatefulWidget {
 }
 
 class _SpEditPersonalInformationScreenState extends State<SpEditPersonalInformationScreen> {
-  List<String> genderList = ["Male", "Female", "Others"];
+  List<String> genderList = ["Male".tr, "Female".tr, "Others".tr];
   int selectedGender = 0;
   bool isClicked = false;
   void changeGender(int index) {
@@ -51,8 +50,8 @@ class _SpEditPersonalInformationScreenState extends State<SpEditPersonalInformat
                               },
                               child: const Icon(Icons.arrow_back_ios_new_outlined,size: 16,color: AppColors.blue_100,),
                             ),
-                            const CustomText(
-                              text: AppStrings.editPersonalInformation,
+                             CustomText(
+                              text: 'Edit Personal Information'.tr,
                               color: AppColors.blue_100,
                               fontSize: 18,
                               fontWeight: FontWeight.w500,
@@ -107,15 +106,15 @@ class _SpEditPersonalInformationScreenState extends State<SpEditPersonalInformat
                             child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const CustomText(
-                                    text: AppStrings.fullName,
+                                   CustomText(
+                                    text: 'Full Name'.tr,
                                     color: AppColors.black_100,
                                     fontWeight: FontWeight.w500,
                                     bottom: 8,
                                   ),
                                   CustomTextField(
                                     textAlign: TextAlign.start,
-                                    hintText: 'Enter Your Name',
+                                    hintText: 'Enter your full name'.tr,
                                     hintStyle: GoogleFonts.poppins(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w500,
@@ -127,8 +126,8 @@ class _SpEditPersonalInformationScreenState extends State<SpEditPersonalInformat
                                     fieldBorderColor: AppColors.blue_10,
                                     fieldBorderRadius: 8,
                                   ),
-                                  const CustomText(
-                                    text: AppStrings.dateOfBirth,
+                                   CustomText(
+                                    text: 'Date of Birth'.tr,
                                     color: AppColors.black_100,
                                     fontWeight: FontWeight.w500,
                                     bottom: 8,
@@ -139,7 +138,7 @@ class _SpEditPersonalInformationScreenState extends State<SpEditPersonalInformat
                                       Expanded(
                                         child: CustomTextField(
                                           textAlign: TextAlign.center,
-                                          hintText: AppStrings.dd,
+                                          hintText: 'DD'.tr,
                                           hintStyle: GoogleFonts.poppins(
                                               fontSize: 14,
                                               fontWeight: FontWeight.w400,
@@ -156,7 +155,7 @@ class _SpEditPersonalInformationScreenState extends State<SpEditPersonalInformat
                                       Expanded(
                                         child: CustomTextField(
                                           textAlign: TextAlign.center,
-                                          hintText: AppStrings.mm,
+                                          hintText: 'MM'.tr,
                                           hintStyle: GoogleFonts.poppins(
                                               fontSize: 14,
                                               fontWeight: FontWeight.w400,
@@ -173,7 +172,7 @@ class _SpEditPersonalInformationScreenState extends State<SpEditPersonalInformat
                                       Expanded(
                                         child: CustomTextField(
                                           textAlign: TextAlign.center,
-                                          hintText: AppStrings.yyyy,
+                                          hintText: 'YYYY'.tr,
                                           hintStyle: GoogleFonts.poppins(
                                               fontSize: 14,
                                               fontWeight: FontWeight.w400,
@@ -188,8 +187,8 @@ class _SpEditPersonalInformationScreenState extends State<SpEditPersonalInformat
                                       ),
                                     ],
                                   ),
-                                  const CustomText(
-                                    text: AppStrings.gender,
+                                   CustomText(
+                                    text: 'Gender'.tr,
                                     color: AppColors.black_100,
                                     fontWeight: FontWeight.w500,
                                     bottom: 8,
@@ -227,7 +226,7 @@ class _SpEditPersonalInformationScreenState extends State<SpEditPersonalInformat
                                               ),
                                               const SizedBox(width: 8),
                                               Text(
-                                                genderList[index],
+                                                genderList[index].tr,
                                                 style: GoogleFonts.poppins(
                                                     color: AppColors.black_100,
                                                     fontSize: 14,
@@ -239,8 +238,8 @@ class _SpEditPersonalInformationScreenState extends State<SpEditPersonalInformat
                                         )),
                                   ),
 
-                                  const CustomText(
-                                    text: AppStrings.phoneNumber,
+                                   CustomText(
+                                    text:'Phone number'.tr,
                                     color: AppColors.black_100,
                                     fontWeight: FontWeight.w500,
                                     top: 16,
@@ -281,7 +280,7 @@ class _SpEditPersonalInformationScreenState extends State<SpEditPersonalInformat
                                         flex: 2,
                                         child: CustomTextField(
                                           textAlign: TextAlign.start,
-                                          hintText: AppStrings.enterYourEmail,
+                                          hintText: 'Enter Your Phone Number'.tr,
                                           hintStyle: GoogleFonts.montserrat(
                                               fontSize: 14,
                                               fontWeight: FontWeight.w500,
@@ -296,8 +295,8 @@ class _SpEditPersonalInformationScreenState extends State<SpEditPersonalInformat
                                       ),
                                     ],
                                   ),
-                                  const CustomText(
-                                    text: AppStrings.address,
+                                   CustomText(
+                                    text: 'Address'.tr,
                                     color: AppColors.black_100,
                                     fontWeight: FontWeight.w500,
                                     top: 16,
@@ -306,7 +305,7 @@ class _SpEditPersonalInformationScreenState extends State<SpEditPersonalInformat
                                   CustomTextField(
                                     maxLines: 5,
                                     textAlign: TextAlign.start,
-                                    hintText: 'Enter your address',
+                                    hintText: 'Enter your address'.tr,
                                     hintStyle: GoogleFonts.montserrat(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w400,
@@ -318,8 +317,8 @@ class _SpEditPersonalInformationScreenState extends State<SpEditPersonalInformat
                                     fieldBorderColor: AppColors.blue_10,
                                     fieldBorderRadius: 8,
                                   ),
-                                  const CustomText(
-                                    text: AppStrings.email,
+                                   CustomText(
+                                    text: 'Email'.tr,
                                     color: AppColors.black_100,
                                     fontWeight: FontWeight.w500,
                                     top: 16,
@@ -327,7 +326,7 @@ class _SpEditPersonalInformationScreenState extends State<SpEditPersonalInformat
                                   ),
                                   CustomTextField(
                                     textAlign: TextAlign.start,
-                                    hintText: AppStrings.enterYourEmail,
+                                    hintText: 'Enter your email'.tr,
                                     hintStyle: GoogleFonts.montserrat(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w400,
@@ -348,7 +347,7 @@ class _SpEditPersonalInformationScreenState extends State<SpEditPersonalInformat
                                     onPressed: () {
                                       Get.toNamed(AppRoute.spPersonalInformationScreen);
                                     },
-                                    titleText: AppStrings.update,
+                                    titleText: 'Update'.tr,
                                     titleColor: AppColors.white,
                                     buttonBgColor: AppColors.blue_100,
                                     titleSize: 18,

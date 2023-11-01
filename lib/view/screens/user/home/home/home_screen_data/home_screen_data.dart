@@ -24,8 +24,8 @@ class _HomeScreenDataState extends State<HomeScreenData> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const CustomText(
-              text: AppStrings.carWash,
+             CustomText(
+              text:'Car Wash'.tr,
               fontWeight: FontWeight.w500,
               fontSize: 18,
             ),
@@ -33,9 +33,9 @@ class _HomeScreenDataState extends State<HomeScreenData> {
               onTap: (){
                 Get.toNamed(AppRoute.carWashDetailsScreen);
               },
-              child:const CustomText(
+              child: CustomText(
                 color: AppColors.blue_100,
-                text: AppStrings.seeAll,
+                text: 'See All'.tr,
                 fontSize:14,
                 fontWeight: FontWeight.w500,
               ),
@@ -84,7 +84,7 @@ class _HomeScreenDataState extends State<HomeScreenData> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         CustomText(
-                          text: "Jubayed",
+                          text: "Jhon doy",
                           fontWeight: FontWeight.w500,
                           fontSize: 14,
                         ),
@@ -95,6 +95,8 @@ class _HomeScreenDataState extends State<HomeScreenData> {
                                 imageSrc: AppIcons.star),
                             CustomText(
                               text: "(4.5)",
+                              right: 4,
+                              left: 4,
                             )
                           ],
                         )
@@ -114,6 +116,7 @@ class _HomeScreenDataState extends State<HomeScreenData> {
                           text: "Abu Dhabi",
                           fontSize: 10,
                           fontWeight: FontWeight.w400,
+                          right: 4,
                         )
 
                       ],
@@ -128,16 +131,16 @@ class _HomeScreenDataState extends State<HomeScreenData> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const CustomText(
-              text: AppStrings.homeClean,
+             CustomText(
+              text: 'Home Clean'.tr,
               fontWeight: FontWeight.w500,
               fontSize: 18,
             ),
             GestureDetector(
               onTap: (){},
-              child:const CustomText(
+              child: CustomText(
                 color: AppColors.blue_100,
-                text: AppStrings.seeAll,
+                text: 'See All'.tr,
                 fontSize:14,
                 fontWeight: FontWeight.w500,
               ),
@@ -181,7 +184,7 @@ class _HomeScreenDataState extends State<HomeScreenData> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CustomText(
-                        text: "Jubayed",
+                        text: "Jhon doy",
                         fontWeight: FontWeight.w500,
                         fontSize: 14,
                       ),
@@ -192,6 +195,8 @@ class _HomeScreenDataState extends State<HomeScreenData> {
                               imageSrc: AppIcons.star),
                           CustomText(
                             text: "(4.5)",
+                            left: 4,
+                            right: 4,
                           )
                         ],
                       )
@@ -211,6 +216,7 @@ class _HomeScreenDataState extends State<HomeScreenData> {
                         text: "Abu Dhabi",
                         fontSize: 10,
                         fontWeight: FontWeight.w400,
+                        right: 4,
                       )
 
                     ],
@@ -224,16 +230,16 @@ class _HomeScreenDataState extends State<HomeScreenData> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const CustomText(
-              text: AppStrings.airConditionMaintenance,
+             CustomText(
+              text: 'Air Condition Maintenance'.tr,
               fontWeight: FontWeight.w500,
               fontSize: 18,
             ),
             GestureDetector(
               onTap: (){},
-              child:const CustomText(
+              child: CustomText(
                 color: AppColors.blue_100,
-                text: AppStrings.seeAll,
+                text: 'See All'.tr,
                 fontSize:14,
                 fontWeight: FontWeight.w500,
               ),
@@ -277,7 +283,7 @@ class _HomeScreenDataState extends State<HomeScreenData> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CustomText(
-                        text: "Jubayed",
+                        text: "Jhon dou",
                         fontWeight: FontWeight.w500,
                         fontSize: 14,
                       ),
@@ -288,6 +294,8 @@ class _HomeScreenDataState extends State<HomeScreenData> {
                               imageSrc: AppIcons.star),
                           CustomText(
                             text: "(4.5)",
+                            left: 4,
+                            right: 4,
                           )
                         ],
                       )
@@ -307,6 +315,7 @@ class _HomeScreenDataState extends State<HomeScreenData> {
                         text: "Abu Dhabi",
                         fontSize: 10,
                         fontWeight: FontWeight.w400,
+                        right: 4,
                       )
 
                     ],
@@ -327,14 +336,14 @@ class _HomeScreenDataState extends State<HomeScreenData> {
               TextSpan(
                 children: [
                   TextSpan(
-                    text: 'Didn’t see what you’re looking for?\nGo to ',
+                    text: 'Didn’t see what you’re looking for?\nGo to'.tr,
                     style: GoogleFonts.poppins(
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
                     ),
                   ),
                   TextSpan(
-                    text: 'Categories',
+                    text: 'Categories'.tr,
                     style: GoogleFonts.poppins(
                       color: AppColors.blue_100,
                       fontSize: 18,
@@ -345,7 +354,8 @@ class _HomeScreenDataState extends State<HomeScreenData> {
               ),
             ),
           ),
-        )
+        ),
+        SizedBox(height: 100,)
       ],
     );
   }

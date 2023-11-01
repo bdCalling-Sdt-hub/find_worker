@@ -3,7 +3,6 @@ import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_strings.dart';
 import 'package:find_worker/view/widgets/app_bar/custom_app_bar.dart';
 import 'package:find_worker/view/widgets/buttons/bottom_nav_button.dart';
-import 'package:find_worker/view/widgets/image/custom_image.dart';
 import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -45,8 +44,8 @@ class _ChangeOtpScreenState extends State<ChangeOtpScreen> {
                       color: AppColors.blue_100,
                     ),
                   ),
-                  const CustomText(
-                    text: AppStrings.oTP,
+                    CustomText(
+                    text: 'OTP'.tr,
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
                     color: AppColors.blue_100,
@@ -61,10 +60,10 @@ class _ChangeOtpScreenState extends State<ChangeOtpScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const CustomText(
+                        CustomText(
                         maxLines: 3,
                         textAlign: TextAlign.start,
-                        text: "We sent a verification code to your email. Please check your email and enter the verification code.",
+                        text: "We sent a verification code to your email. Please check your email and enter the verification code.".tr,
                         fontSize: 14,
                         fontWeight: FontWeight.w400,
                         color: AppColors.black_100,
@@ -103,8 +102,8 @@ class _ChangeOtpScreenState extends State<ChangeOtpScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                           const CustomText(
-                            text: AppStrings.didNotGetTheCode,
+                             CustomText(
+                               text: 'Did not get the code?'.tr,
                             fontWeight: FontWeight.w400,
                             fontSize: 14,
                             color: AppColors.black_100,
@@ -113,8 +112,8 @@ class _ChangeOtpScreenState extends State<ChangeOtpScreen> {
                             onTap: () {
                               /*Get.to(()=> const OtpScreen());*/
                             },
-                            child:  const CustomText(
-                              text: AppStrings.resend,
+                            child: CustomText(
+                              text: 'Resend'.tr,
                               fontWeight: FontWeight.w600,
                               fontSize: 14,
                               color: AppColors.blue_100,
@@ -129,7 +128,7 @@ class _ChangeOtpScreenState extends State<ChangeOtpScreen> {
                 );
               }
           ),
-          bottomNavigationBar: BottomNavButton(buttonText: AppStrings.verify, onTap: (){
+          bottomNavigationBar: BottomNavButton(buttonText: 'Verify'.tr, onTap: (){
             Get.toNamed(AppRoute.changeResetPasswordScreen);
           }),
         ));

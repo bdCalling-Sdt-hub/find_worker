@@ -60,8 +60,8 @@ class _SpPersonalInformationScreenState extends State<SpPersonalInformationScree
                   },
                   child: const Icon(Icons.arrow_back_ios_new_outlined,size: 16,color: AppColors.white,),
                 ),
-                const CustomText(
-                  text: AppStrings.personalInformation,
+                 CustomText(
+                  text: 'Personal Information'.tr,
                   color: AppColors.white,
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
@@ -111,8 +111,8 @@ class _SpPersonalInformationScreenState extends State<SpPersonalInformationScree
                                     color: AppColors.white,
                                     borderRadius: BorderRadius.circular(8),
                                   ),
-                                  child:  const CustomText(
-                                    text: 'Edit Profile',
+                                  child: CustomText(
+                                    text: 'Edit Profile'.tr,
                                     fontWeight: FontWeight.w600,
                                     fontSize: 14,
                                     color: AppColors.blue_100,

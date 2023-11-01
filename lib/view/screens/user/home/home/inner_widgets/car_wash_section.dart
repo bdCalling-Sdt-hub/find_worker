@@ -31,7 +31,7 @@ class _CarWashSectionState extends State<CarWashSection> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
                CustomText(
-                text: widget.text,
+                text: widget.text.tr,
                 fontWeight: FontWeight.w500,
                 fontSize: 18,
               ),
@@ -39,9 +39,9 @@ class _CarWashSectionState extends State<CarWashSection> {
                 onTap: (){
                   Get.toNamed(AppRoute.carWashDetailsScreen);
                 },
-                child:const CustomText(
+                child: CustomText(
                   color: AppColors.blue_100,
-                  text: AppStrings.seeAll,
+                  text: 'See All'.tr,
                   fontSize:14,
                   fontWeight: FontWeight.w500,
                 ),
