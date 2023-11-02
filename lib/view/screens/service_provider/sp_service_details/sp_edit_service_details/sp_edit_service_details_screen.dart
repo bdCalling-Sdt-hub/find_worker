@@ -255,25 +255,6 @@ class _SpEditServiceDetailsScreenState extends State<SpEditServiceDetailsScreen>
                             fieldBorderColor: AppColors.blue_10,
                             fieldBorderRadius: 8,
                           ),
-                          const SizedBox(height: 16,),
-                          GestureDetector(
-                            onTap: (){
-                              Get.toNamed(AppRoute.spAddNewServiceScreen);
-                            },
-                            child: Row(
-                              children: [
-                                CustomImage(imageSrc: AppIcons.plusCircle,size: 24,),
-                                CustomText(
-                                  text: 'Add New Service'.tr,
-                                  color: AppColors.blue_100,
-                                  fontSize: 18,
-                                  left: 4,
-                                  right: 4,
-                                )
-                              ],
-                            ),
-                          )
-
                         ],
                       ));
                 }),

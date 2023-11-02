@@ -126,7 +126,7 @@ class _SpAddNewServiceScreenState extends State<SpAddNewServiceScreen> {
                               ),
                               filled: true,
                               fillColor: AppColors.white,
-                              hintText: 'Car Wash'.tr,
+                              hintText: 'Enter your service'.tr,
                               hintStyle: GoogleFonts.poppins(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,
@@ -243,7 +243,7 @@ class _SpAddNewServiceScreenState extends State<SpAddNewServiceScreen> {
                           CustomTextField(
                             maxLines: 7,
                             textAlign: TextAlign.start,
-                            hintText: AppStrings.loremIpsumDolor,
+                            hintText: 'Enter service description'.tr,
                             hintStyle: GoogleFonts.poppins(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w500,
@@ -255,30 +255,11 @@ class _SpAddNewServiceScreenState extends State<SpAddNewServiceScreen> {
                             fieldBorderColor: AppColors.blue_10,
                             fieldBorderRadius: 8,
                           ),
-                          const SizedBox(height: 16,),
-                          GestureDetector(
-                            onTap: (){
-
-                            },
-                            child: Row(
-                              children: [
-                                CustomImage(imageSrc: AppIcons.plusCircle,size: 24,),
-                                CustomText(
-                                  text: 'Add New Service'.tr,
-                                  color: AppColors.blue_100,
-                                  fontSize: 18,
-                                  left: 4,
-                                  right: 4,
-                                )
-                              ],
-                            ),
-                          )
-
                         ],
                       ));
                 }),
             bottomNavigationBar: BottomNavButton(buttonText: 'Add Service'.tr, onTap: (){
-              Get.toNamed(AppRoute.spServiceDetailsScreen);
+              Get.toNamed(AppRoute.spServicesScreen);
             })
         ));
   }

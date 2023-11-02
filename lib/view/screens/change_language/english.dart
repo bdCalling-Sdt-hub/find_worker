@@ -160,5 +160,6 @@ Map<String, String> english = {
   "Didn’t see what you’re looking for?\nGo to": "Didn’t see what you’re looking for?\nGo to",
   "See All": "See All",
   "Home": "Home",
-
+  "Services": "Services",
+  "Enter service description": "Enter service description",
 };

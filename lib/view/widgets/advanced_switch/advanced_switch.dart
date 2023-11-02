@@ -255,12 +255,11 @@ class _AdvancedSwitchState extends State<AdvancedSwitch>
   void _handleControllerValueChanged() {
     if (_controller.value) {
       _animationController.forward();
-
-      Get.updateLocale( Locale("en","US"));
+       // Get.updateLocale( Locale("en","US"));
     }
     else {
       _animationController.reverse();
-      Get.updateLocale( Locale("ar","SA"));
+      // Get.updateLocale( Locale("ar","SA"));
     }
   }
   void _handlePressed() {

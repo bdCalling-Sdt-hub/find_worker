@@ -4,6 +4,7 @@ import 'package:find_worker/view/screens/service_provider/sp_auth/sp_otp/sp_otp_
 import 'package:find_worker/view/screens/service_provider/sp_auth/sp_reset_password/sp_reset_password_screen.dart';
 import 'package:find_worker/view/screens/service_provider/sp_job_history/sp_history_job_details/sp_history_job_details_screen.dart';
 import 'package:find_worker/view/screens/service_provider/sp_job_history/sp_job_history/sp_job_history_screen.dart';
+import 'package:find_worker/view/screens/service_provider/sp_services/sp_services_screen.dart';
 import 'package:find_worker/view/screens/service_provider/sp_settings/sp_about_us/sp_about_us_screen.dart';
 import 'package:find_worker/view/screens/service_provider/sp_settings/sp_change_forget_password/sp_change_forget_password_screen.dart';
 import 'package:find_worker/view/screens/service_provider/sp_settings/sp_change_otp/sp_change_otp_screen.dart';
@@ -117,6 +118,7 @@ class AppRoute {
    static String spForgetPasswordScreen = "/sp_forget_password_screen";
    static String spOtpScreen = "/sp_otp_screen";
    static String spResetPasswordScreen = "/sp_reset_password_screen";
+   static String spServicesScreen = "/sp_services_screen";
 
 
   static List<GetPage> routes = [
@@ -146,6 +148,7 @@ class AppRoute {
      GetPage(name: spEditServiceDetailsScreen, page: () => const SpEditServiceDetailsScreen()),
      GetPage(name: spAddNewServiceScreen, page: () => const SpAddNewServiceScreen()),
      GetPage(name: spHomeScreen, page: () => const SpHomeScreen()),
+     GetPage(name: spServicesScreen, page: () => const SpServicesScreen()),
 
      GetPage(name: userForgetPasswordScreen, page: () => const UserForgetPasswordScreen()),
      GetPage(name: userOtpScreen, page: () => const UserOtpScreen()),

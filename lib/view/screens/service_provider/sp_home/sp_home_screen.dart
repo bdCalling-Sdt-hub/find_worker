@@ -1,9 +1,12 @@
 import 'package:find_worker/core/app_routes.dart';
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_icons.dart';
+import 'package:find_worker/utils/app_images.dart';
 import 'package:find_worker/utils/app_strings.dart';
 import 'package:find_worker/view/screens/service_provider/sp_home/inner_widgets/sp_home_bottom_modal.dart';
+import 'package:find_worker/view/screens/service_provider/sp_home/inner_widgets/sp_home_job_details_section.dart';
 import 'package:find_worker/view/widgets/app_bar/custom_app_bar.dart';
+import 'package:find_worker/view/widgets/buttons/custom_button.dart';
 import 'package:find_worker/view/widgets/image/custom_image.dart';
 import 'package:find_worker/view/widgets/on_off_switch/on_off_switch.dart';
 import 'package:find_worker/view/widgets/text/custom_text.dart';
@@ -107,7 +110,7 @@ class _SpHomeScreenState extends State<SpHomeScreen> {
                                  Expanded(
                                     child: Column(
                                   children: [
-                                    Row(
+                                    const Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         CustomText(
@@ -129,7 +132,7 @@ class _SpHomeScreenState extends State<SpHomeScreen> {
                                         )
                                       ],
                                     ),
-                                    SizedBox(height: 16,),
+                                    const SizedBox(height: 16,),
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
@@ -150,92 +153,18 @@ class _SpHomeScreenState extends State<SpHomeScreen> {
                             ),
                           ),
                         ),
-                        const SizedBox(height: 24,),
-                        GestureDetector(
-                          onTap: (){
-                            Get.toNamed(AppRoute.spJobDetailsScreen);
-                          },
-                          child: Container(
-                            padding: const EdgeInsets.all(16),
-                            decoration:  BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              border: Border.all(color: AppColors.blue_100,width: 1),
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const CustomText(
-                                  text: 'Nadim Hasan',
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w500,
-                                  bottom: 16,
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                     CustomText(
-                                      text: 'Status'.tr,
-                                    ),
-                                    Container(
-                                      padding: const EdgeInsets.symmetric(vertical: 4,horizontal: 11),
-                                      decoration: BoxDecoration(
-                                          color: AppColors.yellow_10,
-                                          borderRadius: BorderRadius.circular(4)
-                                      ),
-                                      child: const CustomText(
-                                        text: AppStrings.pending,
-                                        fontSize: 12,
-                                        color: AppColors.yellow_100,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                const SizedBox(height: 10,),
-                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    CustomText(
-                                      text: 'Service'.tr,
-                                    ),
-                                    CustomText(
-                                      text: AppStrings.carWash,
-                                      fontWeight: FontWeight.w500,
-                                      left: 4,
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 10,),
-                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    CustomText(
-                                      text: 'Time'.tr,
-                                    ),
-                                    CustomText(
-                                      text: '12:00 am',
-                                      fontWeight: FontWeight.w500,
-                                      left: 4,
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 10,),
-                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    CustomText(
-                                      text: 'Date'.tr,
-                                    ),
-                                    CustomText(
-                                      text: '12 September',
-                                      fontWeight: FontWeight.w500,
-                                      left: 4,
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
+                        const SizedBox(height: 94,),
+                        // SpHomeJobDetailsSection(),
+                        Column(
+                          children: [
+                            CustomImage(imageSrc: AppImages.Empty,imageType: ImageType.png,size: 100,),
+                            SizedBox(height: 24,),
+                            CustomButton(onPressed: (){
+                              Get.toNamed(AppRoute.spAddNewServiceScreen);
+                            }, titleText: 'Add Service'.tr,buttonBgColor: AppColors.blue_100,buttonHeight: 44,leftPadding: 50,rightPadding: 50,)
+                          ],
                         )
+
                       ],
                     )
                 );

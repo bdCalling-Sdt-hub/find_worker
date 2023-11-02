@@ -37,5 +37,6 @@ class AppIcons{
   static const String profile_s = "$basePath/profile_s.svg";
   static const String speakerphoneS = "$basePath/speakerphone_s.svg";
   static const String viewGridS = "$basePath/view-grid_s.svg";
+  static const String empty = "$basePath/Empty.svg";
 
 }

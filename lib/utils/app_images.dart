@@ -47,4 +47,5 @@ class AppImages{
   static const String extra = "$basePath/extra.png";
   static const String historyImg = "$basePath/histoy_img.png";
   static const String chevronDown = "$basePath/chevron-down.png";
+  static const String Empty = "$basePath/Empty.png";
 }

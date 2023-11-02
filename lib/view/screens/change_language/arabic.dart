@@ -151,5 +151,7 @@ Map<String,String> arabic = {
   "Didn’t see what you’re looking for?\nGo to": "ألم تجد ما تبحث عنه؟\nانتقل إلى",
   "See All": "اظهار الكل",
   "Home": "بيت",
- 
+  "Services": "خدمات",
+  "Enter service description": "أدخل وصف الخدمة",
+
 };

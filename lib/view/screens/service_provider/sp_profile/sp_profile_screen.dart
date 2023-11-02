@@ -112,7 +112,7 @@ class _SpProfileScreenState extends State<SpProfileScreen> {
                                 ),
                                 GestureDetector(
                                   onTap: (){
-                                    Get.toNamed(AppRoute.spServiceDetailsScreen);
+                                    Get.toNamed(AppRoute.spServicesScreen);
                                   },
                                   child: Container(
                                     margin: const EdgeInsets.only(bottom: 16),
@@ -124,7 +124,7 @@ class _SpProfileScreenState extends State<SpProfileScreen> {
                                       children: [
                                         CustomImage(imageSrc: AppIcons.service,size: 18,imageColor: AppColors.black_100,),
                                         CustomText(
-                                          text: 'Service Provider'.tr,
+                                          text: 'Services'.tr,
                                           left: 12,
                                           right: 12,
                                         )
