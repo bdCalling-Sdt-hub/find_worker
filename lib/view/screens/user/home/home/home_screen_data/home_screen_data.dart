@@ -42,7 +42,6 @@ class _HomeScreenDataState extends State<HomeScreenData> {
             )
           ],
         ),
-
         const SizedBox(height: 16),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,

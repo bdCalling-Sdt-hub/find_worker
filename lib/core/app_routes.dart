@@ -1,9 +1,23 @@
 
+import 'package:find_worker/view/screens/onboard/onboard_screen.dart';
+import 'package:find_worker/view/screens/service_provider/sp_add_new_service/sp_add_new_service_screen.dart';
 import 'package:find_worker/view/screens/service_provider/sp_auth/sp_forget_password/sp_forget_password_screen.dart';
 import 'package:find_worker/view/screens/service_provider/sp_auth/sp_otp/sp_otp_screen.dart';
 import 'package:find_worker/view/screens/service_provider/sp_auth/sp_reset_password/sp_reset_password_screen.dart';
+import 'package:find_worker/view/screens/service_provider/sp_auth/sp_sign_in/sp_sign_in_screen.dart';
+import 'package:find_worker/view/screens/service_provider/sp_auth/sp_sign_up/sp_sign_up_screen.dart';
+import 'package:find_worker/view/screens/service_provider/sp_auth/sp_verify_email_otp/sp_verify_email_otp_screen.dart';
+import 'package:find_worker/view/screens/service_provider/sp_home/sp_home_screen.dart';
+import 'package:find_worker/view/screens/service_provider/sp_job_details/sp_job_details_screen.dart';
 import 'package:find_worker/view/screens/service_provider/sp_job_history/sp_history_job_details/sp_history_job_details_screen.dart';
 import 'package:find_worker/view/screens/service_provider/sp_job_history/sp_job_history/sp_job_history_screen.dart';
+import 'package:find_worker/view/screens/service_provider/sp_notification/sp_notification_screen.dart';
+import 'package:find_worker/view/screens/service_provider/sp_personal_information/sp_edit_personal_information/sp_edit_personal_information_screen.dart';
+import 'package:find_worker/view/screens/service_provider/sp_personal_information/sp_personal_information/sp_personal_information_screen.dart';
+import 'package:find_worker/view/screens/service_provider/sp_profile/inner_widgets/sp_profile_log_out_alert.dart';
+import 'package:find_worker/view/screens/service_provider/sp_profile/sp_profile_screen.dart';
+import 'package:find_worker/view/screens/service_provider/sp_service_details/sp_edit_service_details/sp_edit_service_details_screen.dart';
+import 'package:find_worker/view/screens/service_provider/sp_service_details/sp_service_details/sp_service_details_screen.dart';
 import 'package:find_worker/view/screens/service_provider/sp_settings/sp_about_us/sp_about_us_screen.dart';
 import 'package:find_worker/view/screens/service_provider/sp_settings/sp_change_forget_password/sp_change_forget_password_screen.dart';
 import 'package:find_worker/view/screens/service_provider/sp_settings/sp_change_otp/sp_change_otp_screen.dart';
@@ -13,9 +27,7 @@ import 'package:find_worker/view/screens/service_provider/sp_settings/sp_privacy
 import 'package:find_worker/view/screens/service_provider/sp_settings/sp_setting/sp_setting_screen.dart';
 import 'package:find_worker/view/screens/service_provider/sp_settings/sp_support/sp_support_screen.dart';
 import 'package:find_worker/view/screens/service_provider/sp_settings/sp_terms_of_conditions/sp_terms_of_conditions_screen.dart';
-import 'package:find_worker/view/screens/user/auth/user_forget_password/user_forget_password_screen.dart';
-import 'package:find_worker/view/screens/user/auth/user_otp/user_otp_screen.dart';
-import 'package:find_worker/view/screens/user/auth/user_reset_password/user_reset_password_screen.dart';
+import 'package:find_worker/view/screens/splash/splash_screen.dart';
 import 'package:find_worker/view/screens/user/category/category_screen.dart';
 import 'package:find_worker/view/screens/user/home/car_wash_details/car_wash_details_screen.dart';
 import 'package:find_worker/view/screens/user/home/home/home_screen.dart';
@@ -29,22 +41,10 @@ import 'package:find_worker/view/screens/user/settings/privacy_policy/privacy_po
 import 'package:find_worker/view/screens/user/settings/settings/settings_screen.dart';
 import 'package:find_worker/view/screens/user/settings/support/support_screen.dart';
 import 'package:find_worker/view/screens/user/settings/terms_of_conditions/terms_of_conditions_screen.dart';
-import 'package:find_worker/view/screens/onboard/onboard_screen.dart';
-import 'package:find_worker/view/screens/service_provider/sp_add_new_service/sp_add_new_service_screen.dart';
-import 'package:find_worker/view/screens/service_provider/sp_auth/sp_sign_in/sp_sign_in_screen.dart';
-import 'package:find_worker/view/screens/service_provider/sp_auth/sp_sign_up/sp_sign_up_screen.dart';
-import 'package:find_worker/view/screens/service_provider/sp_auth/sp_verify_email_otp/sp_verify_email_otp_screen.dart';
-import 'package:find_worker/view/screens/service_provider/sp_home/sp_home_screen.dart';
-import 'package:find_worker/view/screens/service_provider/sp_job_details/sp_job_details_screen.dart';
-import 'package:find_worker/view/screens/service_provider/sp_notification/sp_notification_screen.dart';
-import 'package:find_worker/view/screens/service_provider/sp_personal_information/sp_edit_personal_information/sp_edit_personal_information_screen.dart';
-import 'package:find_worker/view/screens/service_provider/sp_personal_information/sp_personal_information/sp_personal_information_screen.dart';
-import 'package:find_worker/view/screens/service_provider/sp_profile/inner_widgets/sp_profile_log_out_alert.dart';
-import 'package:find_worker/view/screens/service_provider/sp_profile/sp_profile_screen.dart';
-import 'package:find_worker/view/screens/service_provider/sp_service_details/sp_edit_service_details/sp_edit_service_details_screen.dart';
-import 'package:find_worker/view/screens/service_provider/sp_service_details/sp_service_details/sp_service_details_screen.dart';
-import 'package:find_worker/view/screens/splash/splash_screen.dart';
 import 'package:find_worker/view/screens/user/user_auth/user_email_otp/user_email_otp_screen.dart';
+import 'package:find_worker/view/screens/user/user_auth/user_forget_password/user_forget_password_screen.dart';
+import 'package:find_worker/view/screens/user/user_auth/user_otp/user_otp_screen.dart';
+import 'package:find_worker/view/screens/user/user_auth/user_reset_password/user_reset_password_screen.dart';
 import 'package:find_worker/view/screens/user/user_auth/user_sign_in/user_sign_in_screen.dart';
 import 'package:find_worker/view/screens/user/user_auth/user_sign_up/user_sign_up_screen.dart';
 import 'package:find_worker/view/screens/user/user_hire_list/user_hire_details/user_hire_details_screen.dart';
@@ -146,7 +146,6 @@ class AppRoute {
      GetPage(name: spEditServiceDetailsScreen, page: () => const SpEditServiceDetailsScreen()),
      GetPage(name: spAddNewServiceScreen, page: () => const SpAddNewServiceScreen()),
      GetPage(name: spHomeScreen, page: () => const SpHomeScreen()),
-
      GetPage(name: userForgetPasswordScreen, page: () => const UserForgetPasswordScreen()),
      GetPage(name: userOtpScreen, page: () => const UserOtpScreen()),
      GetPage(name: userResetPasswordScreen, page: () => const UserResetPasswordScreen()),

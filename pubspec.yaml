@@ -38,7 +38,7 @@ dependencies:
   get:
   flutter_svg:
   google_fonts:
-
+  firebase_core:
   lite_rolling_switch:
 
   intl_phone_field:
