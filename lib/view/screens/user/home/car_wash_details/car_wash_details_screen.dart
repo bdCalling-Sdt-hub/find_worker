@@ -20,6 +20,7 @@ class _CarWashDetailsScreenState extends State<CarWashDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.white,
       appBar:  CustomAppBar(
           appBarContent: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

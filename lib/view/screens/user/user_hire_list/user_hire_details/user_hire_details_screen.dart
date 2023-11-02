@@ -206,7 +206,7 @@ class _UserHireDetailsScreenState extends State<UserHireDetailsScreen> {
                               TextSpan(text: 'Click on the'.tr,style: TextStyle(
                                 fontSize: 12, fontWeight: FontWeight.w400,color: Color(0xff5A5A5A),
                               )),
-                              TextSpan(text: 'Complete'.tr, style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600,color: Color(0xff5A5A5A),)),
+                              TextSpan(text: ' Complete '.tr, style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600,color: Color(0xff5A5A5A),)),
                               TextSpan(text: 'button after getting your current service to complete the service status.'.tr,style: TextStyle(
                                 fontSize: 12, fontWeight: FontWeight.w400,color: Color(0xff5A5A5A),
                               )),

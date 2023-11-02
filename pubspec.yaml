@@ -38,13 +38,12 @@ dependencies:
   get:
   flutter_svg:
   google_fonts:
-
   lite_rolling_switch:
-
   intl_phone_field:
   pin_code_fields:
   flutter_rating_bar:
   percent_indicator:
+  image_picker: ^1.0.4
 
 
 dev_dependencies:

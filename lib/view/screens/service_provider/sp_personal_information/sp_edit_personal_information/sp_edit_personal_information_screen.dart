@@ -1,3 +1,7 @@
+
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:find_worker/core/app_routes.dart';
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_icons.dart';
@@ -8,6 +12,7 @@ import 'package:find_worker/view/widgets/text_field/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
 class SpEditPersonalInformationScreen extends StatefulWidget {
@@ -24,6 +29,20 @@ class _SpEditPersonalInformationScreenState extends State<SpEditPersonalInformat
   void changeGender(int index) {
     selectedGender = index;
     setState(() {});
+  }
+
+
+  Uint8List? _image;
+  File? selectedIMage;
+  Future _pickImageFromGallery() async {
+    final returnImage =
+    await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (returnImage == null) return;
+    setState(() {
+      selectedIMage = File(returnImage.path);
+      _image = File(returnImage.path).readAsBytesSync();
+    });
+     //close the model sheet
   }
 
   final _formKey = GlobalKey<FormState>();
@@ -64,43 +83,85 @@ class _SpEditPersonalInformationScreenState extends State<SpEditPersonalInformat
                           child: Container(
                             height: 130,
                             width: 130,
-                            child: Stack(
-                              children: [
-                                Center(
-                                  child: Container(
-                                    height: 130,
-                                    decoration: const BoxDecoration(
-                                        image: DecorationImage(image: AssetImage('assets/images/profile_smith.png'),
-                                        )
-                                    ),
-                                  ),
-                                ),
-                                Align(
-                                  alignment: Alignment.bottomRight,
-                                  child: Container(
-                                    decoration: const BoxDecoration(
-                                      color: AppColors.white,
-                                      shape: BoxShape.circle,
-                                    ),
-                                    child: Container(
-                                      margin: const EdgeInsets.all(2),
-                                      padding: const EdgeInsets.all(6),
+                            child: GestureDetector(
+                              onTap: (){
+
+                              },
+                              child: Stack(
+                                children: [
+                                  Center(
+                                    child: _image != null ? Container(
+                                height: 130,
+                                child: CircleAvatar(
+                                    radius: 100, backgroundImage: MemoryImage(_image!)),
+                              )
+                                        : Container(
+                                      height: 130,
                                       decoration: const BoxDecoration(
-                                        color: AppColors.blue_100,
-                                        shape: BoxShape.circle,
-                                        // image: DecorationImage(image: AssetImage('assets/images/profile_icon.png')),
-                                      ),
-                                      child: const CustomImage(
-                                        imageSrc:AppIcons.camera,
-                                        size: 14,
+                                          image: DecorationImage(image: AssetImage('assets/images/profile_smith.png'),
+                                          )
                                       ),
                                     ),
                                   ),
-                                )
-                              ],
+                                  GestureDetector(
+                                    onTap: (){
+                                      _pickImageFromGallery();
+                                    },
+                                    child: Align(
+                                      alignment: Alignment.bottomRight,
+                                      child: Container(
+                                        decoration: const BoxDecoration(
+                                          color: AppColors.white,
+                                          shape: BoxShape.circle,
+                                        ),
+                                        child: Container(
+                                          margin: const EdgeInsets.all(2),
+                                          padding: const EdgeInsets.all(6),
+                                          decoration: const BoxDecoration(
+                                            color: AppColors.blue_100,
+                                            shape: BoxShape.circle,
+                                            // image: DecorationImage(image: AssetImage('assets/images/profile_icon.png')),
+                                          ),
+                                          child: const CustomImage(
+                                            imageSrc:AppIcons.camera,
+                                            size: 14,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ),
+                       /* Center(
+                          child: GestureDetector(
+                            onTap: (){
+
+                            },
+                            child: Stack(
+                              children: [
+                                _image != null
+                                    ? CircleAvatar(
+                                    radius: 100, backgroundImage: MemoryImage(_image!))
+                                    : const CircleAvatar(
+                                  radius: 100,
+                                  backgroundImage: NetworkImage(
+                                      "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"),
+                                ),
+                                Positioned(
+                                    bottom: -0,
+                                    left: 140,
+                                    child: IconButton(
+                                        onPressed: () {
+                                          _pickImageFromGallery();
+                                        },
+                                        icon: const Icon(Icons.add_a_photo)))
+                              ],
+                            ),
+                          ),
+                        ),*/
                         Form(
                             key: _formKey,
                             child: Column(

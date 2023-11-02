@@ -336,18 +336,20 @@ class _HomeScreenDataState extends State<HomeScreenData> {
               TextSpan(
                 children: [
                   TextSpan(
-                    text: 'Didn’t see what you’re looking for?\nGo to'.tr,
+                    text: 'Didn’t see what you’re looking for?\nGo to  '.tr,
                     style: GoogleFonts.poppins(
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
                     ),
                   ),
+
                   TextSpan(
                     text: 'Categories'.tr,
                     style: GoogleFonts.poppins(
                       color: AppColors.blue_100,
                       fontSize: 18,
                       fontWeight: FontWeight.w500,
+
                     ),
                   ),
                 ],

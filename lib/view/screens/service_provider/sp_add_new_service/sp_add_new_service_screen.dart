@@ -1,3 +1,6 @@
+import 'dart:io';
+import 'dart:typed_data';
+
 import 'package:find_worker/core/app_routes.dart';
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_icons.dart';
@@ -10,6 +13,7 @@ import 'package:find_worker/view/widgets/text_field/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:image_picker/image_picker.dart';
 
 class SpAddNewServiceScreen extends StatefulWidget {
   const SpAddNewServiceScreen({super.key});
@@ -42,6 +46,19 @@ class _SpAddNewServiceScreenState extends State<SpAddNewServiceScreen> {
     'Catering',
     'Cable Fixing',
   ];
+
+  Uint8List? _image;
+  File? selectedIMage;
+  Future _pickImageFromGallery() async {
+    final returnImage =
+    await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (returnImage == null) return;
+    setState(() {
+      selectedIMage = File(returnImage.path);
+      _image = File(returnImage.path).readAsBytesSync();
+    });
+    //close the model sheet
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -95,14 +112,28 @@ class _SpAddNewServiceScreenState extends State<SpAddNewServiceScreen> {
                                       //     fit: BoxFit.cover),
                                   ),
                                 ),
-                                Container(
-                                  height: 200,
-                                  width: MediaQuery.of(context).size.width,
-                                  decoration: BoxDecoration(
-                                      color: AppColors.black_100.withOpacity(.5),
-                                      borderRadius: BorderRadius.circular(8)
+                                GestureDetector(
+                                  onTap: (){
+                                    _pickImageFromGallery();
+                                  },
+                                  child:_image != null ? Container(
+                                    height: 200,
+                                    width: MediaQuery.of(context).size.width,
+                                    decoration: BoxDecoration(
+                                        color: AppColors.black_100.withOpacity(.5),
+                                        borderRadius: BorderRadius.circular(8),
+                                      image: DecorationImage(image: MemoryImage(_image!),fit: BoxFit.cover)
+                                    ),
+                                    child: Center(child: CustomImage(imageSrc: AppIcons.camera,size: 18,)),
+                                  ):Container(
+                                    height: 200,
+                                    width: MediaQuery.of(context).size.width,
+                                    decoration: BoxDecoration(
+                                        color: AppColors.black_100.withOpacity(.5),
+                                        borderRadius: BorderRadius.circular(8)
+                                    ),
+                                    child: Center(child: CustomImage(imageSrc: AppIcons.camera,size: 18,)),
                                   ),
-                                  child: Center(child: CustomImage(imageSrc: AppIcons.camera,size: 18,)),
                                 )
                               ],
                             ),
