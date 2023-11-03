@@ -3,6 +3,7 @@ import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_icons.dart';
 import 'package:find_worker/utils/app_images.dart';
 import 'package:find_worker/utils/app_strings.dart';
+import 'package:find_worker/view/screens/user/user_bottom_nav_bar/user_bottom_nav_bar_screen.dart';
 import 'package:find_worker/view/widgets/image/custom_image.dart';
 import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
@@ -319,7 +320,7 @@ class _HomeScreenDataState extends State<HomeScreenData> {
         Center(
           child: GestureDetector(
             onTap: (){
-              Get.toNamed(AppRoute.categoryScreen);
+              Get.to(UserBottomNavBarScreen(currentIndex: 1));
             },
             child: Text.rich(
               textAlign: TextAlign.center,

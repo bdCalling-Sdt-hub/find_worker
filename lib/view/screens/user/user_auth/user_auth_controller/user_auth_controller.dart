@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:find_worker/core/app_routes.dart';
 import 'package:find_worker/model/user_model.dart';
 import 'package:find_worker/utils/app_colors.dart';
+import 'package:find_worker/view/screens/user/user_bottom_nav_bar/user_bottom_nav_bar_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -49,13 +50,16 @@ class AuthenticationController extends GetxController{
   Future<void> registerUser() async {
     isLoading = true;
     update();
+
     if(registerFormKey.currentState!.validate()) {
       await auth.createUserWithEmailAndPassword(
           email: emailController.text.trim(),
-          password: passwordController.text.trim()
+          password: passController.text.trim()
       ).then((value){
+        print("Srabon");
         postDetailsToFireStore();
       }).catchError((e){
+        print(e.toString());
         Fluttertoast.showToast(
             msg: e!.message,
             backgroundColor: AppColors.blue_100,
@@ -64,12 +68,10 @@ class AuthenticationController extends GetxController{
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.BOTTOM
         );
-
         isLoading = false;
         update();
       });
     }
-
     isLoading = false;
     update();
   }
@@ -233,7 +235,7 @@ class AuthenticationController extends GetxController{
 
   /// after login next screen
   void gotoNextScreen(){
-    Get.offAndToNamed(AppRoute.homeScreen);
+    Get.to(UserBottomNavBarScreen(currentIndex: 0));
   }
   Future<void> pickedDate(BuildContext context) async{
     final DateTime? picked = await showDatePicker(

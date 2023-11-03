@@ -10,6 +10,7 @@ void main() async{
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+
   runApp(const MyApp());
 }
 class MyApp extends StatelessWidget {
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
       navigatorKey: Get.key,
       transitionDuration: const Duration(milliseconds: 200),
       getPages: AppRoute.routes,
+
     );
   }
 }
