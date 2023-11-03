@@ -61,80 +61,73 @@ class _SpJobHistoryScreenState extends State<SpJobHistoryScreen> {
                   },
                   child: Column(
                     children: List.generate(20, (index) =>
-                        GestureDetector(
-                          onTap: (){
-                            setState(() {
-
-                            });
-                          },
-                          child: Container(
+                        Container(
                       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 14),
                       decoration:  ShapeDecoration(
-                          color:index % 2 == 0 ? AppColors.black_5 : AppColors.white,
-                          shape: RoundedRectangleBorder(
-                            side: BorderSide(width: 1, color: Color(0xFFE7F0FD)),
-                          ),
+                        color:index % 2 == 0 ? AppColors.black_5 : AppColors.white,
+                        shape: RoundedRectangleBorder(
+                          side: BorderSide(width: 1, color: Color(0xFFE7F0FD)),
+                        ),
                       ),
                       child: Row(
                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            const CustomText(
-                              text: 'Smith John',
-                              fontSize: 12,
-                              fontWeight: FontWeight.w500,
-                            ),
-                            const Row(
-                              children: [
+                        children: [
+                          const CustomText(
+                            text: 'Smith John',
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                          ),
+                          const Row(
+                            children: [
+                           Row(
+                             children: [
+                               CustomImage(
+                                   imageSrc: AppIcons.calendar
+                               ),
+                               CustomText(
+                                 left: 4,
+                                 text:  '12-Sept',
+                                 fontSize: 10,
+                                 fontWeight: FontWeight.w400,
+                                 right: 4,
+                               ),
+                             ],
+                           ),
+                             SizedBox(width: 8,),
                              Row(
                                children: [
                                  CustomImage(
-                                     imageSrc: AppIcons.calendar
+                                     imageSrc: AppIcons.clock,
+                                   size: 12,
                                  ),
                                  CustomText(
                                    left: 4,
-                                   text:  '12-Sept',
+                                   text: '12:00 AM',
+                                   textAlign: TextAlign.right,
                                    fontSize: 10,
                                    fontWeight: FontWeight.w400,
                                    right: 4,
                                  ),
                                ],
-                             ),
-                               SizedBox(width: 8,),
-                               Row(
-                                 children: [
-                                   CustomImage(
-                                       imageSrc: AppIcons.clock,
-                                     size: 12,
-                                   ),
-                                   CustomText(
-                                     left: 4,
-                                     text: '12:00 AM',
-                                     textAlign: TextAlign.right,
-                                     fontSize: 10,
-                                     fontWeight: FontWeight.w400,
-                                     right: 4,
-                                   ),
-                                 ],
-                               )
-                              ],
+                             )
+                            ],
+                          ),
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+                            decoration: ShapeDecoration(
+                              color: AppColors.green_10,
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
                             ),
-                            Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
-                              decoration: ShapeDecoration(
-                                color: AppColors.green_10,
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-                              ),
-                              child: const CustomText(
-                                color: AppColors.green_100,
-                                text:  'Complete',
-                                fontSize: 12,
-                                fontWeight: FontWeight.w400,
-                              ),
+                            child: const CustomText(
+                              color: AppColors.green_100,
+                              text:  'Complete',
+                              fontSize: 12,
+                              fontWeight: FontWeight.w400,
                             ),
-                          ],
+                          ),
+                        ],
                       ),
-                    ),
-                        ),),
+                    ),),
                   ),
                 ),
               ],
