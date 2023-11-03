@@ -283,11 +283,11 @@ class _UserEditPersonalInformationState extends State<UserEditPersonalInformatio
                                         child: CustomTextField(
                                           textAlign: TextAlign.start,
                                           hintText: AppStrings.enterYourEmail,
-                                          hintStyle: GoogleFonts.montserrat(
+                                          hintStyle: GoogleFonts.poppins(
                                               fontSize: 14,
                                               fontWeight: FontWeight.w500,
                                               color: AppColors.black_40),
-                                          inputTextStyle: GoogleFonts.montserrat(
+                                          inputTextStyle: GoogleFonts.poppins(
                                               fontWeight: FontWeight.w400,
                                               fontSize: 14,
                                               color: AppColors.black_100),
@@ -308,11 +308,11 @@ class _UserEditPersonalInformationState extends State<UserEditPersonalInformatio
                                     maxLines: 5,
                                     textAlign: TextAlign.start,
                                     hintText: 'Enter your address',
-                                    hintStyle: GoogleFonts.montserrat(
+                                    hintStyle: GoogleFonts.poppins(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w400,
                                         color: AppColors.black_40),
-                                    inputTextStyle: GoogleFonts.montserrat(
+                                    inputTextStyle: GoogleFonts.poppins(
                                         fontWeight: FontWeight.w400,
                                         fontSize: 14,
                                         color: AppColors.black_100),
@@ -329,7 +329,7 @@ class _UserEditPersonalInformationState extends State<UserEditPersonalInformatio
                                   CustomTextField(
                                     textAlign: TextAlign.start,
                                     hintText: AppStrings.enterYourEmail,
-                                    hintStyle: GoogleFonts.montserrat(
+                                    hintStyle: GoogleFonts.poppins(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w400,
                                         color: AppColors.black_40),
