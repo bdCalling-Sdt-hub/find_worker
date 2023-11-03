@@ -76,6 +76,8 @@ class AuthenticationController extends GetxController{
     update();
   }
 
+
+
   /// added user info in firebase fire store
   postDetailsToFireStore() async{
 
