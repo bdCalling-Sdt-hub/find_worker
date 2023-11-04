@@ -2,9 +2,12 @@ import 'package:find_worker/core/app_routes.dart';
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_images.dart';
 import 'package:find_worker/utils/app_strings.dart';
+import 'package:find_worker/view/widgets/custom_elevated_loading_button/custom_elevated_loading_button.dart';
+import 'package:find_worker/view/widgets/email_otp/email_otp.dart';
 import 'package:find_worker/view/widgets/image/custom_image.dart';
 import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -18,6 +21,21 @@ class UserOtpScreen extends StatefulWidget {
 }
 
 class _UserOtpScreenState extends State<UserOtpScreen> {
+
+  late String email;
+  late EmailOTP emailOTP;
+
+  final TextEditingController otpController = TextEditingController();
+  bool isLoading = false;
+
+  @override
+  void initState() {
+    email = Get.arguments[0];
+    emailOTP = Get.arguments[1];
+    super.initState();
+  }
+
+
 /*  @override
   void initState() {
     DeviceUtils.allScreenUtils();
@@ -91,7 +109,7 @@ class _UserOtpScreenState extends State<UserOtpScreen> {
                       flex: 0,
                       child: PinCodeTextField(
                         cursorColor: AppColors.black_10,
-
+                        controller: otpController,
                         appContext: (context),
                         validator: (value){
                           if (value!.length <= 6) {
@@ -117,8 +135,16 @@ class _UserOtpScreenState extends State<UserOtpScreen> {
                         ),
                         length: 6,
                         enableActiveFill: true,
+                        animationDuration:
+                         Duration(milliseconds: 100),
+                        keyboardType: TextInputType.number,
+                        beforeTextPaste: (text) {
+                          return true;
+                        },
+                        onChanged: (value){},
                       ),
-                    ),
+                      ),
+
                     const SizedBox(height: 16),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -131,7 +157,7 @@ class _UserOtpScreenState extends State<UserOtpScreen> {
                         ),
                         GestureDetector(
                           onTap: () {
-                            /*Get.to(()=> const OtpScreen());*/
+                            Get.to(()=>  resendOtpToEmail());
                           },
                           child: const CustomText(
                             text: AppStrings.resend,
@@ -142,30 +168,27 @@ class _UserOtpScreenState extends State<UserOtpScreen> {
                           ),
                         ),
                       ],
-
-
-
                     ),
-                    Container(
-                        margin: const EdgeInsets.only(top: 252),
-                        height: 56 ,
-                        width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: const Color(0xff0668E3)
-                        ),
-                        child: InkWell(
-                          onTap: (){
-                            Get.toNamed(AppRoute.userResetPasswordScreen);
-                          },
+                    isLoading ? const CustomElevatedLoadingButton() : GestureDetector(
+                      onTap: (){
+                        verifyEmailOTP();
+                      },
+                      child: Container(
+                          margin: const EdgeInsets.only(top: 252),
+                          height: 56 ,
+                          width: MediaQuery.of(context).size.width,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: const Color(0xff0668E3)
+                          ),
                           child: const Center(
                               child: CustomText(
                                 text: AppStrings.verify,
                                 color: Colors.white,
                                 fontSize: 18,
                                 fontWeight: FontWeight.w600,
-                              )),
-                        )
+                              ))
+                      ),
                     )
 
                   ],
@@ -178,5 +201,79 @@ class _UserOtpScreenState extends State<UserOtpScreen> {
 
       ),
     );
+  }
+  Future <void> verifyEmailOTP() async{
+
+    setState(() {
+      isLoading = true;
+    });
+
+    if(emailOTP.verifyOTP(otp: otpController.text.toString()) == true){
+
+      Fluttertoast.showToast(
+          msg: "OTP is verified",
+          backgroundColor: AppColors.blue_100,
+          textColor: AppColors.black_100,
+          fontSize: 14,
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM
+      );
+
+      setState(() {
+        isLoading = false;
+      });
+
+      Get.toNamed(AppRoute.userResetPasswordScreen, arguments: email);
+    }
+    else{
+      Fluttertoast.showToast(
+          msg: "Invalid OTP",
+          backgroundColor: AppColors.blue_100,
+          textColor: AppColors.black_100,
+          fontSize: 14,
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM
+      );
+
+      setState(() {
+        isLoading = false;
+      });
+    }
+
+    setState(() {
+      isLoading = false;
+    });
+  }
+
+  Future<void> resendOtpToEmail() async{
+
+    emailOTP.setConfig(
+        appEmail: "mohammadjubayed.islam97@gmail.com",
+        appName: "#Jubayed11",
+        userEmail: email,
+        otpLength: 6,
+        otpType: OTPType.digitsOnly
+    );
+
+    if(await emailOTP.sendOTP() == true){
+      Fluttertoast.showToast(
+          msg: "OTP has been sent",
+          backgroundColor: AppColors.blue_100,
+          textColor: AppColors.black_100,
+          fontSize: 14,
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM
+      );
+    }
+    else{
+      Fluttertoast.showToast(
+          msg: "Oops! OTP send failed",
+          backgroundColor: AppColors.blue_100,
+          textColor: AppColors.black_100,
+          fontSize: 14,
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM
+      );
+    }
   }
 }
