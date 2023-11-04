@@ -124,6 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Scaffold(
           backgroundColor: AppColors.white,
           appBar: AppBar(
+            automaticallyImplyLeading: false,
             backgroundColor: AppColors.white,
             title: CustomText(
               color: AppColors.blue_100,
