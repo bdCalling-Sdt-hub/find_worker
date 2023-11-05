@@ -466,9 +466,19 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                                         isSelected=!isSelected;
                                       });
                                     },
+                                    validator: (value) {
+                                      if (value == null || value.isEmpty) {
+                                        return "User Type Not Select".tr;
+                                      } else {
+                                        return null;
+                                      }
+                                    },
                                     textAlign: TextAlign.start,
                                     decoration: InputDecoration(
                                       suffixIcon: IconButton(onPressed: (){
+                                        setState(() {
+                                          isSelected=!isSelected;
+                                        });
 
                                       }, icon:isSelected ? const Icon(Icons.keyboard_arrow_up,size: 24,color: AppColors.black_80,) : const Icon(Icons.keyboard_arrow_down_rounded,size: 24,color: AppColors.black_80,)
                                       ),
