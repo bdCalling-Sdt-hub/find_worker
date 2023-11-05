@@ -27,6 +27,7 @@ class CustomTextField extends StatefulWidget {
     this.isPassword = false,
     this.isPrefixIcon = true,
     this.readOnly = false,
+    this.maxLength,
     super.key
   });
 
@@ -52,6 +53,7 @@ class CustomTextField extends StatefulWidget {
   final bool isPassword;
   final bool isPrefixIcon;
   final bool readOnly;
+  final int? maxLength;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -69,6 +71,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       readOnly: widget.readOnly,
       controller: widget.textEditingController,
       focusNode: widget.focusNode,
+      maxLength:widget.maxLength,
       keyboardType: widget.keyboardType,
       textInputAction: widget.textInputAction,
       cursorColor: widget.cursorColor,

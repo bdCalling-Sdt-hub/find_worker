@@ -1,12 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:encrypt/encrypt.dart';
 import 'package:find_worker/core/app_routes.dart';
 import 'package:find_worker/model/user_model.dart';
 import 'package:find_worker/utils/app_colors.dart';
+import 'package:find_worker/utils/app_constents.dart';
+import 'package:find_worker/view/screens/service_provider/sp_bottom_nav_bar/sp_bottom_nav_bar_screen.dart';
 import 'package:find_worker/view/screens/user/user_bottom_nav_bar/user_bottom_nav_bar_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 class AuthenticationController extends GetxController{
 
@@ -33,7 +38,8 @@ class AuthenticationController extends GetxController{
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passController = TextEditingController();
   final TextEditingController confirmPasswordController = TextEditingController();
-  String phoneCode = "+225";
+  final TextEditingController roleType = TextEditingController();
+  String phoneCode = "+93";
   String year = "";
   String month = "";
   String day = "";
@@ -43,6 +49,9 @@ class AuthenticationController extends GetxController{
   final TextEditingController monthController = TextEditingController();
   final TextEditingController yearController = TextEditingController();
 
+  List<String> genderList = ["Male", "Female", "Others"];
+  int selectedGender = 0;
+
   final auth = FirebaseAuth.instance;
   FirebaseFirestore firebaseFireStore = FirebaseFirestore.instance;
 
@@ -50,14 +59,14 @@ class AuthenticationController extends GetxController{
   Future<void> registerUser() async {
     isLoading = true;
     update();
-
     if(registerFormKey.currentState!.validate()) {
       await auth.createUserWithEmailAndPassword(
           email: emailController.text.trim(),
           password: passController.text.trim()
-      ).then((value){
+      ).then((value)async{
         print("Srabon");
-        postDetailsToFireStore();
+      await  postDetailsToFireStore();
+
       }).catchError((e){
         print(e.toString());
         Fluttertoast.showToast(
@@ -76,38 +85,51 @@ class AuthenticationController extends GetxController{
     update();
   }
 
-
-
   /// added user info in firebase fire store
+  var token="";
+  fcmToken()async{
+    token = (await FirebaseMessaging.instance.getToken())!;
+  }
   postDetailsToFireStore() async{
-
+   //await fcmToken();
     User? user = auth.currentUser;
-
+    String dob= DateFormat.yMMMd().format(DateTime(int.parse(year),int.parse(month),int.parse(day)));
     UserModel userModel = UserModel();
-
     userModel.email = user!.email;
     userModel.uid = user.uid;
     userModel.userName = nameController.text.toString();
-    userModel.year = yearController.text.toString();
-    userModel.month = monthController.text.toString();
-    userModel.day = dayController.text.toString();
-    userModel.phone = phoneController.text.toString();
+    userModel.dob =dob;
+    userModel.phone = phoneCode+phoneController.text.toString();
     userModel.address =addressController.text.toString();
-
-    await firebaseFireStore.collection("users")
-        .doc(user.uid)
-        .set(userModel.toMap());
-
-    Fluttertoast.showToast(
-        msg: "Account created successfully",
-        backgroundColor: AppColors.blue_100,
-        textColor: AppColors.black_100,
-        fontSize: 14,
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM
-    );
-
-    gotoNextScreen();
+    userModel.authType=AppConstants.normalUser;
+    userModel.role=roleType.text;
+    userModel.password=passController.text;
+    userModel.timestamp=DateTime.now();
+    userModel.status="Online";
+    userModel.imageSrc="";
+    userModel.fcmToken=token;
+    userModel.gender=genderList[selectedGender];
+    try {
+      await firebaseFireStore.collection(AppConstants.users)
+          .doc(user.uid)
+          .set(userModel.toMap()).then((value){
+        Fluttertoast.showToast(
+            msg: "Account created successfully",
+            backgroundColor: AppColors.blue_100,
+            textColor: AppColors.black_100,
+            fontSize: 14,
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM
+        );
+        if(roleType.text==AppConstants.normalUser){
+          Get.offAll(UserBottomNavBarScreen(currentIndex: 0));
+        }else{
+          Get.offAll(SpBottomNavBarScreen(currentIndex: 0));
+        }
+      });
+    } on Exception catch (e) {
+      debugPrint("=====> Sign up catch error fire store $e");
+    }
   }
 
 /*  void changeIndex(int index) {
@@ -216,7 +238,7 @@ class AuthenticationController extends GetxController{
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.BOTTOM
         ),
-        gotoNextScreen()
+      Get.to(UserBottomNavBarScreen(currentIndex: 0))
       }).catchError((e){
         Fluttertoast.showToast(
             msg: e!.message,
@@ -235,10 +257,9 @@ class AuthenticationController extends GetxController{
     update();
   }
 
-  /// after login next screen
-  void gotoNextScreen(){
-    Get.to(UserBottomNavBarScreen(currentIndex: 0));
-  }
+
+
+
   Future<void> pickedDate(BuildContext context) async{
     final DateTime? picked = await showDatePicker(
         context: context,
