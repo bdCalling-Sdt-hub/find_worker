@@ -1,10 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:encrypt/encrypt.dart';
+import 'package:find_worker/controller/data_controller.dart';
 import 'package:find_worker/core/app_routes.dart';
+import 'package:find_worker/core/share_pre.dart';
 import 'package:find_worker/model/user_model.dart';
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_constents.dart';
 import 'package:find_worker/view/screens/service_provider/sp_bottom_nav_bar/sp_bottom_nav_bar_screen.dart';
+import 'package:find_worker/view/screens/user/user_auth/user_sign_in/user_sign_in_screen.dart';
 import 'package:find_worker/view/screens/user/user_bottom_nav_bar/user_bottom_nav_bar_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -14,6 +17,8 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class AuthenticationController extends GetxController{
+
+  final _dataController = Get.put(DataController());
 
   bool isObscure = true;
   bool isLoading = false;
@@ -29,6 +34,7 @@ class AuthenticationController extends GetxController{
   /// sign In
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+
 
   /// sign up
   final TextEditingController nameController = TextEditingController();
@@ -103,12 +109,11 @@ class AuthenticationController extends GetxController{
   postDetailsToFireStore() async{
    //await fcmToken();
     User? user = auth.currentUser;
-    String dob= DateFormat.yMMMd().format(DateTime(int.parse(year),int.parse(month),int.parse(day)));
     UserModel userModel = UserModel();
     userModel.email = user!.email;
     userModel.uid = user.uid;
     userModel.userName = nameController.text.toString();
-    userModel.dob =dob;
+    userModel.dob =DateTime(int.parse(year),int.parse(month),int.parse(day));
     userModel.phone = phoneCode+phoneController.text.toString();
     userModel.address =addressController.text.toString();
     userModel.authType=AppConstants.normalUser;
@@ -131,7 +136,8 @@ class AuthenticationController extends GetxController{
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.BOTTOM
         );
-        if(roleType.text==AppConstants.normalUser){
+        PrefsHelper.setString(AppConstants.logged, roleType.text);
+        if(roleType.text==AppConstants.userType){
           Get.offAll(UserBottomNavBarScreen(currentIndex: 0));
         }else{
           Get.offAll(SpBottomNavBarScreen(currentIndex: 0));
@@ -331,7 +337,7 @@ class AuthenticationController extends GetxController{
       await auth.signInWithEmailAndPassword(
           email: email.trim(),
           password: password.trim()
-      ).then((uid) => {
+      ).then((value)async{
         Fluttertoast.showToast(
             msg: "Login Successfully",
             backgroundColor: AppColors.blue_100,
@@ -339,24 +345,44 @@ class AuthenticationController extends GetxController{
             fontSize: 14,
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.BOTTOM
-        ),
-
-      }).catchError((e){
-        Fluttertoast.showToast(
-            msg: e!.message,
-            backgroundColor: AppColors.blue_100,
-            textColor: AppColors.white  ,
-            fontSize: 14,
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM
         );
+        DocumentSnapshot data = await firebaseFireStore.collection(AppConstants.users).doc(value.user!.uid).get();
+        UserModel userData= UserModel.fromMap(data);
+        debugPrint("=======> Uid ${data['uid']}");
+        debugPrint("=======> User Type ${userData.role}");
+       await PrefsHelper.setString(AppConstants.logged, userData.role);
+        if(userData.role==AppConstants.userType){
+          Get.offAll(UserBottomNavBarScreen(currentIndex: 0));
+          _dataController.setData(userNameD: userData.userName!,
+              userRoleD:userData.role!,
+              uidD:userData.uid!,
+              imageD:userData.imageSrc!,
+              authTypeD:userData.authType!);
+        }else{
+          Get.offAll(SpBottomNavBarScreen(currentIndex: 0));
+          _dataController.setData(userNameD: userData.userName!,
+              userRoleD:userData.role!,
+              uidD:userData.uid!,
+              imageD:userData.imageSrc!,
+              authTypeD:userData.authType!);
+        }
+      }
+      ).catchError((e){
+        // Fluttertoast.showToast(
+        //     msg: e!.message,
+        //     backgroundColor: AppColors.blue_100,
+        //     textColor: AppColors.white  ,
+        //     fontSize: 14,
+        //     toastLength: Toast.LENGTH_SHORT,
+        //     gravity: ToastGravity.BOTTOM
+        // );
 
         isLoading = false;
         update();
       });
 
-    usernameController.text = "";
-    passwordController.text = "";
+    // usernameController.text = "";
+    // passwordController.text = "";
 
     isLoading = false;
     update();
@@ -388,5 +414,26 @@ class AuthenticationController extends GetxController{
       update();
     }
   }
+
+
+  ///  <------------- Sign out------------->
+  var isSignOutLoad=false.obs;
+  signOut()async{
+      try {
+        isSignOutLoad(true);
+             await auth.signOut().then((value){
+         Get.offAll(UserSignIn());
+         debugPrint("=========> Successful sign out");
+        isSignOutLoad(false);
+             });
+      } on Exception catch (e) {
+      debugPrint("=========> sign out catch error : $e");
+      }finally{
+        isSignOutLoad(false);
+      }
+
+
+  }
+
 
 }

@@ -16,6 +16,10 @@ static String serviceProviderType="Service Provider";
 static String normalUser="NormalUser";
 static String socialMediaUser="SocialMediaUser";
 
+/// share data
+ static String logged ="Logged";
+
+
 
 
 
