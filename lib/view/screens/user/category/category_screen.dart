@@ -170,7 +170,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     CustomText(
                       maxLines: 1,
                       text: category[index]["text"].toString(),
-                      bottom: 44,
+                      bottom: 42,
                     ),
                   ],
                 );

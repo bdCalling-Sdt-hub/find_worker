@@ -2,7 +2,11 @@ import 'package:device_preview/device_preview.dart';
 import 'package:find_worker/core/app_routes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
+<<<<<<< HEAD
 import 'package:flutter/foundation.dart';
+=======
+import 'package:flutter/services.dart';
+>>>>>>> 113221917875d59c2acfbef3b230687d045a43bd
 import 'package:get/get.dart';
 
 import 'firebase_options.dart';
@@ -12,7 +16,10 @@ void main() async{
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
   runApp(const MyApp());
   // runApp(
   //   DevicePreview(

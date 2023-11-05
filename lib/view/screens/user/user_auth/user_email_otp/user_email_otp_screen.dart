@@ -152,7 +152,7 @@ class _UserEmailOtpScreenState extends State<UserEmailOtpScreen> {
                       ),
                       child: InkWell(
                         onTap: (){
-                          Get.toNamed(AppRoute.spSignInScreen);
+                          Get.toNamed(AppRoute.userSignIn);
                         },
                         child: const Center(
                             child: CustomText(

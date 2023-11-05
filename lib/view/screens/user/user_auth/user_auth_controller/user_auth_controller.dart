@@ -19,7 +19,6 @@ class AuthenticationController extends GetxController{
   bool isLoading = false;
   bool rememberMe = false;
 
-  final loginFormKey = GlobalKey<FormState>();
   final registerFormKey = GlobalKey<FormState>();
 
   final emailRegExP = RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]");
@@ -44,6 +43,7 @@ class AuthenticationController extends GetxController{
   String month = "";
   String day = "";
 
+
   // Date TextFormField
   final TextEditingController dayController = TextEditingController();
   final TextEditingController monthController = TextEditingController();
@@ -52,10 +52,19 @@ class AuthenticationController extends GetxController{
   List<String> genderList = ["Male", "Female", "Others"];
   int selectedGender = 0;
 
+
   final auth = FirebaseAuth.instance;
   FirebaseFirestore firebaseFireStore = FirebaseFirestore.instance;
 
+  /// forget
+
+  /*late String email;
+  late EmailOTP emailOTP;*/
+
+  final TextEditingController otpController = TextEditingController();
+
   /// for firebase sign up
+
   Future<void> registerUser() async {
     isLoading = true;
     update();
@@ -63,12 +72,13 @@ class AuthenticationController extends GetxController{
       await auth.createUserWithEmailAndPassword(
           email: emailController.text.trim(),
           password: passController.text.trim()
+
       ).then((value)async{
         print("Srabon");
       await  postDetailsToFireStore();
 
+
       }).catchError((e){
-        print(e.toString());
         Fluttertoast.showToast(
             msg: e!.message,
             backgroundColor: AppColors.blue_100,
@@ -130,7 +140,62 @@ class AuthenticationController extends GetxController{
     } on Exception catch (e) {
       debugPrint("=====> Sign up catch error fire store $e");
     }
+
   }
+
+  /// sendOtp screen
+
+
+/*  Future<void> sendOtpToEmail() async{
+    final emailOtp = EmailOTP();
+
+    bool isLoading = false;
+
+      isLoading = true;
+    update();
+
+    emailOtp.setConfig(
+        appEmail: "mirzamahmud.cse.bubt202@gmail.com",
+        appName: "EzyRack",
+        userEmail: emailController.text.toString(),
+        otpLength: 5,
+        otpType: OTPType.digitsOnly
+    );
+
+    if(await emailOtp.sendOTP() == true){
+      Fluttertoast.showToast(
+          msg: "OTP has been sent",
+          backgroundColor: AppColors.blue_100,
+          textColor: AppColors.black_100,
+          fontSize: 14,
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM
+      );
+
+
+        isLoading = false;
+        update();
+
+      Get.offAndToNamed(AppRoute.userEmailOtpScreen, arguments: [emailController.text.toString(), emailOtp]);
+    }
+    else{
+      Fluttertoast.showToast(
+          msg: "Oops! OTP send failed",
+          backgroundColor: AppColors.blue_100,
+          textColor: AppColors.black_100,
+          fontSize: 14,
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM
+      );
+
+        isLoading = false;
+      update();
+    }
+
+
+      isLoading = false;
+     update();
+  }*/
 
 /*  void changeIndex(int index) {
     selectedIndex = index;
@@ -225,7 +290,7 @@ class AuthenticationController extends GetxController{
   }*/
 
   /// firebase sign in
-  Future<void> loginUser() async{
+ /* Future<void> loginUser() async{
     isLoading = true;
     update();
       await auth.signInWithEmailAndPassword(
@@ -255,8 +320,47 @@ class AuthenticationController extends GetxController{
 
     isLoading = false;
     update();
-  }
+  }*/
 
+  void loginUser(String email, String password) async{
+
+    isLoading = true;
+    update();
+      print(password);
+      print(email);
+      await auth.signInWithEmailAndPassword(
+          email: email.trim(),
+          password: password.trim()
+      ).then((uid) => {
+        Fluttertoast.showToast(
+            msg: "Login Successfully",
+            backgroundColor: AppColors.blue_100,
+            textColor: AppColors.black_100,
+            fontSize: 14,
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM
+        ),
+
+      }).catchError((e){
+        Fluttertoast.showToast(
+            msg: e!.message,
+            backgroundColor: AppColors.blue_100,
+            textColor: AppColors.white  ,
+            fontSize: 14,
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM
+        );
+
+        isLoading = false;
+        update();
+      });
+
+    usernameController.text = "";
+    passwordController.text = "";
+
+    isLoading = false;
+    update();
+  }
 
 
 
