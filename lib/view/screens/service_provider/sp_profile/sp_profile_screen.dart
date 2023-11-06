@@ -10,6 +10,8 @@ import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../sp_services/sp_services_screen.dart';
+
 class SpProfileScreen extends StatefulWidget {
   const SpProfileScreen({super.key});
 
@@ -113,7 +115,7 @@ class _SpProfileScreenState extends State<SpProfileScreen> {
                                 ),
                                 GestureDetector(
                                   onTap: (){
-                                    Get.toNamed(AppRoute.spServiceDetailsScreen);
+                              Get.to(SpServicesScreen());
                                   },
                                   child: Container(
                                     margin: const EdgeInsets.only(bottom: 16),

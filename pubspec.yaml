@@ -54,6 +54,10 @@ dependencies:
   intl: ^0.18.1
   firebase_messaging: ^14.7.3
   shared_preferences:
+  dropdown_search:
+  image_picker: ^1.0.4
+  uuid:
+  cached_network_image:
 
 
 dev_dependencies:
