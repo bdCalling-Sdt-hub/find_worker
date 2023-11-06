@@ -30,6 +30,7 @@ class _HireDetailsAlertState extends State<HireDetailsAlert> {
         children: [
             const CustomImage(imageSrc: AppImages.success,imageType: ImageType.png,size: 100,),
             CustomText(
+
             text: 'Congratulations!'.tr,
             fontSize: 18,
             fontWeight: FontWeight.w600,
@@ -38,6 +39,7 @@ class _HireDetailsAlertState extends State<HireDetailsAlert> {
             bottom: 24,
           ),
            CustomText(
+             maxLines: 2,
             text: 'Your service has been completed successfully.'.tr,
             color: AppColors.blue_100,
             bottom: 24,
