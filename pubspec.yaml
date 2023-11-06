@@ -49,6 +49,7 @@ dependencies:
   pin_code_fields:
   flutter_rating_bar:
   percent_indicator:
+  image_picker:
 
 
 dev_dependencies:

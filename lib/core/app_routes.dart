@@ -1,9 +1,22 @@
 
+import 'package:find_worker/view/screens/onboard/onboard_screen.dart';
+import 'package:find_worker/view/screens/service_provider/sp_add_new_service/sp_add_new_service_screen.dart';
 import 'package:find_worker/view/screens/service_provider/sp_auth/sp_forget_password/sp_forget_password_screen.dart';
 import 'package:find_worker/view/screens/service_provider/sp_auth/sp_otp/sp_otp_screen.dart';
 import 'package:find_worker/view/screens/service_provider/sp_auth/sp_reset_password/sp_reset_password_screen.dart';
+import 'package:find_worker/view/screens/service_provider/sp_auth/sp_sign_in/sp_sign_in_screen.dart';
+import 'package:find_worker/view/screens/service_provider/sp_auth/sp_sign_up/sp_sign_up_screen.dart';
+import 'package:find_worker/view/screens/service_provider/sp_auth/sp_verify_email_otp/sp_verify_email_otp_screen.dart';
+import 'package:find_worker/view/screens/service_provider/sp_home/sp_home_screen.dart';
+import 'package:find_worker/view/screens/service_provider/sp_job_details/sp_job_details_screen.dart';
 import 'package:find_worker/view/screens/service_provider/sp_job_history/sp_history_job_details/sp_history_job_details_screen.dart';
 import 'package:find_worker/view/screens/service_provider/sp_job_history/sp_job_history/sp_job_history_screen.dart';
+import 'package:find_worker/view/screens/service_provider/sp_notification/sp_notification_screen.dart';
+import 'package:find_worker/view/screens/service_provider/sp_personal_information/sp_edit_personal_information/sp_edit_personal_information_screen.dart';
+import 'package:find_worker/view/screens/service_provider/sp_personal_information/sp_personal_information/sp_personal_information_screen.dart';
+import 'package:find_worker/view/screens/service_provider/sp_profile/sp_profile_screen.dart';
+import 'package:find_worker/view/screens/service_provider/sp_service_details/sp_edit_service_details/sp_edit_service_details_screen.dart';
+import 'package:find_worker/view/screens/service_provider/sp_service_details/sp_service_details/sp_service_details_screen.dart';
 import 'package:find_worker/view/screens/service_provider/sp_services/sp_services_screen.dart';
 import 'package:find_worker/view/screens/service_provider/sp_settings/sp_about_us/sp_about_us_screen.dart';
 import 'package:find_worker/view/screens/service_provider/sp_settings/sp_change_forget_password/sp_change_forget_password_screen.dart';
