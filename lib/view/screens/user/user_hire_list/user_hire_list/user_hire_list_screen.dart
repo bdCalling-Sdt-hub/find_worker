@@ -23,6 +23,7 @@ class _UserHireListScreenState extends State<UserHireListScreen> {
         top: false,
         bottom: false,
         child: Scaffold(
+          backgroundColor: AppColors.white,
           appBar:CustomAppBar(
             appBarContent:Center(
               child: CustomText(

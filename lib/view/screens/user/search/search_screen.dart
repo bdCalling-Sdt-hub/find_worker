@@ -118,6 +118,7 @@ class _SearchScreenState extends State<SearchScreen> {
       top: false,
       bottom: false,
       child: Scaffold(
+        backgroundColor: AppColors.white,
         endDrawer: const Drawer(
           child: SearchEndDrawer(),
 

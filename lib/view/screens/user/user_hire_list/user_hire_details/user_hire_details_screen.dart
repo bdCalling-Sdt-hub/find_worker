@@ -23,6 +23,7 @@ class _UserHireDetailsScreenState extends State<UserHireDetailsScreen> {
         top: false,
         bottom: false,
         child: Scaffold(
+          backgroundColor: AppColors.white,
           appBar: CustomAppBar(appBarContent:Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

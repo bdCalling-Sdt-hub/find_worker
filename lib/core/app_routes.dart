@@ -1,5 +1,4 @@
 
-import 'package:find_worker/view/screens/onboard/onboard_screen.dart';
 import 'package:find_worker/view/screens/service_provider/sp_add_new_service/sp_add_new_service_screen.dart';
 import 'package:find_worker/view/screens/service_provider/sp_auth/sp_forget_password/sp_forget_password_screen.dart';
 import 'package:find_worker/view/screens/service_provider/sp_auth/sp_otp/sp_otp_screen.dart';
@@ -41,12 +40,6 @@ import 'package:find_worker/view/screens/user/settings/privacy_policy/privacy_po
 import 'package:find_worker/view/screens/user/settings/settings/settings_screen.dart';
 import 'package:find_worker/view/screens/user/settings/support/support_screen.dart';
 import 'package:find_worker/view/screens/user/settings/terms_of_conditions/terms_of_conditions_screen.dart';
-import 'package:find_worker/view/screens/user/user_auth/user_email_otp/user_email_otp_screen.dart';
-import 'package:find_worker/view/screens/user/user_auth/user_forget_password/user_forget_password_screen.dart';
-import 'package:find_worker/view/screens/user/user_auth/user_otp/user_otp_screen.dart';
-import 'package:find_worker/view/screens/user/user_auth/user_reset_password/user_reset_password_screen.dart';
-import 'package:find_worker/view/screens/user/user_auth/user_sign_in/user_sign_in_screen.dart';
-import 'package:find_worker/view/screens/user/user_auth/user_sign_up/user_sign_up_screen.dart';
 import 'package:find_worker/view/screens/user/user_hire_list/user_hire_details/user_hire_details_screen.dart';
 import 'package:find_worker/view/screens/user/user_hire_list/user_hire_list/user_hire_list_screen.dart';
 import 'package:find_worker/view/screens/user/user_history/user_history/user_history_screen.dart';
@@ -122,10 +115,6 @@ class AppRoute {
 
   static List<GetPage> routes = [
      GetPage(name: splashScreen, page: () => const SplashScreen()),
-     GetPage(name: onboardScreen, page: () => const OnboardScreen()),
-     GetPage(name: userSignIn, page: () => const UserSignIn()),
-     GetPage(name: userSignUp, page: () => const UserSignUpScreen()),
-     GetPage(name: userEmailOtpScreen, page: () => const UserEmailOtpScreen()),
      GetPage(name: userNotificationScreen, page: () => const UserNotificationScreen()),
      GetPage(name: userProfileScreen, page: () => const UserProfileScreen()),
      GetPage(name: userPersonalInformationScreen, page: () => const UserPersonalInformationScreen()),
@@ -148,10 +137,6 @@ class AppRoute {
      GetPage(name: spAddNewServiceScreen, page: () => const SpAddNewServiceScreen()),
      GetPage(name: spHomeScreen, page: () => const SpHomeScreen()),
      GetPage(name: spServicesScreen, page: () => const SpServicesScreen()),
-
-     GetPage(name: userForgetPasswordScreen, page: () => const UserForgetPasswordScreen()),
-     GetPage(name: userOtpScreen, page: () => const UserOtpScreen()),
-     GetPage(name: userResetPasswordScreen, page: () => const UserResetPasswordScreen()),
      GetPage(name: changePasswordScreen, page: () => const ChangePasswordScreen()),
      GetPage(name: changeForgetPasswordScreen, page: () => const ChangeForgetPasswordScreen()),
      GetPage(name: changeOtpScreen, page: () => const ChangeOtpScreen()),

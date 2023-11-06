@@ -154,7 +154,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
               }
           ),
           bottomNavigationBar: BottomNavButton(buttonText: 'Save'.tr, onTap: (){
-            Get.toNamed(AppRoute.changeForgetPasswordScreen);
+            Get.toNamed(AppRoute.settingScreen);
           }),
         ));
   }

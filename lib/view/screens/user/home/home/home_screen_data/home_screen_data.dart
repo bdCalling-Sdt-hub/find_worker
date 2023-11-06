@@ -137,7 +137,9 @@ class _HomeScreenDataState extends State<HomeScreenData> {
               fontSize: 18,
             ),
             GestureDetector(
-              onTap: (){},
+              onTap: (){
+                Get.toNamed(AppRoute.carWashDetailsScreen);
+              },
               child: CustomText(
                 color: AppColors.blue_100,
                 text: 'See All'.tr,
@@ -152,78 +154,84 @@ class _HomeScreenDataState extends State<HomeScreenData> {
           scrollDirection: Axis.horizontal,
           physics:const BouncingScrollPhysics(),
           child: Row(
-            children: List.generate(10, (index) =>  Container(
+            children: List.generate(10, (index) =>
+                GestureDetector(
+                  onTap: (){
+                    Get.toNamed(AppRoute.userServiceDetailsScreen);
+                  },
+                  child: Container(
               margin:const EdgeInsets.only(right: 8),
               width: MediaQuery.of(context).size.width*.5,
               padding: const EdgeInsetsDirectional.symmetric(horizontal:8,vertical: 8 ),
               decoration: ShapeDecoration(
-                color: Colors.white,
-                shape: RoundedRectangleBorder(
-                  side: const BorderSide(width: 1, color: Color(0xFF6AA4EE)),
-                  borderRadius: BorderRadius.circular(8),
-                ),
+                  color: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    side: const BorderSide(width: 1, color: Color(0xFF6AA4EE)),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
               ),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: 100,
-                    decoration: ShapeDecoration(
-                      image: const DecorationImage(
-                        image: AssetImage(
-                            AppImages.homeClean1
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 100,
+                      decoration: ShapeDecoration(
+                        image: const DecorationImage(
+                          image: AssetImage(
+                              AppImages.homeClean1
+                          ),
+                          fit: BoxFit.fill,
                         ),
-                        fit: BoxFit.fill,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
                       ),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
                     ),
-                  ),
-                  const SizedBox(height: 8),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      CustomText(
-                        text: "Jhon doy",
-                        fontWeight: FontWeight.w500,
-                        fontSize: 14,
-                      ),
-                      Row(
-                        children: [
-                          CustomImage(
-                              imageType: ImageType.svg,
-                              imageSrc: AppIcons.star),
-                          CustomText(
-                            text: "(4.5)",
-                            left: 4,
-                            right: 4,
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  const Row(
+                    const SizedBox(height: 8),
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        CustomText(
+                          text: "Jhon doy",
+                          fontWeight: FontWeight.w500,
+                          fontSize: 14,
+                        ),
+                        Row(
+                          children: [
+                            CustomImage(
+                                imageType: ImageType.svg,
+                                imageSrc: AppIcons.star),
+                            CustomText(
+                              text: "(4.5)",
+                              left: 4,
+                              right: 4,
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 12,
+                    ),
+                    const Row(
 
-                    children: [
-                      CustomImage(
-                          imageType: ImageType.svg,
-                          imageSrc: AppIcons.location),
-                      CustomText(
-                        left: 4,
-                        text: "Abu Dhabi",
-                        fontSize: 10,
-                        fontWeight: FontWeight.w400,
-                        right: 4,
-                      )
+                      children: [
+                        CustomImage(
+                            imageType: ImageType.svg,
+                            imageSrc: AppIcons.location),
+                        CustomText(
+                          left: 4,
+                          text: "Abu Dhabi",
+                          fontSize: 10,
+                          fontWeight: FontWeight.w400,
+                          right: 4,
+                        )
 
-                    ],
-                  )
-                ],
+                      ],
+                    )
+                  ],
               ),
-            ),),
+            ),
+                ),),
           ),
         ),
         const SizedBox(height: 24),
@@ -236,7 +244,9 @@ class _HomeScreenDataState extends State<HomeScreenData> {
               fontSize: 18,
             ),
             GestureDetector(
-              onTap: (){},
+              onTap: (){
+                Get.toNamed(AppRoute.carWashDetailsScreen);
+              },
               child: CustomText(
                 color: AppColors.blue_100,
                 text: 'See All'.tr,
@@ -251,85 +261,91 @@ class _HomeScreenDataState extends State<HomeScreenData> {
           scrollDirection: Axis.horizontal,
           physics:const BouncingScrollPhysics(),
           child: Row(
-            children: List.generate(10, (index) =>  Container(
+            children: List.generate(10, (index) =>
+                GestureDetector(
+                  onTap: (){
+                    Get.toNamed(AppRoute.userServiceDetailsScreen);
+                  },
+                  child: Container(
               margin:const EdgeInsets.only(right: 8),
               width: MediaQuery.of(context).size.width*.5,
               padding: const EdgeInsetsDirectional.symmetric(horizontal:8,vertical: 8 ),
               decoration: ShapeDecoration(
-                color: Colors.white,
-                shape: RoundedRectangleBorder(
-                  side: const BorderSide(width: 1, color: Color(0xFF6AA4EE)),
-                  borderRadius: BorderRadius.circular(8),
-                ),
+                  color: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    side: const BorderSide(width: 1, color: Color(0xFF6AA4EE)),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
               ),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: 100,
-                    decoration: ShapeDecoration(
-                      image: const DecorationImage(
-                        image: AssetImage(
-                            AppImages.airCondition1
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 100,
+                      decoration: ShapeDecoration(
+                        image: const DecorationImage(
+                          image: AssetImage(
+                              AppImages.airCondition1
+                          ),
+                          fit: BoxFit.fill,
                         ),
-                        fit: BoxFit.fill,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
                       ),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
                     ),
-                  ),
-                  const SizedBox(height: 8),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      CustomText(
-                        text: "Jhon dou",
-                        fontWeight: FontWeight.w500,
-                        fontSize: 14,
-                      ),
-                      Row(
-                        children: [
-                          CustomImage(
-                              imageType: ImageType.svg,
-                              imageSrc: AppIcons.star),
-                          CustomText(
-                            text: "(4.5)",
-                            left: 4,
-                            right: 4,
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  const Row(
+                    const SizedBox(height: 8),
+                    const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        CustomText(
+                          text: "Jhon dou",
+                          fontWeight: FontWeight.w500,
+                          fontSize: 14,
+                        ),
+                        Row(
+                          children: [
+                            CustomImage(
+                                imageType: ImageType.svg,
+                                imageSrc: AppIcons.star),
+                            CustomText(
+                              text: "(4.5)",
+                              left: 4,
+                              right: 4,
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 12,
+                    ),
+                    const Row(
 
-                    children: [
-                      CustomImage(
-                          imageType: ImageType.svg,
-                          imageSrc: AppIcons.location),
-                      CustomText(
-                        left: 4,
-                        text: "Abu Dhabi",
-                        fontSize: 10,
-                        fontWeight: FontWeight.w400,
-                        right: 4,
-                      )
+                      children: [
+                        CustomImage(
+                            imageType: ImageType.svg,
+                            imageSrc: AppIcons.location),
+                        CustomText(
+                          left: 4,
+                          text: "Abu Dhabi",
+                          fontSize: 10,
+                          fontWeight: FontWeight.w400,
+                          right: 4,
+                        )
 
-                    ],
-                  )
-                ],
+                      ],
+                    )
+                  ],
               ),
-            ),),
+            ),
+                ),),
           ),
         ),
         const SizedBox(height: 24),
         Center(
           child: GestureDetector(
             onTap: (){
-              Get.to(UserBottomNavBarScreen(currentIndex: 1));
+              Navigator.push(context, MaterialPageRoute(builder: (_)=>UserBottomNavBarScreen(currentIndex: 1)));
             },
             child: Text.rich(
               textAlign: TextAlign.center,
@@ -357,7 +373,7 @@ class _HomeScreenDataState extends State<HomeScreenData> {
             ),
           ),
         ),
-        SizedBox(height: 100,)
+        SizedBox(height: 80,)
       ],
     );
   }

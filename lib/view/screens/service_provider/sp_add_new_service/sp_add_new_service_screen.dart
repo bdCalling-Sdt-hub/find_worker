@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:find_worker/core/app_routes.dart';
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_icons.dart';
+import 'package:find_worker/view/screens/service_provider/sp_bottom_nav_bar/sp_bottom_nav_bar_screen.dart';
 import 'package:find_worker/view/widgets/app_bar/custom_app_bar.dart';
 import 'package:find_worker/view/widgets/buttons/bottom_nav_button.dart';
 import 'package:find_worker/view/widgets/image/custom_image.dart';
@@ -289,7 +290,7 @@ class _SpAddNewServiceScreenState extends State<SpAddNewServiceScreen> {
                       ));
                 }),
             bottomNavigationBar: BottomNavButton(buttonText: 'Add Service'.tr, onTap: (){
-              Get.toNamed(AppRoute.spServicesScreen);
+              Get.to(SpBottomNavBarScreen(currentIndex: 2));
             })
         ));
   }

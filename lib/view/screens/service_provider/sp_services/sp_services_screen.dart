@@ -13,7 +13,6 @@ class SpServicesScreen extends StatefulWidget {
   @override
   State<SpServicesScreen> createState() => _SpServicesScreenState();
 }
-
 class _SpServicesScreenState extends State<SpServicesScreen> {
   @override
   Widget build(BuildContext context) {
@@ -21,79 +20,85 @@ class _SpServicesScreenState extends State<SpServicesScreen> {
         top: false,
         bottom: false,
         child: Scaffold(
-            backgroundColor: AppColors.white,
-            appBar: CustomAppBar(
-              appBarContent: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Get.back();
-                    },
-                    child: const Icon(
-                      Icons.arrow_back_ios_new_outlined,
-                      size: 16,
-                      color: AppColors.blue_100,
-                    ),
-                  ),
-                  CustomText(
-                    text: 'Services'.tr,
+          backgroundColor: AppColors.white,
+          appBar: CustomAppBar(
+            appBarContent: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Get.back();
+                  },
+                  child: const Icon(
+                    Icons.arrow_back_ios_new_outlined,
+                    size: 16,
                     color: AppColors.blue_100,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
                   ),
-                  const SizedBox()
-                ],
-              ),
+                ),
+                CustomText(
+                  text: 'Services'.tr,
+                  color: AppColors.blue_100,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                ),
+                const SizedBox()
+              ],
             ),
-            body: LayoutBuilder(
-                builder: (BuildContext context, BoxConstraints constraints) {
-                  return SingleChildScrollView(
-                      padding:
-                      const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
-                      child: Column(
+          ),
+          body: LayoutBuilder(
+              builder: (BuildContext context, BoxConstraints constraints) {
+            return SingleChildScrollView(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
+                child: Column(
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Get.toNamed(AppRoute.spServiceDetailsScreen);
+                      },
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8, vertical: 16),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            CustomText(
+                              text: 'Car Wash'.tr,
+                            ),
+                            const CustomImage(
+                              imageSrc: AppIcons.chevronRight,
+                              size: 18,
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Get.toNamed(AppRoute.spAddNewServiceScreen);
+                      },
+                      child: Row(
                         children: [
-                          GestureDetector(
-                            onTap: (){
-                              Get.toNamed(AppRoute.spServiceDetailsScreen);
-                            },
-                            child: Container(
-                              padding: EdgeInsets.symmetric(horizontal: 8,vertical: 16),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                children: [
-                                  CustomText(
-                                    text: 'Car Wash'.tr,
-                                  ),
-                                  CustomImage(imageSrc: AppIcons.chevronRight,size: 18,)
-                                ],
-                              ),
-                            ),
-
+                          const CustomImage(
+                            imageSrc: AppIcons.plusCircle,
+                            size: 24,
                           ),
-                          SizedBox(height: 16,),
-                          GestureDetector(
-                            onTap: (){
-                              Get.toNamed(AppRoute.spAddNewServiceScreen);
-                            },
-                            child: Row(
-                              children: [
-                                CustomImage(imageSrc: AppIcons.plusCircle,size: 24,),
-                                CustomText(
-                                  text: 'Add New Service'.tr,
-                                  color: AppColors.blue_100,
-                                  fontSize: 18,
-                                  left: 4,
-                                  right: 4,
-                                )
-                              ],
-                            ),
+                          CustomText(
+                            text: 'Add New Service'.tr,
+                            color: AppColors.blue_100,
+                            fontSize: 18,
+                            left: 4,
+                            right: 4,
                           )
                         ],
-                      )
-                  );
-                }),
-
+                      ),
+                    )
+                  ],
+                ));
+          }),
         ));
   }
 }

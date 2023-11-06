@@ -168,7 +168,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: GestureDetector(
                     onTap: (){
                       setState(() {
-                        widget.selectedIndex = index;
+
                       });
                     },
                     child: Column(
@@ -225,15 +225,12 @@ class _HomeScreenState extends State<HomeScreen> {
             toolbarHeight: 150,
           ),
           body:LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
-            return  SingleChildScrollView(
-              padding:const EdgeInsets.only(left: 20,right: 20,bottom: 20),
+            return  const SingleChildScrollView(
+              padding:EdgeInsets.only(left: 20,right: 20,bottom: 20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  widget.selectedIndex == -1 ? const HomeScreenData() : widget.selectedIndex == 0 ? CarWashSection(selectedIndex: widget.selectedIndex, text: "Home Clean",)
-                  : widget.selectedIndex == 1 ? CarWashSection(selectedIndex: widget.selectedIndex, text: "Car Wash",)  :
-                  widget.selectedIndex == 2 ? CarWashSection(selectedIndex: widget.selectedIndex, text: "Air Condition") : const Text("Same way others data"),
-
+                  HomeScreenData()
                 ],
               ),
             );

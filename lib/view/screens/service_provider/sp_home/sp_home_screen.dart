@@ -3,7 +3,6 @@ import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_icons.dart';
 import 'package:find_worker/utils/app_images.dart';
 import 'package:find_worker/utils/app_strings.dart';
-import 'package:find_worker/view/screens/service_provider/sp_home/inner_widgets/sp_home_bottom_modal.dart';
 import 'package:find_worker/view/screens/service_provider/sp_home/inner_widgets/sp_home_job_details_section.dart';
 import 'package:find_worker/view/widgets/app_bar/custom_app_bar.dart';
 import 'package:find_worker/view/widgets/buttons/custom_button.dart';
@@ -78,79 +77,70 @@ class _SpHomeScreenState extends State<SpHomeScreen> {
                     padding: const EdgeInsets.symmetric(vertical: 24,horizontal: 20),
                     child: Column(
                       children: [
-                        GestureDetector(
-                          onTap: (){
-                            showModalBottomSheet(
-                                context: context,
-                                builder: (BuildContext context){
-                                  return const SpHomeBottomModalSheet();
-                                });
-                          },
-                          child: Container(
-                            padding: const EdgeInsets.all(16),
-                            decoration:  BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              border: Border.all(color: AppColors.blue_100,width: 1),
-                              gradient: const LinearGradient(
-                                colors: [Color(0xFFF3F3F3),Color(0xFFCCE0FA),],
-                              ),
+                        Container(
+                          padding: const EdgeInsets.all(16),
+                          decoration:  BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(color: AppColors.blue_100,width: 1),
+                            gradient: const LinearGradient(
+                              colors: [Color(0xFFF3F3F3),Color(0xFFCCE0FA),],
                             ),
-                            child: Row(
-                              children: [
-                                Container(
-                                  height: 100,
-                                  width: 100,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    border: Border.all(width: 1,color: AppColors.blue_100),
-                                    image: const DecorationImage(image: AssetImage('assets/images/profile_smith.png'))
-                                  ),
+                          ),
+                          child: Row(
+                            children: [
+                              Container(
+                                height: 100,
+                                width: 100,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  border: Border.all(width: 1,color: AppColors.blue_100),
+                                  image: const DecorationImage(image: AssetImage('assets/images/profile_smith.png'))
                                 ),
-                                const SizedBox(width: 16,),
-                                 Expanded(
-                                    child: Column(
-                                  children: [
-                                    const Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        CustomText(
-                                          text: 'John Doe',
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                        Row(
-                                          children: [
-                                            CustomImage(
-                                              imageSrc: AppIcons.star,size: 12,
-                                            ),
-                                            CustomText(
-                                              text: '(4.5)',
-                                              fontWeight: FontWeight.w500,
-                                              left: 4,
-                                            ),
-                                          ],
-                                        )
-                                      ],
-                                    ),
-                                    const SizedBox(height: 16,),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        CustomText(
-                                          text: 'Service'.tr,
-                                          color: AppColors.black_60,
-                                        ),
-                                        CustomText(
-                                          text: 'Car Wash'.tr,
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w500,
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ))
-                              ],
-                            ),
+                              ),
+                              const SizedBox(width: 16,),
+                               Expanded(
+                                  child: Column(
+                                children: [
+                                  const Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      CustomText(
+                                        text: 'John Doe',
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                      Row(
+                                        children: [
+                                          CustomImage(
+                                            imageSrc: AppIcons.star,size: 12,
+                                          ),
+                                          CustomText(
+                                            text: '(4.5)',
+                                            fontWeight: FontWeight.w500,
+                                            left: 4,
+                                          ),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                  const SizedBox(height: 16,),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      CustomText(
+                                        text: 'Service'.tr,
+                                        color: AppColors.black_60,
+                                      ),
+                                      CustomText(
+                                        text: 'Car Wash'.tr,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ))
+                            ],
                           ),
                         ),
                         const SizedBox(height: 94,),

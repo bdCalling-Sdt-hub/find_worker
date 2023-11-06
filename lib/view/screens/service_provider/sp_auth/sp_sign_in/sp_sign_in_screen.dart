@@ -1,7 +1,7 @@
 import 'package:find_worker/core/app_routes.dart';
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_icons.dart';
-import 'package:find_worker/utils/app_strings.dart';
+import 'package:find_worker/view/screens/service_provider/sp_auth/sp_sign_in/inner_widgets/sp_sign_in_alert.dart';
 import 'package:find_worker/view/screens/service_provider/sp_bottom_nav_bar/sp_bottom_nav_bar_screen.dart';
 import 'package:find_worker/view/widgets/buttons/custom_button.dart';
 import 'package:find_worker/view/widgets/image/custom_image.dart';
@@ -115,8 +115,11 @@ class _SpSignInScreenState extends State<SpSignInScreen> {
                             CustomButton(
                               buttonWidth: MediaQuery.of(context).size.width,
                               onPressed: () {
-                                 /*Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_)=> SpBottomNavBarScreen(currentIndex: 0)), (route) => false);*/
-                                Get.to(SpBottomNavBarScreen(currentIndex: 0));
+                                 showDialog(
+                                     context: context,
+                                     builder: (_){
+                                       return const SpSignInAlert();
+                                     });
                               },
                               titleText: 'Sign In'.tr,
                               titleColor: AppColors.white,

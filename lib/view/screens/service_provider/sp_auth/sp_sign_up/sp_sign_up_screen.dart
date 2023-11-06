@@ -22,27 +22,11 @@ class SpSignUpScreen extends StatefulWidget {
 class _SpSignUpScreenState extends State<SpSignUpScreen> {
   int selectedItem = 0;
   List<String> serviceType = [
-    'Home Clean'.tr,
-    'Car Wash'.tr,
-    'Farmer'.tr,
-    'Air Condition Maintenance'.tr,
-    'Pipe Fitter'.tr,
-    'Jens Salon'.tr,
-    'Man Driver'.tr,
-    'Woman Driver'.tr,
-    'Ladies Salon'.tr,
-    'Home Business'.tr,
-    'Butcher'.tr,
-    'Private Tutor'.tr,
-    'Henna'.tr,
-    'Movers'.tr,
-    'Gypsum Board & Floor'.tr,
-    'Car Tires Repair'.tr,
-    'Car Recovery'.tr,
-    'Catering'.tr,
-    'Cable Fixing'.tr,
+        'User',
+        'Service Provider'
   ];
 
+  TextEditingController serviceTypeController=TextEditingController();
   List<String> genderList = ["Male".tr, "Female".tr, "Others".tr];
   int selectedGender = 0;
   bool isClicked = false;
@@ -344,7 +328,8 @@ class _SpSignUpScreenState extends State<SpSignUpScreen> {
                                     bottom: 8,
                                   ),
                                   TextFormField(
-                                    obscureText: true,
+                                    controller: serviceTypeController,
+                                    readOnly: true,
                                     textAlign: TextAlign.start,
                                     decoration: InputDecoration(
                                       suffixIcon: IconButton(onPressed: (){
@@ -400,6 +385,7 @@ class _SpSignUpScreenState extends State<SpSignUpScreen> {
                                           onTap: () {
                                             setState(() {
                                               selectedItem = index;
+                                              serviceTypeController.text=serviceType[selectedItem];
                                             });
                                           },
                                           child: Container(

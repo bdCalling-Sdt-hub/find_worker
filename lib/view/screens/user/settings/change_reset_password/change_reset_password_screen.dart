@@ -117,7 +117,7 @@ class _ChangeResetPasswordScreenState extends State<ChangeResetPasswordScreen> {
               }
           ),
           bottomNavigationBar: BottomNavButton(buttonText: 'Update'.tr, onTap: (){
-            Get.toNamed(AppRoute.settingScreen);
+            Get.toNamed(AppRoute.changePasswordScreen);
           }),
         ));
   }

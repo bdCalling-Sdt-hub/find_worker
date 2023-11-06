@@ -146,7 +146,7 @@ class _SearchEndDrawerState extends State<SearchEndDrawer> {
                   BottomNavButton(
                     buttonText: 'Apply'.tr,
                     onTap: () {
-                      /*Get.to(()=> const OtpScreen());*/
+                     Navigator.pop(context);
                     },
 
                   )
