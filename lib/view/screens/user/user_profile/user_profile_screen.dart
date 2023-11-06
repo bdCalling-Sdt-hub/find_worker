@@ -1,4 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:find_worker/core/app_routes.dart';
+import 'package:find_worker/model/user_model.dart';
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_icons.dart';
 import 'package:find_worker/utils/app_images.dart';
@@ -7,6 +10,7 @@ import 'package:find_worker/view/screens/user/user_profile/inner_widgets/log_out
 import 'package:find_worker/view/widgets/app_bar/custom_app_bar.dart';
 import 'package:find_worker/view/widgets/image/custom_image.dart';
 import 'package:find_worker/view/widgets/text/custom_text.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,6 +22,35 @@ class UserProfileScreen extends StatefulWidget {
 }
 
 class _UserProfileScreenState extends State<UserProfileScreen> {
+  User? user = FirebaseAuth.instance.currentUser;
+
+  UserModel loggedInUser = UserModel();
+
+  bool isScreenLoading = false;
+
+  Future<void> getUserinfo() async {
+    setState(() {
+      isScreenLoading = true;
+    });
+
+   FirebaseFirestore.instance.collection("Users").doc(user!.uid).get()
+        .then((value){
+      loggedInUser = UserModel.fromMap(value.data()!);
+      setState(() {});
+    });
+
+    setState(() {
+      isScreenLoading = false;
+    });
+  }
+
+  @override
+  void initState()
+  {
+    getUserinfo();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -39,7 +72,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
             return SingleChildScrollView(
                 child: Column(
                   children: [
-                    Container(
+                   Container(
                       padding:const EdgeInsets.only(top: 24,bottom: 24),
                       width: MediaQuery.of(context).size.width,
                       decoration:const BoxDecoration(
@@ -51,15 +84,26 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                       ),
                       child: Column(
                         children: [
-                          Container(
-                            height: 130,
+                          loggedInUser.imageSrc == "" ?  Container(
+                            height: 100, width: 100,
+                            alignment: Alignment.center,
                             decoration: const BoxDecoration(
-                              image: DecorationImage(image: AssetImage('assets/images/profile_smith.png'),
+                                shape: BoxShape.circle,
+                                image: DecorationImage(
+                                    image: AssetImage('assets/images/profile_smith.png'),
+                                    fit: BoxFit.cover
+                                )
+                            ),
+                          ): Container(
+                            height: 130,
+                            decoration:  BoxDecoration(
+                              image: DecorationImage(image: CachedNetworkImageProvider(loggedInUser.imageSrc ?? ""),
+                                  fit: BoxFit.cover
                               )
                             ),
-                          ),
-                          const CustomText(
-                            text: 'Smith John',
+                            ),
+                           CustomText(
+                            text: loggedInUser.userName ?? "",
                             fontWeight: FontWeight.w500,
                             fontSize: 18,
                             color: AppColors.white,

@@ -54,6 +54,7 @@ dependencies:
   intl: ^0.18.1
   firebase_messaging: ^14.7.3
   shared_preferences:
+  cached_network_image:
 
 
 dev_dependencies:

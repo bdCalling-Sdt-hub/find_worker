@@ -1,10 +1,14 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:find_worker/core/app_routes.dart';
+import 'package:find_worker/model/user_model.dart';
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_icons.dart';
 import 'package:find_worker/utils/app_strings.dart';
 import 'package:find_worker/view/widgets/app_bar/custom_app_bar.dart';
 import 'package:find_worker/view/widgets/image/custom_image.dart';
 import 'package:find_worker/view/widgets/text/custom_text.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,32 +21,27 @@ class UserPersonalInformationScreen extends StatefulWidget {
 
 class _UserPersonalInformationScreenState extends State<UserPersonalInformationScreen> {
 
-  List<Map<String,String>> categoryInfo =[
-    {
-      'icon':AppIcons.user,
-      'info':'Smith Jhon',
-    },
-    {
-      'icon':AppIcons.dateOfBirth,
-      'info':'22-03-1998',
-    },
-    {
-      'icon':AppIcons.gender,
-      'info':AppStrings.male,
-    },
-    {
-      'icon':AppIcons.phone,
-      'info':'+44 26537 26347',
-    },
-    {
-      'icon':AppIcons.mail,
-      'info':'smith@gmail.com',
-    },
-    {
-      'icon':AppIcons.location,
-      'info':'Abu Dhabi',
-    },
-  ];
+
+  User? user = FirebaseAuth.instance.currentUser;
+  UserModel loggedInUser = UserModel();
+
+
+  Future<void>getUserInfo() async {
+
+    FirebaseFirestore.instance.collection("Users").doc(user!.uid).get()
+        .then((value){
+      loggedInUser = UserModel.fromMap(value.data()!);
+      setState(() {});
+    });
+  }
+
+  @override
+  void initState()
+  {
+    getUserInfo();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -86,15 +85,22 @@ class _UserPersonalInformationScreenState extends State<UserPersonalInformationS
                           ),
                           child: Column(
                             children: [
-                              Container(
+                              loggedInUser.imageSrc== ""? Container(
                                 height: 130,
                                 decoration: const BoxDecoration(
                                     image: DecorationImage(image: AssetImage('assets/images/profile_smith.png'),
                                     )
                                 ),
+                              ): Container(
+                                height: 130,
+                                decoration:  BoxDecoration(
+                                    image: DecorationImage(image: CachedNetworkImageProvider(loggedInUser.imageSrc ?? ""),
+                                        fit: BoxFit.cover
+                                    )
+                                ),
                               ),
-                              const CustomText(
-                                text: 'Smith John',
+                              CustomText(
+                                text: loggedInUser.userName ?? "",
                                 fontWeight: FontWeight.w500,
                                 fontSize: 18,
                                 color: AppColors.white,
@@ -123,27 +129,109 @@ class _UserPersonalInformationScreenState extends State<UserPersonalInformationS
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 24,horizontal: 20),
+                          padding:  const EdgeInsets.symmetric(vertical: 24,horizontal: 20),
                           child: Container(
-                            padding: const EdgeInsets.symmetric(vertical: 16,horizontal: 20),
-                            child: Column(
-                              children: List.generate(categoryInfo.length, (index) => Container(
-                                margin: const EdgeInsets.only(bottom: 16),
-                                padding: const EdgeInsets.only(bottom: 16),
-                                decoration: const BoxDecoration(
-                                    border: Border(bottom: BorderSide(color: AppColors.blue_20,width: 1))
-                                ),
-                                child:   Row(
+                              padding:  const EdgeInsets.symmetric(vertical: 16,horizontal: 20),
+                              child: Column(
                                   children: [
-                                    CustomImage(imageSrc: categoryInfo[index]['icon'].toString(),size: 18,),
-                                    CustomText(
-                                      text: categoryInfo[index]['info'].toString(),
-                                      left: 12,
-                                    )
-                                  ],
-                                ),
-                              ),),
-                            )
+                                    Container(
+                                      margin:  const EdgeInsets.only(bottom: 16),
+                                      padding:  const EdgeInsets.only(bottom: 16),
+                                      decoration:  const BoxDecoration(
+                                          border: Border(bottom: BorderSide(color: AppColors.blue_20,width: 1))
+                                      ),
+                                      child:  Row(
+                                        children: [
+                                          const CustomImage(imageSrc: AppIcons.user,size: 18,),
+                                          CustomText(
+                                            text: loggedInUser.userName ?? "",
+                                            left: 12,
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    Container(
+                                      margin:  const EdgeInsets.only(bottom: 16),
+                                      padding:  const EdgeInsets.only(bottom: 16),
+                                      decoration:  const BoxDecoration(
+                                          border: Border(bottom: BorderSide(color: AppColors.blue_20,width: 1))
+                                      ),
+                                      child:  Row(
+                                        children: [
+                                         const CustomImage(imageSrc: AppIcons.dateOfBirth,size: 18,),
+                                          CustomText(
+                                            text: "${loggedInUser.dob?.day}-${loggedInUser.dob?.month}-${loggedInUser.dob?.year}",
+                                            left: 12,
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    Container(
+                                      margin:  const EdgeInsets.only(bottom: 16),
+                                      padding:  const EdgeInsets.only(bottom: 16),
+                                      decoration:  const BoxDecoration(
+                                          border: Border(bottom: BorderSide(color: AppColors.blue_20,width: 1))
+                                      ),
+                                      child:  Row(
+                                        children: [
+                                         const CustomImage(imageSrc: AppIcons.gender,size: 18,),
+                                          CustomText(
+                                            text: loggedInUser.gender??"",
+                                            left: 12,
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    Container(
+                                      margin:  const EdgeInsets.only(bottom: 16),
+                                      padding:  const EdgeInsets.only(bottom: 16),
+                                      decoration:  const BoxDecoration(
+                                          border: Border(bottom: BorderSide(color: AppColors.blue_20,width: 1))
+                                      ),
+                                      child:  Row(
+                                        children: [
+                                         const CustomImage(imageSrc: AppIcons.phone,size: 18,),
+                                          CustomText(
+                                            text: loggedInUser.phone ?? "",
+                                            left: 12,
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    Container(
+                                      margin:  const EdgeInsets.only(bottom: 16),
+                                      padding:  const EdgeInsets.only(bottom: 16),
+                                      decoration:  const BoxDecoration(
+                                          border: Border(bottom: BorderSide(color: AppColors.blue_20,width: 1))
+                                      ),
+                                      child:  Row(
+                                        children: [
+                                         const CustomImage(imageSrc:AppIcons.mail,size: 18,),
+                                          CustomText(
+                                            text: loggedInUser.email?? "",
+                                            left: 12,
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    Container(
+                                      margin:  const EdgeInsets.only(bottom: 16),
+                                      padding:  const EdgeInsets.only(bottom: 16),
+                                      decoration:  const BoxDecoration(
+                                          border: Border(bottom: BorderSide(color: AppColors.blue_20,width: 1))
+                                      ),
+                                      child:  Row(
+                                        children: [
+                                         const CustomImage(imageSrc: AppIcons.location,size: 18,),
+                                          CustomText(
+                                            text: loggedInUser.address ?? "",
+                                            left: 12,
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ]
+                              )
                           ),
                         ),
 

@@ -328,6 +328,8 @@ class AuthenticationController extends GetxController{
     update();
   }*/
 
+
+  UserModel userModel = UserModel();
   void loginUser(String email, String password) async{
 
     isLoading = true;
@@ -346,25 +348,28 @@ class AuthenticationController extends GetxController{
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.BOTTOM
         );
-        DocumentSnapshot data = await firebaseFireStore.collection(AppConstants.users).doc(value.user!.uid).get();
-        UserModel userData= UserModel.fromMap(data);
+        final data = await firebaseFireStore.collection(AppConstants.users).doc(value.user!.uid).get().then(
+                (value){
+                  userModel = UserModel.fromMap(value.data()!);
+                });
+        
         debugPrint("=======> Uid ${data['uid']}");
-        debugPrint("=======> User Type ${userData.role}");
-       await PrefsHelper.setString(AppConstants.logged, userData.role);
-        if(userData.role==AppConstants.userType){
+        debugPrint("=======> User Type ${userModel.role}");
+       await PrefsHelper.setString(AppConstants.logged, userModel.role);
+        if(userModel.role==AppConstants.userType){
           Get.offAll(UserBottomNavBarScreen(currentIndex: 0));
-          _dataController.setData(userNameD: userData.userName!,
-              userRoleD:userData.role!,
-              uidD:userData.uid!,
-              imageD:userData.imageSrc!,
-              authTypeD:userData.authType!);
+          _dataController.setData(userNameD: userModel.userName!,
+              userRoleD:userModel.role!,
+              uidD:userModel.uid!,
+              imageD:userModel.imageSrc!,
+              authTypeD:userModel.authType!);
         }else{
           Get.offAll(SpBottomNavBarScreen(currentIndex: 0));
-          _dataController.setData(userNameD: userData.userName!,
-              userRoleD:userData.role!,
-              uidD:userData.uid!,
-              imageD:userData.imageSrc!,
-              authTypeD:userData.authType!);
+          _dataController.setData(userNameD: userModel.userName!,
+              userRoleD:userModel.role!,
+              uidD:userModel.uid!,
+              imageD:userModel.imageSrc!,
+              authTypeD:userModel.authType!);
         }
       }
       ).catchError((e){
