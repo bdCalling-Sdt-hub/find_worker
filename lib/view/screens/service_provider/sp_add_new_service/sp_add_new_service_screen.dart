@@ -33,29 +33,9 @@ class _SpAddNewServiceScreenState extends State<SpAddNewServiceScreen> {
     super.initState();
   }
 
-  int selectedItem =(-1);
+
   bool isSelected = false;
-  List<String> serviceType = [
-    'Home Clean',
-    'Car Wash',
-    'Farmer',
-    'Air Condition Maintenance',
-    'Pipe Fitter',
-    'Jens Salon',
-    'Man Driver',
-    'Woman Driver',
-    'Ladies Salon',
-    'Home Business',
-    'Butcher',
-    'Private Tutor',
-    'Henna',
-    'Movers',
-    'Gypsum Board & Floor',
-    'Car Tires Repair',
-    'Car Recovery',
-    'Catering',
-    'Cable Fixing',
-  ];
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -201,7 +181,7 @@ class _SpAddNewServiceScreenState extends State<SpAddNewServiceScreen> {
                                          _controller.serviceTextCtrl.text=_controller.categoryList[index].name!;
                                          _controller.selectServiceId.value=_controller.categoryList[index].id!;
                                          isSelected=false;
-                                         selectedItem=index;
+                                        _controller.selectedItem.value=index;
                                           });
                                         },
                                         child: Container(
@@ -225,7 +205,7 @@ class _SpAddNewServiceScreenState extends State<SpAddNewServiceScreen> {
                                                     borderRadius: BorderRadius.circular(50),
                                                     border: Border.all(
                                                         color: AppColors.blue_100, width: 1),
-                                                    color: index == selectedItem ? AppColors.blue_100 : AppColors.white,
+                                                    color: index == _controller.selectedItem.value ? AppColors.blue_100 : AppColors.white,
                                                   ),
                                                 ),
                                                 CustomText(

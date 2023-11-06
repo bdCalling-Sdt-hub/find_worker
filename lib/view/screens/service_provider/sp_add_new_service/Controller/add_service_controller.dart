@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:find_worker/model/category_model.dart';
 import 'package:find_worker/model/service_model.dart';
 import 'package:find_worker/utils/app_constents.dart';
+import 'package:find_worker/view/screens/service_provider/sp_services/Controller/service_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
@@ -15,7 +16,7 @@ import 'package:uuid/uuid.dart';
 class AddNewServiceController extends GetxController{
 
       RxList<CategoryModel> categoryList= <CategoryModel>[].obs;
-
+        ServiceController serviceController=ServiceController();
       FirebaseFirestore  firebaseStorage= FirebaseFirestore.instance;
       final FirebaseStorage _storage = FirebaseStorage.instance;
       final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -29,7 +30,8 @@ class AddNewServiceController extends GetxController{
       final ImagePicker picker = ImagePicker();
       late  XFile? image;
        var imagePath="".obs;
-      var uuid = Uuid();
+      var selectedItem =(-1).obs;
+      var uuid = const Uuid();
 // Pick an image.
 
 
@@ -87,11 +89,13 @@ class AddNewServiceController extends GetxController{
               );
               await firebaseStorage.collection(AppConstants.services).doc(id).set(body.toJson());
               Get.snackbar("Success", "Service Added Successful");
+              await serviceController.getService();
               serviceTextCtrl.clear();
               selectServiceId.value="";
               addressTextCtrl.clear();
               descriptionTextCtrl.clear();
               imagePath.value="";
+              selectedItem.value=(-1);
             }else{
               Get.snackbar("Error","This Service Already Added");
             }

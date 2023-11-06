@@ -422,8 +422,7 @@ class AuthenticationController extends GetxController{
       try {
         isSignOutLoad(true);
              await auth.signOut().then((value)async{
-
-         Get.offAll(UserSignIn());
+         Get.offAll(const UserSignIn());
         await PrefsHelper.setString(AppConstants.logged, "");
          debugPrint("=========> Successful sign out");
         isSignOutLoad(false);
@@ -433,8 +432,6 @@ class AuthenticationController extends GetxController{
       }finally{
         isSignOutLoad(false);
       }
-
-
   }
 
 
