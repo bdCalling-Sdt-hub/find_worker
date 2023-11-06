@@ -88,7 +88,7 @@ class _SpServicesScreenState extends State<SpServicesScreen> {
                             GestureDetector(
                               onTap: (){
                                 Get.toNamed(AppRoute.spAddNewServiceScreen);
-                              },
+                              }, 
                               child: Row(
                                 children: [
                                   const CustomImage(imageSrc: AppIcons.plusCircle,size: 24,),
