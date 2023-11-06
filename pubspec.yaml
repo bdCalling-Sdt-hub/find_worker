@@ -55,6 +55,7 @@ dependencies:
   firebase_messaging: ^14.7.3
   shared_preferences:
   cached_network_image:
+  image_picker:
 
 
 dev_dependencies:
