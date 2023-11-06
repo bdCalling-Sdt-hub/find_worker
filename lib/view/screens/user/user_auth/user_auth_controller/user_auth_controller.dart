@@ -421,8 +421,10 @@ class AuthenticationController extends GetxController{
   signOut()async{
       try {
         isSignOutLoad(true);
-             await auth.signOut().then((value){
+             await auth.signOut().then((value)async{
+
          Get.offAll(UserSignIn());
+        await PrefsHelper.setString(AppConstants.logged, "");
          debugPrint("=========> Successful sign out");
         isSignOutLoad(false);
              });
