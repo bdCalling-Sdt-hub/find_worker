@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "292374640975",
+    "project_id": "find-worker-cdeee",
+    "storage_bucket": "find-worker-cdeee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:292374640975:android:023d0697447bb0a31a2d3a",
+        "android_client_info": {
+          "package_name": "com.example.find_worker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHNX44g3k-yBtFguu5ruE5lLTg9Rd_1Ts"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
