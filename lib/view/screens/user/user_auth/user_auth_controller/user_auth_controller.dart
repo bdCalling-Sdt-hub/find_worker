@@ -16,6 +16,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
+import '../../../onboard/onboard_screen.dart';
+
 class AuthenticationController extends GetxController{
 
   final _dataController = Get.put(DataController());
@@ -43,11 +45,8 @@ class AuthenticationController extends GetxController{
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passController = TextEditingController();
   final TextEditingController confirmPasswordController = TextEditingController();
-  final TextEditingController roleType = TextEditingController();
   String phoneCode = "+93";
-  String year = "";
-  String month = "";
-  String day = "";
+
 
 
   // Date TextFormField
@@ -71,7 +70,7 @@ class AuthenticationController extends GetxController{
 
   /// for firebase sign up
 
-  Future<void> registerUser() async {
+  Future<void> registerUser(String userType ) async {
     isLoading = true;
     update();
     if(registerFormKey.currentState!.validate()) {
@@ -80,9 +79,8 @@ class AuthenticationController extends GetxController{
           password: passController.text.trim()
 
       ).then((value)async{
-        print("Srabon");
-      await  postDetailsToFireStore();
-
+        print("====>sign up");
+      await  postDetailsToFireStore(userType);
 
       }).catchError((e){
         Fluttertoast.showToast(
@@ -106,22 +104,24 @@ class AuthenticationController extends GetxController{
   fcmToken()async{
     token = (await FirebaseMessaging.instance.getToken())!;
   }
-  postDetailsToFireStore() async{
-   //await fcmToken();
+
+  postDetailsToFireStore(String userType) async{
+    await fcmToken();
     User? user = auth.currentUser;
     UserModel userModel = UserModel();
     userModel.email = user!.email;
     userModel.uid = user.uid;
     userModel.userName = nameController.text.toString();
-    userModel.dob =DateTime(int.parse(year),int.parse(month),int.parse(day));
+    userModel.dob =DateTime(int.parse(yearController.text),int.parse(monthController.text),int.parse(dayController.text));
     userModel.phone = phoneCode+phoneController.text.toString();
     userModel.address =addressController.text.toString();
     userModel.authType=AppConstants.normalUser;
-    userModel.role=roleType.text;
+    userModel.role=userType;
     userModel.password=passController.text;
     userModel.timestamp=DateTime.now();
-    userModel.status="Online";
+    userModel.status="OffLine";
     userModel.imageSrc="";
+    userModel.averageRating=0.0;
     userModel.fcmToken=token;
     userModel.gender=genderList[selectedGender];
     try {
@@ -136,8 +136,18 @@ class AuthenticationController extends GetxController{
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.BOTTOM
         );
-        PrefsHelper.setString(AppConstants.logged, roleType.text);
-        if(roleType.text==AppConstants.userType){
+        PrefsHelper.setString(AppConstants.logged, userType);
+        nameController.clear();
+        dayController.clear();
+        monthController.clear();
+        yearController.clear();
+        selectedGender=0;
+        emailController.clear();
+        phoneController.clear();
+        addressController.clear();
+        passwordController.clear();
+        confirmPasswordController.clear();
+        if(userType==AppConstants.userType){
           Get.offAll(UserBottomNavBarScreen(currentIndex: 0));
         }else{
           Get.offAll(SpBottomNavBarScreen(currentIndex: 0));
@@ -328,7 +338,7 @@ class AuthenticationController extends GetxController{
     update();
   }*/
 
-  void loginUser(String email, String password) async{
+  void loginUser(String email, String password,String userType) async{
 
     isLoading = true;
     update();
@@ -338,34 +348,45 @@ class AuthenticationController extends GetxController{
           email: email.trim(),
           password: password.trim()
       ).then((value)async{
-        Fluttertoast.showToast(
-            msg: "Login Successfully",
-            backgroundColor: AppColors.blue_100,
-            textColor: AppColors.black_100,
-            fontSize: 14,
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM
-        );
+        // Fluttertoast.showToast(
+        //     msg: "Login Successfully",
+        //     backgroundColor: AppColors.blue_100,
+        //     textColor: AppColors.black_100,
+        //     fontSize: 14,
+        //     toastLength: Toast.LENGTH_SHORT,
+        //     gravity: ToastGravity.BOTTOM
+        // );
         DocumentSnapshot data = await firebaseFireStore.collection(AppConstants.users).doc(value.user!.uid).get();
         UserModel userData= UserModel.fromMap(data);
         debugPrint("=======> Uid ${data['uid']}");
         debugPrint("=======> User Type ${userData.role}");
-       await PrefsHelper.setString(AppConstants.logged, userData.role);
-        if(userData.role==AppConstants.userType){
-          Get.offAll(UserBottomNavBarScreen(currentIndex: 0));
-          _dataController.setData(userNameD: userData.userName!,
-              userRoleD:userData.role!,
-              uidD:userData.uid!,
-              imageD:userData.imageSrc!,
-              authTypeD:userData.authType!);
-        }else{
-          Get.offAll(SpBottomNavBarScreen(currentIndex: 0));
-          _dataController.setData(userNameD: userData.userName!,
-              userRoleD:userData.role!,
-              uidD:userData.uid!,
-              imageD:userData.imageSrc!,
-              authTypeD:userData.authType!);
-        }
+
+
+       if(userData.role==userType){
+         await PrefsHelper.setString(AppConstants.logged, userData.role);
+         if(userData.role==AppConstants.userType){
+           Get.offAll(UserBottomNavBarScreen(currentIndex: 0));
+           _dataController.setData(userNameD: userData.userName!,
+               userRoleD:userData.role!,
+               uidD:userData.uid!,
+               imageD:userData.imageSrc!,
+               authTypeD:userData.authType!);
+           usernameController.clear();
+           passwordController.clear();
+         }else{
+           Get.offAll(SpBottomNavBarScreen(currentIndex: 0));
+           _dataController.setData(userNameD: userData.userName!,
+               userRoleD:userData.role!,
+               uidD:userData.uid!,
+               imageD:userData.imageSrc!,
+               authTypeD:userData.authType!);
+           usernameController.clear();
+           passwordController.clear();
+         }
+       }else{
+         Get.snackbar("Error", "User not found",colorText:Colors.red);
+
+       }
       }
       ).catchError((e){
         // Fluttertoast.showToast(
@@ -390,30 +411,30 @@ class AuthenticationController extends GetxController{
 
 
 
-  Future<void> pickedDate(BuildContext context) async{
-    final DateTime? picked = await showDatePicker(
-        context: context,
-        initialDate: DateTime.now(),
-        firstDate: DateTime(1950),
-        lastDate: DateTime(2050),
-        builder: (context, child) => Theme(
-            data: Theme.of(context).copyWith(
-              colorScheme:  const ColorScheme.light(
-                primary: AppColors.blue_100, // <-- SEE HERE
-                onPrimary: AppColors.white, // <-- SEE HERE
-                onSurface: AppColors.blue_100, // <-- SEE HERE
-              ),
-            ),
-            child: child!
-        )
-    );
-    if (picked != null) {
-      year = picked.year.toString();
-      month = picked.month.toString();
-      day = picked.day.toString();
-      update();
-    }
-  }
+  // Future<void> pickedDate(BuildContext context) async{
+  //   final DateTime? picked = await showDatePicker(
+  //       context: context,
+  //       initialDate: DateTime.now(),
+  //       firstDate: DateTime(1950),
+  //       lastDate: DateTime(2050),
+  //       builder: (context, child) => Theme(
+  //           data: Theme.of(context).copyWith(
+  //             colorScheme:  const ColorScheme.light(
+  //               primary: AppColors.blue_100, // <-- SEE HERE
+  //               onPrimary: AppColors.white, // <-- SEE HERE
+  //               onSurface: AppColors.blue_100, // <-- SEE HERE
+  //             ),
+  //           ),
+  //           child: child!
+  //       )
+  //   );
+  //   if (picked != null) {
+  //     year = picked.year.toString();
+  //     month = picked.month.toString();
+  //     day = picked.day.toString();
+  //     update();
+  //   }
+  // }
 
 
   ///  <------------- Sign out------------->
@@ -422,7 +443,7 @@ class AuthenticationController extends GetxController{
       try {
         isSignOutLoad(true);
              await auth.signOut().then((value)async{
-         Get.offAll(const UserSignIn());
+         Get.offAll(const OnboardScreen());
         await PrefsHelper.setString(AppConstants.logged, "");
          debugPrint("=========> Successful sign out");
         isSignOutLoad(false);

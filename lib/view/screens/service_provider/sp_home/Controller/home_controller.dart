@@ -11,7 +11,7 @@ class SpHomeController extends GetxController{
 @override
   void onInit() {
   getService();
-    super.onInit();
+  super.onInit();
   }
   var loading=false.obs;
   FirebaseFirestore  firebaseStorage= FirebaseFirestore.instance;
