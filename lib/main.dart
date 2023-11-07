@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import 'firebase_options.dart';
@@ -29,7 +30,13 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+ return   ScreenUtilInit(
+      designSize: const Size(390, 844),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      // Use builder only if you need to use library outside ScreenUtilInit context
+      builder: (_ , child) {
+        return  GetMaterialApp(
       debugShowCheckedModeBanner: false,
       defaultTransition: Transition.noTransition,
       initialRoute: AppRoute.splashScreen,
@@ -37,6 +44,8 @@ class MyApp extends StatelessWidget {
       transitionDuration: const Duration(milliseconds: 200),
       getPages: AppRoute.routes,
 
+    );
+      },
     );
   }
 }
