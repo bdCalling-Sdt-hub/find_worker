@@ -37,6 +37,20 @@ class _UserResetPasswordScreenState extends State<UserResetPasswordScreen> {
     email = Get.arguments;
     super.initState();
   }
+  // Future<void> updatePassword() async {
+  //   if (newPasswordController.text == confirmPasswordController.text) {
+  //     try {
+  //       await FirebaseAuth.instance.sendSignInLinkToEmail(
+  //         code: '', newPassword: newPasswordController.text,
+  //       );
+  //       // Show a success message or navigate to a success screen.
+  //     } catch (e) {
+  //       // Handle any errors, e.g., if the password reset link has expired.
+  //     }
+  //   } else {
+  //     // Passwords do not match, show an error message.
+  //   }
+  // }
 
   resetPassword(String email, String newPassword) async {
     setState(() {
@@ -45,6 +59,7 @@ class _UserResetPasswordScreenState extends State<UserResetPasswordScreen> {
     //pass the password here
 
     try{
+
       Fluttertoast.showToast(
           msg: "Password reset successfully",
           backgroundColor: AppColors.blue_100,
@@ -54,7 +69,7 @@ class _UserResetPasswordScreenState extends State<UserResetPasswordScreen> {
           gravity: ToastGravity.BOTTOM
       );
 
-      Get.offAndToNamed(AppRoute.userSignIn);
+      Get.offAndToNamed(AppRoute.onboardScreen);
     } catch(e){
       Fluttertoast.showToast(
           msg: e.toString(),

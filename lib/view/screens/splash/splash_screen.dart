@@ -26,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
       }else if(logged==AppConstants.serviceProviderType){
         Get.off(SpBottomNavBarScreen(currentIndex: 0));
       }else{
-        Get.offAndToNamed(AppRoute.userSignIn);
+        Get.offAndToNamed(AppRoute.onboardScreen);
 
       }
 

@@ -1,5 +1,6 @@
 import 'package:find_worker/core/app_routes.dart';
 import 'package:find_worker/utils/app_colors.dart';
+import 'package:find_worker/utils/app_constents.dart';
 import 'package:find_worker/utils/app_icons.dart';
 import 'package:find_worker/utils/app_images.dart';
 import 'package:find_worker/utils/app_strings.dart';
@@ -65,7 +66,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                     ),
                     GestureDetector(
                       onTap: (){
-                        Get.toNamed(AppRoute.userSignIn);
+                        Get.toNamed(AppRoute.userSignIn,arguments:AppConstants.userType);
                       },
                       child: Container(
                         margin: const EdgeInsets.only(bottom: 16),
@@ -93,7 +94,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
                     ),
                     GestureDetector(
                       onTap: (){
-                        Get.toNamed(AppRoute.spSignInScreen );
+                        Get.toNamed(AppRoute.userSignIn,arguments:AppConstants.serviceProviderType);
                       },
                       child: Container(
                         height: 56,

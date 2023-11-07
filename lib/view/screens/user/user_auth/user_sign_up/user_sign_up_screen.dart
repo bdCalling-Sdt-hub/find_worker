@@ -10,6 +10,7 @@ import 'package:find_worker/view/widgets/image/custom_image.dart';
 import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:find_worker/view/widgets/text_field/custom_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
@@ -25,26 +26,13 @@ class UserSignUpScreen extends StatefulWidget {
 
 class _UserSignUpScreenState extends State<UserSignUpScreen> {
     final authController =  Get.put(AuthenticationController());
-  int selectedItem = 0;
-  bool isSelected = false;
-  List<String> roleType = [
-    "User",
-    'Service Provider'
-  ];
-
-
-  bool isClicked = false;
+  String userType= Get.arguments;
   final registerFormKey = GlobalKey<FormState>();
   void changeGender(int index) {
     authController.selectedGender = index;
     setState(() {});
   }
 
-  @override
-  void initState() {
-
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -135,110 +123,137 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                                     bottom: 8,
                                     top: 16,
                                   ),
-                                  GestureDetector(
-                                    onTap: () => controller.pickedDate(context),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Expanded(
-                                            child: Container(
-                                              width: MediaQuery.of(context).size.width,
-                                              padding: const EdgeInsetsDirectional.symmetric(vertical: 18),
-                                              alignment: Alignment.center,
-                                              decoration: BoxDecoration(
-                                                  color: AppColors.white,
-                                                  borderRadius: BorderRadius.circular(8),
-                                                  border: Border.all(
-                                                      color: controller.year.isEmpty ? const Color(0xffE2E2E2) : AppColors.black_100
-                                                  )
-                                              ),
-                                              child: controller.day.isEmpty ? Text(
-                                                "DD".tr,
-                                                textAlign: TextAlign.center,
-                                                style: GoogleFonts.raleway(
-                                                    color: const Color(0xff818181),
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.w400
-                                                ),
-                                              ) : Text(
-                                                controller.day.padLeft(2, "0"),
-                                                textAlign: TextAlign.center,
-                                                style: GoogleFonts.openSans(
-                                                    color: AppColors.black_100,
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.w400
-                                                ),
-                                              ),
-                                            )
-                                        ),
 
-                                        const SizedBox(width: 12),
-                                        Expanded(
-                                            child: Container(
-                                              width: MediaQuery.of(context).size.width,
-                                              padding: const EdgeInsetsDirectional.symmetric(vertical: 18),
-                                              alignment: Alignment.center,
-                                              decoration: BoxDecoration(
-                                                  color: AppColors.white,
-                                                  borderRadius: BorderRadius.circular(8),
-                                                  border: Border.all(
-                                                      color: controller.year.isEmpty ? const Color(0xffE2E2E2) : AppColors.blue_100
-                                                  )
-                                              ),
-                                              child: controller.month.isEmpty ? Text(
-                                                "MM".tr,
-                                                textAlign: TextAlign.center,
-                                                style: GoogleFonts.raleway(
-                                                    color: const Color(0xff818181),
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.w400
+                                  /// <----------------------- Date of Birth---------------->
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Expanded(
+                                          child:Container(
+                                            width: MediaQuery.of(context).size.width,
+                                            padding: const EdgeInsetsDirectional.symmetric(horizontal:15,vertical: 3),
+                                            alignment: Alignment.center,
+                                            decoration: BoxDecoration(
+                                                color: AppColors.white,
+                                                borderRadius: BorderRadius.circular(8),
+                                                border: Border.all(
+                                                  color: Color(0xffE2E2E2)
+                                                    // color: controller.year.isEmpty ? const Color(0xffE2E2E2) : AppColors.blue_100
+                                                )
+                                            ),
+                                            child: TextFormField(
+                                              controller:authController.dayController,
+                                              textAlign: TextAlign.center,
+                                              validator: (value){
+                                                if(value!.isEmpty){
+                                                  return "Empty";
+                                                }
+                                              },
+                                              decoration: const InputDecoration(
+                                                hintText: "DD",
+                                                contentPadding: EdgeInsets.zero,
+                                                enabledBorder: OutlineInputBorder(
+                                                    borderSide: BorderSide.none
                                                 ),
-                                              ) : Text(
-                                                controller.month.padLeft(2, "0"),
-                                                textAlign: TextAlign.center,
-                                                style: GoogleFonts.openSans(
-                                                    color: AppColors.black_100,
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.w400
-                                                ),
-                                              ),
-                                            )
-                                        ),
-                                        const SizedBox(width: 12),
-                                        Expanded(
-                                            child: Container(
-                                              width: MediaQuery.of(context).size.width,
-                                              padding: const EdgeInsetsDirectional.symmetric(vertical: 18),
-                                              alignment: Alignment.center,
-                                              decoration: BoxDecoration(
-                                                  color: AppColors.white,
-                                                  borderRadius: BorderRadius.circular(8),
-                                                  border: Border.all(
-                                                      color: controller.year.isEmpty ? const Color(0xffE2E2E2) : AppColors.blue_100
-                                                  )
-                                              ),
-                                              child: controller.year.isEmpty ? Text(
-                                                "YYYY".tr,
-                                                textAlign: TextAlign.center,
-                                                style: GoogleFonts.raleway(
-                                                    color: const Color(0xff818181),
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.w400
-                                                ),
-                                              ) : Text(
-                                                controller.year,
-                                                textAlign: TextAlign.center,
-                                                style: GoogleFonts.openSans(
-                                                    color: AppColors.black_100,
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.w400
-                                                ),
-                                              ),
-                                            )
-                                        ),
 
-                                      ],
-                                    ),
+                                                focusedBorder: OutlineInputBorder(
+                                                    borderSide: BorderSide.none
+                                                ),
+                                              ),
+                                              inputFormatters: [
+                                                FilteringTextInputFormatter.allow(RegExp("[0-9-]")),
+                                                LengthLimitingTextInputFormatter(2),
+                                                DayFormatter(),
+                                              ],
+                                            ),
+                                          )
+                                      ),
+
+                                      const SizedBox(width: 12),
+                                      Expanded(
+                                          child:Container(
+                                            width: MediaQuery.of(context).size.width,
+                                            padding: const EdgeInsetsDirectional.symmetric(horizontal:15,vertical: 3),
+                                            alignment: Alignment.center,
+                                            decoration: BoxDecoration(
+                                                color: AppColors.white,
+                                                borderRadius: BorderRadius.circular(8),
+                                                border: Border.all(
+                                                    color: Color(0xffE2E2E2)
+                                                //    color: controller.year.isEmpty ? const Color(0xffE2E2E2) : AppColors.blue_100
+                                                )
+                                            ),
+                                            child: TextFormField(
+                                              textAlign: TextAlign.center,
+                                              controller:authController.monthController,
+                                              validator: (value){
+                                                if(value!.isEmpty){
+                                                  return "Empty";
+                                                }
+                                              },
+                                              decoration: const InputDecoration(
+                                                hintText: "MM",
+                                                contentPadding: EdgeInsets.zero,
+                                                enabledBorder: OutlineInputBorder(
+                                                    borderSide: BorderSide.none
+                                                ),
+
+                                                focusedBorder: OutlineInputBorder(
+                                                    borderSide: BorderSide.none
+                                                ),
+                                              ),
+                                              inputFormatters: [
+                                                FilteringTextInputFormatter.allow(RegExp("[0-9-]")),
+                                                LengthLimitingTextInputFormatter(2),
+                                                MonthFormatter(),
+                                              ],
+                                            ),
+                                          )
+                                      ),
+                                      const SizedBox(width: 12),
+                                      Expanded(
+                                          child: Container(
+                                            width: MediaQuery.of(context).size.width,
+                                            padding: const EdgeInsetsDirectional.symmetric(horizontal:15,vertical: 3),
+                                            alignment: Alignment.center,
+                                            decoration: BoxDecoration(
+                                                color: AppColors.white,
+                                                borderRadius: BorderRadius.circular(8),
+                                                border: Border.all(
+                                                    color: Color(0xffE2E2E2)
+                                                 //   color: controller.year.isEmpty ? const Color(0xffE2E2E2) : AppColors.blue_100
+                                                )
+                                            ),
+                                            child: TextFormField(
+                                              textAlign: TextAlign.center,
+                                              controller:authController.yearController,
+                                              validator: (value){
+                                                if(value!.isEmpty){
+                                                  return "Empty";
+                                                }else if(value.length<4){
+                                                  return "Valid Year";
+                                                }
+                                              },
+                                              decoration: const InputDecoration(
+                                                hintText: "YYYY",
+                                                contentPadding: EdgeInsets.zero,
+                                                enabledBorder: OutlineInputBorder(
+                                                  borderSide: BorderSide.none
+                                                ),
+
+                                                focusedBorder: OutlineInputBorder(
+                                                  borderSide: BorderSide.none
+                                                ),
+                                              ),
+                                              inputFormatters: [
+                                                FilteringTextInputFormatter.allow(RegExp("[0-9-]")),
+                                                LengthLimitingTextInputFormatter(4),
+                                                YearFormatter(),
+                                              ],
+                                            ),
+                                          )
+                                      ),
+                                    ],
                                   ),
                                   const CustomText(
                                     text: AppStrings.gender,
@@ -331,7 +346,6 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                                   ),
 
                                   /// <------------------  Phone Number ------------------->
-
                                   Row(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
@@ -451,125 +465,6 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                                     fieldBorderColor: AppColors.blue_10,
                                     fieldBorderRadius: 8,
                                   ),
-                                  const CustomText(
-                                    text: 'User Type',
-                                    color: AppColors.black_100,
-                                    fontWeight: FontWeight.w500,
-                                    top: 16,
-                                    bottom: 8,
-                                  ),
-                                  TextFormField(
-                                    controller: controller.roleType,
-                                    readOnly: true,
-                                    onTap: (){
-                                      setState(() {
-                                        isSelected=!isSelected;
-                                      });
-                                    },
-                                    validator: (value) {
-                                      if (value == null || value.isEmpty) {
-                                        return "User Type Not Select".tr;
-                                      } else {
-                                        return null;
-                                      }
-                                    },
-                                    textAlign: TextAlign.start,
-                                    decoration: InputDecoration(
-                                      suffixIcon: IconButton(onPressed: (){
-                                        setState(() {
-                                          isSelected=!isSelected;
-                                        });
-
-                                      }, icon:isSelected ? const Icon(Icons.keyboard_arrow_up,size: 24,color: AppColors.black_80,) : const Icon(Icons.keyboard_arrow_down_rounded,size: 24,color: AppColors.black_80,)
-                                      ),
-                                      filled: true,
-                                      fillColor: AppColors.white,
-                                      hintText: 'User Type'.tr,
-                                      hintStyle: GoogleFonts.poppins(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w500,
-                                          color: AppColors.black_40),
-                                      border: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(8),
-                                          borderSide: const BorderSide(color: AppColors.blue_10, width: 1),
-                                          gapPadding: 0),
-                                      focusedBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(8),
-                                          borderSide: const BorderSide(color: AppColors.blue_10, width: 1),
-                                          gapPadding: 0),
-                                      enabledBorder: OutlineInputBorder(
-                                          borderRadius: BorderRadius.circular(8),
-                                          borderSide: const BorderSide(color: AppColors.blue_10, width: 1),
-                                          gapPadding: 0),
-                                    ),
-                                    style: GoogleFonts.montserrat(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 14,
-                                        color: AppColors.black_100),
-
-
-                                  ),
-                                  isSelected ? Container(
-                                    decoration:const ShapeDecoration(
-                                        color: Colors.white,
-                                        shape: RoundedRectangleBorder(
-                                          side: BorderSide(width: 1, color: Color(0xFF0668E3)),
-                                          borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(8),
-                                            bottomLeft: Radius.circular(8),
-                                            bottomRight: Radius.circular(8),
-                                          ),
-                                        )
-                                    ),
-                                    child: Column(
-                                      children: List.generate(roleType.length, (index) {
-                                          return GestureDetector(
-                                            onTap: () {
-                                              setState(() {
-                                                selectedItem = index;
-                                                controller.roleType.text=roleType[selectedItem];
-                                                isSelected=false;
-                                              });
-                                            },
-                                            child: Container(
-                                              margin: const EdgeInsets.only(bottom: 8),
-                                              width: MediaQuery.of(context).size.width,
-                                              decoration: ShapeDecoration(
-                                                color: AppColors.white,
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius: BorderRadius.circular(8),
-                                                ),
-                                              ),
-                                              child: Padding(
-                                                padding: const EdgeInsets.only(
-                                                  left: 16, right: 16, top: 12,),
-                                                child: Row(
-                                                  children: [
-                                                    Container(
-                                                      height: 20,
-                                                      width: 20,
-                                                      decoration: BoxDecoration(
-                                                        borderRadius: BorderRadius.circular(50),
-                                                        border: Border.all(
-                                                            color: AppColors.blue_100, width: 1),
-                                                        color: index == selectedItem ? AppColors.blue_100 : AppColors.white,
-                                                      ),
-                                                    ),
-                                                    CustomText(
-                                                      text: roleType[index].tr,
-                                                      color: AppColors.black_100,
-                                                      left: 10,
-                                                      right: 10,
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          );
-                                        },
-                                      ),
-                                    ),
-                                  ): Container(),
 
                                   const CustomText(
                                     text: AppStrings.password,
@@ -644,7 +539,7 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                                   controller.isLoading ? const CustomElevatedLoadingButton(): CustomButton(
                                     buttonWidth: MediaQuery.of(context).size.width,
                                     onPressed: () {
-                                      controller.registerUser();
+                                      controller.registerUser(userType);
                                     },
                                     titleText: AppStrings.signUp,
                                     titleColor: AppColors.white,
@@ -681,5 +576,119 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
             ),
           ));
     },);
+  }
+}
+
+
+class YearFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+      TextEditingValue prevText, TextEditingValue currText) {
+    // Get the previous and current input strings
+    String pText = prevText.text;
+    String cText = currText.text;
+
+    // Abbreviate lengths
+    int cLen = cText.length;
+    int pLen = pText.length;
+
+    if (cLen == 5 && pLen == 4) {
+      // User has entered a complete 4-digit year, do not modify
+      return currText;
+    } else if (cLen == 1) {
+      // Ensure the first character is within 1-2 (i.e., 19 or 20)
+      int y1 = int.parse(cText);
+      if (y1 < 1 || y1 > 2) {
+        // Remove the first character
+        cText = '';
+      }
+    } else if (cLen == 2) {
+      // Ensure the first two characters are within 19 or 20
+      int y1 = int.parse(cText.substring(0, 2));
+      if (y1 < 19 || y1 > 20) {
+        // Remove the second character
+        cText = cText.substring(0, 1);
+      }
+    } else if (cLen > 4) {
+      // User has entered more than 4 digits, truncate it
+      cText = cText.substring(0, 4);
+    }
+
+    return TextEditingValue(
+      text: cText,
+      selection: TextSelection.collapsed(offset: cText.length),
+    );
+  }
+}
+
+
+
+class DayFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+      TextEditingValue prevText, TextEditingValue currText) {
+    int selectionIndex;
+
+    // Get the previous and current input strings
+    String pText = prevText.text;
+    String cText = currText.text;
+    // Abbreviate lengths
+    int cLen = cText.length;
+    int pLen = pText.length;
+
+    if (cLen == 1) {
+      // Can only be 0, 1, 2 or 3
+      if (int.parse(cText) > 3) {
+        // Remove char
+        cText = '';
+      }
+    } else if (cLen == 2 && pLen == 1) {
+      // Days cannot be greater than 31
+      int dd = int.parse(cText.substring(0, 2));
+      if (dd == 0 || dd > 31) {
+        // Remove char
+        cText = cText.substring(0, 1);
+      } else {
+        // Add a / char
+      }
+    }
+
+    selectionIndex = cText.length;
+    return TextEditingValue(
+      text: cText,
+      selection: TextSelection.collapsed(offset: selectionIndex),
+    );
+  }
+}
+class MonthFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+      TextEditingValue prevText, TextEditingValue currText) {
+    String cText = currText.text;
+    int cLen = cText.length;
+
+    if (cLen == 1) {
+      // If the input has only one character, it can only be 0, 1, 2, or 3.
+      if (int.tryParse(cText) == null || int.parse(cText) > 3) {
+        // Invalid input, remove the character.
+        return TextEditingValue(
+          text: '',
+          selection: TextSelection.collapsed(offset: 0),
+        );
+      }
+    } else if (cLen == 2) {
+      // If the input has exactly 2 characters, validate the month.
+      int? mm = int.tryParse(cText);
+      if (mm == null || mm < 1 || mm > 12) {
+        // Invalid month, keep only the first character.
+        return TextEditingValue(
+          text: cText.substring(0, 1),
+          selection: TextSelection.collapsed(offset: 1),
+        );
+      }
+    }
+
+    // If the input is valid, allow it to continue.
+    return currText;
   }
 }

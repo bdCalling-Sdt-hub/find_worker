@@ -58,6 +58,7 @@ dependencies:
   image_picker: ^1.0.4
   uuid:
   cached_network_image:
+  otp: ^3.1.4
 
 
 dev_dependencies:

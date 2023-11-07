@@ -16,13 +16,15 @@ class UserModel{
   DateTime? timestamp;
   String? role;
   String? fcmToken;
-  UserModel({this.uid,this.fcmToken,this.role, this.userName, this.email,this.dob, this.phone,this.address, this.imageSrc,this.gender,this.status,this.authType,this.password,this.timestamp});
+  double? averageRating;
+  UserModel({this.uid,this.averageRating, this.fcmToken,this.role, this.userName, this.email,this.dob, this.phone,this.address, this.imageSrc,this.gender,this.status,this.authType,this.password,this.timestamp});
 
   // receive data from server
   factory UserModel.fromMap(DocumentSnapshot map)
   {
     return UserModel(
       uid: map['uid'],
+      averageRating: map['average_rating'].toDouble(),
       userName: map['username'],
       fcmToken: map['fcmToken'],
       email: map['email'],
@@ -57,6 +59,7 @@ class UserModel{
       'authType':authType,
       'role':role,
       'fcmToken':fcmToken,
+      'average_rating':averageRating,
     };
   }
 }

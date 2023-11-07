@@ -23,10 +23,14 @@ class UserSignIn extends StatefulWidget {
 
 class _UserSignInState extends State<UserSignIn> {
 
+  final String userType =Get.arguments;
+
   final loginFormKey = GlobalKey<FormState>();
+  final _authController = Get.put(AuthenticationController());
   @override
   void initState() {
-    Get.put(AuthenticationController());
+    _authController.passwordController.clear();
+    _authController.usernameController.clear();
     super.initState();
   }
 
@@ -153,7 +157,8 @@ class _UserSignInState extends State<UserSignIn> {
                                   if(loginFormKey.currentState!.validate()){
                                     controller.loginUser(
                                         controller.usernameController.text.toString(),
-                                        controller.passwordController.text.toString()
+                                        controller.passwordController.text.toString(),
+                                        userType,
                                     );
                                   }
                                 },
@@ -210,7 +215,7 @@ class _UserSignInState extends State<UserSignIn> {
                                   ),
                                   GestureDetector(
                                     onTap: (){
-                                      Get.toNamed(AppRoute.userSignUp);
+                                      Get.toNamed(AppRoute.userSignUp,arguments:userType);
                                     },
                                     child: const CustomText(
                                       text: AppStrings.signUp,

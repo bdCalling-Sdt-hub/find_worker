@@ -14,6 +14,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../Controller/forgot_pass_controller.dart';
+
 class UserForgetPasswordScreen extends StatefulWidget {
   const UserForgetPasswordScreen({super.key});
 
@@ -24,6 +26,7 @@ class UserForgetPasswordScreen extends StatefulWidget {
 class _UserForgetPasswordScreenState extends State<UserForgetPasswordScreen> {
 
   final TextEditingController emailController = TextEditingController();
+  final _forgotPassController =Get.put(ForgotPassController());
   final _formKey = GlobalKey<FormState>();
   final emailRegExP = RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]");
 
@@ -207,7 +210,8 @@ class _UserForgetPasswordScreenState extends State<UserForgetPasswordScreen> {
                         child: InkWell(
                           onTap: (){
                             if(_formKey.currentState!.validate()){
-                              sendOtpToEmail();
+                             // sendOtpToEmail();
+                              _forgotPassController.sendPasswordResetOTP(emailController.text);
                             }
                           },
                           child: const Center(
