@@ -23,7 +23,7 @@ class UserModel{
       userName: map['username'],
       fcmToken: map['fcmToken'],
       email: map['email'],
-      dob: map['dob'].toDate(),
+      dob: map['dob'],
       phone: map['phone'],
       address: map['address'],
       imageSrc: map['imageSrc'],

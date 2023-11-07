@@ -48,8 +48,8 @@ class _LogOutAlertState extends State<LogOutAlert> {
                         ),
                         child: Padding(
                           padding: EdgeInsets.symmetric(vertical: 12),
-                          child: Obx(()=>_authController.isSignOutLoad.value?CircularProgressIndicator():
-                             CustomText(
+                          child: Obx(()=>
+                             const CustomText(
                               text: AppStrings.yes,
                               fontWeight: FontWeight.w600,
                               color: AppColors.blue_100,

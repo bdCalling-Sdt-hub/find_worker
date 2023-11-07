@@ -46,7 +46,9 @@ class _UserPersonalInformationScreenState extends State<UserPersonalInformationS
 
               ),
               const SizedBox()
-            ],),),
+            ],
+            ),
+          ),
           body: LayoutBuilder(
               builder: (BuildContext context, BoxConstraints constraints) {
                 return SingleChildScrollView(

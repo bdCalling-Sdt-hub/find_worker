@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:encrypt/encrypt.dart';
 import 'package:find_worker/controller/data_controller.dart';
 import 'package:find_worker/core/app_routes.dart';
 import 'package:find_worker/core/share_pre.dart';
@@ -7,14 +6,12 @@ import 'package:find_worker/model/user_model.dart';
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_constents.dart';
 import 'package:find_worker/view/screens/service_provider/sp_bottom_nav_bar/sp_bottom_nav_bar_screen.dart';
-import 'package:find_worker/view/screens/user/user_auth/user_sign_in/user_sign_in_screen.dart';
 import 'package:find_worker/view/screens/user/user_bottom_nav_bar/user_bottom_nav_bar_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
 class AuthenticationController extends GetxController{
 
@@ -48,6 +45,8 @@ class AuthenticationController extends GetxController{
   String year = "";
   String month = "";
   String day = "";
+
+  User? user = FirebaseAuth.instance.currentUser;
 
 
   // Date TextFormField
@@ -107,13 +106,10 @@ class AuthenticationController extends GetxController{
     token = (await FirebaseMessaging.instance.getToken())!;
   }
   postDetailsToFireStore() async{
-   //await fcmToken();
-    User? user = auth.currentUser;
-    UserModel userModel = UserModel();
     userModel.email = user!.email;
-    userModel.uid = user.uid;
+    userModel.uid = user!.uid;
     userModel.userName = nameController.text.toString();
-    userModel.dob =DateTime(int.parse(year),int.parse(month),int.parse(day));
+    userModel.dob = DateTime(int.parse(year),int.parse(month),int.parse(day));
     userModel.phone = phoneCode+phoneController.text.toString();
     userModel.address =addressController.text.toString();
     userModel.authType=AppConstants.normalUser;
@@ -126,7 +122,7 @@ class AuthenticationController extends GetxController{
     userModel.gender=genderList[selectedGender];
     try {
       await firebaseFireStore.collection(AppConstants.users)
-          .doc(user.uid)
+          .doc(user!.uid)
           .set(userModel.toMap()).then((value){
         Fluttertoast.showToast(
             msg: "Account created successfully",
@@ -334,28 +330,25 @@ class AuthenticationController extends GetxController{
 
     isLoading = true;
     update();
-      print(password);
-      print(email);
-      await auth.signInWithEmailAndPassword(
-          email: email.trim(),
-          password: password.trim()
-      ).then((value)async{
-        Fluttertoast.showToast(
-            msg: "Login Successfully",
-            backgroundColor: AppColors.blue_100,
-            textColor: AppColors.black_100,
-            fontSize: 14,
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM
-        );
-        final data = await firebaseFireStore.collection(AppConstants.users).doc(value.user!.uid).get().then(
-                (value){
-                  userModel = UserModel.fromMap(value.data()!);
-                });
-        
-        debugPrint("=======> Uid ${data['uid']}");
-        debugPrint("=======> User Type ${userModel.role}");
-       await PrefsHelper.setString(AppConstants.logged, userModel.role);
+    await auth.signInWithEmailAndPassword(
+        email: email,
+        password: password
+    ).then((value) async{
+
+      Fluttertoast.showToast(
+          msg: "Login Successfully",
+          backgroundColor: AppColors.green_100,
+          textColor: AppColors.black_100,
+          fontSize: 14,
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM
+      );
+
+      await firebaseFireStore.collection(AppConstants.users).doc(value.user!.uid).get().then((val){
+        userModel = UserModel.fromMap(val.data()!);
+        print("role: ${userModel.role}");
+
+        PrefsHelper.setString(AppConstants.logged, userModel.role);
         if(userModel.role==AppConstants.userType){
           Get.offAll(UserBottomNavBarScreen(currentIndex: 0));
           _dataController.setData(userNameD: userModel.userName!,
@@ -371,23 +364,12 @@ class AuthenticationController extends GetxController{
               imageD:userModel.imageSrc!,
               authTypeD:userModel.authType!);
         }
-      }
-      ).catchError((e){
-        // Fluttertoast.showToast(
-        //     msg: e!.message,
-        //     backgroundColor: AppColors.blue_100,
-        //     textColor: AppColors.white  ,
-        //     fontSize: 14,
-        //     toastLength: Toast.LENGTH_SHORT,
-        //     gravity: ToastGravity.BOTTOM
-        // );
-
-        isLoading = false;
-        update();
       });
+      //Get.offAll(UserBottomNavBarScreen(currentIndex: 0));
+    });
 
-    // usernameController.text = "";
-    // passwordController.text = "";
+    usernameController.text = "";
+    passwordController.text = "";
 
     isLoading = false;
     update();
@@ -422,23 +404,18 @@ class AuthenticationController extends GetxController{
 
 
   ///  <------------- Sign out------------->
-  var isSignOutLoad=false.obs;
-  signOut()async{
-      try {
-        isSignOutLoad(true);
-             await auth.signOut().then((value){
-         Get.offAll(UserSignIn());
-         debugPrint("=========> Successful sign out");
-        isSignOutLoad(false);
-             });
-      } on Exception catch (e) {
-      debugPrint("=========> sign out catch error : $e");
-      }finally{
-        isSignOutLoad(false);
-      }
+  Future<void> signOut() async {
+    await FirebaseAuth.instance.signOut();
 
-
+    Fluttertoast.showToast(
+        msg: "Logout Successfully",
+        backgroundColor: AppColors.green_100,
+        textColor: AppColors.black_100,
+        fontSize: 14,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM
+    );
+    Get.offAndToNamed(AppRoute.userSignIn);
   }
-
 
 }
