@@ -168,7 +168,6 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                                             ),
                                           )
                                       ),
-
                                       const SizedBox(width: 12),
                                       Expanded(
                                           child:Container(
@@ -179,7 +178,7 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                                                 color: AppColors.white,
                                                 borderRadius: BorderRadius.circular(8),
                                                 border: Border.all(
-                                                    color: Color(0xffE2E2E2)
+                                                    color: const Color(0xffE2E2E2)
                                                 //    color: controller.year.isEmpty ? const Color(0xffE2E2E2) : AppColors.blue_100
                                                 )
                                             ),
@@ -220,7 +219,7 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                                                 color: AppColors.white,
                                                 borderRadius: BorderRadius.circular(8),
                                                 border: Border.all(
-                                                    color: Color(0xffE2E2E2)
+                                                    color: const Color(0xffE2E2E2)
                                                  //   color: controller.year.isEmpty ? const Color(0xffE2E2E2) : AppColors.blue_100
                                                 )
                                             ),
@@ -611,7 +610,7 @@ class YearFormatter extends TextInputFormatter {
       }
     } else if (cLen > 4) {
       // User has entered more than 4 digits, truncate it
-      cText = cText.substring(0, 4);
+      cText = cText.substring(0,4);
     }
 
     return TextEditingValue(

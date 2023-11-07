@@ -24,6 +24,7 @@ class _SpHomeScreenState extends State<SpHomeScreen> {
   bool status = false;
   final _controller = ValueNotifier<bool>(false);
   final _homeController = Get.put(SpHomeController());
+
   @override
   void initState() {
 

@@ -11,6 +11,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
 
 class AddNewServiceController extends GetxController{
@@ -36,10 +37,12 @@ class AddNewServiceController extends GetxController{
 
 
   picImage()async{
+
     try {
        image = await picker.pickImage(source: ImageSource.gallery);
        if(image !=null){
          imagePath.value=image!.path;
+
        }
     } on Exception catch (e) {
       // TODO
@@ -54,8 +57,10 @@ class AddNewServiceController extends GetxController{
       var result= await  firebaseStorage.collection(AppConstants.category).get();
       categoryList.value= List<CategoryModel>.from(result.docs.map((x) => CategoryModel.fromJson(x)));
       debugPrint("========> CategoryLength = ${categoryList.length}");
+
       categoryList.refresh();
     } on Exception catch (e) {
+      print("========> CategoryLength refresh ");
       loading(false);
     }finally{
       loading(false);

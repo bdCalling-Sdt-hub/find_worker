@@ -18,7 +18,6 @@ class SpHomeController extends GetxController{
   final FirebaseAuth _auth = FirebaseAuth.instance;
   RxList<ServiceModel> serviceList= <ServiceModel> [].obs;
 
-
   getService()async{
     loading(true);
     try {
@@ -27,6 +26,7 @@ class SpHomeController extends GetxController{
       debugPrint("========> Service Length = ${serviceList.length}");
       serviceList.refresh();
     await  getUserData();
+
     } on Exception catch (e) {
       loading(false);
     }finally{
@@ -37,6 +37,7 @@ class SpHomeController extends GetxController{
   Rx<UserModel> userData=UserModel().obs;
 
  Future<void> getUserData()async{
+
     DocumentSnapshot data = await firebaseStorage.collection(AppConstants.users).doc(_auth.currentUser!.uid).get();
   userData.value = UserModel.fromMap(data);
     userData.refresh();
