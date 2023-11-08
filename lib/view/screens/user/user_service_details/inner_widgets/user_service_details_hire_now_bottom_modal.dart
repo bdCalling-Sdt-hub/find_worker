@@ -3,16 +3,20 @@ import 'package:find_worker/model/service_by_user_model.dart';
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_icons.dart';
 import 'package:find_worker/utils/app_strings.dart';
+import 'package:find_worker/view/screens/user/user_service_details/Controller/user_service_details_controller.dart';
 import 'package:find_worker/view/widgets/custom_button.dart';
+
 import 'package:find_worker/view/widgets/image/custom_image.dart';
 import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 
 class UserServiceDetailsHireNoeBottomModal extends StatefulWidget {
-  UserServiceDetailsHireNoeBottomModal({super.key,required this.userImage,required this.userByServiceModel});
+  UserServiceDetailsHireNoeBottomModal({super.key,required this.number,required this.userImage,required this.userByServiceModel});
 
   String userImage;
+  String number;
   UserByServiceModel userByServiceModel;
 
 
@@ -21,6 +25,9 @@ class UserServiceDetailsHireNoeBottomModal extends StatefulWidget {
 }
 
 class _UserServiceDetailsHireNoeBottomModalState extends State<UserServiceDetailsHireNoeBottomModal> {
+
+  final _controller =Get.put(UserServiceDetailsController());
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -138,7 +145,13 @@ class _UserServiceDetailsHireNoeBottomModalState extends State<UserServiceDetail
           const SizedBox(height:30,),
 
 
-        CustomButton(onTap: (){}, text: "Call"),
+        Obx(()=>
+           CustomButton(onTap:(){
+             _controller.hireNow(widget.userByServiceModel,widget.number);
+          },
+              loading:_controller.hireLoading.value,
+              text:"Call"),
+        )
 
         ],
       ),
