@@ -12,7 +12,14 @@ class CustomButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  ElevatedButton(onPressed:onTap,
-        style: ElevatedButton.styleFrom(backgroundColor: const Color(0xff0668E3),minimumSize:Size(width??Get.width, height??50)),
+        style: ElevatedButton.styleFrom(
+         shape: RoundedRectangleBorder(
+           borderRadius: BorderRadius.circular(8)
+         ),
+          backgroundColor: const Color(0xff0668E3),
+            minimumSize:Size(width??Get.width, height??50),
+
+        ),
         child:loading? const SizedBox(
           height: 20,
           width: 20,

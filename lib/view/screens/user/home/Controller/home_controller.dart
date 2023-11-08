@@ -10,7 +10,7 @@ import 'package:get/get.dart';
 class UserHomeController extends GetxController {
   @override
   void onInit() {
-   getData();
+   getData(true);
     super.onInit();
   }
   FirebaseFirestore  firebaseStorage= FirebaseFirestore.instance;
@@ -21,26 +21,28 @@ class UserHomeController extends GetxController {
   RxList<UserByServiceModel> airConditionList= <UserByServiceModel> [].obs;
 
 
-getData()async{
-   loading(true);
+getData(bool isLoading)async{
+  if(isLoading){
+    loading(true);
+  }
   await getCategory();
   await getSortedServicesByAverageRatingCarWash();
   await getSortedServicesByAverageRatingHomeClean();
   await getSortedServicesByAverageRatingAirCondition();
-   loading(false);
+  if(isLoading){
+    loading(false);
+  }
+
 }
 
 getCategory()async{
-    loading(true);
     try {
       var result= await  firebaseStorage.collection(AppConstants.category).get();
       categoryList.value= List<CategoryModel>.from(result.docs.map((x) => CategoryModel.fromJson(x)));
       debugPrint("========> CategoryLength = ${categoryList.length}");
       categoryList.refresh();
     } on Exception catch (e) {
-      loading(false);
-    }finally{
-      loading(false);
+    print("=======> Opps error :$e");
     }
   }
 
@@ -64,7 +66,7 @@ getCategory()async{
 
 
 Future<List<UserByServiceModel>?> getSortedServicesByAverageRatingCarWash() async {
-  final servicesCollection = FirebaseFirestore.instance.collection(AppConstants.services);
+  final servicesCollection = FirebaseFirestore.instance.collection(AppConstants.services).where("category_id",isEqualTo:"VBhuTZnI7ec0Bvy5IYIm");
   final usersCollection = FirebaseFirestore.instance.collection(AppConstants.users);
 
   try {
@@ -90,10 +92,10 @@ Future<List<UserByServiceModel>?> getSortedServicesByAverageRatingCarWash() asyn
         sortedServices.add(UserByServiceModel.fromJson(serviceData));
       }
     }
-
     sortedServices.sort((a, b) => b.averageRating!.compareTo(a.averageRating!));
     print("service list ========> ${sortedServices.length}");
     carWashList.value=sortedServices;
+    carWashList.refresh();
     return sortedServices;
   } catch (e) {
     print('Error: $e');
@@ -101,7 +103,7 @@ Future<List<UserByServiceModel>?> getSortedServicesByAverageRatingCarWash() asyn
   }
 }
 Future<List<UserByServiceModel>?> getSortedServicesByAverageRatingHomeClean() async {
-  final servicesCollection = FirebaseFirestore.instance.collection(AppConstants.services);
+  final servicesCollection = FirebaseFirestore.instance.collection(AppConstants.services).where("category_id",isEqualTo:"exKagBPgKKUVQ8QyYrO7");
   final usersCollection = FirebaseFirestore.instance.collection(AppConstants.users);
 
   try {
@@ -131,6 +133,7 @@ Future<List<UserByServiceModel>?> getSortedServicesByAverageRatingHomeClean() as
     sortedServices.sort((a, b) => b.averageRating!.compareTo(a.averageRating!));
     print("service list ========> ${sortedServices.length}");
     homeCleanList.value=sortedServices;
+    homeCleanList.refresh();
     return sortedServices;
   } catch (e) {
     print('Error: $e');
@@ -138,7 +141,7 @@ Future<List<UserByServiceModel>?> getSortedServicesByAverageRatingHomeClean() as
   }
 }
 Future<List<UserByServiceModel>?> getSortedServicesByAverageRatingAirCondition() async {
-  final servicesCollection = FirebaseFirestore.instance.collection(AppConstants.services);
+  final servicesCollection = FirebaseFirestore.instance.collection(AppConstants.services).where("category_id",isEqualTo:"b0yWTYORILumrLmVpxrt");
   final usersCollection = FirebaseFirestore.instance.collection(AppConstants.users);
 
   try {
@@ -168,6 +171,7 @@ Future<List<UserByServiceModel>?> getSortedServicesByAverageRatingAirCondition()
     sortedServices.sort((a, b) => b.averageRating!.compareTo(a.averageRating!));
     print("service list ========> ${sortedServices.length}");
     airConditionList.value=sortedServices;
+    airConditionList.refresh();
     return sortedServices;
   } catch (e) {
     print('Error: $e');

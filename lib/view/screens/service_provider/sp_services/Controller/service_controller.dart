@@ -10,16 +10,17 @@ class ServiceController extends GetxController{
 
 var loading=false.obs;
 FirebaseFirestore  firebaseStorage= FirebaseFirestore.instance;
-final FirebaseAuth _auth = FirebaseAuth.instance;
+final FirebaseAuth auth = FirebaseAuth.instance;
   RxList<ServiceModel> serviceList= <ServiceModel> [].obs;
 
 getService()async{
     loading(true);
     try {
-      var result= await  firebaseStorage.collection(AppConstants.services).where("provider_uid",isEqualTo:_auth.currentUser!.uid).get();
+      var result= await  firebaseStorage.collection(AppConstants.services).where("provider_uid",isEqualTo:auth.currentUser!.uid).get();
       serviceList.value= List<ServiceModel>.from(result.docs.map((x) => ServiceModel.fromJson(x)));
       debugPrint("========> Service Length = ${serviceList.length}");
       serviceList.refresh();
+      update();
     } on Exception catch (e) {
       loading(false);
     }finally{

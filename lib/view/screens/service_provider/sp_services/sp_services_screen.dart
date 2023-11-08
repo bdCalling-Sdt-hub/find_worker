@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:find_worker/core/app_routes.dart';
+import 'package:find_worker/model/service_model.dart';
 import 'package:find_worker/utils/app_colors.dart';
+import 'package:find_worker/utils/app_constents.dart';
 import 'package:find_worker/utils/app_icons.dart';
 import 'package:find_worker/view/screens/service_provider/sp_services/Controller/service_controller.dart';
 import 'package:find_worker/view/widgets/app_bar/custom_app_bar.dart';
@@ -19,11 +22,6 @@ class SpServicesScreen extends StatefulWidget {
 class _SpServicesScreenState extends State<SpServicesScreen> {
   final _serviceController= Get.put(ServiceController());
 
-  @override
-  void initState() {
-    _serviceController.getService();
-    super.initState();
-  }
 
 
 
@@ -59,55 +57,75 @@ class _SpServicesScreenState extends State<SpServicesScreen> {
                 ],
               ),
             ),
-            body: LayoutBuilder(
+            body:LayoutBuilder(
                 builder: (BuildContext context, BoxConstraints constraints) {
-                  return Obx(()=>_serviceController.loading.value?const CustomLoader():
-                     SingleChildScrollView(
-                        padding:
-                        const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
-                        child: Column(
-                          children: [
-                            ListView.builder(
-                              physics: const NeverScrollableScrollPhysics(),
-                                shrinkWrap: true,
-                                itemCount: _serviceController.serviceList.length,
-                                itemBuilder:(context,index){
-                                  var data=_serviceController.serviceList[index];
-                                  return ListTile(
-                                    onTap:(){
-                                      Get.toNamed(AppRoute.spServiceDetailsScreen,arguments:data);
-                                    },
-                                    contentPadding: EdgeInsets.zero,
-                                    dense: true,
-                                    title: Text(data.serviceName!),
-                                    trailing: const Icon(Icons.keyboard_arrow_right_sharp),
-                                  );
-                            }),
+                  return StreamBuilder<QuerySnapshot>(
+                    stream:FirebaseFirestore.instance.collection(AppConstants.services).where("provider_uid",isEqualTo:_serviceController.auth.currentUser!.uid).snapshots(),
+                    builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                      if(snapshot.hasError){
+                        return const CustomLoader();
+                      }else if(snapshot.hasData){
+                        List<ServiceModel> demoData=  List<ServiceModel>.from(snapshot.data!.docs.map((x) => ServiceModel.fromJson(x)));
+                        return  SingleChildScrollView(
+                            padding:
+                            const EdgeInsets.symmetric(horizontal: 20),
+                            child: Column(
+                              children: [
+                                    ListView.builder(
+                                      padding: EdgeInsets.zero,
+                                        physics: const NeverScrollableScrollPhysics(),
+                                        shrinkWrap: true,
+                                        itemCount: demoData.length,
+                                        itemBuilder:(context,index){
+                                          var data=demoData[index];
+                                          return ListTile(
+                                            onTap:(){
+                                              Get.toNamed(AppRoute.spServiceDetailsScreen,arguments:data);
+                                            },
+                                            contentPadding: EdgeInsets.zero,
+                                            dense: true,
+                                            title: Text(data.serviceName!),
+                                            trailing: const Icon(Icons.keyboard_arrow_right_sharp),
+                                          );
+                                        }),
 
-                            const SizedBox(height: 16,),
-                            GestureDetector(
-                              onTap: (){
-                                Get.toNamed(AppRoute.spAddNewServiceScreen);
-                              }, 
-                              child: Row(
-                                children: [
-                                  const CustomImage(imageSrc: AppIcons.plusCircle,size: 24,),
-                                  CustomText(
-                                    text: 'Add New Service'.tr,
-                                    color: AppColors.blue_100,
-                                    fontSize: 18,
-                                    left: 4,
-                                    right: 4,
-                                  )
-                                ],
-                              ),
+
+                                const SizedBox(height: 16,),
+                                GestureDetector(
+                                  onTap: (){
+                                    Get.toNamed(AppRoute.spAddNewServiceScreen);
+                                  },
+                                  child: Row(
+                                    children: [
+                                      const CustomImage(imageSrc: AppIcons.plusCircle,size: 24,),
+                                      CustomText(
+                                        text: 'Add New Service'.tr,
+                                        color: AppColors.blue_100,
+                                        fontSize: 18,
+                                        left: 4,
+                                        right: 4,
+                                      )
+                                    ],
+                                  ),
+                                )
+                              ],
                             )
-                          ],
-                        )
-                    ),
+                        );
+                      }else{
+                        return const CustomLoader();
+                      }
+
+
+
+
+
+                    },
+
                   );
+
                 }),
 
-        ));
+             )
+    );
   }
 }
