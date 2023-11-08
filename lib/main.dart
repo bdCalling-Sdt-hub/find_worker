@@ -3,6 +3,7 @@ import 'package:find_worker/core/app_routes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -41,6 +42,15 @@ class MyApp extends StatelessWidget {
       defaultTransition: Transition.noTransition,
       initialRoute: AppRoute.splashScreen,
       navigatorKey: Get.key,
+      theme: ThemeData(
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.white,
+          elevation:0,
+          iconTheme: IconThemeData(
+            color: Color(0xFF0668E3),
+          )
+        )
+      ),
       transitionDuration: const Duration(milliseconds: 200),
       getPages: AppRoute.routes,
 

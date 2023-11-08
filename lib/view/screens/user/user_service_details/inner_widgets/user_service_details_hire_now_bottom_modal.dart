@@ -1,25 +1,37 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:find_worker/model/service_by_user_model.dart';
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_icons.dart';
 import 'package:find_worker/utils/app_strings.dart';
-import 'package:find_worker/view/screens/user/user_service_details/inner_widgets/user_service_details_hire_cancel_alert.dart';
-import 'package:find_worker/view/widgets/buttons/custom_button.dart';
+import 'package:find_worker/view/screens/user/user_service_details/Controller/user_service_details_controller.dart';
+import 'package:find_worker/view/widgets/custom_button.dart';
+
 import 'package:find_worker/view/widgets/image/custom_image.dart';
 import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
-import 'package:percent_indicator/percent_indicator.dart';
+import 'package:get/get.dart';
+
 
 class UserServiceDetailsHireNoeBottomModal extends StatefulWidget {
-  const UserServiceDetailsHireNoeBottomModal({super.key});
+  UserServiceDetailsHireNoeBottomModal({super.key,required this.number,required this.userImage,required this.userByServiceModel});
+
+  String userImage;
+  String number;
+  UserByServiceModel userByServiceModel;
+
 
   @override
   State<UserServiceDetailsHireNoeBottomModal> createState() => _UserServiceDetailsHireNoeBottomModalState();
 }
 
 class _UserServiceDetailsHireNoeBottomModalState extends State<UserServiceDetailsHireNoeBottomModal> {
+
+  final _controller =Get.put(UserServiceDetailsController());
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 370,
+      height: 255,
       width: MediaQuery.of(context).size.width,
       padding: const EdgeInsets.all(20),
       decoration:const  ShapeDecoration(
@@ -35,79 +47,112 @@ class _UserServiceDetailsHireNoeBottomModalState extends State<UserServiceDetail
       child: Column(
         children: [
           const CustomText(
-            text: AppStrings.pending,
+            text: AppStrings.approved,
             fontSize: 18,
             fontWeight: FontWeight.w500,
             bottom: 20,
           ),
-           LinearPercentIndicator(
-            linearGradient:const LinearGradient(
-                colors: [
-                  Color(0xff9DC9FF),
-                  Color(0xff0668E3),
 
-                ]
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+
+            children: [
+
+              widget.userImage.isEmpty? Container(
+          height: 60,
+            width: 60,
+            decoration: BoxDecoration(
+                color: Colors.grey.withOpacity(0.7),
+                shape: BoxShape.circle,
+                image:const DecorationImage(image:AssetImage("assets/images/person.png"),)
             ),
-
-             backgroundColor: AppColors.black_10,
-             barRadius:const Radius.circular(4),
-            animation: true,
-            animationDuration: 1000,
-            lineHeight: 8.0,
-            percent: 0.5,
-            linearStrokeCap: LinearStrokeCap.butt,
-          ),
-          const SizedBox(height: 8,),
-          const CustomText(
-            text: AppStrings.keepPatienceWaitingForApproval,
-            color: AppColors.black_60,
-            bottom: 40,
-          ),
-          CustomButton(
-            onPressed: (){
-              showDialog(
-                  context: context,
-                  builder: (BuildContext contect){
-                    return const UserServiceDetailsHireCancelAlert();
-                  });
-             
-            },
-            titleText: 'Cancel',
-            buttonWidth: MediaQuery.of(context).size.width,
-            buttonBgColor: AppColors.blue_100,
-          ),
-          const CustomText(
-            text: AppStrings.or,
-            fontSize: 18,
-            fontWeight: FontWeight.w500,
-            bottom: 20,
-            top: 20,
-          ),
-          GestureDetector(
-            child: Container(
-              height: 56,
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                color: AppColors.white,
-                border: Border.all(width: 1,color: AppColors.blue_100),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child:const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  CustomImage(imageSrc: AppIcons.phone,size: 24,imageColor: AppColors.blue_100,),
-                  CustomText(
-                    text: AppStrings.directCall,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.blue_100,
-                    left: 12,
+          )  :CachedNetworkImage(imageUrl:widget.userImage,
+              imageBuilder: (context,imageProvider){
+                return Container(
+                  height: 60,
+                  width: 60,
+                  decoration: BoxDecoration(
+                      color: Colors.grey.withOpacity(0.7),
+                    shape: BoxShape.circle,
+                    image:DecorationImage(image: imageProvider,fit: BoxFit.fill)
                   ),
-                ],
+                );
+              },
+                placeholder:(context,value){
+                return Container(
+                  height: 60,
+                  width: 60,
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                     color: Colors.grey.withOpacity(0.7)
+                  ),
+                );
+                },
+                errorWidget:(context,v,e){
+                return  Container(
+                  height: 60,
+                  width: 60,
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.grey.withOpacity(0.7)
+                  ),
+                );
+                },
+
+
               ),
-            ),
+              const SizedBox(width: 10,),
+               Flexible(child:Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Row (
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Flexible(child: Text(widget.userByServiceModel.providerName!,style:const TextStyle(fontWeight:FontWeight.w500,color:Colors.black,fontSize: 18),),
+                      ),
+                      Row(
+                        children: [
+                          const CustomImage(
+                            imageSrc: AppIcons.star,
+                            size: 12,
+                          ),
+                          CustomText(
+                            text: '(${widget.userByServiceModel.averageRating})',
+                            fontSize: 12,
+                            left: 4,
+                          ),
+                        ],
+                      )
+
+                    ],
+                  ),
+                  Row (
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(AppStrings.service,style:TextStyle(fontWeight:FontWeight.w500,color:Colors.black,fontSize: 18),),
+                      Flexible(child: Text(widget.userByServiceModel.serviceName!,style:TextStyle(fontWeight:FontWeight.w500,color:Colors.black,fontSize: 18),),
+                      ),
+
+
+                    ],
+                  )
+                    ],
+              ))
+
+
+            ],
           ),
+          const SizedBox(height:30,),
+
+
+        Obx(()=>
+           CustomButton(onTap:(){
+             _controller.hireNow(widget.userByServiceModel,widget.number);
+          },
+              loading:_controller.hireLoading.value,
+              text:"Call"),
+        )
+
         ],
       ),
     );

@@ -6,7 +6,8 @@ class AppConstants {
   static String services="Services";
   static String category="Category";
   static String reviews="Reviews";
-  static String hireList="HireList";
+  static String hireHistory="HireHistory" ;
+  static String jobHistory ="JobHistory";
 
 
   // user type

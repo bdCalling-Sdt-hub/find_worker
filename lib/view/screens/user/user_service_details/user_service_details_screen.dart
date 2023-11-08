@@ -1,17 +1,29 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:find_worker/model/service_by_user_model.dart';
+import 'package:find_worker/model/user_model.dart';
 import 'package:find_worker/utils/app_colors.dart';
+import 'package:find_worker/utils/app_constents.dart';
 import 'package:find_worker/utils/app_icons.dart';
 import 'package:find_worker/utils/app_strings.dart';
+import 'package:find_worker/view/screens/user/user_service_details/Controller/user_service_details_controller.dart';
 import 'package:find_worker/view/screens/user/user_service_details/inner_widgets/user_service_details_hire_now_bottom_modal.dart';
 import 'package:find_worker/view/screens/user/user_service_details/inner_widgets/user_service_details_rate_us_alert.dart';
 import 'package:find_worker/view/widgets/app_bar/custom_app_bar.dart';
 import 'package:find_worker/view/widgets/buttons/custom_button.dart';
+import 'package:find_worker/view/widgets/custom_loader.dart';
 import 'package:find_worker/view/widgets/image/custom_image.dart';
 import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:shimmer/shimmer.dart';
 
 class UserServiceDetailsScreen extends StatefulWidget {
   const UserServiceDetailsScreen({super.key});
+
+
 
   @override
   State<UserServiceDetailsScreen> createState() =>
@@ -19,318 +31,341 @@ class UserServiceDetailsScreen extends StatefulWidget {
 }
 
 class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
+  UserByServiceModel userByServiceModel =Get.arguments;
+
+  final _userServiceDetailsController = Get.put(UserServiceDetailsController());
+  @override
+  void initState() {
+  _userServiceDetailsController.getTopReviews(userByServiceModel.providerUid!);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        top: false,
-        bottom: false,
-        child: Scaffold(
-          backgroundColor: AppColors.white,
-          appBar: CustomAppBar(
-            appBarContent: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    Get.back();
-                  },
-                  child: const Icon(
-                    Icons.arrow_back_ios_new_outlined,
-                    size: 16,
-                    color: AppColors.blue_100,
-                  ),
-                ),
-                const CustomText(
-                  text: AppStrings.jobDetails,
+    return Scaffold(
+      backgroundColor: AppColors.white,
+      appBar: AppBar(
+        centerTitle: true,
+          leading:IconButton(
+
+                onPressed: () {
+                  Get.back();
+                },
+                icon: const Icon(
+                  Icons.arrow_back_ios_new_outlined,
+                  size: 16,
                   color: AppColors.blue_100,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
                 ),
-                const SizedBox()
-              ],
-            ),
+              ),
+        title:const CustomText(
+            text: AppStrings.jobDetails,
+            color: AppColors.blue_100,
+            fontSize: 18,
+            fontWeight: FontWeight.w500,
           ),
-          body: LayoutBuilder(
-              builder: (BuildContext context, BoxConstraints constraints) {
-            return SingleChildScrollView(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
+      ),
+
+      body: LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints constraints) {
+        return Obx(()=>_userServiceDetailsController.loading.value?const CustomLoader():
+           SingleChildScrollView(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CachedNetworkImage(
+                    imageUrl:userByServiceModel.image!,
+                    placeholder: (context, url) => Shimmer.fromColors(
+                        baseColor: Colors.grey.shade700,
+                        highlightColor: Colors.grey.shade400,
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                            height: 200,
+                          decoration: ShapeDecoration(
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8)),
+                          ),
+                        )),
+                    errorWidget: (context, url, error) => Container(
+                      width: MediaQuery.of(context).size.width,
                       height: 200,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          image: const DecorationImage(
-                              image: AssetImage(
-                                  'assets/images/hire_details_profile.png'),
-                              fit: BoxFit.cover)),
+                      decoration: ShapeDecoration(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8)),
+                          color: Colors.grey.withOpacity(0.6)),
                     ),
-                    const SizedBox(
-                      height: 16,
+                    imageBuilder: (context, imageProvider) => Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: 200,
+                      decoration: ShapeDecoration(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8)),
+
+                          color: Colors.grey,
+                          image: DecorationImage(
+                              image: imageProvider, fit: BoxFit.cover)),
                     ),
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        CustomText(
-                          text: 'John Doe',
+                  ),
+
+
+                  const SizedBox(
+                    height: 16,
+                  ),
+                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Flexible(
+                        child: CustomText(
+                          text: userByServiceModel.providerName!,
                           fontSize: 18,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                           fontWeight: FontWeight.w500,
                         ),
-                        Row(
-                          children: [
-                            CustomImage(
-                              imageSrc: AppIcons.star,
-                              size: 12,
-                            ),
-                            CustomText(
-                              text: '(4.5)',
-                              fontWeight: FontWeight.w500,
-                              left: 4,
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        CustomText(
-                          text: 'Location',
-                        ),
-                        CustomText(
-                          text: 'Abu Dhabi',
-                          fontWeight: FontWeight.w600,
-                          left: 4,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        CustomText(
-                          text: AppStrings.service,
-                        ),
-                        CustomText(
-                          text: AppStrings.carWash,
-                          fontWeight: FontWeight.w600,
-                          left: 4,
-                        ),
-                      ],
-                    ),
-                    Container(
-                      margin: const EdgeInsets.only(top: 16, bottom: 16),
-                      height: 1,
-                      color: AppColors.blue_20,
-                    ),
-                    const CustomText(
-                      text: 'Top Reviews',
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
-                      bottom: 16,
-                    ),
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        CustomText(
-                          text: 'Smith',
-                        ),
-                        Row(
-                          children: [
-                            CustomImage(
-                              imageSrc: AppIcons.star,
-                              size: 12,
-                            ),
-                            CustomText(
-                              text: '(4.5)',
-                              fontSize: 12,
-                              left: 4,
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        CustomText(
-                          text: 'Nice services!',
-                          fontSize: 12,
-                          color: AppColors.black_60,
-                        ),
-                        CustomText(
-                          fontSize: 12,
-                          color: AppColors.black_60,
-                          left: 4,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        CustomText(
-                          text: 'Smith',
-                        ),
-                        Row(
-                          children: [
-                            CustomImage(
-                              imageSrc: AppIcons.star,
-                              size: 12,
-                            ),
-                            CustomText(
-                              text: '(4.5)',
-                              fontSize: 12,
-                              left: 4,
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        CustomText(
-                          text: 'Nice services!',
-                          fontSize: 12,
-                          color: AppColors.black_60,
-                        ),
-                        CustomText(
-                          text: '01 aug',
-                          fontSize: 12,
-                          color: AppColors.black_60,
-                          left: 4,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        CustomText(
-                          text: 'Smith',
-                        ),
-                        Row(
-                          children: [
-                            CustomImage(
-                              imageSrc: AppIcons.star,
-                              size: 12,
-                            ),
-                            CustomText(
-                              text: '(4.5)',
-                              fontSize: 12,
-                              left: 4,
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    const Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        CustomText(
-                          text: 'Nice services!',
-                          fontSize: 12,
-                          color: AppColors.black_60,
-                        ),
-                        CustomText(
-                          text: '01 aug',
-                          fontSize: 12,
-                          color: AppColors.black_60,
-                          left: 4,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    Container(
-                      margin: const EdgeInsets.only(top: 16, bottom: 16),
-                      height: 1,
-                      color: AppColors.blue_20,
-                    ),
-                    const CustomText(
-                      text: AppStrings.description,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
-                      bottom: 16,
-                    ),
-                    const CustomText(
-                      text: AppStrings.loremIpsumDolor,
-                      maxLines: 9,
-                      textAlign: TextAlign.start,
-                    ),
-                    const SizedBox(height: 24,),
-                    Row(
-                      children: [
-                        Expanded(
-                          flex: 0,
-                          child: CustomButton(
-                              onPressed: () {
-                                showDialog(
-                                    context: context,
-                                    builder: (BuildContext context){
-                                      return const UserServiceDetailsRateUsAlert();
-                                    }
-                                );
-                              },
-                              titleText: AppStrings.rateUs,
-                              titleWeight: FontWeight.w600,
-                              titleSize: 18,
-                              titleColor: AppColors.blue_100,
-                              buttonBorderColor: AppColors.blue_100,
-                              borderWidth: 1,
-                              leftPadding: 32,
-                            rightPadding: 32,
+                      ),
+                      Row(
+                        children: [
+                          CustomImage(
+                            imageSrc: AppIcons.star,
+                            size: 12,
                           ),
+                          CustomText(
+                            text:"(${userByServiceModel.averageRating})",
+                            fontWeight: FontWeight.w500,
+                            left: 4,
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const CustomText(
+                        text: 'Location',
+                      ),
+                      Flexible(
+
+                        child: CustomText(
+                          text:userByServiceModel.location!,
+                          fontWeight: FontWeight.w600,
+                          left: 4,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
                         ),
-                       const SizedBox(width: 16,),
-                        Expanded(
-                          flex: 1,
-                          child: CustomButton(
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const CustomText(
+                        text: AppStrings.service,
+                      ),
+                      Flexible(
+                        child: CustomText(
+                          text: userByServiceModel.serviceName!,
+                          fontWeight: FontWeight.w600,
+                          left: 4,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(top: 16, bottom: 16),
+                    height: 1,
+                    color: AppColors.blue_20,
+                  ),
+                  const CustomText(
+                    text: 'Top Reviews',
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                    bottom: 16,
+                  ),
+                  ListView.separated(
+                      padding: EdgeInsets.zero,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder:(context,index){
+                        final demoData=_userServiceDetailsController.topReviewList[index];
+                    return  Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Flexible(
+                              child: CustomText(
+                                text:demoData.userName!,
+                              ),
+                            ),
+                            Row(
+                              children: [
+                                const CustomImage(
+                                  imageSrc: AppIcons.star,
+                                  size: 12,
+                                ),
+                                CustomText(
+                                  text: '(${demoData.rating})',
+                                  fontSize: 12,
+                                  left: 4,
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                         SizedBox(height: 10.h,),
+                         Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Flexible(
+                              child: CustomText(
+                                text:demoData.content!,
+                                fontSize: 12,
+                                color: AppColors.black_60,
+                              ),
+                            ),
+                            CustomText(
+                              text: "${DateFormat.d('en_US').format(demoData.createAt!)} ${DateFormat.MMMM('en_US').format(demoData.createAt!)}",
+                              fontSize: 12,
+                              color: AppColors.black_60,
+                              left: 4,
+                            ),
+                          ],
+                        ),
+                      ],
+                    );
+                  }, separatorBuilder: (context,index){
+                    return SizedBox(height:10.h,);
+                  }, itemCount:_userServiceDetailsController.topReviewList.length>4?3:_userServiceDetailsController.topReviewList.length),
+
+                  const SizedBox(
+                    height: 12,
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(top: 16, bottom: 16),
+                    height: 1,
+                    color: AppColors.blue_20,
+                  ),
+                  const CustomText(
+                    text: AppStrings.description,
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                    bottom: 16,
+                  ),
+                   CustomText(
+                    text: userByServiceModel.description!,
+                    maxLines:9,
+                    textAlign: TextAlign.start,
+                  ),
+                  const SizedBox(height: 24,),
+                  Row(
+                    children: [
+                      Expanded(
+                        flex: 0,
+                        child: CustomButton(
                             onPressed: () {
-                              showModalBottomSheet(
+                              showDialog(
                                   context: context,
                                   builder: (BuildContext context){
-                                    return const UserServiceDetailsHireNoeBottomModal();
-                                  });
+                                    return UserServiceDetailsRateUsAlert(userUid:userByServiceModel.providerUid!,serviceId:userByServiceModel.serviceId!,);
+                                  }
+                              );
                             },
-                            titleText: 'Hire Now',
+                            titleText: AppStrings.rateUs,
                             titleWeight: FontWeight.w600,
                             titleSize: 18,
-                            titleColor: AppColors.white,
+                            titleColor: AppColors.blue_100,
                             buttonBorderColor: AppColors.blue_100,
                             borderWidth: 1,
-                            leftPadding: 60,
-                            rightPadding: 60,
-                            buttonBgColor: AppColors.blue_100,
-                          ),
-                        )
-                      ],
-                    )
-                  ],
-                ));
-          }),
-        ));
+                            leftPadding: 32,
+                          rightPadding: 32,
+                        ),
+                      ),
+                     const SizedBox(width: 16,),
+                      Expanded(
+                        flex: 1,
+                        child: StreamBuilder<DocumentSnapshot>(
+                          stream:FirebaseFirestore.instance.collection(AppConstants.users).doc(userByServiceModel.providerUid!).snapshots(),
+                          builder: (context,AsyncSnapshot<DocumentSnapshot> snapshot) {
+                            if(snapshot.hasData){
+                              final userData = UserModel.fromMap(snapshot.data!);
+                              return userData.status=="Online"? CustomButton(
+                                onPressed: () {
+                                  showModalBottomSheet(
+                                      backgroundColor: Colors.transparent,
+                                      barrierColor: Colors.transparent,
+                                      context: context,
+                                      builder: (BuildContext context){
+                                        return  UserServiceDetailsHireNoeBottomModal(userImage:userData.imageSrc!, userByServiceModel:userByServiceModel,number:userData.phone!,);
+                                      });
+                                },
+                                titleText: 'Hire Now',
+                                titleWeight: FontWeight.w600,
+                                titleSize: 18,
+                                titleColor: AppColors.white,
+                                buttonBorderColor: AppColors.blue_100,
+                                borderWidth: 1,
+                                leftPadding: 60,
+                                rightPadding: 60,
+                                buttonBgColor: AppColors.blue_100,
+                              ):CustomButton(
+                                onPressed: () {
+                                  Get.snackbar("Alerts!", "The service provider is now busy.");
+
+                                },
+                                titleText: 'Hire Now',
+                                titleWeight: FontWeight.w600,
+                                titleSize: 18,
+                                titleColor:Colors.black.withOpacity(0.5),
+                                buttonBorderColor:Colors.grey.withOpacity(0.5),
+                                borderWidth: 1,
+                                leftPadding: 60,
+                                rightPadding: 60,
+                                buttonBgColor:Colors.grey.withOpacity(0.01),
+                              );
+
+                            }else{
+                              return CustomButton(
+                                onPressed: () {
+
+                                },
+                                titleText: 'Hire Now',
+                                titleWeight: FontWeight.w600,
+                                titleSize: 18,
+                                titleColor:Colors.black.withOpacity(0.5),
+                                buttonBorderColor:Colors.grey.withOpacity(0.5),
+                                borderWidth: 1,
+                                leftPadding: 60,
+                                rightPadding: 60,
+                                buttonBgColor:Colors.grey.withOpacity(0.01),
+                              );
+
+                            }
+
+
+
+
+
+                          }
+                        ),
+                      )
+                    ],
+                  )
+                ],
+              )),
+        );
+      }),
+    );
   }
 }
