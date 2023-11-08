@@ -59,6 +59,9 @@ dependencies:
   uuid:
   cached_network_image:
   otp: ^3.1.4
+  google_sign_in: ^6.1.5
+  flutter_screenutil: ^5.9.0
+
 
 
 dev_dependencies:

@@ -12,6 +12,7 @@ import 'package:find_worker/view/screens/user/user_profile/user_profile_screen.d
 import 'package:find_worker/view/widgets/image/custom_image.dart';
 import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
 class UserBottomNavBarScreen extends StatefulWidget {
@@ -28,7 +29,7 @@ class _UserBottomNavBarScreenState extends State<UserBottomNavBarScreen> {
 
 
   static  List<Widget> screens = <Widget>[
-    HomeScreen(selectedIndex: -1),
+    HomeScreen(),
     const CategoryScreen(),
     const UserHireListScreen(),
     const UserProfileScreen()
@@ -69,7 +70,7 @@ class _UserBottomNavBarScreenState extends State<UserBottomNavBarScreen> {
 
         extendBody: true,
         bottomNavigationBar: Container(
-          height: 88,
+          height: 88.h,
           alignment: Alignment.bottomCenter,
           padding: const EdgeInsets.only(top: 15),
           decoration:   const BoxDecoration(
