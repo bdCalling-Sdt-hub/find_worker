@@ -15,6 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../../onboard/onboard_screen.dart';
 
@@ -56,6 +57,7 @@ class AuthenticationController extends GetxController{
 
   List<String> genderList = ["Male", "Female", "Others"];
   int selectedGender = 0;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
 
 
   final auth = FirebaseAuth.instance;
@@ -410,31 +412,62 @@ class AuthenticationController extends GetxController{
   }
 
 
+  Future<void> signInWithGoogle(String userType) async {
+    // Trigger the authentication flow
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
-  // Future<void> pickedDate(BuildContext context) async{
-  //   final DateTime? picked = await showDatePicker(
-  //       context: context,
-  //       initialDate: DateTime.now(),
-  //       firstDate: DateTime(1950),
-  //       lastDate: DateTime(2050),
-  //       builder: (context, child) => Theme(
-  //           data: Theme.of(context).copyWith(
-  //             colorScheme:  const ColorScheme.light(
-  //               primary: AppColors.blue_100, // <-- SEE HERE
-  //               onPrimary: AppColors.white, // <-- SEE HERE
-  //               onSurface: AppColors.blue_100, // <-- SEE HERE
-  //             ),
-  //           ),
-  //           child: child!
-  //       )
-  //   );
-  //   if (picked != null) {
-  //     year = picked.year.toString();
-  //     month = picked.month.toString();
-  //     day = picked.day.toString();
-  //     update();
-  //   }
-  // }
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+
+      if(googleAuth !=null){
+        final credential = GoogleAuthProvider.credential(
+          accessToken: googleAuth.accessToken,
+          idToken: googleAuth.idToken,
+        );
+        UserCredential userData=  await FirebaseAuth.instance.signInWithCredential(credential);
+        print("=======> Google Sign in Complete ");
+        DocumentSnapshot data = await FirebaseFirestore.instance.collection(AppConstants.users).doc(userData.user!.uid).get();
+        if(data.exists){
+          UserModel userData= UserModel.fromMap(data);
+          debugPrint("=======> Uid ${data['uid']}");
+          debugPrint("=======> User Type ${userData.role}");
+            await PrefsHelper.setString(AppConstants.logged, userData.role);
+            if(userData.role==AppConstants.userType){
+              Get.offAll(UserBottomNavBarScreen(currentIndex: 0));
+              _dataController.setData(userNameD: userData.userName!,
+                  userRoleD:userData.role!,
+                  uidD:userData.uid!,
+                  imageD:userData.imageSrc!,
+                  authTypeD:userData.authType!);
+              usernameController.clear();
+              passwordController.clear();
+            }else{
+              Get.offAll(SpBottomNavBarScreen(currentIndex: 0));
+              _dataController.setData(userNameD: userData.userName!,
+                  userRoleD:userData.role!,
+                  uidD:userData.uid!,
+                  imageD:userData.imageSrc!,
+                  authTypeD:userData.authType!);
+              usernameController.clear();
+              passwordController.clear();
+            }
+
+        }else{
+
+
+
+
+        }
+
+      }
+
+
+
+
+
+  }
+
+
 
 
   ///  <------------- Sign out------------->

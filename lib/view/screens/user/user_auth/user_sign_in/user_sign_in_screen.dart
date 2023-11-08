@@ -181,15 +181,20 @@ class _UserSignInState extends State<UserSignIn> {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  Container(
-                                    padding:const EdgeInsets.all(10),
-                                    decoration: const BoxDecoration(
-                                        color: Colors.white,
-                                        shape: BoxShape.circle
-                                    ),
-                                    child: const CustomImage(
-                                      imageSrc: AppIcons.google,
-                                      size: 28,
+                                  GestureDetector(
+                                    onTap: (){
+                                      _authController.signInWithGoogle(userType);
+                                    },
+                                    child: Container(
+                                      padding:const EdgeInsets.all(10),
+                                      decoration: const BoxDecoration(
+                                          color: Colors.white,
+                                          shape: BoxShape.circle
+                                      ),
+                                      child: const CustomImage(
+                                        imageSrc: AppIcons.google,
+                                        size: 28,
+                                      ),
                                     ),
                                   ),
                                   Container(
