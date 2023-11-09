@@ -220,7 +220,7 @@ class HomeScreen extends StatelessWidget {
                         children: [
                           Flexible(
                             child: CustomText(
-                              text: demoData.serviceName!,
+                              text: demoData.providerName!,
                               fontWeight: FontWeight.w500,
                               fontSize: 14,
                               overflow: TextOverflow.ellipsis,
@@ -373,7 +373,7 @@ class HomeScreen extends StatelessWidget {
                         children: [
                           Flexible(
                             child: CustomText(
-                              text: demoData.serviceName!,
+                              text: demoData.providerName!,
                               fontWeight: FontWeight.w500,
                               fontSize: 14,
                               overflow: TextOverflow.ellipsis,
@@ -527,7 +527,7 @@ class HomeScreen extends StatelessWidget {
                         children: [
                           Flexible(
                             child: CustomText(
-                              text: demoData.serviceName!,
+                              text: demoData.providerName!,
                               fontWeight: FontWeight.w500,
                               fontSize: 14,
                               overflow: TextOverflow.ellipsis,
