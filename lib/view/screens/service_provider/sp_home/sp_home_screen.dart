@@ -154,7 +154,7 @@ class _SpHomeScreenState extends State<SpHomeScreen> {
                                             physics: const NeverScrollableScrollPhysics(),
                                             itemCount: _homeController.serviceList.length,
                                             itemBuilder:(context,index){
-                                              return  Row(
+                                              return Row(
                                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                 children: [
                                                   CustomText(

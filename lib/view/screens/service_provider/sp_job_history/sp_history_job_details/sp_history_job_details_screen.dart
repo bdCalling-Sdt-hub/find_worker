@@ -1,3 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:find_worker/model/hire_model.dart';
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_icons.dart';
 import 'package:find_worker/utils/app_strings.dart';
@@ -7,9 +9,18 @@ import 'package:find_worker/view/widgets/image/custom_image.dart';
 import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:shimmer/shimmer.dart';
+
+import '../../../user/user_history/user_history_details/inner_widgets/user_history_details_alert.dart';
 
 class SpHistoryDetailsScreen extends StatefulWidget {
-  const SpHistoryDetailsScreen({super.key});
+   SpHistoryDetailsScreen({super.key,required this.historyModel,required this.index});
+
+  final HireModel historyModel ;
+  final int index;
+
+
 
   @override
   State<SpHistoryDetailsScreen> createState() => _SpHistoryDetailsScreenState();
@@ -39,10 +50,9 @@ class _SpHistoryDetailsScreenState extends State<SpHistoryDetailsScreen> {
               ),
               GestureDetector(
                   onTap: (){
-
                     showDialog(context: context,
                         builder: (BuildContext context){
-                          return const SpHistoryDetailsAlert();
+                          return   SpHistoryDetailsAlert(id:widget.historyModel.id!,index:widget.index,);
                         }
                     );
                   },
@@ -51,50 +61,80 @@ class _SpHistoryDetailsScreenState extends State<SpHistoryDetailsScreen> {
           body: LayoutBuilder(
               builder: (BuildContext context, BoxConstraints constraints) {
                 return SingleChildScrollView(
-                    padding:const EdgeInsets.symmetric(vertical: 24,horizontal: 20),
+                    padding:const EdgeInsets.symmetric(horizontal: 20),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(
-                          height: 200,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8),
-                              image:const DecorationImage(image: AssetImage('assets/images/john_doe_profile.png'),
-                                  fit: BoxFit.cover
-                              )
+                        CachedNetworkImage(
+                          imageUrl:widget.historyModel.image!,
+                          placeholder: (context, url) => Shimmer.fromColors(
+                              baseColor: Colors.grey.shade700,
+                              highlightColor: Colors.grey.shade400,
+                              child: Container(
+                                width: MediaQuery.of(context).size.width,
+                                height: 200,
+                                decoration: ShapeDecoration(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(8)),
+                                ),
+                              )),
+                          errorWidget: (context, url, error) => Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: 200,
+                            decoration: ShapeDecoration(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8)),
+                                color: Colors.grey.withOpacity(0.6)),
+                          ),
+                          imageBuilder: (context, imageProvider) => Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: 200,
+                            decoration: ShapeDecoration(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8)),
+
+                                color: Colors.grey,
+                                image: DecorationImage(
+                                    image: imageProvider, fit: BoxFit.cover)),
                           ),
                         ),
+
+
                         const SizedBox(height: 16,),
-                        const CustomText(
-                          text: 'John Doe',
+                        CustomText(
+                          text: widget.historyModel.name!,
                           fontSize: 18,
                           fontWeight: FontWeight.w500,
                         ),
                         const SizedBox(height: 10,),
-                        const Row(
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             CustomText(
                               text: 'Contact',
                             ),
-                            CustomText(
-                              text: '+44 12344 1234',
-                              fontWeight: FontWeight.w500,
-                              left: 4,
+                            Flexible(
+                              child: CustomText(
+                                text: widget.historyModel.contact!,
+                                fontWeight: FontWeight.w500,
+                                left: 4,
+                              ),
                             ),
                           ],
                         ),
                         const SizedBox(height: 10,),
-                        const Row(
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            CustomText(
+                            const CustomText(
                               text: AppStrings.address,
                             ),
-                            CustomText(
-                              text: 'Abu Dhabi',
-                              fontWeight: FontWeight.w500,
-                              left: 4,
+                            Flexible(
+                              child: CustomText(
+                                text: widget.historyModel.address!,
+                                fontWeight: FontWeight.w500,
+                                left: 4,
+                              ),
                             ),
                           ],
                         ),
@@ -121,8 +161,8 @@ class _SpHistoryDetailsScreenState extends State<SpHistoryDetailsScreen> {
                                   color: AppColors.green_10,
                                   borderRadius: BorderRadius.circular(4)
                               ),
-                              child: const CustomText(
-                                text: AppStrings.complete,
+                              child: CustomText(
+                                text: widget.historyModel.status!,
                                 fontSize: 12,
                                 color: AppColors.green_100,
                               ),
@@ -130,42 +170,42 @@ class _SpHistoryDetailsScreenState extends State<SpHistoryDetailsScreen> {
                           ],
                         ),
                         const SizedBox(height: 10,),
-                        const Row(
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             CustomText(
                               text: AppStrings.service,
                             ),
                             CustomText(
-                              text: AppStrings.carWash,
+                              text: widget.historyModel.serviceName!,
                               fontWeight: FontWeight.w500,
                               left: 4,
                             ),
                           ],
                         ),
                         const SizedBox(height: 10,),
-                        const Row(
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             CustomText(
                               text: AppStrings.time,
                             ),
                             CustomText(
-                              text: '12:00 am',
+                              text: DateFormat.jm().format(widget.historyModel.createAt!),
                               fontWeight: FontWeight.w500,
                               left: 4,
                             ),
                           ],
                         ),
                         const SizedBox(height: 10,),
-                        const Row(
+                        Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            CustomText(
+                            const CustomText(
                               text: AppStrings.date,
                             ),
                             CustomText(
-                              text: '12 September',
+                              text: "${DateFormat.d().format(widget.historyModel.createAt!)} ${DateFormat.MMMM().format(widget.historyModel.createAt!)}",
                               fontWeight: FontWeight.w500,
                               left: 4,
                             ),

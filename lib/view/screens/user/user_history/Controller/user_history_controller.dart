@@ -49,7 +49,7 @@ class UserHistoryController extends GetxController{
                 status: hireHistory['status'],
                 createAt: hireHistory['create_at'].toDate(),
                 image: serviceData['image'],
-                averageRating: userData['average_rating'],
+                averageRating: userData['average_rating'].toDouble(),
                 name: userData['username'],
                 address: userData['address'],
                 contact: userData['phone']);
@@ -57,6 +57,7 @@ class UserHistoryController extends GetxController{
           }
         }
       }
+      demoList.sort((a, b) => b.createAt!.compareTo(a.createAt!));
       historyList.value = demoList;
       debugPrint("===========> historyList  ${historyList.length}");
     } catch (e) {

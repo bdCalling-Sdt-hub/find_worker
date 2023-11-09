@@ -1,22 +1,28 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:find_worker/model/hire_model.dart';
-import 'package:find_worker/utils/app_constents.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/foundation.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
-import '../user_hire_details/inner_widgets/hire_details_alert.dart';
+import '../../../../../model/hire_model.dart';
+import '../../../../../utils/app_constents.dart';
 
-class HireController extends GetxController {
+class SpHistoryController extends GetxController{
+
+
+  @override
+  void onInit() {
+    getHistoryList(true);
+    super.onInit();
+  }
+
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  RxList<HireModel> hireList = <HireModel>[].obs;
+  RxList<HireModel> historyList = <HireModel>[].obs;
   var loading = false.obs;
 
 
-  getHireList(bool load) async {
+  getHistoryList(bool load) async {
     try {
       if (load) {
         loading(true);
@@ -25,8 +31,8 @@ class HireController extends GetxController {
       final hireHistoryData = await _firebaseFirestore
           .collection(AppConstants.users)
           .doc(_firebaseAuth.currentUser!.uid)
-          .collection(AppConstants.hireHistory)
-          .where("status", isEqualTo: "Pending")
+          .collection(AppConstants.jobHistory)
+          .where("status", isEqualTo:"Complete")
           .get();
       List<HireModel> demoList = [];
 
@@ -38,7 +44,7 @@ class HireController extends GetxController {
             .get();
         final userData = await _firebaseFirestore
             .collection(AppConstants.users)
-            .doc(hireHistory['service_provider_id'])
+            .doc(hireHistory['hiring_user_id'])
             .get();
         if (serviceData.exists) {
           print("print====> ${serviceData['category_name']}");
@@ -47,7 +53,7 @@ class HireController extends GetxController {
                 id: hireHistory['id'],
                 serviceId: hireHistory['service_id'],
                 serviceName: serviceData['category_name'],
-                uid: hireHistory['service_provider_id'],
+                uid: hireHistory['hiring_user_id'],
                 status: hireHistory['status'],
                 createAt: hireHistory['create_at'].toDate(),
                 image: serviceData['image'],
@@ -60,50 +66,38 @@ class HireController extends GetxController {
         }
       }
       demoList.sort((a, b) => b.createAt!.compareTo(a.createAt!));
-      hireList.value = demoList;
-      debugPrint("===========> HireList ${hireList.length}");
+      historyList.value = demoList;
+      debugPrint("===========> historyList  ${historyList.length}");
     } catch (e) {
-      debugPrint("Opps Error $e");
+      debugPrint("Oops, Something Wrong $e");
     } finally {
       if (load) {
         loading(false);
       }
     }
   }
+  var removeLoading=false.obs;
 
-  var completeLoading=false.obs;
-  completeService(HireModel hireModel,)async{
-    completeLoading(true);
+  removeJobHistory(String id,int index)async {
+    removeLoading(true);
     try {
-      await _firebaseFirestore
-          .collection(AppConstants.users)
-          .doc(_firebaseAuth.currentUser!.uid)
-          .collection(AppConstants.hireHistory).doc(hireModel.id).update({"status":"Complete"});
-      await _firebaseFirestore
-          .collection(AppConstants.users)
-          .doc(hireModel.uid)
-          .collection(AppConstants.jobHistory).doc(hireModel.id).update({"status":"Complete"});
-      showDialog(
-          context: Get.context!,
-          barrierDismissible: false,
-          builder: (BuildContext context){
-            return  HireDetailsAlert();
-          }
-      );
-
+      await _firebaseFirestore.collection(AppConstants.users).doc(
+          _firebaseAuth.currentUser!.uid)
+          .collection(AppConstants.jobHistory)
+          .doc(id)
+          .delete();
+      historyList.removeAt(index);
+      historyList.refresh();
+      Get.back();
+      Get.back();
     } on Exception catch (e) {
-      completeLoading(false);
-      Fluttertoast.showToast(msg:"Oops,something wrong");
-    }finally{
-      completeLoading(false);
+      Fluttertoast.showToast(msg:"Oops, Something is wrong");
+      debugPrint("======>Oops, Something is wrong");
+    } finally {
+      removeLoading(false);
     }
-
-
   }
 
 
 
-
-
-
-}
+  }

@@ -2,18 +2,24 @@ import 'package:find_worker/core/app_routes.dart';
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_strings.dart';
 import 'package:find_worker/view/screens/service_provider/sp_bottom_nav_bar/sp_bottom_nav_bar_screen.dart';
+import 'package:find_worker/view/screens/service_provider/sp_job_history/Controller/sp_history_controller.dart';
 import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SpHistoryDetailsAlert extends StatefulWidget {
-  const SpHistoryDetailsAlert({super.key});
+  const SpHistoryDetailsAlert({super.key,required this.id,required this.index});
+  final String id;
+  final int index;
 
   @override
   State<SpHistoryDetailsAlert> createState() => _SpHistoryDetailsAlertState();
 }
 
 class _SpHistoryDetailsAlertState extends State<SpHistoryDetailsAlert> {
+
+  final _controller=Get.put(SpHistoryController());
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -36,25 +42,29 @@ class _SpHistoryDetailsAlertState extends State<SpHistoryDetailsAlert> {
           Row(
             children: [
               Expanded(
-                  child:InkWell(
-                    onTap: (){
-                      Get.to(SpBottomNavBarScreen(currentIndex: 1));
-                    },
-                    child: Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(width: 1,color: AppColors.blue_100),
-                            borderRadius: BorderRadius.circular(8)
-                        ),
-                        child: const Padding(
-                          padding: EdgeInsets.symmetric(vertical: 12),
-                          child: CustomText(
-                            text: AppStrings.yes,
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.blue_100,
+                  child: InkWell(
+                      onTap: (){
+                        _controller.removeJobHistory(widget.id, widget.index);
+                      },
+                      child:Obx(() => Container(
+                          width: 120,
+                          height: 36,
+                          decoration: BoxDecoration(
+                              border: Border.all(width: 1,color: AppColors.blue_100),
+                              borderRadius: BorderRadius.circular(8)
                           ),
-                        )
-                    ),
-                  )
+                          child: _controller.removeLoading.value?Container(
+                              alignment: Alignment.center,
+                              child: const SizedBox(height:20,width:20,child:CircularProgressIndicator(),)) :const Padding(
+                            padding: EdgeInsets.symmetric(vertical: 12),
+                            child: CustomText(
+                              text: AppStrings.yes,
+                              fontWeight: FontWeight.w600,
+                              color: AppColors.blue_100,
+                            ),
+                          )
+                      ),
+                      ))
               ),
               const SizedBox(
                 width: 8,
@@ -65,6 +75,7 @@ class _SpHistoryDetailsAlertState extends State<SpHistoryDetailsAlert> {
                       Navigator.pop(context);
                     },
                     child: Container(
+
                         decoration: BoxDecoration(
                             color: AppColors.blue_100,
                             borderRadius:

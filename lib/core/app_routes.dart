@@ -81,7 +81,7 @@ class AppRoute {
    static String spPersonalInformationScreen = "/sp_personal_information_screen";
    static String spEditPersonalInformationScreen = "/sp_edit_personal_information_screen";
    static String spServiceDetailsScreen = "/sp_service_details_screen";
-   //static String spEditServiceDetailsScreen = "/sp_edit_service_details_screen";
+
    static String spAddNewServiceScreen = "/sp_add_new_service_screen";
    static String spHomeScreen = "/sp_home_screen";
 
@@ -169,7 +169,7 @@ class AppRoute {
      GetPage(name: spSupportScreen, page: () => const SpSupportScreen()),
      GetPage(name: spTermsOfConditionsScreen, page: () => const SpTermsOfConditionsScreen()),
      GetPage(name: spJobHistoryScreen, page: () => const SpJobHistoryScreen()),
-     GetPage(name: spHistoryDetailsScreen, page: () => const SpHistoryDetailsScreen()),
+
      GetPage(name: spForgetPasswordScreen, page: () => const SpForgetPasswordScreen()),
      GetPage(name: spOtpScreen, page: () => const SpOtpScreen()),
      GetPage(name: spResetPasswordScreen, page: () => const SpResetPasswordScreen()),
