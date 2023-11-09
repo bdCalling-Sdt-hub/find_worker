@@ -1,51 +1,157 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
+import '../../../../../model/hire_model.dart';
 import '../../../../../model/service_model.dart';
 import '../../../../../model/user_model.dart';
 import '../../../../../utils/app_constents.dart';
+import '../../../user/user_hire_list/user_hire_details/inner_widgets/hire_details_alert.dart';
+import '../../sp_job_details/inner_widgets/sp_job_details_alert.dart';
 
 class SpHomeController extends GetxController{
 @override
   void onInit() {
-  getService();
+  getData(true);
   super.onInit();
   }
   var loading=false.obs;
-  FirebaseFirestore  firebaseStorage= FirebaseFirestore.instance;
+  var status= false.obs;
+  FirebaseFirestore  firebaseFirestore= FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   RxList<ServiceModel> serviceList= <ServiceModel> [].obs;
+  RxList<HireModel> historyList = <HireModel>[].obs;
+
+  getData(bool load)async{
+    if(load){
+      loading(true);
+    }
+    await getService();
+    await getHistoryList();
+    await getUserData();
+    if(load){
+      loading(false);
+    }
+  }
+
 
 
   getService()async{
-    loading(true);
     try {
-      var result= await  firebaseStorage.collection(AppConstants.services).where("provider_uid",isEqualTo:_auth.currentUser!.uid).get();
+      var result= await  firebaseFirestore.collection(AppConstants.services).where("provider_uid",isEqualTo:_auth.currentUser!.uid).get();
       serviceList.value= List<ServiceModel>.from(result.docs.map((x) => ServiceModel.fromJson(x)));
       debugPrint("========> Service Length = ${serviceList.length}");
       serviceList.refresh();
-    await  getUserData();
     } on Exception catch (e) {
-      loading(false);
-    }finally{
-      loading(false);
+     debugPrint("======>Oops, Something error $e");
     }
   }
 
   Rx<UserModel> userData=UserModel().obs;
 
  Future<void> getUserData()async{
-    DocumentSnapshot data = await firebaseStorage.collection(AppConstants.users).doc(_auth.currentUser!.uid).get();
+    DocumentSnapshot data = await firebaseFirestore.collection(AppConstants.users).doc(_auth.currentUser!.uid).get();
   userData.value = UserModel.fromMap(data);
+  status.value=userData.value.status=="Online";
     userData.refresh();
+  }
+  Future<void> updateStatusData()async{
+        try {
+          var inActive= status.value?"Offline":"Online";
+                 await firebaseFirestore.collection(AppConstants.users).doc(_auth.currentUser!.uid).update({"status":inActive});
+                 status.value=!status.value;
+        } on Exception catch (e) {
+          debugPrint("Oops error $e");
+        }
 
   }
 
 
 
 
+
+
+
+getHistoryList() async {
+  try {
+    final hireHistoryData = await firebaseFirestore
+        .collection(AppConstants.users)
+        .doc(_auth.currentUser!.uid)
+        .collection(AppConstants.jobHistory)
+        .where("status", isEqualTo:"Pending")
+        .get();
+    List<HireModel> demoList = [];
+
+    for (final hireHistory in hireHistoryData.docs) {
+      print(hireHistory['service_id']);
+      final serviceData = await firebaseFirestore
+          .collection(AppConstants.services)
+          .doc(hireHistory['service_id'])
+          .get();
+      final userData = await firebaseFirestore
+          .collection(AppConstants.users)
+          .doc(hireHistory['hiring_user_id'])
+          .get();
+      if (serviceData.exists) {
+        print("print====> ${serviceData['category_name']}");
+        if (userData.exists) {
+          HireModel hireModel = HireModel(
+              id: hireHistory['id'],
+              serviceId: hireHistory['service_id'],
+              serviceName: serviceData['category_name'],
+              uid: hireHistory['hiring_user_id'],
+              status: hireHistory['status'],
+              createAt: hireHistory['create_at'].toDate(),
+              image: serviceData['image'],
+              averageRating: userData['average_rating'].toDouble(),
+              name: userData['username'],
+              address: userData['address'],
+              contact: userData['phone']);
+          demoList.add(hireModel);
+        }
+      }
+    }
+    demoList.sort((a, b) => b.createAt!.compareTo(a.createAt!));
+    historyList.value = demoList;
+    debugPrint("===========> historyList  ${historyList.length}");
+  } catch (e) {
+    debugPrint("Oops, Something Wrong $e");
+  }
+}
+
+
+var completeLoading=false.obs;
+completeService(HireModel hireModel,)async{
+  completeLoading(true);
+  try {
+    await firebaseFirestore
+        .collection(AppConstants.users)
+        .doc(_auth.currentUser!.uid)
+        .collection(AppConstants.jobHistory).doc(hireModel.id).update({"status":"Complete"});
+    await firebaseFirestore
+        .collection(AppConstants.users)
+        .doc(hireModel.uid)
+        .collection(AppConstants.hireHistory).doc(hireModel.id).update({"status":"Complete"});
+    showDialog(
+        context: Get.context!,
+        barrierDismissible: false,
+        builder: (BuildContext context){
+          return  SpJobDetailsAlert();
+        }
+    );
+
+  } on Exception catch (e) {
+    completeLoading(false);
+    Fluttertoast.showToast(msg:"Oops,something wrong");
+  }finally{
+    completeLoading(false);
+  }
+
+
+}
 
 
 

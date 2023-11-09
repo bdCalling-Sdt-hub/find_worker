@@ -75,7 +75,7 @@ class AppRoute {
    static String spSignInScreen = "/sp_sign_in_screen";
    static String spSignUpScreen = "/sp_sign_up_screen";
    static String spVerifyEmailOtpScreen = "/sp_verify_email_otp_screen";
-   static String spJobDetailsScreen = "/sp_job_details_screen";
+
    static String spNotificationScreen = "/sp_notification_screen";
    static String spProfileScreen = "/sp_profile_screen";
    static String spPersonalInformationScreen = "/sp_personal_information_screen";
@@ -134,7 +134,6 @@ class AppRoute {
      GetPage(name: spSignInScreen, page: () => const SpSignInScreen()),
      GetPage(name: spSignUpScreen, page: () => const SpSignUpScreen()),
      GetPage(name: spVerifyEmailOtpScreen, page: () => const SpVerifyEmailOtpScreen()),
-     GetPage(name: spJobDetailsScreen, page: () => const SpJobDetailsScreen()),
      GetPage(name: spNotificationScreen, page: () => const SpNotificationScreen()),
      GetPage(name: spProfileScreen, page: () => const SpProfileScreen()),
      GetPage(name: spPersonalInformationScreen, page: () => const SpPersonalInformationScreen()),

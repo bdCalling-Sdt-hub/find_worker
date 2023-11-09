@@ -42,7 +42,7 @@ class _SpJobDetailsAlertState extends State<SpJobDetailsAlert> {
             bottom: 24,
           ),
           CustomButton(onPressed: (){
-            Get.to(SpBottomNavBarScreen(currentIndex: 0));
+            Get.offAll(SpBottomNavBarScreen(currentIndex: 0));
           }, titleText: 'Go to Home',buttonBgColor: AppColors.blue_100,buttonHeight: 36,leftPadding: 18,rightPadding: 18,)
         ],
       ),
