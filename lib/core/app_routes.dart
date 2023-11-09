@@ -70,9 +70,7 @@ class AppRoute {
    static String userPersonalInformationScreen = "/user_personal_information_screen";
    static String userEditPersonalInformationScreen = "/user_edit_personal_information_screen";
    static String userHireList = "/user_hire_list_screen";
-   static String userHireDetailsScreen = "/user_hire_details_screen";
    static String userHistoryScreen = "/user_history_screen";
-   static String userHistoryDetailsScreen = "/user_history_details_screen";
    static String userServiceDetailsScreen = "/user_service_details_screen";
    static String spSignInScreen = "/sp_sign_in_screen";
    static String spSignUpScreen = "/sp_sign_up_screen";
@@ -130,9 +128,8 @@ class AppRoute {
      GetPage(name: userPersonalInformationScreen, page: () => const UserPersonalInformationScreen()),
      GetPage(name: userEditPersonalInformationScreen, page: () => const UserEditPersonalInformation()),
      GetPage(name: userHireList, page: () => const UserHireListScreen()),
-     GetPage(name: userHireDetailsScreen, page: () => const UserHireDetailsScreen()),
+
      GetPage(name: userHistoryScreen, page: () => const UserHistoryScreen()),
-     GetPage(name: userHistoryDetailsScreen, page: () => const UserHistoryDetailsScreen()),
      GetPage(name: userServiceDetailsScreen, page: () => const UserServiceDetailsScreen()),
      GetPage(name: spSignInScreen, page: () => const SpSignInScreen()),
      GetPage(name: spSignUpScreen, page: () => const SpSignUpScreen()),

@@ -117,7 +117,7 @@ class UserServiceDetailsController extends GetxController {
       var id= uuid.v4();
         Map<String ,dynamic> hireBody={
           "id":id,
-          "service_id" :userdata.serviceId,
+          "service_id" :userdata.id,
           "service_provider_id":userdata.providerUid,
           "service_name":userdata.serviceName,
           "status":"Pending",
@@ -125,7 +125,7 @@ class UserServiceDetailsController extends GetxController {
         };
         Map<String ,dynamic> jobBody={
           "id":id,
-          "service_id" :userdata.serviceId,
+          "service_id" :userdata.id,
           "hiring_user_id":_auth.currentUser!.uid,
           "service_name":userdata.serviceName,
           "status":"Pending",

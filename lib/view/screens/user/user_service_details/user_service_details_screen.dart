@@ -58,7 +58,7 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
                 ),
               ),
         title:const CustomText(
-            text: AppStrings.jobDetails,
+            text: AppStrings.serviceDetails,
             color: AppColors.blue_100,
             fontSize: 18,
             fontWeight: FontWeight.w500,
@@ -185,6 +185,7 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
                     height: 1,
                     color: AppColors.blue_20,
                   ),
+                  if(_userServiceDetailsController.topReviewList.isNotEmpty)
                   const CustomText(
                     text: 'Top Reviews',
                     fontSize: 18,
@@ -236,7 +237,7 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
                               ),
                             ),
                             CustomText(
-                              text: "${DateFormat.d('en_US').format(demoData.createAt!)} ${DateFormat.MMMM('en_US').format(demoData.createAt!)}",
+                              text: DateFormat('dd MMM').format(demoData.createAt!),
                               fontSize: 12,
                               color: AppColors.black_60,
                               left: 4,

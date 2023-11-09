@@ -1,18 +1,21 @@
 import 'package:find_worker/core/app_routes.dart';
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_strings.dart';
+import 'package:find_worker/view/screens/user/user_history/Controller/user_history_controller.dart';
 import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class UserHistoryDetailsAlert extends StatefulWidget {
-  const UserHistoryDetailsAlert({super.key});
-
+  const UserHistoryDetailsAlert({super.key,required this.id,required this.index});
+    final String id;
+    final int index;
   @override
   State<UserHistoryDetailsAlert> createState() => _UserHistoryDetailsAlertState();
 }
 
 class _UserHistoryDetailsAlertState extends State<UserHistoryDetailsAlert> {
+  final _controller = Get.put(UserHistoryController());
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -35,16 +38,20 @@ class _UserHistoryDetailsAlertState extends State<UserHistoryDetailsAlert> {
           Row(
             children: [
               Expanded(
-                  child:InkWell(
+                  child: InkWell(
                     onTap: (){
-                      Get.toNamed(AppRoute.userHistoryScreen);
+                      _controller.removeJobHistory(widget.id, widget.index);
                     },
-                    child: Container(
+                    child:Obx(() => Container(
+                      width: 120,
+                        height: 36,
                         decoration: BoxDecoration(
                             border: Border.all(width: 1,color: AppColors.blue_100),
                             borderRadius: BorderRadius.circular(8)
                         ),
-                        child: const Padding(
+                        child: _controller.removeLoading.value?Container(
+                            alignment: Alignment.center,
+                            child: const SizedBox(height:20,width:20,child:CircularProgressIndicator(),)) :const Padding(
                           padding: EdgeInsets.symmetric(vertical: 12),
                           child: CustomText(
                             text: AppStrings.yes,
@@ -53,7 +60,7 @@ class _UserHistoryDetailsAlertState extends State<UserHistoryDetailsAlert> {
                           ),
                         )
                     ),
-                  )
+                  ))
               ),
               const SizedBox(
                 width: 8,
