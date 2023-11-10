@@ -63,6 +63,8 @@ dependencies:
   flutter_screenutil: ^5.9.0
   shimmer: ^3.0.0
   url_launcher:
+  sign_in_with_apple:
+  flutter_typeahead:
 
 
 

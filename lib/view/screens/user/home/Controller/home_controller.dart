@@ -179,7 +179,9 @@ Future<List<UserByServiceModel>?> getSortedServicesByAverageRatingAirCondition()
   }
 }
 
-
-
-
+@override
+  void dispose() {
+   Get.delete<UserHomeController>();
+    super.dispose();
+  }
 }

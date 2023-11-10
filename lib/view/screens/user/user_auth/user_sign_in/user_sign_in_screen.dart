@@ -197,15 +197,20 @@ class _UserSignInState extends State<UserSignIn> {
                                       ),
                                     ),
                                   ),
-                                  Container(
-                                    padding:const EdgeInsets.all(10),
-                                    decoration: const BoxDecoration(
-                                        color: Colors.white,
-                                        shape: BoxShape.circle
-                                    ),
-                                    child: const CustomImage(
-                                      imageSrc: AppIcons.apple,
-                                      size: 28,
+                                  GestureDetector(
+                                    onTap: (){
+                                      _authController.appleInWithGoogle(userType); 
+                                    },
+                                    child: Container(
+                                      padding:const EdgeInsets.all(10),
+                                      decoration: const BoxDecoration(
+                                          color: Colors.white,
+                                          shape: BoxShape.circle
+                                      ),
+                                      child: const CustomImage(
+                                        imageSrc: AppIcons.apple,
+                                        size: 28,
+                                      ),
                                     ),
                                   ),
                                 ],

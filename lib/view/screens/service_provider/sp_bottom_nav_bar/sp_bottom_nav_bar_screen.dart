@@ -102,6 +102,9 @@ import 'package:find_worker/view/screens/user/home/home/home_screen.dart';
 import 'package:find_worker/view/widgets/image/custom_image.dart';
 import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../sp_home/Controller/home_controller.dart';
 
 
 class SpBottomNavBarScreen extends StatefulWidget {
@@ -125,6 +128,7 @@ class _SpBottomNavBarScreenState extends State<SpBottomNavBarScreen> {
 
   @override
   Widget build(BuildContext context) {
+     final _homeController = Get.put(SpHomeController());
 
     List<Widget> manuBarItems = [
       MenuBarItems(

@@ -7,6 +7,8 @@ import 'package:find_worker/model/user_model.dart';
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_constents.dart';
 import 'package:find_worker/view/screens/service_provider/sp_bottom_nav_bar/sp_bottom_nav_bar_screen.dart';
+import 'package:find_worker/view/screens/service_provider/sp_home/Controller/home_controller.dart';
+import 'package:find_worker/view/screens/user/home/Controller/home_controller.dart';
 import 'package:find_worker/view/screens/user/user_auth/user_sign_in/user_sign_in_screen.dart';
 import 'package:find_worker/view/screens/user/user_auth/user_sign_up/more_sign_up_screen.dart';
 import 'package:find_worker/view/screens/user/user_bottom_nav_bar/user_bottom_nav_bar_screen.dart';
@@ -17,6 +19,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 import '../../../onboard/onboard_screen.dart';
 
@@ -313,6 +316,63 @@ var loading=false.obs;
     UserCredential userData =
         await FirebaseAuth.instance.signInWithCredential(credential);
     print("=======> Google Sign in Complete ");
+   if(userData.user !=null){
+     DocumentSnapshot data = await FirebaseFirestore.instance
+        .collection(AppConstants.users)
+        .doc(userData.user!.uid)
+        .get();
+    if (data.exists) {
+      UserModel userData = UserModel.fromMap(data);
+      debugPrint("=======> Uid ${data['uid']}");
+      debugPrint("=======> User Type ${userData.role}");
+     if (userData.role == userType) {
+        await PrefsHelper.setString(AppConstants.logged, userData.role);
+        if (userData.role == AppConstants.userType) {
+          Get.offAll(UserBottomNavBarScreen(currentIndex: 0));
+          _dataController.setData(
+              userNameD: userData.userName!,
+              userRoleD: userData.role!,
+              uidD: userData.uid!,
+              imageD: userData.imageSrc!,
+              authTypeD: userData.authType!);
+          usernameController.clear();
+          passwordController.clear();
+        } else {
+          Get.offAll(SpBottomNavBarScreen(currentIndex: 0));
+          _dataController.setData(
+              userNameD: userData.userName!,
+              userRoleD: userData.role!,
+              uidD: userData.uid!,
+              imageD: userData.imageSrc!,
+              authTypeD: userData.authType!);
+          usernameController.clear();
+          passwordController.clear();
+        }
+      } else {
+        Get.snackbar("Error", "User not found", colorText: Colors.red);
+      }
+    } else {
+      Get.to(MoreSignUpScreen(uid: userData.user!.uid, email:userData.user!.email??"", image:userData.user!.photoURL??"", name:userData.user!.displayName??"", userType: userType));
+    }
+   }
+  }
+} on Exception catch (e) {
+ debugPrint("Oops, Something wrong error $e");
+  
+}
+  }
+
+
+  Future<void> appleInWithGoogle(String userType) async {
+    // Trigger the authentication flow
+    try {
+
+       final authProvider =  AppleAuthProvider();
+  
+    UserCredential userData =
+        await FirebaseAuth.instance.signInWithProvider(authProvider);
+   if(userData.user !=null){
+     print("=======> Apple Sign in Complete ");
     DocumentSnapshot data = await FirebaseFirestore.instance
         .collection(AppConstants.users)
         .doc(userData.user!.uid)
@@ -350,12 +410,18 @@ var loading=false.obs;
     } else {
       Get.to(MoreSignUpScreen(uid: userData.user!.uid, email:userData.user!.email??"", image:userData.user!.photoURL??"", name:userData.user!.displayName??"", userType: userType));
     }
-  }
+   }
 } on Exception catch (e) {
  debugPrint("Oops, Something wrong error $e");
   
 }
   }
+
+
+
+
+
+
 
   ///  <------------- Sign out------------->
   var isSignOutLoad = false.obs;

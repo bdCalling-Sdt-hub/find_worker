@@ -4,17 +4,18 @@ import 'package:find_worker/utils/app_images.dart';
 import 'package:find_worker/utils/app_strings.dart';
 import 'package:find_worker/view/widgets/app_bar/custom_app_bar.dart';
 import 'package:find_worker/view/widgets/buttons/bottom_nav_button.dart';
+import 'package:find_worker/view/widgets/custom_button.dart';
 import 'package:find_worker/view/widgets/custom_elevated_loading_button/custom_elevated_loading_button.dart';
 import 'package:find_worker/view/widgets/email_otp/email_otp.dart';
 import 'package:find_worker/view/widgets/image/custom_image.dart';
 import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:find_worker/view/widgets/text_field/custom_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../Controller/forgot_pass_controller.dart';
+import 'controller/forget_pass_controller.dart';
 
 class UserForgetPasswordScreen extends StatefulWidget {
   const UserForgetPasswordScreen({super.key});
@@ -26,7 +27,7 @@ class UserForgetPasswordScreen extends StatefulWidget {
 class _UserForgetPasswordScreenState extends State<UserForgetPasswordScreen> {
 
   final TextEditingController emailController = TextEditingController();
-  final _forgotPassController =Get.put(ForgotPassController());
+  final _forgotPassController =Get.put(ForgetPassController());
   final _formKey = GlobalKey<FormState>();
   final emailRegExP = RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]");
 
@@ -175,7 +176,7 @@ class _UserForgetPasswordScreenState extends State<UserForgetPasswordScreen> {
                         ),
                         const SizedBox(height: 8),
                         CustomTextField(
-                          textEditingController: emailController,
+                          textEditingController:_forgotPassController.textEditingController,
                           textInputAction: TextInputAction.next,
                           keyboardType: TextInputType.text,
                           textAlign: TextAlign.start,
@@ -198,31 +199,23 @@ class _UserForgetPasswordScreenState extends State<UserForgetPasswordScreen> {
                             return null;
                           },
                         ),
+                        SizedBox(height: 230.h,),
 
-                        isLoading ? const CustomElevatedLoadingButton() : Container(
-                      margin: const EdgeInsets.only(top: 252),
-                        height: 56 ,
-                        width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            color: const Color(0xff0668E3)
-                        ),
-                        child: InkWell(
-                          onTap: (){
-                            if(_formKey.currentState!.validate()){
-                             // sendOtpToEmail();
-                              _forgotPassController.sendPasswordResetOTP(emailController.text);
-                            }
-                          },
-                          child: const Center(
-                            child: CustomText(
-                            text: AppStrings.getOTP,
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                          ),),
-                        ),
-                    ),
+                         Obx(()=>
+                            CustomButton(
+                            loading: _forgotPassController.loading.value,
+                            text: AppStrings.submit,
+                                                 height: 56.h ,
+                                                 width: MediaQuery.of(context).size.width,
+                            onTap: (){
+                              if(_formKey.currentState!.validate()){
+                              _forgotPassController.resetPassword(_forgotPassController.textEditingController.text.trim());
+                              }
+                            },
+                           
+                                                 ),
+                         ),
+                    
                       ],
                     ),
                   ),

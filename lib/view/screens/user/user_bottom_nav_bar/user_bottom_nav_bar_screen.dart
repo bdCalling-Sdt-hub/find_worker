@@ -13,6 +13,10 @@ import 'package:find_worker/view/widgets/image/custom_image.dart';
 import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
+import '../home/Controller/home_controller.dart';
 
 
 class UserBottomNavBarScreen extends StatefulWidget {
@@ -37,6 +41,7 @@ class _UserBottomNavBarScreenState extends State<UserBottomNavBarScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final _homeController = Get.put(UserHomeController());
 
     List<Widget> manuBarItems = [
       MenuBarItems(
