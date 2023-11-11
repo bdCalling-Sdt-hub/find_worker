@@ -18,6 +18,7 @@ import 'package:get/get_core/src/get_main.dart';
 
 import '../category/Controller/category_controller.dart';
 import '../home/Controller/home_controller.dart';
+import '../user_profile/Controller/profile_controller.dart';
 
 
 class UserBottomNavBarScreen extends StatefulWidget {
@@ -44,6 +45,7 @@ class _UserBottomNavBarScreenState extends State<UserBottomNavBarScreen> {
   Widget build(BuildContext context) {
     final _homeController = Get.put(UserHomeController());
     final _categoryController = Get.put(CategoryController());
+    final _profileController = Get.put(UserProfileController());
 
     List<Widget> manuBarItems = [
       MenuBarItems(

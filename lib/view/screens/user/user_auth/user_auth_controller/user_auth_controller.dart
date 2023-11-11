@@ -113,16 +113,17 @@ class AuthenticationController extends GetxController {
     userModel.userName = nameController.text.toString();
     userModel.dob = DateTime(int.parse(yearController.text),
         int.parse(monthController.text), int.parse(dayController.text));
-    userModel.phone = phoneCode + phoneController.text.toString();
+    userModel.phone = phoneController.text.toString();
     userModel.address = addressController.text.toString();
     userModel.authType = AppConstants.normalUser;
     userModel.role = userType;
     userModel.password = passController.text;
     userModel.timestamp = DateTime.now();
-    userModel.status = "OffLine";
+    userModel.status = "Online";
     userModel.imageSrc = "";
     userModel.averageRating = 0.0;
     userModel.fcmToken = token;
+    userModel.phoneCode=phoneCode;
     userModel.gender = genderList[selectedGender];
     try {
       await firebaseFireStore
@@ -173,7 +174,7 @@ var loading=false.obs;
     userModel.userName = nameController.text.toString();
     userModel.dob = DateTime(int.parse(yearController.text),
         int.parse(monthController.text), int.parse(dayController.text));
-    userModel.phone = phoneCode + phoneController.text.toString();
+    userModel.phone = phoneController.text.toString();
     userModel.address = addressController.text.toString();
     userModel.authType = AppConstants.socialMediaUser;
     userModel.role = type;
@@ -183,6 +184,7 @@ var loading=false.obs;
     userModel.imageSrc = image;
     userModel.averageRating = 0.0;
     userModel.fcmToken = token;
+    userModel.phoneCode=phoneCode;
     userModel.gender = genderList[selectedGender];
     try {
       await firebaseFireStore
