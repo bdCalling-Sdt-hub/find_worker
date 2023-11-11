@@ -146,4 +146,7 @@ class AppStrings{
   static const String writeYourFeedback ="Write your feedback";
   static const String submit ="Submit";
   static const String didNotSeeWhat  ="Didn’t see what you’re looking for?Go to Categories " ;
+  static const String noDataAvailable="No service available!";
+
+
 }
