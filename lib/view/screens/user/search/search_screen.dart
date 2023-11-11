@@ -131,130 +131,132 @@ class _SearchScreenState extends State<SearchScreen> {
       body: SafeArea(
         child: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                 SizedBox(
-                  height: 24.h,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(width: 20.w,),
-                    GestureDetector(
-                      onTap: () {
-                        Get.back();
-                      },
-                      child: const CustomImage(
-                          imageColor: AppColors.blue_100,
-                          size: 20,
-                          imageType: ImageType.svg,
-                          imageSrc: AppIcons.chevronLeft),
-                    ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      flex: 4,
-                      child: TypeAheadFormField(
-                        textFieldConfiguration: TextFieldConfiguration(
-                          decoration: InputDecoration(
-                              isDense: true,
-                              hintText: "Search by categories",
-                              contentPadding: EdgeInsets.symmetric(
-                                  horizontal: 10.w, vertical: 15.h),
-                              prefixIconConstraints:
-                                  BoxConstraints(minWidth: 45.w),
-                              prefixIcon: SvgPicture.asset(
-                                AppIcons.search,
-                                color: const Color(0xFFA7A7A7),
-                                height: 20.h,
-                                width: 20.h,
-                              ),
-                              hintStyle: GoogleFonts.montserrat(
-                                color: AppColors.black_40,
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                              ),
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(8.r),
-                                  borderSide: const BorderSide(
-                                      color: Color(0xFFE7F0FD), width: 1)),
-                              disabledBorder: InputBorder.none,
-                              focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(8.r),
-                                  borderSide: const BorderSide(
-                                      color: Color(0xFFE7F0FD), width: 1)),
-                              errorBorder: InputBorder.none),
-                          controller: _searchController.typeAheadController,
-                        ),
-                        suggestionsCallback: (pattern) =>
-                            _searchController.getSuggestions(pattern),
-                        itemBuilder: (context, suggestion) => ListTile(
-                          title: Text(suggestion.name!),
-                          dense: true,
-                          contentPadding:
-                              EdgeInsets.symmetric(horizontal: 12.w),
-                          visualDensity: const VisualDensity(vertical: -3),
-                          //   leading:Image.network(),
-                        ),
-                        itemSeparatorBuilder: (context, index) =>
-                            const Divider(
-                          height: 0.2,
-                        ),
-                        transitionBuilder:
-                            (context, suggestionsBox, controller) =>
-                                suggestionsBox,
-                        onSuggestionSelected: (suggestion) {
-                          _searchController.typeAheadController.text =
-                              suggestion.name!;
-                          _searchController.selectCategory.value=suggestion.id!;
-                          _searchController.getSortedServicesByCategory(suggestion.id!);
-                                debugPrint("Select category ${suggestion.id}");
+            return Obx(()=>_searchController.loading.value?const CustomLoader():
+               Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                   SizedBox(
+                    height: 24.h,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(width: 20.w,),
+                      GestureDetector(
+                        onTap: () {
+                          Get.back();
                         },
-                        suggestionsBoxController:
-                            _searchController.suggestionBoxController,
-                        onSaved: (value) {
-                          debugPrint("Save data ${value}");
-                        },
+                        child: const CustomImage(
+                            imageColor: AppColors.blue_100,
+                            size: 20,
+                            imageType: ImageType.svg,
+                            imageSrc: AppIcons.chevronLeft),
                       ),
-                    ),
-                    const SizedBox(width: 12),
-                    GestureDetector(
-                      onTap: () => scaffoldKey.currentState!.openEndDrawer(),
-                      child: Container(
-                        height: 50.h,
-                        width: 50.h,
-                        padding: const EdgeInsetsDirectional.symmetric(
-                            horizontal: 15, vertical: 15),
-                        alignment: Alignment.center,
-                        decoration: BoxDecoration(
-                            color: AppColors.white,
-                            borderRadius: BorderRadius.circular(8),
-                            border: Border.all(
-                                color:const Color(0xFFE7F0FD), width: 1)),
-                        child: SvgPicture.asset(AppIcons.adjustments),
+                      const SizedBox(width: 16),
+                      Expanded(
+                        flex: 4,
+                        child: TypeAheadFormField(
+                          textFieldConfiguration: TextFieldConfiguration(
+                            decoration: InputDecoration(
+                                isDense: true,
+                                hintText: "Search by categories",
+                                contentPadding: EdgeInsets.symmetric(
+                                    horizontal: 10.w, vertical: 15.h),
+                                prefixIconConstraints:
+                                    BoxConstraints(minWidth: 45.w),
+                                prefixIcon: SvgPicture.asset(
+                                  AppIcons.search,
+                                  color: const Color(0xFFA7A7A7),
+                                  height: 20.h,
+                                  width: 20.h,
+                                ),
+                                hintStyle: GoogleFonts.montserrat(
+                                  color: AppColors.black_40,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                                enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8.r),
+                                    borderSide: const BorderSide(
+                                        color: Color(0xFFE7F0FD), width: 1)),
+                                disabledBorder: InputBorder.none,
+                                focusedBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(8.r),
+                                    borderSide: const BorderSide(
+                                        color: Color(0xFFE7F0FD), width: 1)),
+                                errorBorder: InputBorder.none),
+                            controller: _searchController.typeAheadController,
+                          ),
+                          suggestionsCallback: (pattern) =>
+                              _searchController.getSuggestions(pattern),
+                          itemBuilder: (context, suggestion) => ListTile(
+                            title: Text(suggestion.name!),
+                            dense: true,
+                            contentPadding:
+                                EdgeInsets.symmetric(horizontal: 12.w),
+                            visualDensity: const VisualDensity(vertical: -3),
+                            //   leading:Image.network(),
+                          ),
+                          itemSeparatorBuilder: (context, index) =>
+                              const Divider(
+                            height: 0.2,
+                          ),
+                          transitionBuilder:
+                              (context, suggestionsBox, controller) =>
+                                  suggestionsBox,
+                          onSuggestionSelected: (suggestion) {
+                            _searchController.typeAheadController.text =
+                                suggestion.name!;
+                            _searchController.selectCategory.value=suggestion.id!;
+                            _searchController.getSortedServicesByCategory(suggestion.id!);
+                                  debugPrint("Select category ${suggestion.id}");
+                          },
+                          suggestionsBoxController:
+                              _searchController.suggestionBoxController,
+                          onSaved: (value) {
+                            debugPrint("Save data ${value}");
+                          },
+                        ),
                       ),
-                    ),
-                    SizedBox(width: 20.w,),
-                  ],
-                ),
-                SizedBox(
-                  height: 10.h,
-                ),
+                      const SizedBox(width: 12),
+                      GestureDetector(
+                        onTap: () => scaffoldKey.currentState!.openEndDrawer(),
+                        child: Container(
+                          height: 50.h,
+                          width: 50.h,
+                          padding: const EdgeInsetsDirectional.symmetric(
+                              horizontal: 15, vertical: 15),
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                              color: AppColors.white,
+                              borderRadius: BorderRadius.circular(8),
+                              border: Border.all(
+                                  color:const Color(0xFFE7F0FD), width: 1)),
+                          child: SvgPicture.asset(AppIcons.adjustments),
+                        ),
+                      ),
+                      SizedBox(width: 20.w,),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 10.h,
+                  ),
 
-                Expanded(
-                  child:
-                     Obx(()=>_searchController.selectCategory.value.isEmpty?_toFeaturedServices():_searchController.serviceLoading.value?const Center(child: CustomLoader()):_searchController.servicesList.isEmpty? Center(child: Column(
-                       mainAxisAlignment: MainAxisAlignment.center,
-                       children: [
-                         Image.asset(AppImages.empty,height: 100,width: 100,),
-                         const SizedBox(height: 10),
-                         const Text(AppStrings.noDataAvailable)
-                       ],
-                     ),
-                         ): _serviceData()),
+                  Expanded(
+                    child:
+                       Obx(()=>_searchController.selectCategory.value.isEmpty?_toFeaturedServices():_searchController.serviceLoading.value?const Center(child: CustomLoader()):_searchController.servicesList.isEmpty? Center(child: Column(
+                         mainAxisAlignment: MainAxisAlignment.center,
+                         children: [
+                           Image.asset(AppImages.empty,height: 100,width: 100,),
+                           const SizedBox(height: 10),
+                           const Text(AppStrings.noDataAvailable)
+                         ],
+                       ),
+                           ): _serviceData()),
 
-                ),
-              ],
+                  ),
+                ],
+              ),
             );
           },
         ),

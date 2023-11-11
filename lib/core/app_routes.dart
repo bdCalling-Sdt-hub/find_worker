@@ -29,7 +29,7 @@ import 'package:find_worker/view/screens/service_provider/sp_settings/sp_support
 import 'package:find_worker/view/screens/service_provider/sp_settings/sp_terms_of_conditions/sp_terms_of_conditions_screen.dart';
 import 'package:find_worker/view/screens/splash/splash_screen.dart';
 import 'package:find_worker/view/screens/user/category/category_screen.dart';
-import 'package:find_worker/view/screens/user/home/car_wash_details/category_by_services_screen.dart';
+
 import 'package:find_worker/view/screens/user/home/home/home_screen.dart';
 import 'package:find_worker/view/screens/user/search/search_screen.dart';
 import 'package:find_worker/view/screens/user/settings/about_us/about_us_screen.dart';
@@ -57,6 +57,8 @@ import 'package:find_worker/view/screens/user/user_personal_information/user_per
 import 'package:find_worker/view/screens/user/user_profile/user_profile_screen.dart';
 import 'package:find_worker/view/screens/user/user_service_details/user_service_details_screen.dart';
 import 'package:get/get.dart';
+
+import '../view/screens/user/home/CategoryByService/category_by_services_screen.dart';
 
 
 class AppRoute {
@@ -156,7 +158,7 @@ class AppRoute {
      GetPage(name: supportScreen, page: () => const SupportScreen()),
      GetPage(name: homeScreen, page: () => HomeScreen()),
      GetPage(name: carWashDetailsScreen, page: () => const CategoryByServiceScreen()),
-     GetPage(name: categoryScreen, page: () => const CategoryScreen()),
+
      GetPage(name: searchScreen, page: () => const SearchScreen()),
      GetPage(name: spAboutUsScreen, page: () => const SpAboutUsScreen()),
      GetPage(name: spChangeForgetPasswordScreen, page: () => const SpChangeForgetPasswordScreen()),

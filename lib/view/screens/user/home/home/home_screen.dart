@@ -4,6 +4,7 @@ import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_icons.dart';
 import 'package:find_worker/utils/app_images.dart';
 import 'package:find_worker/utils/app_strings.dart';
+import 'package:find_worker/view/screens/user/category/category_screen.dart';
 import 'package:find_worker/view/screens/user/home/Controller/home_controller.dart';
 import 'package:find_worker/view/screens/user/home/home/home_screen_data/home_screen_data.dart';
 import 'package:find_worker/view/widgets/custom_loader.dart';
@@ -16,6 +17,7 @@ import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../../widgets/image/custom_image.dart';
+import '../../user_bottom_nav_bar/user_bottom_nav_bar_screen.dart';
 import 'inner_widgets/car_wash_section.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -98,7 +100,9 @@ class HomeScreen extends StatelessWidget {
                         children: [
                           TextSpan(
                             text: "Categories",
-                            recognizer: TapGestureRecognizer()..onTap = () {},
+                            recognizer: TapGestureRecognizer()..onTap = () {
+                            Get.to(CategoryScreen(isBack: true,));
+                            },
                             style: TextStyle(
                                 fontSize: 18.sp,
                                 fontWeight: FontWeight.w500,

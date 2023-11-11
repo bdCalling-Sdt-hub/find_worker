@@ -9,6 +9,7 @@ import 'package:find_worker/view/widgets/custom_loader.dart';
 import 'package:find_worker/view/widgets/image/custom_image.dart';
 import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -61,10 +62,11 @@ class _CategoryByServiceScreenState extends State<CategoryByServiceScreen> {
       body: LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
         return  Obx(()=>_controller.loading.value?const CustomLoader()
           : _controller.servicesList.isEmpty?const Center(child: Text("No data available"),) :SingleChildScrollView(
-            padding: const EdgeInsetsDirectional.symmetric(vertical: 24,horizontal: 20),
+            padding:  EdgeInsetsDirectional.symmetric(horizontal: 20.w),
             physics:const BouncingScrollPhysics(),
             child: GridView.builder(
               shrinkWrap: true,
+              padding: EdgeInsets.zero,
               physics: const NeverScrollableScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,

@@ -16,6 +16,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+import '../category/Controller/category_controller.dart';
 import '../home/Controller/home_controller.dart';
 
 
@@ -34,7 +35,7 @@ class _UserBottomNavBarScreenState extends State<UserBottomNavBarScreen> {
 
   static  List<Widget> screens = <Widget>[
     HomeScreen(),
-    const CategoryScreen(),
+     CategoryScreen(isBack:false,),
     const UserHireListScreen(),
     const UserProfileScreen()
   ];
@@ -42,6 +43,7 @@ class _UserBottomNavBarScreenState extends State<UserBottomNavBarScreen> {
   @override
   Widget build(BuildContext context) {
     final _homeController = Get.put(UserHomeController());
+    final _categoryController = Get.put(CategoryController());
 
     List<Widget> manuBarItems = [
       MenuBarItems(

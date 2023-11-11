@@ -127,6 +127,7 @@ class AppStrings{
   static const String   apply= "Apply";
   static const String   filter= "Filter";
   static const String   category= "Category";
+  static const String   categories= "Categories";
   static const String   seeAll= "See All";
   static const String   pending= "Pending";
   static const String   aboutJob= "About Job";

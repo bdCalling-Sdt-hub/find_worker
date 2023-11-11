@@ -141,7 +141,6 @@ class _SearchEndDrawerState extends State<SearchEndDrawer> {
                 Get.back();
               }
             },
-
           ),
           SizedBox(height: 54.h,)
         ],
