@@ -80,7 +80,6 @@ class EditServiceController extends GetxController{
                 serviceId: selectServiceId.value,
                 location: addressTextCtrl.text,
                 providerUid:model.providerUid,
-                averageRating:model.averageRating!,
                 description:descriptionTextCtrl.text
             );
             await firebaseStorage.collection(AppConstants.services).doc(model.id).update(body.toJson());

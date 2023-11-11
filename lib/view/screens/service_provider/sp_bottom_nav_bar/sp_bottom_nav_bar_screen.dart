@@ -105,6 +105,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../sp_home/Controller/home_controller.dart';
+import '../sp_job_history/Controller/sp_history_controller.dart';
+import '../sp_profile/Controller/profile_controller.dart';
 
 
 class SpBottomNavBarScreen extends StatefulWidget {
@@ -129,6 +131,8 @@ class _SpBottomNavBarScreenState extends State<SpBottomNavBarScreen> {
   @override
   Widget build(BuildContext context) {
      final _homeController = Get.put(SpHomeController());
+     final _profileController = Get.put(SpProfileController());
+     final _controller = Get.put(SpHistoryController());
 
     List<Widget> manuBarItems = [
       MenuBarItems(

@@ -317,6 +317,7 @@ class _SpHomeScreenState extends State<SpHomeScreen> {
                                               width: 1,
                                               color: AppColors.blue_100),
                                           image: DecorationImage(
+                                            fit: BoxFit.fill,
                                               image: NetworkImage(
                                                   _homeController.userData
                                                       .value.imageSrc!))),

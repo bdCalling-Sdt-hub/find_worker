@@ -139,7 +139,7 @@ class AppRoute {
      GetPage(name: spNotificationScreen, page: () => const SpNotificationScreen()),
      GetPage(name: spProfileScreen, page: () => const SpProfileScreen()),
      GetPage(name: spPersonalInformationScreen, page: () => const SpPersonalInformationScreen()),
-     GetPage(name: spEditPersonalInformationScreen, page: () => const SpEditPersonalInformationScreen()),
+     GetPage(name: spEditPersonalInformationScreen, page: () => const SpEditPersonalInformation()),
      GetPage(name: spServiceDetailsScreen, page: () => const SpServiceDetailsScreen()),
      // GetPage(name: spEditServiceDetailsScreen, page: () => const SpEditServiceScreen()),
      GetPage(name: spAddNewServiceScreen, page: () => const SpAddNewServiceScreen()),
