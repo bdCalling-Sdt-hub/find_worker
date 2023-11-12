@@ -10,7 +10,7 @@ class ForgetPassController extends GetxController{
 TextEditingController textEditingController=TextEditingController();
 var loading=false.obs;
 // Function to send password reset email
-Future<void> resetPassword(String email) async {
+Future<void> resetPassword(String email,bool isInApp) async {
   try {
     loading(true);
     await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
@@ -19,7 +19,7 @@ Future<void> resetPassword(String email) async {
           context: Get.context!,
           barrierDismissible: true,
           builder: (BuildContext context){
-            return const ForgetAlertDialog();
+            return  ForgetAlertDialog(inApp:isInApp,);
           }
       );
   } on FirebaseAuthException catch (e) {

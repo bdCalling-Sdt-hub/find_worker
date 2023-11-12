@@ -165,7 +165,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                     ),
                     GestureDetector(
                       onTap: (){
-                        Get.to(const UserForgetPasswordScreen());
+                        Get.to(const UserForgetPasswordScreen(inAppForget: true,));
                       } ,
                       child: const CustomText(
                         text: AppStrings.forgetPassword,

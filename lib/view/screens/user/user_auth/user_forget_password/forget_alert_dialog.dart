@@ -9,7 +9,9 @@ import 'package:get/get.dart';
 import '../../../../widgets/text/custom_text.dart';
 
 class ForgetAlertDialog extends StatelessWidget {
-  const ForgetAlertDialog({super.key});
+  const ForgetAlertDialog({super.key,required this.inApp});
+
+  final bool inApp;
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +35,7 @@ class ForgetAlertDialog extends StatelessWidget {
               width: 100,
               height: 36,
               onTap: (){
+                if(!inApp)
                 Get.back();
                 Get.back();
               },text:"Ok",)

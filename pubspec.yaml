@@ -66,6 +66,7 @@ dependencies:
   sign_in_with_apple:
   flutter_typeahead:
   flutter_staggered_grid_view:
+  flutter_html:
 
 
 

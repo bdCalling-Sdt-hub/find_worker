@@ -1,9 +1,15 @@
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_strings.dart';
+import 'package:find_worker/view/screens/user/settings/Controller/setting_controller.dart';
 import 'package:find_worker/view/widgets/app_bar/custom_app_bar.dart';
+import 'package:find_worker/view/widgets/custom_loader.dart';
 import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+
+import '../Controller/setting_controller.dart';
 
 
 class SpTermsOfConditionsScreen extends StatefulWidget {
@@ -14,11 +20,14 @@ class SpTermsOfConditionsScreen extends StatefulWidget {
 }
 
 class _SpTermsOfConditionsScreenState extends State<SpTermsOfConditionsScreen> {
-/*  @override
+  final _settingController = Get.put(SpSettingController());
+
+
+  @override
   void initState() {
-    DeviceUtils.authUtils();
+    _settingController.getTermsOfCondition();
     super.initState();
-  }*/
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -49,119 +58,122 @@ class _SpTermsOfConditionsScreenState extends State<SpTermsOfConditionsScreen> {
                   const SizedBox()
                 ],
               )),
-          body: LayoutBuilder(
+          body: Obx(()=>_settingController.otherLoading.value?const CustomLoader() :
+          LayoutBuilder(
               builder: (BuildContext context,BoxConstraints constraints){
-                return const SingleChildScrollView(
-                    padding: EdgeInsets.symmetric(vertical: 24,horizontal: 20),
-                    child: Column(
-                      children: [
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            CustomText(
-                              text: '1.',
-                              color: AppColors.black_100,
-                              right: 4,
-                            ),
-
-                            Expanded(
-                              child: CustomText(
-                                textAlign: TextAlign.start,
-                                maxLines: 10,
-                                text: AppStrings.loremIpsumDolor,
-                                color: AppColors.black_100,
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 8,),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            CustomText(
-                              text: '2.',
-                              color: AppColors.black_100,
-                              right: 4,
-                            ),
-
-                            Expanded(
-                              child: CustomText(
-                                textAlign: TextAlign.start,
-                                maxLines: 10,
-                                text: AppStrings.loremIpsumDolor,
-                                color: AppColors.black_100,
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 8,),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            CustomText(
-                              text: '3.',
-                              color: AppColors.black_100,
-                              right: 4,
-                            ),
-
-                            Expanded(
-                              child: CustomText(
-                                textAlign: TextAlign.start,
-                                maxLines: 10,
-                                text: AppStrings.loremIpsumDolor,
-                                color: AppColors.black_100,
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 8,),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            CustomText(
-                              text: '4.',
-                              color: AppColors.black_100,
-                              right: 4,
-                            ),
-
-                            Expanded(
-                              child: CustomText(
-                                textAlign: TextAlign.start,
-                                maxLines: 10,
-                                text: AppStrings.loremIpsumDolor,
-                                color: AppColors.black_100,
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 8,),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            CustomText(
-                              text: '5.',
-                              color: AppColors.black_100,
-                              right: 4,
-                            ),
-                            Flexible(
-                              child: CustomText(
-                                textAlign: TextAlign.start,
-                                maxLines: 10,
-                                text: AppStrings.loremIpsumDolor,
-                                color: AppColors.black_100,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    )
+                return SingleChildScrollView(
+                  padding:  EdgeInsets.symmetric(vertical:24,horizontal: 20.w),
+                  child:Html(data:_settingController.termsOfCondition.value, ),
+                  // child: Column(
+                  //   children: [
+                  //     Row(
+                  //       crossAxisAlignment: CrossAxisAlignment.start,
+                  //       mainAxisAlignment: MainAxisAlignment.start,
+                  //       children: [
+                  //         CustomText(
+                  //           text: '1.',
+                  //           color: AppColors.black_100,
+                  //           right: 4,
+                  //         ),
+                  //
+                  //         Expanded(
+                  //           child: CustomText(
+                  //             textAlign: TextAlign.start,
+                  //             maxLines: 10,
+                  //             text: AppStrings.loremIpsumDolor,
+                  //             color: AppColors.black_100,
+                  //           ),
+                  //         ),
+                  //       ],
+                  //     ),
+                  //     SizedBox(height: 8,),
+                  //     Row(
+                  //       crossAxisAlignment: CrossAxisAlignment.start,
+                  //       mainAxisAlignment: MainAxisAlignment.start,
+                  //       children: [
+                  //         CustomText(
+                  //           text: '2.',
+                  //           color: AppColors.black_100,
+                  //           right: 4,
+                  //         ),
+                  //
+                  //         Expanded(
+                  //           child: CustomText(
+                  //             textAlign: TextAlign.start,
+                  //             maxLines: 10,
+                  //             text: AppStrings.loremIpsumDolor,
+                  //             color: AppColors.black_100,
+                  //           ),
+                  //         ),
+                  //       ],
+                  //     ),
+                  //     SizedBox(height: 8,),
+                  //     Row(
+                  //       crossAxisAlignment: CrossAxisAlignment.start,
+                  //       mainAxisAlignment: MainAxisAlignment.start,
+                  //       children: [
+                  //         CustomText(
+                  //           text: '3.',
+                  //           color: AppColors.black_100,
+                  //           right: 4,
+                  //         ),
+                  //
+                  //         Expanded(
+                  //           child: CustomText(
+                  //             textAlign: TextAlign.start,
+                  //             maxLines: 10,
+                  //             text: AppStrings.loremIpsumDolor,
+                  //             color: AppColors.black_100,
+                  //           ),
+                  //         ),
+                  //       ],
+                  //     ),
+                  //     SizedBox(height: 8,),
+                  //     Row(
+                  //       crossAxisAlignment: CrossAxisAlignment.start,
+                  //       mainAxisAlignment: MainAxisAlignment.start,
+                  //       children: [
+                  //         CustomText(
+                  //           text: '4.',
+                  //           color: AppColors.black_100,
+                  //           right: 4,
+                  //         ),
+                  //
+                  //         Expanded(
+                  //           child: CustomText(
+                  //             textAlign: TextAlign.start,
+                  //             maxLines: 10,
+                  //             text: AppStrings.loremIpsumDolor,
+                  //             color: AppColors.black_100,
+                  //           ),
+                  //         ),
+                  //       ],
+                  //     ),
+                  //     SizedBox(height: 8,),
+                  //     Row(
+                  //       crossAxisAlignment: CrossAxisAlignment.start,
+                  //       mainAxisAlignment: MainAxisAlignment.start,
+                  //       children: [
+                  //         CustomText(
+                  //           text: '5.',
+                  //           color: AppColors.black_100,
+                  //           right: 4,
+                  //         ),
+                  //         Flexible(
+                  //           child: CustomText(
+                  //             textAlign: TextAlign.start,
+                  //             maxLines: 10,
+                  //             text: AppStrings.loremIpsumDolor,
+                  //             color: AppColors.black_100,
+                  //           ),
+                  //         ),
+                  //       ],
+                  //     ),
+                  //   ],
+                  // )
                 );
               }
+          ),
           ),
         ));
   }
