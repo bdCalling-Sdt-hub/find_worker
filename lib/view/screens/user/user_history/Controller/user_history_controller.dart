@@ -52,7 +52,7 @@ class UserHistoryController extends GetxController{
                 averageRating: userData['average_rating'].toDouble(),
                 name: userData['username'],
                 address: userData['address'],
-                contact: userData['phone']);
+                contact: "${userData['phone_code']} ${userData['phone']}");
             demoList.add(hireModel);
           }
         }

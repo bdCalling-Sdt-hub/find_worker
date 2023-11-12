@@ -447,10 +447,7 @@ class _SpEditPersonalInformationState
                                             initialSelection:
                                             _profileController.phoneCode.value,
                                             onChanged: (value) {
-                                              _profileController.phoneCtrl.text =
-                                              value.dialCode!;
-                                              print(_profileController
-                                                  .phoneCtrl.text);
+                                              _profileController.phoneCode.value=value.dialCode!;
                                             },
                                             showCountryOnly: false,
                                             showOnlyCountryWhenClosed: false,

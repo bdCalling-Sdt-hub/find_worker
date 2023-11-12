@@ -32,7 +32,7 @@ class HomeScreen extends StatelessWidget {
           backgroundColor: Colors.transparent,
           title: CustomText(
             color: AppColors.blue_100,
-            text: AppStrings.logo,
+            text: AppStrings.logo.tr,
             fontSize: 18.sp,
             fontWeight: FontWeight.w500,
           ),
@@ -94,12 +94,12 @@ class HomeScreen extends StatelessWidget {
                 RichText(
                     textAlign: TextAlign.center,
                     text: TextSpan(
-                        text: "Didn’t see what you’re looking for?\nGo to ",
+                        text: AppStrings.didNotSeeWhat.tr,
                         style: TextStyle(
                             fontSize: 14.sp, color: const Color(0xFF333333)),
                         children: [
                           TextSpan(
-                            text: "Categories",
+                            text:AppStrings.categories.tr,
                             recognizer: TapGestureRecognizer()..onTap = () {
                             Get.to(CategoryScreen(isBack: true,));
                             },
@@ -130,7 +130,7 @@ class HomeScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CustomText(
-                text: "Car Wash",
+                text:AppStrings.carWash.tr,
                 fontWeight: FontWeight.w500,
                 fontSize: 18.sp,
               ),
@@ -141,9 +141,9 @@ class HomeScreen extends StatelessWidget {
                     "cat_name":"Car Wash"
                   });
                 },
-                child: const CustomText(
+                child:  CustomText(
                   color: AppColors.blue_100,
-                  text: AppStrings.seeAll,
+                  text: AppStrings.seeAll.tr,
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
                 ),
@@ -283,7 +283,7 @@ class HomeScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CustomText(
-                text: "Home Clean",
+                text: AppStrings.homeClean.tr,
                 fontWeight: FontWeight.w500,
                 fontSize: 18.sp,
               ),
@@ -294,9 +294,9 @@ class HomeScreen extends StatelessWidget {
                   "cat_name":"Home Clean"
                   });
                 },
-                child: const CustomText(
+                child:  CustomText(
                   color: AppColors.blue_100,
-                  text: AppStrings.seeAll,
+                  text: AppStrings.seeAll.tr,
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
                 ),
@@ -436,7 +436,7 @@ class HomeScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CustomText(
-                text: "Air Condition Maintenance",
+                text: AppStrings.airConditionMaintenance.tr,
                 fontWeight: FontWeight.w500,
                 fontSize: 18.sp,
               ),
@@ -447,9 +447,9 @@ class HomeScreen extends StatelessWidget {
                   "cat_name":"Air Condition Maintenance"
                   });
                 },
-                child: const CustomText(
+                child: CustomText(
                   color: AppColors.blue_100,
-                  text: AppStrings.seeAll,
+                  text: AppStrings.seeAll.tr,
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
                 ),

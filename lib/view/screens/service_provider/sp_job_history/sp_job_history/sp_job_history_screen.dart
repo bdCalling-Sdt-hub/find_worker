@@ -44,21 +44,7 @@ class _SpJobHistoryScreenState extends State<SpJobHistoryScreen> {
             return Obx(
               () => _controller.loading.value
                   ? const CustomLoader()
-                  : _controller.historyList.isEmpty
-                      ? Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset(
-                                AppImages.empty,
-                                height: 80,
-                                width: 80,
-                              ),
-                              const Text("No Job History yet.")
-                            ],
-                          ),
-                        )
-                      : RefreshIndicator(
+                  :  RefreshIndicator(
                           onRefresh: () async {
                             _controller.getHistoryList(false);
                           },
@@ -66,7 +52,22 @@ class _SpJobHistoryScreenState extends State<SpJobHistoryScreen> {
                               physics: const AlwaysScrollableScrollPhysics(),
                               padding: const EdgeInsetsDirectional.symmetric(
                                   horizontal: 20, vertical: 24),
-                              child: Column(
+                              child:_controller.historyList.isEmpty
+                                  ? Center(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    SizedBox(height: 250,),
+                                    Image.asset(
+                                      AppImages.empty,
+                                      height: 80,
+                                      width: 80,
+                                    ),
+                                    const Text("No Job History yet.")
+                                  ],
+                                ),
+                              )
+                                  : Column(
                                 children: [
                                   Container(
                                     width: MediaQuery.of(context).size.width,

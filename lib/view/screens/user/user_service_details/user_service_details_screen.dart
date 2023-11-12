@@ -180,6 +180,7 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
                       ),
                     ],
                   ),
+                  if(_userServiceDetailsController.topReviewList.isNotEmpty)
                   Container(
                     margin: const EdgeInsets.only(top: 16, bottom: 16),
                     height: 1,

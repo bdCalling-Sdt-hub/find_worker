@@ -39,8 +39,8 @@ class _SpJobDetailsScreenState extends State<SpJobDetailsScreen> {
                 },
                 child: const Icon(Icons.arrow_back_ios_new_outlined,size: 16,color: AppColors.blue_100,),
               ),
-              const CustomText(
-                text: AppStrings.hireDetails,
+               CustomText(
+                text: AppStrings.jobDetails.tr,
                 color: AppColors.blue_100,
                 fontSize: 18,
                 fontWeight: FontWeight.w500,

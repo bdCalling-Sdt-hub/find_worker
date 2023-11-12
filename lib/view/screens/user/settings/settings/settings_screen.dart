@@ -10,6 +10,10 @@ import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lite_rolling_switch/lite_rolling_switch.dart';
+
+import '../../../../../helper/Language/language_component.dart';
+import '../../../../../helper/Language/language_controller.dart';
 
 
 
@@ -52,158 +56,207 @@ class _SettingScreenState extends State<SettingScreen> {
             ],
           )),
       body:LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
-        return SingleChildScrollView(
-          padding: const EdgeInsetsDirectional.symmetric(horizontal: 20,vertical: 24),
-          child: Column(
-            children: [
-               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        return GetBuilder<LocalizationController>(
+          builder: (localizationController) {
+            return SingleChildScrollView(
+              padding: const EdgeInsetsDirectional.symmetric(horizontal: 20,vertical: 24),
+              child: Column(
                 children: [
-                  const CustomText(
-                    text: AppStrings.language,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                    color: AppColors.black_100,
-                  ),
-                  //Customized
-                  AdvancedSwitch(
-                    controller: _controller,
-                    activeColor: AppColors.blue_10,
-                    inactiveColor: AppColors.blue_10,
-                    activeChild:  Text('English'
-                    ,style: GoogleFonts.poppins(
-                        fontSize: 12,
+                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                       CustomText(
+                        text: AppStrings.language.tr,
+                        fontSize: 14,
                         fontWeight: FontWeight.w400,
-                        color: AppColors.black_100
+                        color: AppColors.black_100,
                       ),
-                    ),
-                    inactiveChild:  Text('Arabic',
-                    style: GoogleFonts.poppins(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w400,
-                      color: AppColors.black_100
-                    ),
-                    ),
-                    borderRadius: const BorderRadius.all(Radius.circular(20)),
-                    width: 90 ,
-                    height: 30.0,
-                    enabled: true,
-                    disabledOpacity: 0.8,
+                      SizedBox(
+                        width: 130,
+                        child:
+                            LiteRollingSwitch(
+                              //initial value
+                              value:false,
+                              textOn: 'English',
+                              textOff: 'Arabic',
+                              colorOn:AppColors.blue_100,
+                              colorOff:AppColors.black_20 ,
+
+                              iconOn: Icons.language,
+                              iconOff: Icons.language,
+                              textSize: 12.0,
+                              onChanged: (bool state) {
+                                if(state){
+                                  localizationController.setLanguage(Locale(
+                                      LanguageComponent.languages[0].languageCode,
+                                      LanguageComponent
+                                          .languages[0].countryCode));
+                                  localizationController.setSelectIndex(0);
+
+                                }else{
+                                  localizationController.setLanguage(Locale(
+                                      LanguageComponent.languages[1].languageCode,
+                                      LanguageComponent
+                                          .languages[1].countryCode));
+                                  localizationController.setSelectIndex(1);
+                                }
+
+
+
+
+
+                                print('Current State of SWITCH IS: $state');
+                              }, onTap:(){
+
+                            }, onDoubleTap:(){
+
+                            }, onSwipe:(){
+
+                            },
+
+                        ),
+                      ),
+                      //Customized
+                      // AdvancedSwitch(
+                      //   controller: _controller,
+                      //   activeColor: AppColors.blue_10,
+                      //   inactiveColor: AppColors.blue_10,
+                      //   activeChild:  Text('English'
+                      //   ,style: GoogleFonts.poppins(
+                      //       fontSize: 12,
+                      //       fontWeight: FontWeight.w400,
+                      //       color: AppColors.black_100
+                      //     ),
+                      //   ),
+                      //   inactiveChild:  Text('Arabic',
+                      //   style: GoogleFonts.poppins(
+                      //     fontSize: 12,
+                      //     fontWeight: FontWeight.w400,
+                      //     color: AppColors.black_100
+                      //   ),
+                      //   ),
+                      //   borderRadius: const BorderRadius.all(Radius.circular(20)),
+                      //   width: 90 ,
+                      //   height: 30.0,
+                      //   enabled: true,
+                      //   disabledOpacity: 0.8,
+                      // ),
+                      //Customized
+                    ],
                   ),
-                  //Customized
+                  const SizedBox(height: 30,),
+                  GestureDetector(
+                    onTap: (){
+                      Get.toNamed(AppRoute.changePasswordScreen);
+                    },
+                    child:   const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        CustomText(
+                          text: AppStrings.changePassword,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.black_100,
+                        ),
+                        CustomImage(imageSrc: AppIcons.chevronRight,
+                          size: 18,
+                          imageType: ImageType.svg,
+                          imageColor: AppColors.black_100,
+                        )
+                      ],
+                    ),),
+                  const SizedBox(height: 30,),
+                  GestureDetector(
+                    onTap: (){
+                      Get.toNamed(AppRoute.termsOfConditionsScreen);
+                    },
+                    child:  const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        CustomText(
+                          text: "Terms of Conditions",
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.black_100,
+                        ),
+                        CustomImage(imageSrc: AppIcons.chevronRight,
+                          size: 18,
+                          imageType: ImageType.svg,
+                          imageColor: AppColors.black_100,
+                        )
+                      ],
+                    ),),
+
+                  const SizedBox(height: 30,),
+                  GestureDetector(
+                    onTap: (){
+                      Get.toNamed(AppRoute.privacyPolicyScreen);
+                    },
+                    child:  const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        CustomText(
+                          text: AppStrings.privacyPolicy,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.black_100,
+                        ),
+                        CustomImage(imageSrc: AppIcons.chevronRight,
+                          size: 18,
+                          imageType: ImageType.svg,
+                          imageColor: AppColors.black_100,
+                        )
+                      ],
+                    ),),
+
+                  const SizedBox(height: 30,),
+                  GestureDetector(
+                    onTap: (){
+                      Get.toNamed(AppRoute.aboutUsScreen);
+                    },
+                    child:const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        CustomText(
+                          text: AppStrings.aboutUs,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.black_100,
+                        ),
+                        CustomImage(imageSrc: AppIcons.chevronRight,
+                          size: 18,
+                          imageType: ImageType.svg,
+                          imageColor: AppColors.black_100,
+                        )
+                      ],
+                    ),),
+                  const SizedBox(height: 30,),
+                  GestureDetector(
+                    onTap: (){
+                      Get.toNamed(AppRoute.supportScreen);
+                    },
+                    child:   const Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        CustomText(
+                          text: AppStrings.support,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.black_100,
+                        ),
+                        CustomImage(imageSrc: AppIcons.chevronRight,
+                          size: 18,
+                          imageType: ImageType.svg,
+                          imageColor: AppColors.black_100,
+                        )
+                      ],
+                    ),),
+
+                  const SizedBox(height:30,),
                 ],
               ),
-              const SizedBox(height: 30,),
-              GestureDetector(
-                onTap: (){
-                  Get.toNamed(AppRoute.changePasswordScreen);
-                },
-                child:   const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    CustomText(
-                      text: AppStrings.changePassword,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      color: AppColors.black_100,
-                    ),
-                    CustomImage(imageSrc: AppIcons.chevronRight,
-                      size: 18,
-                      imageType: ImageType.svg,
-                      imageColor: AppColors.black_100,
-                    )
-                  ],
-                ),),
-              const SizedBox(height: 30,),
-              GestureDetector(
-                onTap: (){
-                  Get.toNamed(AppRoute.termsOfConditionsScreen);
-                },
-                child:  const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    CustomText(
-                      text: "Terms of Conditions",
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      color: AppColors.black_100,
-                    ),
-                    CustomImage(imageSrc: AppIcons.chevronRight,
-                      size: 18,
-                      imageType: ImageType.svg,
-                      imageColor: AppColors.black_100,
-                    )
-                  ],
-                ),),
-
-              const SizedBox(height: 30,),
-              GestureDetector(
-                onTap: (){
-                  Get.toNamed(AppRoute.privacyPolicyScreen);
-                },
-                child:  const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    CustomText(
-                      text: AppStrings.privacyPolicy,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      color: AppColors.black_100,
-                    ),
-                    CustomImage(imageSrc: AppIcons.chevronRight,
-                      size: 18,
-                      imageType: ImageType.svg,
-                      imageColor: AppColors.black_100,
-                    )
-                  ],
-                ),),
-
-              const SizedBox(height: 30,),
-              GestureDetector(
-                onTap: (){
-                  Get.toNamed(AppRoute.aboutUsScreen);
-                },
-                child:const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    CustomText(
-                      text: AppStrings.aboutUs,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      color: AppColors.black_100,
-                    ),
-                    CustomImage(imageSrc: AppIcons.chevronRight,
-                      size: 18,
-                      imageType: ImageType.svg,
-                      imageColor: AppColors.black_100,
-                    )
-                  ],
-                ),),
-              const SizedBox(height: 30,),
-              GestureDetector(
-                onTap: (){
-                  Get.toNamed(AppRoute.supportScreen);
-                },
-                child:   const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    CustomText(
-                      text: AppStrings.support,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      color: AppColors.black_100,
-                    ),
-                    CustomImage(imageSrc: AppIcons.chevronRight,
-                      size: 18,
-                      imageType: ImageType.svg,
-                      imageColor: AppColors.black_100,
-                    )
-                  ],
-                ),),
-
-              const SizedBox(height:30,),
-            ],
-          ),
+            );
+          }
         );
       },)
     );
