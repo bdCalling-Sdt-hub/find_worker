@@ -46,8 +46,8 @@ class _ChangeForgetPasswordScreenState extends State<ChangeForgetPasswordScreen>
                       color: AppColors.blue_100,
                     ),
                   ),
-                  const CustomText(
-                    text: AppStrings.forgetPassword,
+                   CustomText(
+                    text: AppStrings.forgetPassword.tr,
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
                     color: AppColors.blue_100,
@@ -62,15 +62,15 @@ class _ChangeForgetPasswordScreenState extends State<ChangeForgetPasswordScreen>
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const CustomText(
+                       CustomText(
                         textAlign: TextAlign.start,
-                        text: AppStrings.enterYourEmailAddressToVerifyOTP,
+                        text: AppStrings.enterYourEmailAddressToVerifyOTP.tr,
                         fontSize: 16,
                         fontWeight: FontWeight.w500,
                         color: AppColors.black_100,
                       ),
-                      const CustomText(
-                        text: AppStrings.email,
+                       CustomText(
+                        text: AppStrings.email.tr,
                         color: AppColors.black_100,
                         fontWeight: FontWeight.w500,
                         fontSize: 14,
@@ -79,7 +79,7 @@ class _ChangeForgetPasswordScreenState extends State<ChangeForgetPasswordScreen>
                       ),
                       CustomTextField(
                         textAlign: TextAlign.start,
-                        hintText: AppStrings.enterYourEmail,
+                        hintText: AppStrings.enterYourEmail.tr,
                         hintStyle: GoogleFonts.poppins(
                             fontSize: 14,
                             fontWeight: FontWeight.w500,

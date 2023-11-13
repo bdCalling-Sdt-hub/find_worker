@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:find_worker/model/service_by_user_model.dart';
+import 'package:find_worker/model/user_model.dart';
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_icons.dart';
 import 'package:find_worker/utils/app_strings.dart';
@@ -13,10 +14,11 @@ import 'package:get/get.dart';
 
 
 class UserServiceDetailsHireNoeBottomModal extends StatefulWidget {
-  UserServiceDetailsHireNoeBottomModal({super.key,required this.number,required this.userImage,required this.userByServiceModel});
+  UserServiceDetailsHireNoeBottomModal({super.key,required  this.userModel,required this.number,required this.userImage,required this.userByServiceModel});
 
   String userImage;
   String number;
+  UserModel userModel;
   UserByServiceModel userByServiceModel;
 
 
@@ -46,8 +48,8 @@ class _UserServiceDetailsHireNoeBottomModalState extends State<UserServiceDetail
       ),
       child: Column(
         children: [
-          const CustomText(
-            text: AppStrings.approved,
+           CustomText(
+            text: AppStrings.approved.tr,
             fontSize: 18,
             fontWeight: FontWeight.w500,
             bottom: 20,
@@ -129,7 +131,7 @@ class _UserServiceDetailsHireNoeBottomModalState extends State<UserServiceDetail
                   Row (
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(AppStrings.service,style:TextStyle(fontWeight:FontWeight.w500,color:Colors.black,fontSize: 18),),
+                       Text(AppStrings.service.tr,style:TextStyle(fontWeight:FontWeight.w500,color:Colors.black,fontSize: 18),),
                       Flexible(child: Text(widget.userByServiceModel.serviceName!,style:TextStyle(fontWeight:FontWeight.w500,color:Colors.black,fontSize: 18),),
                       ),
 
@@ -147,7 +149,7 @@ class _UserServiceDetailsHireNoeBottomModalState extends State<UserServiceDetail
 
         Obx(()=>
            CustomButton(onTap:(){
-             _controller.hireNow(widget.userByServiceModel,widget.number);
+             _controller.hireNow(widget.userByServiceModel,widget.number,widget.userModel);
           },
               loading:_controller.hireLoading.value,
               text:"Call"),

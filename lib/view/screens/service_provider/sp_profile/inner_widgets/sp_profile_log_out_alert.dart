@@ -49,8 +49,8 @@ class _SpProfileLogOutAlertState extends State<SpProfileLogOutAlert> {
                         child:  Padding(
                           padding: const EdgeInsets.symmetric(vertical: 12),
                           child: Obx(()=>_authController.isSignOutLoad.value?const CircularProgressIndicator()
-                            : const CustomText(
-                              text: AppStrings.yes,
+                            :  CustomText(
+                              text: AppStrings.yes.tr,
                               fontWeight: FontWeight.w600,
                               color: AppColors.blue_100,
                             ),
@@ -73,11 +73,11 @@ class _SpProfileLogOutAlertState extends State<SpProfileLogOutAlert> {
                             color: AppColors.blue_100,
                             borderRadius:
                             BorderRadius.circular(8)),
-                        child: const Padding(
+                        child:  Padding(
                           padding: EdgeInsets.symmetric(
                               vertical: 12),
                           child:CustomText(
-                            text: AppStrings.no,
+                            text: AppStrings.no.tr,
                             fontWeight: FontWeight.w600,
                             color: AppColors.white,
                           ),

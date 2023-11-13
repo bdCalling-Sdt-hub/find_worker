@@ -149,6 +149,7 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                                                   return "Empty";
                                                 }
                                               },
+                                              keyboardType: TextInputType.datetime,
                                               decoration: const InputDecoration(
                                                 hintText: "DD",
                                                 contentPadding: EdgeInsets.zero,
@@ -186,10 +187,12 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                                             child: TextFormField(
                                               textAlign: TextAlign.center,
                                               controller:authController.monthController,
+                                               keyboardType: TextInputType.datetime,
                                               validator: (value){
                                                 if(value!.isEmpty){
                                                   return "Empty";
                                                 }
+                                                return null;
                                               },
                                               decoration: const InputDecoration(
                                                 hintText: "MM",
@@ -226,6 +229,7 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                                             ),
                                             child: TextFormField(
                                               textAlign: TextAlign.center,
+                                               keyboardType: TextInputType.datetime,
                                               controller:authController.yearController,
                                               validator: (value){
                                                 if(value!.isEmpty){

@@ -1,7 +1,10 @@
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_strings.dart';
+import 'package:find_worker/view/screens/user/search/Controller/search_controller.dart';
 import 'package:find_worker/view/widgets/buttons/bottom_nav_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -15,33 +18,13 @@ class SearchEndDrawer extends StatefulWidget {
 
 class _SearchEndDrawerState extends State<SearchEndDrawer> {
 
-  List<String> genderList = [
-    "Home Clean",
-    "Car Wash",
-    "Air Condition Maintenance",
-    "Housekeeper",
-    "Home Maintenance",
-    "Pipe Fitter",
-    "Jens Salon",
-    "Man Driver",
-    "Manicure & Pedicure",
-    "Woman Driver",
-    "Ladies Salon",
-    "Home Business",
-    "Butcher",
-    "Private Tutor",
-    "Gypsum Board & Floor",
-    "Car Tires Repair",
-    "Car Recovery",
-    "Catering",
-    "Cable Fixing",
-  ];
-  int selectedGender= -1;
+  int selectIndex= -1;
+
+  final _searchController = Get.put(SearchAndFilterController());
 
 
   @override
   Widget build(BuildContext context) {
-
     return Container(
       width: 300,
       height: MediaQuery.of(context).size.height,
@@ -81,7 +64,7 @@ class _SearchEndDrawerState extends State<SearchEndDrawer> {
             ],
           ),
           const SizedBox(height: 40),
-          Flexible(
+          Expanded(
             child: SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               padding: const EdgeInsetsDirectional.only(bottom: 24),
@@ -102,59 +85,64 @@ class _SearchEndDrawerState extends State<SearchEndDrawer> {
                     color: AppColors.blue_20,
                   ),
                   const SizedBox(height: 16),
-                  GridView.builder(
-                      shrinkWrap: true,
-                      addAutomaticKeepAlives: true,
-                      padding: EdgeInsets.zero,
-                      scrollDirection: Axis.vertical,
-                      itemCount: genderList.length,
-                      physics: const NeverScrollableScrollPhysics(),
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          childAspectRatio: MediaQuery.of(context).size.width,
-                          crossAxisSpacing: 8,
-                          mainAxisSpacing: 8,
-                          mainAxisExtent: 24
-                      ),
-                      itemBuilder: (context, index) => GestureDetector(
-                        onTap: () => setState(() {
-                          selectedGender = index;
-                        }),
-                        child: Container(
-                          alignment: Alignment.center,
-                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 2),
-                          decoration: ShapeDecoration(
-                            color: index == selectedGender ? AppColors.blue_100 : AppColors.white,
-                            shape: RoundedRectangleBorder(
-                              side: BorderSide(width: 1, color: index == selectedGender ? AppColors.blue_100 :  AppColors.blue_100 ),
-                              borderRadius: BorderRadius.circular(4),
-                            ),
-                          ),
-                          child: Text(
-                            genderList[index],
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.raleway(
-                              color: index == selectedGender ? AppColors.white : AppColors.blue_100,
-                              fontSize: 12,
-                              fontWeight: FontWeight.w600,
-                            ),
+                  Wrap(
+                    children:List.generate(_searchController.categoryList.length, (index) => GestureDetector(
+                      onTap: (){
+                        if(selectIndex==index){
+                          setState(() {
+                            selectIndex=(-1);
+                          });
+                        }else{
+                          setState(() {
+                            selectIndex=index;
+                          });
+                        }
+                      },
+                      child: Container(
+                        margin: EdgeInsets.all(4.h),
+                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 2),
+                        decoration: ShapeDecoration(
+                          color: index == selectIndex ? AppColors.blue_100 : AppColors.white,
+                          shape: RoundedRectangleBorder(
+                            side: BorderSide(width: 1, color: index == selectIndex ? AppColors.blue_100 :  AppColors.blue_100 ),
+                            borderRadius: BorderRadius.circular(4),
                           ),
                         ),
-                      )
+                        child: Text(
+                          _searchController.categoryList[index].name!,
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.raleway(
+                            color: index == selectIndex ? AppColors.white : AppColors.blue_100,
+                            fontSize: 12,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ) ),
                   ),
-                  const SizedBox(height: 200),
-                  BottomNavButton(
-                    buttonText: AppStrings.apply,
-                    onTap: () {
-                      /*Get.to(()=> const OtpScreen());*/
-                    },
 
-                  )
+
+
+
+
+
 
                 ],
               ),
             ),
-          )
+          ),
+          BottomNavButton(
+            buttonText: AppStrings.apply.tr,
+            onTap: () {
+              if(selectIndex==(-1)){
+                Get.back();
+              }else{
+                _searchController.getSortedServicesByCategory(_searchController.categoryList[selectIndex].id!);
+                Get.back();
+              }
+            },
+          ),
+          SizedBox(height: 54.h,)
         ],
       ),
     );

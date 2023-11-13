@@ -85,7 +85,7 @@ class AppStrings{
   static const String profile= "Profile";
   static const String personalInformation= "Personal Information";
   static const String serviceDetails= "Service Details";
-  static const String settings = "Settings";
+  static const String settings = "Setting";
   static const String  logout= "Logout";
   static const String  editPersonalInformation= "Edit Personal Information";
   static const String  update= "Update";
@@ -127,6 +127,7 @@ class AppStrings{
   static const String   apply= "Apply";
   static const String   filter= "Filter";
   static const String   category= "Category";
+  static const String   categories= "Categories";
   static const String   seeAll= "See All";
   static const String   pending= "Pending";
   static const String   aboutJob= "About Job";
@@ -145,5 +146,11 @@ class AppStrings{
   static const String giveRatingOutOf ="Give rating out of 5!";
   static const String writeYourFeedback ="Write your feedback";
   static const String submit ="Submit";
-  static const String didNotSeeWhat  ="Didn’t see what you’re looking for?Go to Categories " ;
+  static const String didNotSeeWhat  ="Didn’t see what you’re looking for?Go to";
+  static const String noDataAvailable="No service available!";
+  static const String termsOfConditions="Terms of Conditions";
+  static const String purchaser="purchaser";
+  static const String noJobHistoryYet="No Job History yet.";
+
+
 }

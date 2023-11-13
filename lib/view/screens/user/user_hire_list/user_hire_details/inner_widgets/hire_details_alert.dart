@@ -43,7 +43,7 @@ class _HireDetailsAlertState extends State<HireDetailsAlert> {
             bottom: 24,
           ),
           CustomButton(onPressed: (){
-            Get.to(UserBottomNavBarScreen(currentIndex: 0));
+            Get.offAll(UserBottomNavBarScreen(currentIndex: 0));
           }, titleText: 'Go to Home',buttonBgColor: AppColors.blue_100,buttonHeight: 36,leftPadding: 18,rightPadding: 18,)
         ],
       ),

@@ -102,6 +102,11 @@ import 'package:find_worker/view/screens/user/home/home/home_screen.dart';
 import 'package:find_worker/view/widgets/image/custom_image.dart';
 import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../sp_home/Controller/home_controller.dart';
+import '../sp_job_history/Controller/sp_history_controller.dart';
+import '../sp_profile/Controller/profile_controller.dart';
 
 
 class SpBottomNavBarScreen extends StatefulWidget {
@@ -125,21 +130,24 @@ class _SpBottomNavBarScreenState extends State<SpBottomNavBarScreen> {
 
   @override
   Widget build(BuildContext context) {
+     final _homeController = Get.put(SpHomeController());
+     final _profileController = Get.put(SpProfileController());
+     final _controller = Get.put(SpHistoryController());
 
     List<Widget> manuBarItems = [
       MenuBarItems(
-          text: AppStrings.home,
+          text: AppStrings.home.tr,
           index: 0,
           selectedIndex: widget.currentIndex,
           image:  AppIcons.home_un),
       MenuBarItems(
-          text:AppStrings.history,
+          text:AppStrings.history.tr,
           index: 1,
           selectedIndex: widget.currentIndex,
           image: AppIcons.clock
       ),
       MenuBarItems(
-          text: AppStrings.profile,
+          text: AppStrings.profile.tr,
           index: 2,
           selectedIndex: widget.currentIndex,
           image: AppIcons.userCircle

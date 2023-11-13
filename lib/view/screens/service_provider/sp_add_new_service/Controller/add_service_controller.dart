@@ -84,7 +84,6 @@ class AddNewServiceController extends GetxController{
                   serviceId: selectServiceId.value,
                   location: addressTextCtrl.text,
                   providerUid:_auth.currentUser!.uid,
-                  averageRating: 0.0,
                   description:descriptionTextCtrl.text
               );
               await firebaseStorage.collection(AppConstants.services).doc(id).set(body.toJson());

@@ -25,8 +25,8 @@ class _HomeScreenDataState extends State<HomeScreenData> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const CustomText(
-              text: AppStrings.carWash,
+             CustomText(
+              text: AppStrings.carWash.tr,
               fontWeight: FontWeight.w500,
               fontSize: 18,
             ),
@@ -34,9 +34,9 @@ class _HomeScreenDataState extends State<HomeScreenData> {
               onTap: (){
                 Get.toNamed(AppRoute.carWashDetailsScreen);
               },
-              child:const CustomText(
+              child: CustomText(
                 color: AppColors.blue_100,
-                text: AppStrings.seeAll,
+                text: AppStrings.seeAll.tr,
                 fontSize:14,
                 fontWeight: FontWeight.w500,
               ),
@@ -128,16 +128,16 @@ class _HomeScreenDataState extends State<HomeScreenData> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const CustomText(
-              text: AppStrings.homeClean,
+             CustomText(
+              text: AppStrings.homeClean.tr,
               fontWeight: FontWeight.w500,
               fontSize: 18,
             ),
             GestureDetector(
               onTap: (){},
-              child:const CustomText(
+              child: CustomText(
                 color: AppColors.blue_100,
-                text: AppStrings.seeAll,
+                text: AppStrings.seeAll.tr,
                 fontSize:14,
                 fontWeight: FontWeight.w500,
               ),
@@ -224,16 +224,16 @@ class _HomeScreenDataState extends State<HomeScreenData> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const CustomText(
-              text: AppStrings.airConditionMaintenance,
+             CustomText(
+              text: AppStrings.airConditionMaintenance.tr,
               fontWeight: FontWeight.w500,
               fontSize: 18,
             ),
             GestureDetector(
               onTap: (){},
-              child:const CustomText(
+              child: CustomText(
                 color: AppColors.blue_100,
-                text: AppStrings.seeAll,
+                text: AppStrings.seeAll.tr,
                 fontSize:14,
                 fontWeight: FontWeight.w500,
               ),

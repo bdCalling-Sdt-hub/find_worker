@@ -4,6 +4,7 @@ import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_icons.dart';
 import 'package:find_worker/utils/app_images.dart';
 import 'package:find_worker/utils/app_strings.dart';
+import 'package:find_worker/view/screens/user/category/category_screen.dart';
 import 'package:find_worker/view/screens/user/home/Controller/home_controller.dart';
 import 'package:find_worker/view/screens/user/home/home/home_screen_data/home_screen_data.dart';
 import 'package:find_worker/view/widgets/custom_loader.dart';
@@ -16,6 +17,7 @@ import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../../../widgets/image/custom_image.dart';
+import '../../user_bottom_nav_bar/user_bottom_nav_bar_screen.dart';
 import 'inner_widgets/car_wash_section.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -30,7 +32,7 @@ class HomeScreen extends StatelessWidget {
           backgroundColor: Colors.transparent,
           title: CustomText(
             color: AppColors.blue_100,
-            text: AppStrings.logo,
+            text: AppStrings.logo.tr,
             fontSize: 18.sp,
             fontWeight: FontWeight.w500,
           ),
@@ -92,13 +94,15 @@ class HomeScreen extends StatelessWidget {
                 RichText(
                     textAlign: TextAlign.center,
                     text: TextSpan(
-                        text: "Didn’t see what you’re looking for?\nGo to ",
+                        text: AppStrings.didNotSeeWhat.tr,
                         style: TextStyle(
                             fontSize: 14.sp, color: const Color(0xFF333333)),
                         children: [
                           TextSpan(
-                            text: "Categories",
-                            recognizer: TapGestureRecognizer()..onTap = () {},
+                            text:AppStrings.categories.tr,
+                            recognizer: TapGestureRecognizer()..onTap = () {
+                            Get.to(CategoryScreen(isBack: true,));
+                            },
                             style: TextStyle(
                                 fontSize: 18.sp,
                                 fontWeight: FontWeight.w500,
@@ -126,7 +130,7 @@ class HomeScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CustomText(
-                text: "Car Wash",
+                text:AppStrings.carWash.tr,
                 fontWeight: FontWeight.w500,
                 fontSize: 18.sp,
               ),
@@ -137,9 +141,9 @@ class HomeScreen extends StatelessWidget {
                     "cat_name":"Car Wash"
                   });
                 },
-                child: const CustomText(
+                child:  CustomText(
                   color: AppColors.blue_100,
-                  text: AppStrings.seeAll,
+                  text: AppStrings.seeAll.tr,
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
                 ),
@@ -220,7 +224,7 @@ class HomeScreen extends StatelessWidget {
                         children: [
                           Flexible(
                             child: CustomText(
-                              text: demoData.serviceName!,
+                              text: demoData.providerName!,
                               fontWeight: FontWeight.w500,
                               fontSize: 14,
                               overflow: TextOverflow.ellipsis,
@@ -279,7 +283,7 @@ class HomeScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CustomText(
-                text: "Home Clean",
+                text: AppStrings.homeClean.tr,
                 fontWeight: FontWeight.w500,
                 fontSize: 18.sp,
               ),
@@ -290,9 +294,9 @@ class HomeScreen extends StatelessWidget {
                   "cat_name":"Home Clean"
                   });
                 },
-                child: const CustomText(
+                child:  CustomText(
                   color: AppColors.blue_100,
-                  text: AppStrings.seeAll,
+                  text: AppStrings.seeAll.tr,
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
                 ),
@@ -373,7 +377,7 @@ class HomeScreen extends StatelessWidget {
                         children: [
                           Flexible(
                             child: CustomText(
-                              text: demoData.serviceName!,
+                              text: demoData.providerName!,
                               fontWeight: FontWeight.w500,
                               fontSize: 14,
                               overflow: TextOverflow.ellipsis,
@@ -432,7 +436,7 @@ class HomeScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CustomText(
-                text: "Air Condition Maintenance",
+                text: AppStrings.airConditionMaintenance.tr,
                 fontWeight: FontWeight.w500,
                 fontSize: 18.sp,
               ),
@@ -443,9 +447,9 @@ class HomeScreen extends StatelessWidget {
                   "cat_name":"Air Condition Maintenance"
                   });
                 },
-                child: const CustomText(
+                child: CustomText(
                   color: AppColors.blue_100,
-                  text: AppStrings.seeAll,
+                  text: AppStrings.seeAll.tr,
                   fontSize: 14,
                   fontWeight: FontWeight.w500,
                 ),
@@ -527,7 +531,7 @@ class HomeScreen extends StatelessWidget {
                         children: [
                           Flexible(
                             child: CustomText(
-                              text: demoData.serviceName!,
+                              text: demoData.providerName!,
                               fontWeight: FontWeight.w500,
                               fontSize: 14,
                               overflow: TextOverflow.ellipsis,

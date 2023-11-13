@@ -8,6 +8,10 @@ class AppConstants {
   static String reviews="Reviews";
   static String hireHistory="HireHistory" ;
   static String jobHistory ="JobHistory";
+  static String aboutUs="AboutUs";
+  static String privacyPolicy="PrivacyPolicy";
+  static String support="Support";
+  static  String termsConditions="TermsAndConditions";
 
 
   // user type

@@ -57,8 +57,8 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
                   color: AppColors.blue_100,
                 ),
               ),
-        title:const CustomText(
-            text: AppStrings.jobDetails,
+        title: CustomText(
+            text: AppStrings.serviceDetails.tr,
             color: AppColors.blue_100,
             fontSize: 18,
             fontWeight: FontWeight.w500,
@@ -166,8 +166,8 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
                    Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const CustomText(
-                        text: AppStrings.service,
+                       CustomText(
+                        text: AppStrings.service.tr,
                       ),
                       Flexible(
                         child: CustomText(
@@ -180,11 +180,13 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
                       ),
                     ],
                   ),
+                  if(_userServiceDetailsController.topReviewList.isNotEmpty)
                   Container(
                     margin: const EdgeInsets.only(top: 16, bottom: 16),
                     height: 1,
                     color: AppColors.blue_20,
                   ),
+                  if(_userServiceDetailsController.topReviewList.isNotEmpty)
                   const CustomText(
                     text: 'Top Reviews',
                     fontSize: 18,
@@ -236,7 +238,7 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
                               ),
                             ),
                             CustomText(
-                              text: "${DateFormat.d('en_US').format(demoData.createAt!)} ${DateFormat.MMMM('en_US').format(demoData.createAt!)}",
+                              text: DateFormat('dd MMM').format(demoData.createAt!),
                               fontSize: 12,
                               color: AppColors.black_60,
                               left: 4,
@@ -257,8 +259,8 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
                     height: 1,
                     color: AppColors.blue_20,
                   ),
-                  const CustomText(
-                    text: AppStrings.description,
+                   CustomText(
+                    text: AppStrings.description.tr,
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
                     bottom: 16,
@@ -282,7 +284,7 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
                                   }
                               );
                             },
-                            titleText: AppStrings.rateUs,
+                            titleText: AppStrings.rateUs.tr,
                             titleWeight: FontWeight.w600,
                             titleSize: 18,
                             titleColor: AppColors.blue_100,
@@ -307,7 +309,7 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
                                       barrierColor: Colors.transparent,
                                       context: context,
                                       builder: (BuildContext context){
-                                        return  UserServiceDetailsHireNoeBottomModal(userImage:userData.imageSrc!, userByServiceModel:userByServiceModel,number:userData.phone!,);
+                                        return  UserServiceDetailsHireNoeBottomModal(userModel:userData,userImage:userData.imageSrc!, userByServiceModel:userByServiceModel,number:"${userData.phoneCode} ${userData.phone}",);
                                       });
                                 },
                                 titleText: 'Hire Now',

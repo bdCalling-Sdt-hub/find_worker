@@ -13,7 +13,6 @@ class ServiceModel {
   final String? image;
   final String? location;
   final String? providerUid;
-  final double? averageRating;
   final String? description;
 
   ServiceModel({
@@ -23,7 +22,7 @@ class ServiceModel {
     this.image,
     this.location,
     this.providerUid,
-    this.averageRating,
+
     this.description,
   });
 
@@ -34,7 +33,6 @@ class ServiceModel {
     image: json["image"],
     location: json["location"],
     providerUid: json["provider_uid"],
-    averageRating: json["average_rating"]?.toDouble(),
     description: json["description"],
   );
 
@@ -45,7 +43,6 @@ class ServiceModel {
     "image": image,
     "location": location,
     "provider_uid": providerUid,
-    "average_rating": averageRating,
     "description": description,
   };
 }

@@ -29,7 +29,7 @@ import 'package:find_worker/view/screens/service_provider/sp_settings/sp_support
 import 'package:find_worker/view/screens/service_provider/sp_settings/sp_terms_of_conditions/sp_terms_of_conditions_screen.dart';
 import 'package:find_worker/view/screens/splash/splash_screen.dart';
 import 'package:find_worker/view/screens/user/category/category_screen.dart';
-import 'package:find_worker/view/screens/user/home/car_wash_details/category_by_services_screen.dart';
+
 import 'package:find_worker/view/screens/user/home/home/home_screen.dart';
 import 'package:find_worker/view/screens/user/search/search_screen.dart';
 import 'package:find_worker/view/screens/user/settings/about_us/about_us_screen.dart';
@@ -58,6 +58,8 @@ import 'package:find_worker/view/screens/user/user_profile/user_profile_screen.d
 import 'package:find_worker/view/screens/user/user_service_details/user_service_details_screen.dart';
 import 'package:get/get.dart';
 
+import '../view/screens/user/home/CategoryByService/category_by_services_screen.dart';
+
 
 class AppRoute {
    static String splashScreen = "/splash_screen";
@@ -70,24 +72,22 @@ class AppRoute {
    static String userPersonalInformationScreen = "/user_personal_information_screen";
    static String userEditPersonalInformationScreen = "/user_edit_personal_information_screen";
    static String userHireList = "/user_hire_list_screen";
-   static String userHireDetailsScreen = "/user_hire_details_screen";
    static String userHistoryScreen = "/user_history_screen";
-   static String userHistoryDetailsScreen = "/user_history_details_screen";
    static String userServiceDetailsScreen = "/user_service_details_screen";
    static String spSignInScreen = "/sp_sign_in_screen";
    static String spSignUpScreen = "/sp_sign_up_screen";
    static String spVerifyEmailOtpScreen = "/sp_verify_email_otp_screen";
-   static String spJobDetailsScreen = "/sp_job_details_screen";
+
    static String spNotificationScreen = "/sp_notification_screen";
    static String spProfileScreen = "/sp_profile_screen";
    static String spPersonalInformationScreen = "/sp_personal_information_screen";
    static String spEditPersonalInformationScreen = "/sp_edit_personal_information_screen";
    static String spServiceDetailsScreen = "/sp_service_details_screen";
-   //static String spEditServiceDetailsScreen = "/sp_edit_service_details_screen";
+
    static String spAddNewServiceScreen = "/sp_add_new_service_screen";
    static String spHomeScreen = "/sp_home_screen";
 
-   static String userForgetPasswordScreen = "/user_forget_password_screen";
+  // static String userForgetPasswordScreen = "/user_forget_password_screen";
    static String userOtpScreen = "/user_otp_screen";
    static String userResetPasswordScreen = "/user_reset_password_screen";
    static String changePasswordScreen = "/change_password_screen";
@@ -130,23 +130,20 @@ class AppRoute {
      GetPage(name: userPersonalInformationScreen, page: () => const UserPersonalInformationScreen()),
      GetPage(name: userEditPersonalInformationScreen, page: () => const UserEditPersonalInformation()),
      GetPage(name: userHireList, page: () => const UserHireListScreen()),
-     GetPage(name: userHireDetailsScreen, page: () => const UserHireDetailsScreen()),
+
      GetPage(name: userHistoryScreen, page: () => const UserHistoryScreen()),
-     GetPage(name: userHistoryDetailsScreen, page: () => const UserHistoryDetailsScreen()),
      GetPage(name: userServiceDetailsScreen, page: () => const UserServiceDetailsScreen()),
      GetPage(name: spSignInScreen, page: () => const SpSignInScreen()),
      GetPage(name: spSignUpScreen, page: () => const SpSignUpScreen()),
      GetPage(name: spVerifyEmailOtpScreen, page: () => const SpVerifyEmailOtpScreen()),
-     GetPage(name: spJobDetailsScreen, page: () => const SpJobDetailsScreen()),
      GetPage(name: spNotificationScreen, page: () => const SpNotificationScreen()),
      GetPage(name: spProfileScreen, page: () => const SpProfileScreen()),
      GetPage(name: spPersonalInformationScreen, page: () => const SpPersonalInformationScreen()),
-     GetPage(name: spEditPersonalInformationScreen, page: () => const SpEditPersonalInformationScreen()),
+     GetPage(name: spEditPersonalInformationScreen, page: () => const SpEditPersonalInformation()),
      GetPage(name: spServiceDetailsScreen, page: () => const SpServiceDetailsScreen()),
      // GetPage(name: spEditServiceDetailsScreen, page: () => const SpEditServiceScreen()),
      GetPage(name: spAddNewServiceScreen, page: () => const SpAddNewServiceScreen()),
      GetPage(name: spHomeScreen, page: () => const SpHomeScreen()),
-     GetPage(name: userForgetPasswordScreen, page: () => const UserForgetPasswordScreen()),
      GetPage(name: userOtpScreen, page: () => const UserOtpScreen()),
      GetPage(name: userResetPasswordScreen, page: () => const UserResetPasswordScreen()),
      GetPage(name: changePasswordScreen, page: () => const ChangePasswordScreen()),
@@ -160,7 +157,7 @@ class AppRoute {
      GetPage(name: supportScreen, page: () => const SupportScreen()),
      GetPage(name: homeScreen, page: () => HomeScreen()),
      GetPage(name: carWashDetailsScreen, page: () => const CategoryByServiceScreen()),
-     GetPage(name: categoryScreen, page: () => const CategoryScreen()),
+
      GetPage(name: searchScreen, page: () => const SearchScreen()),
      GetPage(name: spAboutUsScreen, page: () => const SpAboutUsScreen()),
      GetPage(name: spChangeForgetPasswordScreen, page: () => const SpChangeForgetPasswordScreen()),
@@ -172,7 +169,7 @@ class AppRoute {
      GetPage(name: spSupportScreen, page: () => const SpSupportScreen()),
      GetPage(name: spTermsOfConditionsScreen, page: () => const SpTermsOfConditionsScreen()),
      GetPage(name: spJobHistoryScreen, page: () => const SpJobHistoryScreen()),
-     GetPage(name: spHistoryDetailsScreen, page: () => const SpHistoryDetailsScreen()),
+
      GetPage(name: spForgetPasswordScreen, page: () => const SpForgetPasswordScreen()),
      GetPage(name: spOtpScreen, page: () => const SpOtpScreen()),
      GetPage(name: spResetPasswordScreen, page: () => const SpResetPasswordScreen()),

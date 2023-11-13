@@ -13,6 +13,12 @@ import 'package:find_worker/view/widgets/image/custom_image.dart';
 import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+
+import '../category/Controller/category_controller.dart';
+import '../home/Controller/home_controller.dart';
+import '../user_profile/Controller/profile_controller.dart';
 
 
 class UserBottomNavBarScreen extends StatefulWidget {
@@ -30,34 +36,37 @@ class _UserBottomNavBarScreenState extends State<UserBottomNavBarScreen> {
 
   static  List<Widget> screens = <Widget>[
     HomeScreen(),
-    const CategoryScreen(),
+     CategoryScreen(isBack:false,),
     const UserHireListScreen(),
     const UserProfileScreen()
   ];
 
   @override
   Widget build(BuildContext context) {
+    final _homeController = Get.put(UserHomeController());
+    final _categoryController = Get.put(CategoryController());
+    final _profileController = Get.put(UserProfileController());
 
     List<Widget> manuBarItems = [
       MenuBarItems(
-          text: AppStrings.home,
+          text: AppStrings.home.tr,
           index: 0,
           selectedIndex: widget.currentIndex,
           image:  AppIcons.home_un),
       MenuBarItems(
-          text:AppStrings.category,
+          text:AppStrings.category.tr,
           index: 1,
           selectedIndex: widget.currentIndex,
           image: AppIcons.viewGrid
       ),
       MenuBarItems(
-          text: AppStrings.hireList,
+          text: AppStrings.hireList.tr,
           index: 2,
           selectedIndex: widget.currentIndex,
           image: AppIcons.speakerphone
       ),
       MenuBarItems(
-          text: AppStrings.profile,
+          text: AppStrings.profile.tr,
           index: 3,
           selectedIndex: widget.currentIndex,
           image: AppIcons.userCircle

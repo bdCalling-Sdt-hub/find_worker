@@ -39,9 +39,9 @@ class _CarWashSectionState extends State<CarWashSection> {
                 onTap: (){
                   Get.toNamed(AppRoute.carWashDetailsScreen);
                 },
-                child:const CustomText(
+                child: CustomText(
                   color: AppColors.blue_100,
-                  text: AppStrings.seeAll,
+                  text: AppStrings.seeAll.tr,
                   fontSize:14,
                   fontWeight: FontWeight.w500,
                 ),

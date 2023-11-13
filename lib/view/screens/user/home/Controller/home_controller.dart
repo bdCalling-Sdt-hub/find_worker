@@ -4,8 +4,11 @@ import 'package:find_worker/model/service_by_user_model.dart';
 import 'package:find_worker/model/service_model.dart';
 import 'package:find_worker/utils/app_constents.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+
+import '../../../../../helper/Notification/notification_helper.dart';
 
 class UserHomeController extends GetxController {
   @override
@@ -19,12 +22,19 @@ class UserHomeController extends GetxController {
   RxList<UserByServiceModel> carWashList= <UserByServiceModel> [].obs;
   RxList<UserByServiceModel> homeCleanList= <UserByServiceModel> [].obs;
   RxList<UserByServiceModel> airConditionList= <UserByServiceModel> [].obs;
+  FirebaseFirestore  firebaseFirestore= FirebaseFirestore.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+
+
+
 
 
 getData(bool isLoading)async{
   if(isLoading){
     loading(true);
   }
+await getTokenAndUpdate();
   await getCategory();
   await getSortedServicesByAverageRatingCarWash();
   await getSortedServicesByAverageRatingHomeClean();
@@ -32,8 +42,26 @@ getData(bool isLoading)async{
   if(isLoading){
     loading(false);
   }
+  NotificationHelper.notificationPermission();
 
 }
+
+getTokenAndUpdate()async{
+    try {
+     var token= await FirebaseMessaging.instance.getToken();
+
+     print("======> Get Fcm Token $token");
+      FirebaseFirestore  firebaseFirestore= FirebaseFirestore.instance;
+      final FirebaseAuth _auth = FirebaseAuth.instance;
+      await firebaseFirestore.collection(AppConstants.users).doc(_auth.currentUser!.uid).update({"fcmToken":token});
+    } on Exception catch (e) {
+      debugPrint("Oops error $e");
+    }
+
+
+}
+
+
 
 getCategory()async{
     try {
@@ -179,7 +207,9 @@ Future<List<UserByServiceModel>?> getSortedServicesByAverageRatingAirCondition()
   }
 }
 
-
-
-
+@override
+  void dispose() {
+   Get.delete<UserHomeController>();
+    super.dispose();
+  }
 }

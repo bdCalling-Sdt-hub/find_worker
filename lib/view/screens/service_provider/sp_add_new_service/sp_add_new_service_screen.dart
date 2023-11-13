@@ -57,8 +57,8 @@ class _SpAddNewServiceScreenState extends State<SpAddNewServiceScreen> {
                       color: AppColors.blue_100,
                     ),
                   ),
-                  const CustomText(
-                    text: AppStrings.addNewService,
+                   CustomText(
+                    text: AppStrings.addNewService.tr,
                     color: AppColors.blue_100,
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
@@ -102,8 +102,8 @@ class _SpAddNewServiceScreenState extends State<SpAddNewServiceScreen> {
                                    ),
                                 ),
                               ),
-                              const CustomText(
-                                text: AppStrings.serviceType,
+                               CustomText(
+                                text: AppStrings.serviceType.tr,
                                 color: AppColors.black_100,
                                 fontWeight: FontWeight.w500,
                                 top: 16,
@@ -134,7 +134,7 @@ class _SpAddNewServiceScreenState extends State<SpAddNewServiceScreen> {
                                   ),
                                   filled: true,
                                   fillColor: AppColors.white,
-                                  hintText: AppStrings.enterYourService,
+                                  hintText: AppStrings.enterYourService.tr,
                                   hintStyle: GoogleFonts.poppins(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w500,
@@ -222,8 +222,8 @@ class _SpAddNewServiceScreenState extends State<SpAddNewServiceScreen> {
                                   ),
                                 ),
                               ): Container(),
-                              const CustomText(
-                                text: AppStrings.location,
+                               CustomText(
+                                text: AppStrings.location.tr,
                                 color: AppColors.black_100,
                                 fontWeight: FontWeight.w500,
                                 top: 16,
@@ -251,8 +251,8 @@ class _SpAddNewServiceScreenState extends State<SpAddNewServiceScreen> {
                                 fieldBorderColor: AppColors.blue_10,
                                 fieldBorderRadius: 8,
                               ),
-                              const CustomText(
-                                text: AppStrings.description,
+                               CustomText(
+                                text: AppStrings.description.tr,
                                 color: AppColors.black_100,
                                 fontWeight: FontWeight.w500,
                                 top: 16,
@@ -309,7 +309,7 @@ class _SpAddNewServiceScreenState extends State<SpAddNewServiceScreen> {
               child: Obx(()=>
                  CustomButton(onTap:(){
                   _controller.addService();
-                }, text: AppStrings.addNewService,loading:_controller.addServiceLoad.value,),
+                }, text: AppStrings.addNewService.tr,loading:_controller.addServiceLoad.value,),
               )  )
         ));
   }

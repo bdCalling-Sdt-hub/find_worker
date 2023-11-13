@@ -4,6 +4,7 @@ import 'package:find_worker/utils/app_icons.dart';
 import 'package:find_worker/utils/app_images.dart';
 import 'package:find_worker/utils/app_strings.dart';
 import 'package:find_worker/view/screens/user/user_auth/user_auth_controller/user_auth_controller.dart';
+import 'package:find_worker/view/screens/user/user_auth/user_forget_password/user_forget_password_screen.dart';
 import 'package:find_worker/view/screens/user/user_bottom_nav_bar/user_bottom_nav_bar_screen.dart';
 import 'package:find_worker/view/widgets/buttons/custom_button.dart';
 import 'package:find_worker/view/widgets/custom_elevated_loading_button/custom_elevated_loading_button.dart';
@@ -138,7 +139,7 @@ class _UserSignInState extends State<UserSignIn> {
                               ),
                               GestureDetector(
                                 onTap: (){
-                                  Get.toNamed(AppRoute.userForgetPasswordScreen);
+                                  Get.to(UserForgetPasswordScreen(inAppForget:false));
                                 },
                                 child: const Align(
                                   alignment: Alignment.topLeft,
@@ -197,15 +198,20 @@ class _UserSignInState extends State<UserSignIn> {
                                       ),
                                     ),
                                   ),
-                                  Container(
-                                    padding:const EdgeInsets.all(10),
-                                    decoration: const BoxDecoration(
-                                        color: Colors.white,
-                                        shape: BoxShape.circle
-                                    ),
-                                    child: const CustomImage(
-                                      imageSrc: AppIcons.apple,
-                                      size: 28,
+                                  GestureDetector(
+                                    onTap: (){
+                                      _authController.appleInWithGoogle(userType); 
+                                    },
+                                    child: Container(
+                                      padding:const EdgeInsets.all(10),
+                                      decoration: const BoxDecoration(
+                                          color: Colors.white,
+                                          shape: BoxShape.circle
+                                      ),
+                                      child: const CustomImage(
+                                        imageSrc: AppIcons.apple,
+                                        size: 28,
+                                      ),
                                     ),
                                   ),
                                 ],

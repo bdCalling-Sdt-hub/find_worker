@@ -34,7 +34,7 @@ class _SpHomeBottomModalSheetState extends State<SpHomeBottomModalSheet> {
         child: Column(
           children: [
             Container(
-              child:  const Row(
+              child:   Row(
                 children: [
                   CustomImage(imageSrc: AppImages.profileJhon,imageType: ImageType.png,size: 65,),
                   SizedBox(width: 16,),
@@ -68,7 +68,7 @@ class _SpHomeBottomModalSheetState extends State<SpHomeBottomModalSheet> {
                           children: [
                             CustomText(
                               color: AppColors.black_60,
-                              text: AppStrings.service,
+                              text: AppStrings.service.tr,
                             ),
                             CustomText(
                               fontSize: 14,

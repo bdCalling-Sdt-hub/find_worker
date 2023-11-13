@@ -1,9 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:find_worker/core/share_pre.dart';
+import 'package:find_worker/helper/ApiService/api_service.dart';
 import 'package:find_worker/model/service_by_user_model.dart';
+import 'package:find_worker/model/user_model.dart';
 import 'package:find_worker/utils/app_constents.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
 import 'package:uuid/uuid.dart';
@@ -108,7 +111,7 @@ class UserServiceDetailsController extends GetxController {
     }
   }
   
-  hireNow(UserByServiceModel userdata,String number)async{
+  hireNow(UserByServiceModel userdata,String number,UserModel currentUserData)async{
 
 
     hireLoading(true);
@@ -117,7 +120,7 @@ class UserServiceDetailsController extends GetxController {
       var id= uuid.v4();
         Map<String ,dynamic> hireBody={
           "id":id,
-          "service_id" :userdata.serviceId,
+          "service_id" :userdata.id,
           "service_provider_id":userdata.providerUid,
           "service_name":userdata.serviceName,
           "status":"Pending",
@@ -125,21 +128,32 @@ class UserServiceDetailsController extends GetxController {
         };
         Map<String ,dynamic> jobBody={
           "id":id,
-          "service_id" :userdata.serviceId,
+          "service_id" :userdata.id,
           "hiring_user_id":_auth.currentUser!.uid,
           "service_name":userdata.serviceName,
           "status":"Pending",
           "create_at":DateTime.now()
         };
-
+        Map<String,dynamic> body={
+            "to": currentUserData.fcmToken,
+            "mutable_content": true,
+            "notification": {
+              "title": "New Job Request : ${currentUserData.userName} Has Hired You!",
+              "body": "Great news! ${currentUserData.userName}  has hired you for a job. They trust your skills and are looking forward to your service."
+            },
+            "data": {
+              "body": ""
+            }
+};
       await _firebaseFirestore.collection(AppConstants.users).doc(_auth.currentUser!.uid).collection(AppConstants.hireHistory).doc(id).set(hireBody);
       await _firebaseFirestore.collection(AppConstants.users).doc(userdata.providerUid).collection(AppConstants.jobHistory).doc(id).set(jobBody);
-
+      await ApiService.postNotification(body);
       debugPrint("Hire Completed");
       launchPhoneDialer(number);
 
     }catch (e){
       debugPrint("Opps error $e");
+      Fluttertoast.showToast(msg:"Oops, Something error!,Please try again");
     } finally {
       hireLoading(false);
     }
