@@ -46,8 +46,8 @@ class _SettingScreenState extends State<SettingScreen> {
                   color: AppColors.blue_100,
                 ),
               ),
-               const CustomText(
-                text: AppStrings.settings,
+                CustomText(
+                text: AppStrings.settings.tr,
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
                 color: AppColors.blue_100,
@@ -149,11 +149,11 @@ class _SettingScreenState extends State<SettingScreen> {
                     onTap: (){
                       Get.toNamed(AppRoute.changePasswordScreen);
                     },
-                    child:   const Row(
+                    child:    Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         CustomText(
-                          text: AppStrings.changePassword,
+                          text: AppStrings.changePassword.tr,
                           fontSize: 14,
                           fontWeight: FontWeight.w400,
                           color: AppColors.black_100,
@@ -170,11 +170,11 @@ class _SettingScreenState extends State<SettingScreen> {
                     onTap: (){
                       Get.toNamed(AppRoute.termsOfConditionsScreen);
                     },
-                    child:  const Row(
+                    child:   Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         CustomText(
-                          text: "Terms of Conditions",
+                          text: AppStrings.termsOfConditions.tr,
                           fontSize: 14,
                           fontWeight: FontWeight.w400,
                           color: AppColors.black_100,
@@ -192,11 +192,11 @@ class _SettingScreenState extends State<SettingScreen> {
                     onTap: (){
                       Get.toNamed(AppRoute.privacyPolicyScreen);
                     },
-                    child:  const Row(
+                    child:   Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         CustomText(
-                          text: AppStrings.privacyPolicy,
+                          text: AppStrings.privacyPolicy.tr,
                           fontSize: 14,
                           fontWeight: FontWeight.w400,
                           color: AppColors.black_100,
@@ -214,11 +214,11 @@ class _SettingScreenState extends State<SettingScreen> {
                     onTap: (){
                       Get.toNamed(AppRoute.aboutUsScreen);
                     },
-                    child:const Row(
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         CustomText(
-                          text: AppStrings.aboutUs,
+                          text: AppStrings.aboutUs.tr,
                           fontSize: 14,
                           fontWeight: FontWeight.w400,
                           color: AppColors.black_100,
@@ -235,11 +235,11 @@ class _SettingScreenState extends State<SettingScreen> {
                     onTap: (){
                       Get.toNamed(AppRoute.supportScreen);
                     },
-                    child:   const Row(
+                    child:    Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         CustomText(
-                          text: AppStrings.support,
+                          text: AppStrings.support.tr,
                           fontSize: 14,
                           fontWeight: FontWeight.w400,
                           color: AppColors.black_100,

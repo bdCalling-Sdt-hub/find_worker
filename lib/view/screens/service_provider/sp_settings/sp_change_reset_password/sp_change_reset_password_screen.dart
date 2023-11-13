@@ -45,8 +45,8 @@ class _SpChangeResetPasswordScreenState extends State<SpChangeResetPasswordScree
                       color: AppColors.blue_100,
                     ),
                   ),
-                  const CustomText(
-                    text: AppStrings.resetPassword,
+                   CustomText(
+                    text: AppStrings.resetPassword.tr,
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
                     color: AppColors.blue_100,
@@ -85,8 +85,8 @@ class _SpChangeResetPasswordScreenState extends State<SpChangeResetPasswordScree
                         fieldBorderRadius: 8,
 
                       ),
-                      const CustomText(
-                        text: AppStrings.confirmPassword,
+                       CustomText(
+                        text: AppStrings.confirmPassword.tr,
                         color: AppColors.black_100,
                         fontWeight: FontWeight.w500,
                         fontSize: 14,

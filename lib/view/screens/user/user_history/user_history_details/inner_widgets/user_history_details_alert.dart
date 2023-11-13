@@ -51,10 +51,10 @@ class _UserHistoryDetailsAlertState extends State<UserHistoryDetailsAlert> {
                         ),
                         child: _controller.removeLoading.value?Container(
                             alignment: Alignment.center,
-                            child: const SizedBox(height:20,width:20,child:CircularProgressIndicator(),)) :const Padding(
+                            child:  SizedBox(height:20,width:20,child:CircularProgressIndicator(),)) : Padding(
                           padding: EdgeInsets.symmetric(vertical: 12),
                           child: CustomText(
-                            text: AppStrings.yes,
+                            text: AppStrings.yes.tr,
                             fontWeight: FontWeight.w600,
                             color: AppColors.blue_100,
                           ),
@@ -76,11 +76,11 @@ class _UserHistoryDetailsAlertState extends State<UserHistoryDetailsAlert> {
                             color: AppColors.blue_100,
                             borderRadius:
                             BorderRadius.circular(8)),
-                        child: const Padding(
+                        child:  Padding(
                           padding: EdgeInsets.symmetric(
                               vertical: 12),
                           child:CustomText(
-                            text: AppStrings.no,
+                            text: AppStrings.no.tr,
                             fontWeight: FontWeight.w600,
                             color: AppColors.white,
                           ),

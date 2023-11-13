@@ -71,8 +71,8 @@ class _SpEditPersonalInformationState
                                 color: AppColors.blue_100,
                               ),
                             ),
-                            const CustomText(
-                              text: AppStrings.editPersonalInformation,
+                             CustomText(
+                              text: AppStrings.editPersonalInformation.tr,
                               color: AppColors.blue_100,
                               fontSize: 18,
                               fontWeight: FontWeight.w500,
@@ -200,8 +200,8 @@ class _SpEditPersonalInformationState
                             child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const CustomText(
-                                    text: AppStrings.fullName,
+                                   CustomText(
+                                    text: AppStrings.fullName.tr,
                                     color: AppColors.black_100,
                                     fontWeight: FontWeight.w500,
                                     bottom: 8,
@@ -222,8 +222,8 @@ class _SpEditPersonalInformationState
                                     fieldBorderColor: AppColors.blue_10,
                                     fieldBorderRadius: 8,
                                   ),
-                                  const CustomText(
-                                    text: AppStrings.dateOfBirth,
+                                   CustomText(
+                                    text: AppStrings.dateOfBirth.tr,
                                     color: AppColors.black_100,
                                     fontWeight: FontWeight.w500,
                                     bottom: 8,
@@ -359,8 +359,8 @@ class _SpEditPersonalInformationState
                                           )),
                                     ],
                                   ),
-                                  const CustomText(
-                                    text: AppStrings.gender,
+                                   CustomText(
+                                    text: AppStrings.gender.tr,
                                     color: AppColors.black_100,
                                     fontWeight: FontWeight.w500,
                                     bottom: 8,
@@ -419,8 +419,8 @@ class _SpEditPersonalInformationState
                                         )),
                                   ),
 
-                                  const CustomText(
-                                    text: AppStrings.phoneNumber,
+                                   CustomText(
+                                    text: AppStrings.phoneNumber.tr,
                                     color: AppColors.black_100,
                                     fontWeight: FontWeight.w500,
                                     top: 16,
@@ -491,8 +491,8 @@ class _SpEditPersonalInformationState
                                       ),
                                     ],
                                   ),
-                                  const CustomText(
-                                    text: AppStrings.address,
+                                   CustomText(
+                                    text: AppStrings.address.tr,
                                     color: AppColors.black_100,
                                     fontWeight: FontWeight.w500,
                                     top: 16,
@@ -521,7 +521,7 @@ class _SpEditPersonalInformationState
                                   ),
                                   Obx(()=>
                                       CustomButton(
-                                        text: AppStrings.update,
+                                        text: AppStrings.update.tr,
                                         loading: _profileController.loading.value,
                                         onTap: (){
                                           _profileController.updateProfile();

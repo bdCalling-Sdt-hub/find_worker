@@ -45,8 +45,8 @@ class _SpChangeOtpScreenState extends State<SpChangeOtpScreen> {
                       color: AppColors.blue_100,
                     ),
                   ),
-                  const CustomText(
-                    text: AppStrings.oTP,
+                   CustomText(
+                    text: AppStrings.oTP.tr,
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
                     color: AppColors.blue_100,
@@ -103,8 +103,8 @@ class _SpChangeOtpScreenState extends State<SpChangeOtpScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const CustomText(
-                            text: AppStrings.didNotGetTheCode,
+                           CustomText(
+                            text: AppStrings.didNotGetTheCode.tr,
                             fontWeight: FontWeight.w400,
                             fontSize: 14,
                             color: AppColors.black_100,
@@ -113,8 +113,8 @@ class _SpChangeOtpScreenState extends State<SpChangeOtpScreen> {
                             onTap: () {
                               /*Get.to(()=> const OtpScreen());*/
                             },
-                            child:  const CustomText(
-                              text: AppStrings.resend,
+                            child:   CustomText(
+                              text: AppStrings.resend.tr,
                               fontWeight: FontWeight.w600,
                               fontSize: 14,
                               color: AppColors.blue_100,
@@ -129,7 +129,7 @@ class _SpChangeOtpScreenState extends State<SpChangeOtpScreen> {
                 );
               }
           ),
-          bottomNavigationBar: BottomNavButton(buttonText: AppStrings.verify, onTap: (){
+          bottomNavigationBar: BottomNavButton(buttonText: AppStrings.verify.tr, onTap: (){
             Get.toNamed(AppRoute.spChangeResetPasswordScreen);
           }),
         ));

@@ -45,8 +45,8 @@ class _UserPersonalInformationScreenState
                     color: AppColors.white,
                   ),
                 ),
-                const CustomText(
-                  text: AppStrings.personalInformation,
+                 CustomText(
+                  text: AppStrings.personalInformation.tr,
                   color: AppColors.white,
                   fontSize: 18,
                   fontWeight: FontWeight.w500,

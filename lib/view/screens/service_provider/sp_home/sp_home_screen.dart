@@ -43,8 +43,8 @@ class _SpHomeScreenState extends State<SpHomeScreen> {
             appBarContent: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const CustomText(
-                  text: AppStrings.logo,
+                 CustomText(
+                  text: AppStrings.logo.tr,
                   color: AppColors.blue_100,
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
@@ -157,7 +157,7 @@ class _SpHomeScreenState extends State<SpHomeScreen> {
                                 children: [
                                   Image.asset(AppImages.empty,height: 100,width: 100,),
                                   const SizedBox(height: 10),
-                                   const Text(AppStrings.noJobsPending)
+                                    Text(AppStrings.noJobsPending.tr)
                                 ],
                               ),
 
@@ -192,8 +192,8 @@ class _SpHomeScreenState extends State<SpHomeScreen> {
                                             mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                             children: [
-                                              const CustomText(
-                                                text: AppStrings.status,
+                                               CustomText(
+                                                text: AppStrings.status.tr,
                                               ),
                                               Flexible(
                                                 child: Container(
@@ -219,8 +219,8 @@ class _SpHomeScreenState extends State<SpHomeScreen> {
                                             mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                             children: [
-                                              const CustomText(
-                                                text: AppStrings.service,
+                                               CustomText(
+                                                text: AppStrings.service.tr,
                                               ),
                                               SizedBox(width: 10.w,),
                                               Flexible(
@@ -239,8 +239,8 @@ class _SpHomeScreenState extends State<SpHomeScreen> {
                                             mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                             children: [
-                                              const CustomText(
-                                                text: AppStrings.time,
+                                               CustomText(
+                                                text: AppStrings.time.tr,
                                               ),
                                               CustomText(
                                                 text: DateFormat.jm().format(data.createAt!),
@@ -256,8 +256,8 @@ class _SpHomeScreenState extends State<SpHomeScreen> {
                                             mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                             children: [
-                                              const CustomText(
-                                                text: AppStrings.date,
+                                               CustomText(
+                                                text: AppStrings.date.tr,
                                               ),
                                               Flexible(
                                                 child: CustomText(

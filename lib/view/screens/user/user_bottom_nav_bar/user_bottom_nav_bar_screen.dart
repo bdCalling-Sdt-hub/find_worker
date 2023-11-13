@@ -49,24 +49,24 @@ class _UserBottomNavBarScreenState extends State<UserBottomNavBarScreen> {
 
     List<Widget> manuBarItems = [
       MenuBarItems(
-          text: AppStrings.home,
+          text: AppStrings.home.tr,
           index: 0,
           selectedIndex: widget.currentIndex,
           image:  AppIcons.home_un),
       MenuBarItems(
-          text:AppStrings.category,
+          text:AppStrings.category.tr,
           index: 1,
           selectedIndex: widget.currentIndex,
           image: AppIcons.viewGrid
       ),
       MenuBarItems(
-          text: AppStrings.hireList,
+          text: AppStrings.hireList.tr,
           index: 2,
           selectedIndex: widget.currentIndex,
           image: AppIcons.speakerphone
       ),
       MenuBarItems(
-          text: AppStrings.profile,
+          text: AppStrings.profile.tr,
           index: 3,
           selectedIndex: widget.currentIndex,
           image: AppIcons.userCircle

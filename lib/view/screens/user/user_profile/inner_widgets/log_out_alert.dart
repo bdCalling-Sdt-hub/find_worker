@@ -26,9 +26,9 @@ class _LogOutAlertState extends State<LogOutAlert> {
       elevation: 0,
       title: Column(
         children: [
-          const CustomText(
+           CustomText(
             maxLines: 2,
-            text: 'Do you want to logout your profile?',
+            text: AppStrings.doYouWantToLogoutYourProfile.tr,
             fontWeight: FontWeight.w600,
             fontSize: 18,
             color: AppColors.black_100,
@@ -50,7 +50,7 @@ class _LogOutAlertState extends State<LogOutAlert> {
                           padding: EdgeInsets.symmetric(vertical: 12),
                           child: Obx(()=>_authController.isSignOutLoad.value?CircularProgressIndicator():
                              CustomText(
-                              text: AppStrings.yes,
+                              text: AppStrings.yes.tr,
                               fontWeight: FontWeight.w600,
                               color: AppColors.blue_100,
                             ),
@@ -73,11 +73,11 @@ class _LogOutAlertState extends State<LogOutAlert> {
                             color: AppColors.blue_100,
                             borderRadius:
                             BorderRadius.circular(8)),
-                        child: const Padding(
+                        child:  Padding(
                           padding: EdgeInsets.symmetric(
                               vertical: 12),
                           child:CustomText(
-                            text: AppStrings.no,
+                            text: AppStrings.no.tr,
                             fontWeight: FontWeight.w600,
                             color: AppColors.white,
                           ),

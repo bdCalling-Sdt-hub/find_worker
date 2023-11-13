@@ -3,6 +3,7 @@ import 'package:encrypt/encrypt.dart';
 import 'package:find_worker/controller/data_controller.dart';
 import 'package:find_worker/core/app_routes.dart';
 import 'package:find_worker/core/share_pre.dart';
+import 'package:find_worker/helper/Language/language_controller.dart';
 import 'package:find_worker/model/user_model.dart';
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_constents.dart';
@@ -427,11 +428,14 @@ var loading=false.obs;
 
   ///  <------------- Sign out------------->
   var isSignOutLoad = false.obs;
+  final LocalizationController localizationController=Get.find<LocalizationController>();
   signOut() async {
     try {
       isSignOutLoad(true);
       await auth.signOut().then((value) async {
+        localizationController.setLanguage(Locale('en',"US"));
         Get.offAll(const OnboardScreen());
+
         await PrefsHelper.setString(AppConstants.logged, "");
         debugPrint("=========> Successful sign out");
         isSignOutLoad(false);

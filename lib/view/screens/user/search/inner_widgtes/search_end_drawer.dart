@@ -132,7 +132,7 @@ class _SearchEndDrawerState extends State<SearchEndDrawer> {
             ),
           ),
           BottomNavButton(
-            buttonText: AppStrings.apply,
+            buttonText: AppStrings.apply.tr,
             onTap: () {
               if(selectIndex==(-1)){
                 Get.back();

@@ -47,8 +47,8 @@ class _AboutUsScreenState extends State<AboutUsScreen> {
                       color: AppColors.blue_100,
                     ),
                   ),
-                  const CustomText(
-                    text: AppStrings.aboutUs,
+                   CustomText(
+                    text: AppStrings.aboutUs.tr,
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
                     color: AppColors.blue_100,

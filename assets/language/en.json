@@ -158,5 +158,8 @@
   "See All": "See All",
   "Home": "Home",
   "Services": "Services",
-  "Enter service description": "Enter service description"
+  "Enter service description": "Enter service description",
+ "No Job History yet.": "No Job History yet.",
+ "purchaser": "Purchaser",
+ "Job History": "Job History"
 }

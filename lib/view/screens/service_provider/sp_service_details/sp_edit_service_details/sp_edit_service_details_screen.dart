@@ -77,8 +77,8 @@ class _SpEditServiceScreenState extends State<SpEditServiceScreen> {
                       color: AppColors.blue_100,
                     ),
                   ),
-                  const CustomText(
-                    text: AppStrings.editServiceDetails,
+                   CustomText(
+                    text: AppStrings.editServiceDetails.tr,
                     color: AppColors.blue_100,
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
@@ -122,8 +122,8 @@ class _SpEditServiceScreenState extends State<SpEditServiceScreen> {
                                   ),
                               ),
                             ),
-                            const CustomText(
-                              text: AppStrings.serviceType,
+                             CustomText(
+                              text: AppStrings.serviceType.tr,
                               color: AppColors.black_100,
                               fontWeight: FontWeight.w500,
                               top: 16,
@@ -154,7 +154,7 @@ class _SpEditServiceScreenState extends State<SpEditServiceScreen> {
                                 ),
                                 filled: true,
                                 fillColor: AppColors.white,
-                                hintText: AppStrings.enterYourService,
+                                hintText: AppStrings.enterYourService.tr,
                                 hintStyle: GoogleFonts.poppins(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w500,
@@ -242,8 +242,8 @@ class _SpEditServiceScreenState extends State<SpEditServiceScreen> {
                                 ),
                               ),
                             ): Container(),
-                            const CustomText(
-                              text: AppStrings.location,
+                             CustomText(
+                              text: AppStrings.location.tr,
                               color: AppColors.black_100,
                               fontWeight: FontWeight.w500,
                               top: 16,
@@ -271,8 +271,8 @@ class _SpEditServiceScreenState extends State<SpEditServiceScreen> {
                               fieldBorderColor: AppColors.blue_10,
                               fieldBorderRadius: 8,
                             ),
-                            const CustomText(
-                              text: AppStrings.description,
+                             CustomText(
+                              text: AppStrings.description.tr,
                               color: AppColors.black_100,
                               fontWeight: FontWeight.w500,
                               top: 16,
@@ -331,7 +331,7 @@ class _SpEditServiceScreenState extends State<SpEditServiceScreen> {
            ServiceModel result=await  _controller.updateService(widget.serviceModel);
                   widget.callback(result);
 
-                    }, text: AppStrings.update,loading:_controller.updateServiceLoad.value,),
+                    }, text: AppStrings.update.tr,loading:_controller.updateServiceLoad.value,),
                 )  )
         ));
   }

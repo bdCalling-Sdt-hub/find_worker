@@ -42,8 +42,8 @@ class _SpHistoryDetailsScreenState extends State<SpHistoryDetailsScreen> {
                 },
                 child: const Icon(Icons.arrow_back_ios_new_outlined,size: 16,color: AppColors.blue_100,),
               ),
-              const CustomText(
-                text: AppStrings.jobDetails,
+               CustomText(
+                text: AppStrings.jobDetails.tr,
                 color: AppColors.blue_100,
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
@@ -126,8 +126,8 @@ class _SpHistoryDetailsScreenState extends State<SpHistoryDetailsScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const CustomText(
-                              text: AppStrings.address,
+                             CustomText(
+                              text: AppStrings.address.tr,
                             ),
                             Flexible(
                               child: CustomText(
@@ -143,8 +143,8 @@ class _SpHistoryDetailsScreenState extends State<SpHistoryDetailsScreen> {
                           height: 1,
                           color: AppColors.blue_20,
                         ),
-                        const CustomText(
-                          text: AppStrings.aboutJob,
+                         CustomText(
+                          text: AppStrings.aboutJob.tr,
                           fontSize: 18,
                           fontWeight: FontWeight.w500,
                           bottom: 16,
@@ -152,8 +152,8 @@ class _SpHistoryDetailsScreenState extends State<SpHistoryDetailsScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const CustomText(
-                              text: AppStrings.status,
+                             CustomText(
+                              text: AppStrings.status.tr,
                             ),
                             Container(
                               padding: const EdgeInsets.symmetric(vertical: 4,horizontal: 11),
@@ -174,7 +174,7 @@ class _SpHistoryDetailsScreenState extends State<SpHistoryDetailsScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             CustomText(
-                              text: AppStrings.service,
+                              text: AppStrings.service.tr,
                             ),
                             CustomText(
                               text: widget.historyModel.serviceName!,
@@ -188,7 +188,7 @@ class _SpHistoryDetailsScreenState extends State<SpHistoryDetailsScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             CustomText(
-                              text: AppStrings.time,
+                              text: AppStrings.time.tr,
                             ),
                             CustomText(
                               text: DateFormat.jm().format(widget.historyModel.createAt!),
@@ -201,8 +201,8 @@ class _SpHistoryDetailsScreenState extends State<SpHistoryDetailsScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const CustomText(
-                              text: AppStrings.date,
+                             CustomText(
+                              text: AppStrings.date.tr,
                             ),
                             CustomText(
                               text: "${DateFormat.d().format(widget.historyModel.createAt!)} ${DateFormat.MMMM().format(widget.historyModel.createAt!)}",

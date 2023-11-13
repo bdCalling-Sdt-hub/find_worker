@@ -29,11 +29,11 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
         top: false,
         bottom: false,
         child: Scaffold(
-          appBar: const CustomAppBar(
+          appBar:  CustomAppBar(
               appBarBgColor: AppColors.blue_100,
               appBarContent: Center(
                 child: CustomText(
-                  text: AppStrings.profile,
+                  text: AppStrings.profile.tr,
                   fontWeight: FontWeight.w500,
                   fontSize: 18,
                   color: AppColors.white,
@@ -103,8 +103,8 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                   color: AppColors.white,
                                   borderRadius: BorderRadius.circular(8),
                                 ),
-                                child: const CustomText(
-                                  text: 'Purchaser',
+                                child:  CustomText(
+                                  text: AppStrings.purchaser.tr,
                                   fontWeight: FontWeight.w600,
                                   fontSize: 14,
                                   color: AppColors.blue_100,
@@ -135,14 +135,14 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                             bottom: BorderSide(
                                                 color: AppColors.blue_20,
                                                 width: 1))),
-                                    child: const Row(
+                                    child:  Row(
                                       children: [
                                         CustomImage(
                                           imageSrc: AppIcons.user,
                                           size: 18,
                                         ),
                                         CustomText(
-                                          text: AppStrings.personalInformation,
+                                          text: AppStrings.personalInformation.tr,
                                           left: 12,
                                         )
                                       ],
@@ -161,14 +161,14 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                             bottom: BorderSide(
                                                 color: AppColors.blue_20,
                                                 width: 1))),
-                                    child: const Row(
+                                    child:  Row(
                                       children: [
                                         CustomImage(
                                           imageSrc: AppIcons.clock,
                                           size: 18,
                                         ),
                                         CustomText(
-                                          text: AppStrings.history,
+                                          text: AppStrings.history.tr,
                                           left: 12,
                                         )
                                       ],
@@ -187,16 +187,16 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                             bottom: BorderSide(
                                                 color: AppColors.blue_20,
                                                 width: 1))),
-                                    child: const Row(
+                                    child:  Row(
                                       children: [
                                         CustomImage(
                                           imageColor: AppColors.black_100,
                                           imageType: ImageType.png,
-                                          imageSrc: AppImages.settings,
+                                          imageSrc: AppImages.settings.tr,
                                           size: 18,
                                         ),
                                         CustomText(
-                                          text: AppStrings.settings,
+                                          text: AppStrings.settings.tr,
                                           left: 12,
                                         )
                                       ],
@@ -222,7 +222,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                             bottom: BorderSide(
                                                 color: AppColors.blue_20,
                                                 width: 1))),
-                                    child: const Row(
+                                    child:  Row(
                                       children: [
                                         CustomImage(
                                           imageSrc: AppIcons.logout,
@@ -230,7 +230,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                           imageColor: AppColors.red_100,
                                         ),
                                         CustomText(
-                                          text: AppStrings.logout,
+                                          text: AppStrings.logout.tr,
                                           color: AppColors.red_100,
                                           left: 12,
                                         )

@@ -47,8 +47,8 @@ class _SpPrivacyPolicyScreenState extends State<SpPrivacyPolicyScreen> {
                       color: AppColors.blue_100,
                     ),
                   ),
-                  const CustomText(
-                    text: AppStrings.privacyPolicy,
+                   CustomText(
+                    text: AppStrings.privacyPolicy.tr,
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
                     color: AppColors.blue_100,

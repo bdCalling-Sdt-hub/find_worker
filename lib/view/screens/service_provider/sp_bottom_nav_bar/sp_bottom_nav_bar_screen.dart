@@ -136,18 +136,18 @@ class _SpBottomNavBarScreenState extends State<SpBottomNavBarScreen> {
 
     List<Widget> manuBarItems = [
       MenuBarItems(
-          text: AppStrings.home,
+          text: AppStrings.home.tr,
           index: 0,
           selectedIndex: widget.currentIndex,
           image:  AppIcons.home_un),
       MenuBarItems(
-          text:AppStrings.history,
+          text:AppStrings.history.tr,
           index: 1,
           selectedIndex: widget.currentIndex,
           image: AppIcons.clock
       ),
       MenuBarItems(
-          text: AppStrings.profile,
+          text: AppStrings.profile.tr,
           index: 2,
           selectedIndex: widget.currentIndex,
           image: AppIcons.userCircle

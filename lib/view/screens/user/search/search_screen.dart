@@ -249,7 +249,7 @@ class _SearchScreenState extends State<SearchScreen> {
                          children: [
                            Image.asset(AppImages.empty,height: 100,width: 100,),
                            const SizedBox(height: 10),
-                           const Text(AppStrings.noDataAvailable)
+                           Text(AppStrings.noDataAvailable.tr)
                          ],
                        ),
                            ): _serviceData()),

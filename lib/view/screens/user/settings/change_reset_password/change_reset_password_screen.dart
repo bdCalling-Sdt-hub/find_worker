@@ -47,8 +47,8 @@ class _ChangeResetPasswordScreenState extends State<ChangeResetPasswordScreen> {
                       color: AppColors.black_100,
                     ),
                   ),
-                  const CustomText(
-                    text: AppStrings.resetPassword,
+                   CustomText(
+                    text: AppStrings.resetPassword.tr,
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
                     color: AppColors.blue_100,
@@ -87,8 +87,8 @@ class _ChangeResetPasswordScreenState extends State<ChangeResetPasswordScreen> {
                         fieldBorderRadius: 8,
 
                       ),
-                      const CustomText(
-                        text: AppStrings.confirmPassword,
+                       CustomText(
+                        text: AppStrings.confirmPassword.tr,
                         color: AppColors.black_100,
                         fontWeight: FontWeight.w500,
                         fontSize: 14,

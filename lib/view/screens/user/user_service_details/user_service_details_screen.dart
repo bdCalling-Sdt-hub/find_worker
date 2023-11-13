@@ -57,8 +57,8 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
                   color: AppColors.blue_100,
                 ),
               ),
-        title:const CustomText(
-            text: AppStrings.serviceDetails,
+        title: CustomText(
+            text: AppStrings.serviceDetails.tr,
             color: AppColors.blue_100,
             fontSize: 18,
             fontWeight: FontWeight.w500,
@@ -166,8 +166,8 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
                    Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const CustomText(
-                        text: AppStrings.service,
+                       CustomText(
+                        text: AppStrings.service.tr,
                       ),
                       Flexible(
                         child: CustomText(
@@ -259,8 +259,8 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
                     height: 1,
                     color: AppColors.blue_20,
                   ),
-                  const CustomText(
-                    text: AppStrings.description,
+                   CustomText(
+                    text: AppStrings.description.tr,
                     fontSize: 18,
                     fontWeight: FontWeight.w500,
                     bottom: 16,
@@ -284,7 +284,7 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
                                   }
                               );
                             },
-                            titleText: AppStrings.rateUs,
+                            titleText: AppStrings.rateUs.tr,
                             titleWeight: FontWeight.w600,
                             titleSize: 18,
                             titleColor: AppColors.blue_100,

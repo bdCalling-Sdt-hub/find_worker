@@ -32,11 +32,11 @@ class _SpJobHistoryScreenState extends State<SpJobHistoryScreen> {
         backgroundColor: AppColors.white,
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          title: const CustomText(
+          title:  CustomText(
               color: AppColors.blue_100,
               fontWeight: FontWeight.w500,
               fontSize: 18,
-              text: AppStrings.jobHistory),
+              text: AppStrings.jobHistory.tr),
           centerTitle: true,
         ),
         body: LayoutBuilder(
@@ -63,7 +63,7 @@ class _SpJobHistoryScreenState extends State<SpJobHistoryScreen> {
                                       height: 80,
                                       width: 80,
                                     ),
-                                    const Text("No Job History yet.")
+                                     Text(AppStrings.noJobHistoryYet.tr)
                                   ],
                                 ),
                               )

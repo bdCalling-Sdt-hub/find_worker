@@ -152,6 +152,9 @@
 "See All": "اظهار الكل",
 "Home": "بيت",
 "Services": "خدمات",
-"Enter service description": "أدخل وصف الخدمة"
+"Enter service description": "أدخل وصف الخدمة",
+  "purchaser": "المشتري",
+  "No Job History yet.": "لا يوجد سجل وظيفي حتى الآن.",
+  "Job History": "تاريخ العمل"
 
 }

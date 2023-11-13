@@ -36,10 +36,10 @@ class _UserHireListScreenState extends State<UserHireListScreen> {
         top: false,
         bottom: false,
         child: Scaffold(
-          appBar: const CustomAppBar(
+          appBar:  CustomAppBar(
             appBarContent:Center(
               child: CustomText(
-                text: AppStrings.hireList,
+                text: AppStrings.hireList.tr,
                 fontSize: 18,
                 fontWeight: FontWeight.w500,
                 color: AppColors.black_100,
@@ -162,7 +162,7 @@ class _UserHireListScreenState extends State<UserHireListScreen> {
                                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                               children: [
                                                 CustomText(
-                                                  text: AppStrings.service,
+                                                  text: AppStrings.service.tr,
                                                   fontSize: 12,
                                                   fontWeight: FontWeight.w500,
                                                   color: AppColors.black_60,

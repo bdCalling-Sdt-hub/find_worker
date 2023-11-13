@@ -108,8 +108,8 @@ class _SpJobDetailsScreenState extends State<SpJobDetailsScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const CustomText(
-                              text: AppStrings.address,
+                             CustomText(
+                              text: AppStrings.address.tr,
                             ),
                             CustomText(
                               text: widget.hireModel.address!,
@@ -123,8 +123,8 @@ class _SpJobDetailsScreenState extends State<SpJobDetailsScreen> {
                           height: 1,
                           color: AppColors.blue_20,
                         ),
-                        const CustomText(
-                          text: AppStrings.aboutJob,
+                         CustomText(
+                          text: AppStrings.aboutJob.tr,
                           fontSize: 18,
                           fontWeight: FontWeight.w500,
                           bottom: 16,
@@ -132,8 +132,8 @@ class _SpJobDetailsScreenState extends State<SpJobDetailsScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const CustomText(
-                              text: AppStrings.status,
+                             CustomText(
+                              text: AppStrings.status.tr,
                             ),
                             Container(
                               padding: const EdgeInsets.symmetric(vertical: 4,horizontal: 11),
@@ -156,7 +156,7 @@ class _SpJobDetailsScreenState extends State<SpJobDetailsScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             CustomText(
-                              text: AppStrings.service,
+                              text: AppStrings.service.tr,
                             ),
                             CustomText(
                               text: widget.hireModel.serviceName!,
@@ -183,8 +183,8 @@ class _SpJobDetailsScreenState extends State<SpJobDetailsScreen> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const CustomText(
-                              text: AppStrings.date,
+                             CustomText(
+                              text: AppStrings.date.tr,
                             ),
                             CustomText(
                               text: "${DateFormat.d().format(widget.hireModel.createAt!)} ${DateFormat.MMMM().format(widget.hireModel.createAt!)}",
@@ -199,7 +199,7 @@ class _SpJobDetailsScreenState extends State<SpJobDetailsScreen> {
                           Obx(()=>
                               CustomButton(onTap: () {
                                 _controller.completeService(widget.hireModel,);
-                              }, text:AppStrings.complete,
+                              }, text:AppStrings.complete.tr,
                                 loading: _controller.completeLoading.value,
                                 color: const Color(0xFF2BA24C),
                               ),

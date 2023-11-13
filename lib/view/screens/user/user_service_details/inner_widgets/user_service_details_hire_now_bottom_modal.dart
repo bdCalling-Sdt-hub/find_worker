@@ -46,8 +46,8 @@ class _UserServiceDetailsHireNoeBottomModalState extends State<UserServiceDetail
       ),
       child: Column(
         children: [
-          const CustomText(
-            text: AppStrings.approved,
+           CustomText(
+            text: AppStrings.approved.tr,
             fontSize: 18,
             fontWeight: FontWeight.w500,
             bottom: 20,
@@ -129,7 +129,7 @@ class _UserServiceDetailsHireNoeBottomModalState extends State<UserServiceDetail
                   Row (
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(AppStrings.service,style:TextStyle(fontWeight:FontWeight.w500,color:Colors.black,fontSize: 18),),
+                       Text(AppStrings.service.tr,style:TextStyle(fontWeight:FontWeight.w500,color:Colors.black,fontSize: 18),),
                       Flexible(child: Text(widget.userByServiceModel.serviceName!,style:TextStyle(fontWeight:FontWeight.w500,color:Colors.black,fontSize: 18),),
                       ),
 

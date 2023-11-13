@@ -45,8 +45,8 @@ class _UserHireDetailsScreenState extends State<UserHireDetailsScreen> {
               },
               child: const Icon(Icons.arrow_back_ios_new_outlined,size: 16,color: AppColors.blue_100,),
             ),
-            const CustomText(
-              text: AppStrings.hireDetails,
+             CustomText(
+              text: AppStrings.hireDetails.tr,
               color: AppColors.blue_100,
               fontSize: 18,
               fontWeight: FontWeight.w500,
@@ -114,8 +114,8 @@ class _UserHireDetailsScreenState extends State<UserHireDetailsScreen> {
                          Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const CustomText(
-                              text: AppStrings.address,
+                             CustomText(
+                              text: AppStrings.address.tr,
                             ),
                             CustomText(
                               text: widget.hireModel.address!,
@@ -129,8 +129,8 @@ class _UserHireDetailsScreenState extends State<UserHireDetailsScreen> {
                           height: 1,
                           color: AppColors.blue_20,
                         ),
-                        const CustomText(
-                          text: AppStrings.aboutJob,
+                         CustomText(
+                          text: AppStrings.aboutJob.tr,
                           fontSize: 18,
                           fontWeight: FontWeight.w500,
                           bottom: 16,
@@ -138,8 +138,8 @@ class _UserHireDetailsScreenState extends State<UserHireDetailsScreen> {
                          Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const CustomText(
-                              text: AppStrings.status,
+                             CustomText(
+                              text: AppStrings.status.tr,
                             ),
                             Container(
                               padding: const EdgeInsets.symmetric(vertical: 4,horizontal: 11),
@@ -162,7 +162,7 @@ class _UserHireDetailsScreenState extends State<UserHireDetailsScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             CustomText(
-                              text: AppStrings.service,
+                              text: AppStrings.service.tr,
                             ),
                             CustomText(
                               text: widget.hireModel.serviceName!,
@@ -176,7 +176,7 @@ class _UserHireDetailsScreenState extends State<UserHireDetailsScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             CustomText(
-                              text: AppStrings.time,
+                              text: AppStrings.time.tr,
                             ),
                             CustomText(
                               text:DateFormat.jm().format(widget.hireModel.createAt!) ,
@@ -189,8 +189,8 @@ class _UserHireDetailsScreenState extends State<UserHireDetailsScreen> {
                          Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const CustomText(
-                              text: AppStrings.date,
+                             CustomText(
+                              text: AppStrings.date.tr,
                             ),
                             CustomText(
                               text: "${DateFormat.d('en_US').format(widget.hireModel.createAt!)} ${DateFormat.MMMM('en_US').format(widget.hireModel.createAt!)}",
@@ -205,7 +205,7 @@ class _UserHireDetailsScreenState extends State<UserHireDetailsScreen> {
                           Obx(()=>
                              CustomButton(onTap: () {
                               _controller.completeService(widget.hireModel,);
-                            }, text:AppStrings.complete,
+                            }, text:AppStrings.complete.tr,
                                loading: _controller.completeLoading.value,
                             color: const Color(0xFF2BA24C),
                             ),

@@ -39,10 +39,10 @@ class _CategoryScreenState extends State<CategoryScreen> {
           Get.back();
         }, icon: Icon(Icons.arrow_back_ios,size: 20.h,)
         ):SizedBox(),
-        title:const CustomText(
+        title: CustomText(
           fontWeight: FontWeight.w500,
             fontSize: 18,
-            text:AppStrings.categories,
+            text:AppStrings.categories.tr,
             color: AppColors.blue_100,
         ),
       ),

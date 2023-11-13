@@ -55,8 +55,8 @@ class _SpServiceDetailsScreenState extends State<SpServiceDetailsScreen> {
                     color: AppColors.blue_100,
                   ),
                 ),
-                const CustomText(
-                  text: AppStrings.serviceDetails,
+                 CustomText(
+                  text: AppStrings.serviceDetails.tr,
                   color: AppColors.blue_100,
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
@@ -89,8 +89,8 @@ class _SpServiceDetailsScreenState extends State<SpServiceDetailsScreen> {
                            Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              const CustomText(
-                                text: AppStrings.location,
+                               CustomText(
+                                text: AppStrings.location.tr,
                               ),
                               CustomText(
                                 text: serviceModel.value.location!,
@@ -105,8 +105,8 @@ class _SpServiceDetailsScreenState extends State<SpServiceDetailsScreen> {
                            Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              const CustomText(
-                                text: AppStrings.service,
+                               CustomText(
+                                text: AppStrings.service.tr,
                               ),
                               Flexible(
                                 child: CustomText(
@@ -119,8 +119,8 @@ class _SpServiceDetailsScreenState extends State<SpServiceDetailsScreen> {
                               ),
                             ],
                           ),
-                          const CustomText(
-                            text: AppStrings.description,
+                           CustomText(
+                            text: AppStrings.description.tr,
                             fontSize: 18,
                             fontWeight: FontWeight.w500,
                             bottom: 8,
@@ -135,7 +135,7 @@ class _SpServiceDetailsScreenState extends State<SpServiceDetailsScreen> {
                       )),
                 );
               }),
-          bottomNavigationBar: BottomNavButton(buttonText: AppStrings.edit, onTap: (){
+          bottomNavigationBar: BottomNavButton(buttonText: AppStrings.edit.tr, onTap: (){
             Get.to(SpEditServiceScreen(callback:update, serviceModel:serviceModel.value,));
            // Get.toNamed(AppRoute.spEditServiceDetailsScreen,arguments: serviceModel.value);
           })

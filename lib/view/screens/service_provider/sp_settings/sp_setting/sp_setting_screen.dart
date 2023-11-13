@@ -1,5 +1,6 @@
 
 import 'package:find_worker/core/app_routes.dart';
+import 'package:find_worker/helper/Language/language_controller.dart';
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_constents.dart';
 import 'package:find_worker/utils/app_icons.dart';
@@ -28,7 +29,41 @@ class _SpSettingScreenState extends State<SpSettingScreen> {
   final _controller = ValueNotifier<bool>(false);
 
     final _profileController = Get.put(SpProfileController());
+    final _localizationController = Get.find<LocalizationController>();
+@override
+  void initState() {
+      if(_localizationController.selectIndex==0){
+        setState(() {
+          _controller.value=false;
+        });
 
+      }else{
+        setState(() {
+          _controller.value=true;
+        });
+
+      }
+
+    _controller.addListener(() {
+
+
+      setState(() {
+        if(_controller.value){
+          print("=====>ssss ${_controller.value}");
+
+          _localizationController.setLanguage(const Locale("en","US"));
+        }else{
+
+          _localizationController.setLanguage(const Locale("ar","AE"));
+          print("=====>${_controller.value}");
+
+        }
+
+      });
+
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,8 +83,8 @@ class _SpSettingScreenState extends State<SpSettingScreen> {
                     color: AppColors.blue_100,
                   ),
                 ),
-                const CustomText(
-                  text: AppStrings.settings,
+                 CustomText(
+                  text: AppStrings.settings.tr,
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
                   color: AppColors.blue_100,
@@ -66,8 +101,8 @@ class _SpSettingScreenState extends State<SpSettingScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const CustomText(
-                      text: AppStrings.language,
+                     CustomText(
+                      text: AppStrings.language.tr,
                       fontSize: 14,
                       fontWeight: FontWeight.w400,
                       color: AppColors.black_100,
@@ -77,7 +112,7 @@ class _SpSettingScreenState extends State<SpSettingScreen> {
                       controller: _controller,
                       activeColor: AppColors.blue_10,
                       inactiveColor: AppColors.blue_10,
-                      activeChild:  Text('English'
+                      activeChild: Text('English'
                         ,style: GoogleFonts.poppins(
                             fontSize: 12,
                             fontWeight: FontWeight.w400,
@@ -103,23 +138,23 @@ class _SpSettingScreenState extends State<SpSettingScreen> {
 
                 /// <------------- Change Password ------------>
                 if(_profileController.userData.value.authType==AppConstants.normalUser)
-                  settingTile(title:AppStrings.changePassword,  onTap: () {
+                  settingTile(title:AppStrings.changePassword.tr,  onTap: () {
                     Get.toNamed(AppRoute.spChangePasswordScreen);
                   }),
                 /// <------------- Terms Of Conditions Password ------------>
-                  settingTile(title:"Terms of Conditions",onTap: () {
+                  settingTile(title:AppStrings.termsOfConditions.tr,onTap: () {
                     Get.toNamed(AppRoute.spTermsOfConditionsScreen);
                   }),
                 /// <------------- Privacy Policy ------------>
-                  settingTile(title:AppStrings.privacyPolicy,  onTap: () {
+                  settingTile(title:AppStrings.privacyPolicy.tr,  onTap: () {
                     Get.toNamed(AppRoute.spPrivacyPolicyScreen);
                   }),
                /// <------------- About us ------------>
-                  settingTile(title:AppStrings.aboutUs, onTap: () {
+                  settingTile(title:AppStrings.aboutUs.tr, onTap: () {
                     Get.toNamed(AppRoute.spAboutUsScreen);
                   }),
                 /// <------------- Support ------------>
-                  settingTile(title:AppStrings.support,onTap: () {
+                  settingTile(title:AppStrings.support.tr,onTap: () {
                     Get.toNamed(AppRoute.spSupportScreen);
                   }),
               ],

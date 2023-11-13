@@ -41,8 +41,8 @@ class _UserServiceDetailsRateUsAlertState extends State<UserServiceDetailsRateUs
             mainAxisSize: MainAxisSize.min,
             children: [
               const CustomImage(imageSrc: AppImages.success,imageType: ImageType.png,size: 100,),
-              const CustomText(
-                text: AppStrings.giveRatingOutOf,
+               CustomText(
+                text: AppStrings.giveRatingOutOf.tr,
                 fontSize: 18,
                 fontWeight: FontWeight.w600,
                 top: 24,
@@ -71,7 +71,7 @@ class _UserServiceDetailsRateUsAlertState extends State<UserServiceDetailsRateUs
                 maxLines: 3,
                 textEditingController:_userServiceDetailsController.feedbackController,
                 textAlign: TextAlign.start,
-                hintText: AppStrings.writeYourFeedback,
+                hintText: AppStrings.writeYourFeedback.tr,
                 validator: (val){
                   if(val!.isEmpty){
                     return "Field is empty!";
@@ -94,7 +94,7 @@ class _UserServiceDetailsRateUsAlertState extends State<UserServiceDetailsRateUs
                   _userServiceDetailsController.sendReview(widget.userUid,widget.serviceId);
                 },
                   loading: _userServiceDetailsController.ratingLoading.value
-                  , text: AppStrings.submit,width: 120,height: 36,),
+                  , text: AppStrings.submit.tr,width: 120,height: 36,),
               )
             ],
           ),

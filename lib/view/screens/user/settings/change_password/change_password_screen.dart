@@ -50,7 +50,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
               ),
             ),
             Text(
-              AppStrings.changePassword,
+              AppStrings.changePassword.tr,
               textAlign: TextAlign.center,
               style: GoogleFonts.poppins(
                 color: AppColors.blue_100,
@@ -81,7 +81,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       isPassword: true,
                       textEditingController:_settingController.currentPassCtrl,
                       textAlign: TextAlign.start,
-                      hintText: AppStrings.enterYourPassword,
+                      hintText: AppStrings.enterYourPassword.tr,
                       hintStyle: GoogleFonts.poppins(
                           fontSize: 14,
                           fontWeight: FontWeight.w500,
@@ -127,8 +127,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       fieldBorderRadius: 8,
 
                     ),
-                    const CustomText(
-                      text: AppStrings.confirmPassword,
+                     CustomText(
+                      text: AppStrings.confirmPassword.tr,
                       color: AppColors.black_100,
                       fontWeight: FontWeight.w500,
                       fontSize: 14,
@@ -150,7 +150,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                         }
                         return null;
                       },
-                      hintText: AppStrings.reEnterYourNewPassword,
+                      hintText: AppStrings.reEnterYourNewPassword.tr,
                       hintStyle: GoogleFonts.poppins(
                           fontSize: 14,
                           fontWeight: FontWeight.w400,
@@ -167,8 +167,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       onTap: (){
                         Get.to(const UserForgetPasswordScreen(inAppForget: true,));
                       } ,
-                      child: const CustomText(
-                        text: AppStrings.forgetPassword,
+                      child:  CustomText(
+                        text: AppStrings.forgetPassword.tr,
                         fontSize: 14,
                         fontWeight: FontWeight.w500,
                         color: AppColors.blue_100,
@@ -184,7 +184,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
       bottomNavigationBar:Padding(
         padding:  EdgeInsets.only(bottom:54.h,right: 20.w,left: 20.w),
         child: Obx(()=>
-            CustomButton(text:AppStrings.save,
+            CustomButton(text:AppStrings.save.tr,
               loading: _settingController.loading.value,
               onTap:(){
                 if(_formKey.currentState!.validate()){
