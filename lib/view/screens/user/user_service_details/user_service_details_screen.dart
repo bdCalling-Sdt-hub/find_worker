@@ -309,7 +309,7 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
                                       barrierColor: Colors.transparent,
                                       context: context,
                                       builder: (BuildContext context){
-                                        return  UserServiceDetailsHireNoeBottomModal(userImage:userData.imageSrc!, userByServiceModel:userByServiceModel,number:"${userData.phoneCode} ${userData.phone}",);
+                                        return  UserServiceDetailsHireNoeBottomModal(userModel:userData,userImage:userData.imageSrc!, userByServiceModel:userByServiceModel,number:"${userData.phoneCode} ${userData.phone}",);
                                       });
                                 },
                                 titleText: 'Hire Now',
