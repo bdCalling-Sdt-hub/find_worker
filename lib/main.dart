@@ -2,10 +2,12 @@ import 'package:device_preview/device_preview.dart';
 import 'package:find_worker/core/app_routes.dart';
 import 'package:find_worker/helper/Language/language_controller.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'helper/Language/dep.dart' as dep;
@@ -13,7 +15,9 @@ import 'firebase_options.dart';
 import '';
 import 'helper/Language/language_component.dart';
 import 'helper/Language/massages.dart';
+import 'helper/Notification/notification_helper.dart';
 
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin=FlutterLocalNotificationsPlugin();
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -24,6 +28,17 @@ void main() async{
     DeviceOrientation.portraitDown,
   ]);
   Map<String,Map<String,String>> languages= await dep.init();
+  var _body;
+  try {
+    if (GetPlatform.isMobile) {
+      final RemoteMessage? remoteMessage = await FirebaseMessaging.instance.getInitialMessage();
+      if (remoteMessage != null) {
+        _body =remoteMessage.data;
+      }
+      await NotificationHelper.init(flutterLocalNotificationsPlugin);
+      FirebaseMessaging.onBackgroundMessage(NotificationHelper.firebaseMessagingBackgroundHandler);
+    }
+  }catch(e) {}
   runApp( MyApp(languages: languages,));
   // runApp(
   //   DevicePreview(
@@ -63,7 +78,6 @@ class MyApp extends StatelessWidget {
               )
             )
       ),
-
       transitionDuration: const Duration(milliseconds: 200),
       getPages: AppRoute.routes,
 

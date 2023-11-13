@@ -67,6 +67,8 @@ dependencies:
   flutter_typeahead:
   flutter_staggered_grid_view:
   flutter_html:
+  flutter_local_notifications:
+  app_settings:
 
 
 

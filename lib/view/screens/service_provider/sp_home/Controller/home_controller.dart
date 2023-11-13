@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -29,6 +30,7 @@ class SpHomeController extends GetxController{
     if(load){
       loading(true);
     }
+    await getTokenAndUpdate();
     await getService();
     await getHistoryList();
     await getUserData();
@@ -36,6 +38,19 @@ class SpHomeController extends GetxController{
       loading(false);
     }
   }
+getTokenAndUpdate()async{
+  try {
+    var token= await FirebaseMessaging.instance.getToken();
+    print("======> Get Fcm Token $token");
+    FirebaseFirestore  firebaseFirestore= FirebaseFirestore.instance;
+    final FirebaseAuth _auth = FirebaseAuth.instance;
+    await firebaseFirestore.collection(AppConstants.users).doc(_auth.currentUser!.uid).update({"fcmToken":token});
+  } on Exception catch (e) {
+    debugPrint("Oops error $e");
+  }
+
+
+}
 
 
 
