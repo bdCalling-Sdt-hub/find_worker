@@ -11,8 +11,9 @@ class CustomButton extends StatelessWidget {
   Color? color;
 
   @override
+
   Widget build(BuildContext context) {
-    return  ElevatedButton(onPressed:onTap,
+    return  ElevatedButton(onPressed:loading? (){}:onTap,
         style: ElevatedButton.styleFrom(
          shape: RoundedRectangleBorder(
            borderRadius: BorderRadius.circular(8)

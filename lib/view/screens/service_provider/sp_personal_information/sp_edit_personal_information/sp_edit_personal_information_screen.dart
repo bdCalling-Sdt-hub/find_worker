@@ -93,7 +93,9 @@ class _SpEditPersonalInformationState
                                   child: Obx(
                                         () => Container(
                                       height: 130,
+                                      width: 130,
                                       decoration: BoxDecoration(
+                                          color: Colors.grey.withOpacity(0.6),
                                           shape: BoxShape.circle,
                                           image: _profileController
                                               .imagePath.isNotEmpty

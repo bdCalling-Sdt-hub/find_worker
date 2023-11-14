@@ -69,6 +69,7 @@ dependencies:
   flutter_html:
   flutter_local_notifications:
   app_settings:
+  flutter_spinkit:
 
 
 

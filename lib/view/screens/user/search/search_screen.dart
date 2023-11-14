@@ -28,96 +28,6 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  List<Map<String, String>> category = [
-    {
-      'image': AppImages.cleanHome,
-      'text': AppStrings.homeClean,
-    },
-    {
-      'image': AppImages.carWash,
-      'text': AppStrings.carWash,
-    },
-    {
-      'image': AppImages.airCondition,
-      'text': AppStrings.airConditionMaintenance,
-    },
-    {
-      'image': AppImages.housekeeper,
-      'text': "HouseKeeper",
-    },
-    {
-      'image': AppImages.farmer,
-      'text': AppStrings.farmer,
-    },
-    {
-      'image': AppImages.pipeFitter,
-      'text': AppStrings.pipeFitter,
-    },
-    {
-      'image': AppImages.jensSalon,
-      'text': AppStrings.jensSalon,
-    },
-    {
-      'image': AppImages.homeMaintenance,
-      'text': "Home Maintenance",
-    },
-    {
-      'image': AppImages.manDriver,
-      'text': AppStrings.manDriver,
-    },
-    {
-      'image': AppImages.womanDriver,
-      'text': AppStrings.womanDriver,
-    },
-    {
-      'image': AppImages.ladiesSalon,
-      'text': AppStrings.ladiesSalon,
-    },
-    {
-      'image': AppImages.privateTutor,
-      'text': AppStrings.privateTutor,
-    },
-    {
-      'image': AppImages.butcher,
-      'text': AppStrings.butcher,
-    },
-    {
-      'image': AppImages.homeBusiness,
-      'text': AppStrings.homeBusiness,
-    },
-    {
-      'image': AppImages.moverService,
-      'text': "Mover Service",
-    },
-    {
-      'image': AppImages.henna,
-      'text': "Henna Service",
-    },
-    {
-      'image': AppImages.homePainter,
-      'text': "Home Painter",
-    },
-    {
-      'image': AppImages.catering,
-      'text': AppStrings.catering,
-    },
-    {
-      'image': AppImages.cableFixing,
-      'text': AppStrings.cableFixing,
-    },
-    {
-      'image': AppImages.gypsumBoardFloor,
-      'text': AppStrings.gypsumBoardFloor,
-    },
-    {
-      'image': AppImages.carTiersRepair,
-      'text': AppStrings.carTiresRepair,
-    },
-    {
-      'image': AppImages.carRecovery,
-      'text': AppStrings.carRecovery,
-    },
-  ];
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final _searchController = Get.put(SearchAndFilterController());
   @override
@@ -157,6 +67,11 @@ class _SearchScreenState extends State<SearchScreen> {
                         flex: 4,
                         child: TypeAheadFormField(
                           textFieldConfiguration: TextFieldConfiguration(
+                            onChanged: (v){
+                              if(v.isEmpty){
+                                _searchController.isSearch(-1);
+                              }
+                            },
                             decoration: InputDecoration(
                                 isDense: true,
                                 hintText: "Search by categories",
@@ -187,6 +102,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                 errorBorder: InputBorder.none),
                             controller: _searchController.typeAheadController,
                           ),
+
                           suggestionsCallback: (pattern) =>
                               _searchController.getSuggestions(pattern),
                           itemBuilder: (context, suggestion) => ListTile(
@@ -244,7 +160,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
                   Expanded(
                     child:
-                       Obx(()=>_searchController.selectCategory.value.isEmpty?_toFeaturedServices():_searchController.serviceLoading.value?const Center(child: CustomLoader()):_searchController.servicesList.isEmpty? Center(child: Column(
+                       Obx(()=>_searchController.isSearch.value==(-1)?_toFeaturedServices():_searchController.serviceLoading.value?const Center(child: CustomLoader()):_searchController.servicesList.isEmpty? Center(child: Column(
                          mainAxisAlignment: MainAxisAlignment.center,
                          children: [
                            Image.asset(AppImages.empty,height: 100,width: 100,),

@@ -47,58 +47,70 @@ class _UserBottomNavBarScreenState extends State<UserBottomNavBarScreen> {
     final _categoryController = Get.put(CategoryController());
     final _profileController = Get.put(UserProfileController());
 
-    List<Widget> manuBarItems = [
-      MenuBarItems(
-          text: AppStrings.home.tr,
-          index: 0,
-          selectedIndex: widget.currentIndex,
-          image:  AppIcons.home_un),
-      MenuBarItems(
-          text:AppStrings.category.tr,
-          index: 1,
-          selectedIndex: widget.currentIndex,
-          image: AppIcons.viewGrid
-      ),
-      MenuBarItems(
-          text: AppStrings.hireList.tr,
-          index: 2,
-          selectedIndex: widget.currentIndex,
-          image: AppIcons.speakerphone
-      ),
-      MenuBarItems(
-          text: AppStrings.profile.tr,
-          index: 3,
-          selectedIndex: widget.currentIndex,
-          image: AppIcons.userCircle
-      ),
+    // List<Widget> manuBarItems = [
+    //   MenuBarItems(
+    //       text: AppStrings.home.tr,
+    //       index: 0,
+    //       selectedIndex: widget.currentIndex,
+    //       image:  AppIcons.home_un),
+    //   MenuBarItems(
+    //       text:AppStrings.category.tr,
+    //       index: 1,
+    //       selectedIndex: widget.currentIndex,
+    //       image: AppIcons.viewGrid
+    //   ),
+    //   MenuBarItems(
+    //       text: AppStrings.hireList.tr,
+    //       index: 2,
+    //       selectedIndex: widget.currentIndex,
+    //       image: AppIcons.speakerphone
+    //   ),
+    //   MenuBarItems(
+    //       text: AppStrings.profile.tr,
+    //       index: 3,
+    //       selectedIndex: widget.currentIndex,
+    //       image: AppIcons.userCircle
+    //   ),
+    //
+    // ];
 
+    List<BottomNavigationBarItem> bottomBarItem=[
+      BottomNavigationBarItem(icon:Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: CustomImage(imageSrc:widget.currentIndex==0?AppIcons.home:AppIcons.home_un,),
+      ),label:"Home"),
+      BottomNavigationBarItem(icon:Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: CustomImage(imageSrc:widget.currentIndex==1?AppIcons.viewGrid:AppIcons.viewGridUn),
+      ),label:"Category"),
+      BottomNavigationBarItem(icon:Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: CustomImage(imageSrc:widget.currentIndex==2?AppIcons.speakerphone:AppIcons.speakerphoneUn),
+      ),label:"Hire List"),
+      BottomNavigationBarItem(icon:Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: CustomImage(imageSrc:widget.currentIndex==3?AppIcons.userCircle:AppIcons.userCircleUn),
+      ),label:"Profile"),
     ];
+
+
     return SafeArea(
       bottom: false,
       child: Scaffold(
-
         extendBody: true,
-        bottomNavigationBar: Container(
-          height: 88.h,
-          alignment: Alignment.bottomCenter,
-          padding: const EdgeInsets.only(top: 15),
-          decoration:   const BoxDecoration(
-            color: AppColors.blue_100,
-
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: List.generate(manuBarItems.length, (index) {
-              return GestureDetector(
-                onTap: () {
-                  setState(() {
-                    widget.currentIndex = index;
-                  });
-                },
-                child: manuBarItems[index],
-              );
-            }),
-          ),
+        bottomNavigationBar: BottomNavigationBar(
+          backgroundColor:const Color(0xFF0668E3),
+          type: BottomNavigationBarType.fixed,
+          selectedItemColor: Colors.white,
+          showUnselectedLabels: false,
+          currentIndex: widget.currentIndex,
+          selectedLabelStyle: const TextStyle(fontWeight:FontWeight.w500),
+          items:bottomBarItem,
+        onTap: (value){
+          setState(() {
+            widget.currentIndex=value;
+          });
+        },
         ),
         body: screens[widget.currentIndex],
       ),
@@ -106,41 +118,51 @@ class _UserBottomNavBarScreenState extends State<UserBottomNavBarScreen> {
   }
 }
 
-class MenuBarItems extends StatelessWidget {
-  MenuBarItems(
-      {super.key,
-        required this.image,
-        required this.index,
-        required this.selectedIndex,
-        required this.text});
-  final String image;
-  final String text;
 
-  final int index;
-  final int selectedIndex;
 
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        selectedIndex == index ?  Column(
-          children: [
-            CustomImage(
-                imageColor:selectedIndex == index  ? AppColors.white:AppColors.white,size:24,
-                imageSrc: image),
-            CustomText(
-              fontSize: 12,
-              fontWeight:selectedIndex == index ? FontWeight.w600 : FontWeight.w400,
-              text: text,
-              color: selectedIndex == index ? AppColors.white : AppColors.white,
-              top: 6,
-              bottom: 4,
-            ),
-          ],
-        ): CustomImage(
 
-            imageColor:selectedIndex == index  ? AppColors.white:AppColors.white,size:24, imageSrc: image),
-      ],
-    );
-  }
-}
+
+
+//
+// class MenuBarItems extends StatelessWidget {
+//   MenuBarItems(
+//       {super.key,
+//         required this.image,
+//         required this.index,
+//         required this.selectedIndex,
+//         required this.text});
+//   final String image;
+//   final String text;
+//
+//   final int index;
+//   final int selectedIndex;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return Row(
+//       children: [
+//         selectedIndex == index ?  Column(
+//           children: [
+//             CustomImage(
+//                 imageColor:selectedIndex == index  ? AppColors.white:AppColors.white,size:24,
+//                 imageSrc: image),
+//             CustomText(
+//               fontSize: 12,
+//               fontWeight:selectedIndex == index ? FontWeight.w600 : FontWeight.w400,
+//               text: text,
+//               color: selectedIndex == index ? AppColors.white : AppColors.white,
+//               top: 6,
+//               bottom: 4,
+//             ),
+//           ],
+//         ): CustomImage(
+//
+//             imageColor:selectedIndex == index  ? AppColors.white:AppColors.white,size:24, imageSrc: image),
+//       ],
+//     );
+//   }
+// }
+//
+//
+
+

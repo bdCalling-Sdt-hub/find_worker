@@ -1,5 +1,6 @@
 import 'package:find_worker/controller/data_controller.dart';
 import 'package:find_worker/core/app_routes.dart';
+import 'package:find_worker/helper/SystemChromeHelper/system_chrome.dart';
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_icons.dart';
 import 'package:find_worker/utils/app_images.dart';
@@ -22,6 +23,17 @@ class UserProfileScreen extends StatefulWidget {
 
 class _UserProfileScreenState extends State<UserProfileScreen> {
   final _profileController = Get.put(UserProfileController());
+  @override
+  void initState() {
+    SystemChromeHelper.blueColorSystemChrome();
+    super.initState();
+  }
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    SystemChromeHelper.enableSystemChrome();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,8 +71,10 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                             children: [
                               Container(
                                 height: 130,
+                                width: 130,
                                 decoration: BoxDecoration(
                                     shape: BoxShape.circle,
+                                    color: Colors.grey.withOpacity(0.6),
                                     image: _profileController
                                                 .userData.value.imageSrc !=
                                             null

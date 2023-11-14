@@ -91,8 +91,10 @@ class _UserEditPersonalInformationState
                               child: Obx(
                                 () => Container(
                                   height: 130,
+                                  width: 130,
                                   decoration: BoxDecoration(
                                       shape: BoxShape.circle,
+                                      color: Colors.grey.withOpacity(0.6),
                                       image: _profileController
                                               .imagePath.isNotEmpty
                                           ? DecorationImage(

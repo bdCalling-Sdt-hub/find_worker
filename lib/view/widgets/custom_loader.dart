@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class CustomLoader extends StatelessWidget {
   const CustomLoader({super.key});
@@ -6,10 +7,9 @@ class CustomLoader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Center(
-      child: SizedBox(
-        height: 20,
-        width: 20,
-        child: CircularProgressIndicator(),
+      child: SpinKitCircle(
+        color: Color(0xFF0668E3),
+        size: 60.0,
       ),
     );
   }

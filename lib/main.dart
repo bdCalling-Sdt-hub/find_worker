@@ -1,6 +1,7 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:find_worker/core/app_routes.dart';
 import 'package:find_worker/helper/Language/language_controller.dart';
+import 'package:find_worker/utils/app_colors.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,6 +11,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'helper/Language/dep.dart' as dep;
 import 'firebase_options.dart';
 import '';
@@ -39,6 +41,11 @@ void main() async{
       FirebaseMessaging.onBackgroundMessage(NotificationHelper.firebaseMessagingBackgroundHandler);
     }
   }catch(e) {}
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(// navigation bar color
+    statusBarColor: Colors.white, // status bar color
+       systemNavigationBarColor: Colors.black,
+    statusBarIconBrightness: Brightness.dark
+  ));
   runApp( MyApp(languages: languages,));
   // runApp(
   //   DevicePreview(
@@ -65,15 +72,19 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
      // defaultTransition: Transition.noTransition,
       initialRoute: AppRoute.splashScreen,
+
       navigatorKey: Get.key,
                 locale: localizationController.locale,
               translations: Messages(languages:languages),
              fallbackLocale:Locale(LanguageComponent.languages[0].languageCode,LanguageComponent.languages[0].countryCode),
       theme: ThemeData(
-            appBarTheme: const AppBarTheme(
+        scaffoldBackgroundColor: Colors.white,
+            appBarTheme:  AppBarTheme(
               backgroundColor: Colors.white,
               elevation:0,
-              iconTheme: IconThemeData(
+              centerTitle: true,
+              titleTextStyle: GoogleFonts.poppins(fontSize:18.sp,fontWeight: FontWeight.w500,color:AppColors.blue_100),
+              iconTheme: const IconThemeData(
                 color: Color(0xFF0668E3),
               )
             )
