@@ -10,7 +10,6 @@ import 'package:find_worker/view/screens/user/user_service_details/Controller/us
 import 'package:find_worker/view/screens/user/user_service_details/inner_widgets/user_service_details_hire_now_bottom_modal.dart';
 import 'package:find_worker/view/screens/user/user_service_details/inner_widgets/user_service_details_rate_us_alert.dart';
 import 'package:find_worker/view/widgets/app_bar/custom_app_bar.dart';
-import 'package:find_worker/view/widgets/buttons/custom_button.dart';
 import 'package:find_worker/view/widgets/custom_loader.dart';
 import 'package:find_worker/view/widgets/image/custom_image.dart';
 import 'package:find_worker/view/widgets/text/custom_text.dart';
@@ -19,6 +18,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:find_worker/view/widgets/custom_button.dart';
 
 class UserServiceDetailsScreen extends StatefulWidget {
   const UserServiceDetailsScreen({super.key});
@@ -288,122 +288,64 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
                       const SizedBox(
                         height: 24,
                       ),
-                      Row(
-                        children: [
-                          Expanded(
-                            flex: 0,
-                            child: CustomButton(
-                              onPressed: () {
-                                showDialog(
-                                    context: context,
-                                    builder: (BuildContext context) {
-                                      return UserServiceDetailsRateUsAlert(
-                                        userUid:
-                                            userByServiceModel.providerUid!,
-                                        serviceId:
-                                            userByServiceModel.serviceId!,
-                                      );
-                                    });
-                              },
-                              titleText: AppStrings.rateUs.tr,
-                              titleWeight: FontWeight.w600,
-                              titleSize: 18,
-                              titleColor: AppColors.blue_100,
-                              buttonBorderColor: AppColors.blue_100,
-                              borderWidth: 1,
-                              leftPadding: 32,
-                              rightPadding: 32,
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 16,
-                          ),
-                          Expanded(
-                            flex: 1,
-                            child: StreamBuilder<DocumentSnapshot>(
-                                stream: FirebaseFirestore.instance
-                                    .collection(AppConstants.users)
-                                    .doc(userByServiceModel.providerUid!)
-                                    .snapshots(),
-                                builder: (context,
-                                    AsyncSnapshot<DocumentSnapshot> snapshot) {
-                                  if (snapshot.connectionState ==
-                                      ConnectionState.waiting) {
-                                    return CircularProgressIndicator();
-                                  } else if (snapshot.hasData) {
-                                    final userData =
-                                        UserModel.fromMap(snapshot.data!);
-                                    return userData.status == "Online"
-                                        ? CustomButton(
-                                            onPressed: () {
-                                              showModalBottomSheet(
-                                                  backgroundColor:
-                                                      Colors.transparent,
-                                                  barrierColor:
-                                                      Colors.transparent,
-                                                  context: context,
-                                                  builder:
-                                                      (BuildContext context) {
-                                                    return UserServiceDetailsHireNoeBottomModal(
-                                                      userModel: userData,
-                                                      userImage:
-                                                          userData.imageSrc!,
-                                                      userByServiceModel:
-                                                          userByServiceModel,
-                                                      number:
-                                                          "${userData.phoneCode} ${userData.phone}",
-                                                    );
-                                                  });
-                                            },
-                                            titleText: 'Hire Now',
-                                            titleWeight: FontWeight.w600,
-                                            titleSize: 18,
-                                            titleColor: AppColors.white,
-                                            buttonBorderColor:
-                                                AppColors.blue_100,
-                                            borderWidth: 1,
-                                            leftPadding: 60,
-                                            rightPadding: 60,
-                                            buttonBgColor: AppColors.blue_100,
-                                          )
-                                        : CustomButton(
-                                            onPressed: () {
-                                              Get.snackbar("Alerts!",
-                                                  "The service provider is now busy.");
-                                            },
-                                            titleText: 'Hire Now',
-                                            titleWeight: FontWeight.w600,
-                                            titleSize: 18,
-                                            titleColor:
-                                                Colors.black.withOpacity(0.5),
-                                            buttonBorderColor:
-                                                Colors.grey.withOpacity(0.5),
-                                            borderWidth: 1,
-                                            leftPadding: 60,
-                                            rightPadding: 60,
-                                            buttonBgColor:
-                                                Colors.grey.withOpacity(0.01),
-                                          );
-                                  } else {
-                                    return CustomButton(
-                                      onPressed: () {},
-                                      titleText: 'Hire Now',
-                                      titleWeight: FontWeight.w600,
-                                      titleSize: 18,
-                                      titleColor: Colors.black.withOpacity(0.5),
-                                      buttonBorderColor:
-                                          Colors.grey.withOpacity(0.5),
-                                      borderWidth: 1,
-                                      leftPadding: 60,
-                                      rightPadding: 60,
-                                      buttonBgColor:
-                                          Colors.grey.withOpacity(0.01),
+                      StreamBuilder<DocumentSnapshot>(
+                          stream: FirebaseFirestore.instance
+                              .collection(AppConstants.users)
+                              .doc(userByServiceModel.providerUid!)
+                              .snapshots(),
+                          builder: (context,
+                              AsyncSnapshot<DocumentSnapshot> snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return CircularProgressIndicator();
+                            } else if (snapshot.hasData) {
+                              final userData =
+                                  UserModel.fromMap(snapshot.data!);
+                              return userData.status == "Online"
+                                  ? Obx(()=>
+                                     CustomButton(
+                                       loading: _userServiceDetailsController.hireLoading.value,
+                                        onTap: () {
+                                          _userServiceDetailsController.hireNow(userByServiceModel, "${userData.phoneCode} ${userData.phone}", userData);
+                                          // showModalBottomSheet(
+                                          //     backgroundColor:
+                                          //         Colors.transparent,
+                                          //     barrierColor:
+                                          //         Colors.transparent,
+                                          //     context: context,
+                                          //     builder:
+                                          //         (BuildContext context) {
+                                          //       return UserServiceDetailsHireNoeBottomModal(
+                                          //         userModel: userData,
+                                          //         userImage:
+                                          //             userData.imageSrc!,
+                                          //         userByServiceModel:
+                                          //             userByServiceModel,
+                                          //         number:
+                                          //             "${userData.phoneCode} ${userData.phone}",
+                                          //       );
+                                          //     });
+                                        },
+                                     text: AppStrings.hireNow.tr,
+                                      ),
+                                  )
+                                  : CustomButton(
+                                     color: Colors.white10,
+                                      onTap: () {
+                                        // Get.snackbar("Alerts!",
+                                        //     "The service provider is now busy.");
+                                      },
+                                     text:AppStrings.hireNow.tr,
                                     );
-                                  }
-                                }),
-                          )
-                        ],
-                      )
+                            } else {
+                              return CustomButton(
+                                color: Colors.white10,
+                                onTap: () {},
+                             text:AppStrings.hireNow,
+
+                              );
+                            }
+                          })
                     ],
                   )),
         );

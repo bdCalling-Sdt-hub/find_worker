@@ -155,6 +155,9 @@
 "Enter service description": "أدخل وصف الخدمة",
   "purchaser": "المشتري",
   "No Job History yet.": "لا يوجد سجل وظيفي حتى الآن.",
-  "Job History": "تاريخ العمل"
+  "Job History": "تاريخ العمل",
+  "waitingForProvidersResponse": "في انتظار رد المزود",
+  "noResponse": "لا يوجد رد",
+  "hireNow": "استأجر الآن"
 
 }

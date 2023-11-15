@@ -152,5 +152,9 @@ class AppStrings{
   static const String purchaser="purchaser";
   static const String noJobHistoryYet="No Job History yet.";
 
+  static const String waitingForProvidersResponse="waitingForProvidersResponse";
+  static const String noResponse="noResponse";
+  static const String hireNow="hireNow";
+
 
 }

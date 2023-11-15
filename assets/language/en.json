@@ -161,5 +161,8 @@
   "Enter service description": "Enter service description",
  "No Job History yet.": "No Job History yet.",
  "purchaser": "Purchaser",
- "Job History": "Job History"
+ "Job History": "Job History",
+ "waitingForProvidersResponse": "Waiting for Provider’s response",
+ "noResponse": "No Response",
+ "hireNow": "Hire Now"
 }
