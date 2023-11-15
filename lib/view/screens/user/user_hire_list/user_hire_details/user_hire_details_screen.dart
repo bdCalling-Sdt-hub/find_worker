@@ -1,5 +1,6 @@
 import 'package:find_worker/model/hire_model.dart';
 import 'package:find_worker/utils/app_colors.dart';
+import 'package:find_worker/utils/app_constents.dart';
 import 'package:find_worker/utils/app_icons.dart';
 import 'package:find_worker/utils/app_strings.dart';
 import 'package:find_worker/view/screens/user/user_hire_list/Controller/hire_controller.dart';
@@ -199,9 +200,9 @@ class _UserHireDetailsScreenState extends State<UserHireDetailsScreen> {
                             ),
                           ],
                         ),
-                        if(widget.hireModel.status=="Pending")
+                        if(widget.hireModel.status==AppConstants.pending)
                         const SizedBox(height: 72,),
-                        if(widget.hireModel.status=="Pending")
+                        if(widget.hireModel.status==AppConstants.pending)
                           Obx(()=>
                              CustomButton(onTap: () {
                               _controller.completeService(widget.hireModel,);

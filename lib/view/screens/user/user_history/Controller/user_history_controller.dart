@@ -24,7 +24,7 @@ class UserHistoryController extends GetxController{
           .collection(AppConstants.users)
           .doc(_firebaseAuth.currentUser!.uid)
           .collection(AppConstants.hireHistory)
-          .where("status", isEqualTo: "Complete")
+          .where("status", isEqualTo: AppConstants.complete)
           .get();
       List<HireModel> demoList = [];
 

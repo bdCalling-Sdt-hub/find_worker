@@ -79,11 +79,11 @@ class HireController extends GetxController {
       await _firebaseFirestore
           .collection(AppConstants.users)
           .doc(_firebaseAuth.currentUser!.uid)
-          .collection(AppConstants.hireHistory).doc(hireModel.id).update({"status":"Complete"});
+          .collection(AppConstants.hireHistory).doc(hireModel.id).update({"status":AppConstants.complete});
       await _firebaseFirestore
           .collection(AppConstants.users)
           .doc(hireModel.uid)
-          .collection(AppConstants.jobHistory).doc(hireModel.id).update({"status":"Complete"});
+          .collection(AppConstants.jobHistory).doc(hireModel.id).update({"status":AppConstants.complete});
       showDialog(
           context: Get.context!,
           barrierDismissible: false,

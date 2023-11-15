@@ -172,7 +172,7 @@ class UserServiceDetailsController extends GetxController {
         "service_id": serviceModel.id,
         "service_provider_id": serviceModel.providerUid,
         "service_name": serviceModel.serviceName,
-        "status": "Pending",
+        "status": AppConstants.pending,
         "create_at": DateTime.now()
       };
       Map<String, dynamic> jobBody = {
@@ -180,7 +180,7 @@ class UserServiceDetailsController extends GetxController {
         "service_id": serviceModel.id,
         "hiring_user_id": _auth.currentUser!.uid,
         "service_name": serviceModel.serviceName,
-        "status": "Pending",
+        "status": AppConstants.pending,
         "create_at": DateTime.now()
       };
       Map<String, dynamic> body = {
@@ -290,11 +290,11 @@ class UserServiceDetailsController extends GetxController {
       if (result.docs.isNotEmpty) {
         for (QueryDocumentSnapshot document in result.docs) {
           Map<String, dynamic> data = document.data() as Map<String, dynamic>;
-          if (data['status'] == "Approved") {
-            status = "Approved";
+          if (data['status'] == AppConstants.approved) {
+            status = AppConstants.approved;
             print("========>Provider Status Approved");
-          } else if (data['status'] == "Cancel") {
-            status = "Cancel";
+          } else if (data['status'] ==  AppConstants.canceled) {
+            status = AppConstants.canceled;
             print("========>Provider Status Cancel");
           }
         }

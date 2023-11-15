@@ -32,7 +32,7 @@ class SpHistoryController extends GetxController{
           .collection(AppConstants.users)
           .doc(_firebaseAuth.currentUser!.uid)
           .collection(AppConstants.jobHistory)
-          .where("status", isEqualTo:"Complete")
+          .where("status", isEqualTo:AppConstants.complete)
           .get();
       List<HireModel> demoList = [];
 

@@ -164,5 +164,6 @@
  "Job History": "Job History",
  "waitingForProvidersResponse": "Waiting for Provider’s response",
  "noResponse": "No Response",
- "hireNow": "Hire Now"
+ "hireNow": "Hire Now",
+ "startWork":"Start Work"
 }

@@ -25,6 +25,17 @@ static String socialMediaUser="SocialMediaUser";
  static String logged ="Logged";
 
 
+ /// status job details and Hire
+
+ static String pending="Pending";
+ static String complete="Complete";
+ static String canceled="Canceled";
+ static String wroking="Wroking";
+ static String approved="Approved";
+
+
+
+
 
 
 

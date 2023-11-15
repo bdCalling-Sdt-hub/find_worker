@@ -166,7 +166,7 @@ class _SpHomeScreenState extends State<SpHomeScreen> {
                                   final data=_homeController.historyList[index];
                               return GestureDetector(
                                 onTap: () {
-                                  Get.to(SpJobDetailsScreen(hireModel:data,index: index));
+                                  Get.to(SpJobDetailsScreen(jobId:data.id!,));
                                 },
                                 child: Container(
                                   padding: const EdgeInsets.all(16),

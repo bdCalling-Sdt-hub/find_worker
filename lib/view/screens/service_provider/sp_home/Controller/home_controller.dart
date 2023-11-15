@@ -96,7 +96,7 @@ getHistoryList() async {
         .collection(AppConstants.users)
         .doc(_auth.currentUser!.uid)
         .collection(AppConstants.jobHistory)
-        .where("status", isEqualTo:"Pending")
+        .where("status", whereIn: [AppConstants.pending, AppConstants.approved])
         .get();
     List<HireModel> demoList = [];
 
@@ -136,38 +136,6 @@ getHistoryList() async {
     debugPrint("Oops, Something Wrong $e");
   }
 }
-
-
-var completeLoading=false.obs;
-completeService(HireModel hireModel,)async{
-  completeLoading(true);
-  try {
-    await firebaseFirestore
-        .collection(AppConstants.users)
-        .doc(_auth.currentUser!.uid)
-        .collection(AppConstants.jobHistory).doc(hireModel.id).update({"status":"Complete"});
-    await firebaseFirestore
-        .collection(AppConstants.users)
-        .doc(hireModel.uid)
-        .collection(AppConstants.hireHistory).doc(hireModel.id).update({"status":"Complete"});
-    showDialog(
-        context: Get.context!,
-        barrierDismissible: false,
-        builder: (BuildContext context){
-          return  SpJobDetailsAlert();
-        }
-    );
-
-  } on Exception catch (e) {
-    completeLoading(false);
-    Fluttertoast.showToast(msg:"Oops,something wrong");
-  }finally{
-    completeLoading(false);
-  }
-
-
-}
-
 
 
 
