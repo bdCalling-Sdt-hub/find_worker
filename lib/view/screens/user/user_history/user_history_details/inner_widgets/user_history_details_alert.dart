@@ -41,7 +41,6 @@ class _UserHistoryDetailsAlertState extends State<UserHistoryDetailsAlert> {
           Get.back();
         }, text:AppStrings.no.tr,height: 36.h,width: 120.w,)
 
-
       ],
       title:  CustomText(
         maxLines:2,
