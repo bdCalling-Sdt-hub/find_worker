@@ -19,15 +19,13 @@ class UserHistoryController extends GetxController{
       if (load) {
         loading(true);
       }
-
       final hireHistoryData = await _firebaseFirestore
           .collection(AppConstants.users)
           .doc(_firebaseAuth.currentUser!.uid)
           .collection(AppConstants.hireHistory)
-          .where("status", isEqualTo: AppConstants.complete)
+          .where("status", isEqualTo:AppConstants.complete)
           .get();
       List<HireModel> demoList = [];
-
       for (final hireHistory in hireHistoryData.docs) {
         print(hireHistory['service_id']);
         final serviceData = await _firebaseFirestore
@@ -70,11 +68,11 @@ class UserHistoryController extends GetxController{
   }
 var removeLoading=false.obs;
 
-  removeJobHistory(String id,int index)async{
+  removeJobHistory(String id,)async{
     removeLoading(true);
     try {
       await _firebaseFirestore.collection(AppConstants.users).doc(_firebaseAuth.currentUser!.uid).collection(AppConstants.hireHistory).doc(id).delete();
-      historyList.removeAt(index);
+    await getHistoryList(false);
       historyList.refresh();
       Get.back();
       Get.back();
@@ -85,6 +83,61 @@ var removeLoading=false.obs;
     }
 
   }
+
+
+
+
+  Rx<HireModel> hireDetails=HireModel().obs;
+  var hireLoading=false.obs;
+
+  getHireDetails(String jobId) async {
+    try {
+      hireLoading(true);
+      final hireHistoryData = await _firebaseFirestore
+          .collection(AppConstants.users)
+          .doc(_firebaseAuth.currentUser!.uid)
+          .collection(AppConstants.hireHistory)
+          .doc(jobId)
+          .get();
+      if(hireHistoryData.exists){
+        var hireHistory=hireHistoryData.data();
+        print(hireHistory!['service_id']);
+        print(hireHistory['service_id']);
+
+        final serviceData = await _firebaseFirestore
+            .collection(AppConstants.services)
+            .doc(hireHistory['service_id'])
+            .get();
+        final userData = await _firebaseFirestore
+            .collection(AppConstants.users)
+            .doc(hireHistory['service_provider_id'])
+            .get();
+        if (serviceData.exists) {
+          print("print====> ${serviceData['category_name']}");
+          if (userData.exists) {
+            HireModel hireModel = HireModel(
+                id: hireHistory['id'],
+                serviceId: hireHistory['service_id'],
+                serviceName: serviceData['category_name'],
+                uid: hireHistory['service_provider_id'],
+                status: hireHistory['status'],
+                createAt: hireHistory['create_at'].toDate(),
+                image: serviceData['image'],
+                averageRating: userData['average_rating'].toDouble(),
+                name: userData['username'],
+                address: userData['address'],
+                contact: "${userData['phone_code']} ${userData['phone']}");
+            hireDetails.value=hireModel;
+            hireDetails.refresh();
+          }
+        }
+      }
+      hireLoading(false);
+    } catch (e) {
+      debugPrint("Oops, Something Wrong $e");
+    }
+  }
+
 
 
 

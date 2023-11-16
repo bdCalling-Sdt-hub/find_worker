@@ -19,7 +19,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
+
 import 'package:uuid/uuid.dart';
 
 import '../../../../../model/review_model.dart';
@@ -89,6 +89,11 @@ class UserServiceDetailsController extends GetxController {
     }
   }
 
+
+
+
+
+
   getTopReviews(String userId) async {
     loading(true);
     try {
@@ -152,16 +157,7 @@ class UserServiceDetailsController extends GetxController {
     }
   }
 
-  Future<void> launchPhoneDialer(String contactNumber) async {
-    final Uri phoneUri = Uri(scheme: "tel", path: contactNumber);
-    try {
-      if (!await UrlLauncher.launchUrl(phoneUri)) {
-        UrlLauncher.launchUrl(phoneUri);
-      }
-    } catch (error) {
-      throw ("Cannot dial");
-    }
-  }
+
 
   Future<void> hireDataPost(UserByServiceModel serviceModel, String number,
       UserModel currentUserData) async {

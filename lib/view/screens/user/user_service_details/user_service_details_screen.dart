@@ -8,7 +8,7 @@ import 'package:find_worker/utils/app_icons.dart';
 import 'package:find_worker/utils/app_strings.dart';
 import 'package:find_worker/view/screens/user/user_service_details/Controller/user_service_details_controller.dart';
 import 'package:find_worker/view/screens/user/user_service_details/inner_widgets/user_service_details_hire_now_bottom_modal.dart';
-import 'package:find_worker/view/screens/user/user_service_details/inner_widgets/user_service_details_rate_us_alert.dart';
+
 import 'package:find_worker/view/widgets/app_bar/custom_app_bar.dart';
 import 'package:find_worker/view/widgets/custom_loader.dart';
 import 'package:find_worker/view/widgets/image/custom_image.dart';

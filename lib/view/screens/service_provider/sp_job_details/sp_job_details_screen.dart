@@ -95,31 +95,10 @@ class _SpJobDetailsScreenState extends State<SpJobDetailsScreen> {
                         const SizedBox(
                           height: 16,
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Flexible(
-                              child: CustomText(
-                                text: _controller.jobDetails.value.name!,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            Row(
-                              children: [
-                                const CustomImage(
-                                  imageSrc: AppIcons.star,
-                                  size: 12,
-                                ),
-                                CustomText(
-                                  text:
-                                      '(${_controller.jobDetails.value.averageRating})',
-                                  fontWeight: FontWeight.w500,
-                                  left: 4,
-                                ),
-                              ],
-                            )
-                          ],
+                        CustomText(
+                          text: _controller.jobDetails.value.name!,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
                         ),
                         const SizedBox(
                           height: 10,
@@ -255,7 +234,6 @@ class _SpJobDetailsScreenState extends State<SpJobDetailsScreen> {
                               Obx(()=>
                                  CustomButton(onTap: () {
                                   _controller.completeService(_controller.jobDetails.value);
-
                                 },loading: _controller.completeLoading.value, text:AppStrings.complete.tr,),
                               ),
                               SizedBox(height: 16.h,),
