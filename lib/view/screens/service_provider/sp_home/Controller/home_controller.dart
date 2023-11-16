@@ -17,6 +17,7 @@ class SpHomeController extends GetxController{
 @override
   void onInit() {
   getData(true);
+  getTokenAndUpdate();
   super.onInit();
   }
   var loading=false.obs;
@@ -30,7 +31,6 @@ class SpHomeController extends GetxController{
     if(load){
       loading(true);
     }
-    await getTokenAndUpdate();
     await getService();
     await getHistoryList();
     await getUserData();
@@ -38,6 +38,7 @@ class SpHomeController extends GetxController{
       loading(false);
     }
   }
+
 getTokenAndUpdate()async{
   try {
     var token= await FirebaseMessaging.instance.getToken();
@@ -48,8 +49,6 @@ getTokenAndUpdate()async{
   } on Exception catch (e) {
     debugPrint("Oops error $e");
   }
-
-
 }
 
 
@@ -96,7 +95,7 @@ getHistoryList() async {
         .collection(AppConstants.users)
         .doc(_auth.currentUser!.uid)
         .collection(AppConstants.jobHistory)
-        .where("status", whereIn: [AppConstants.pending, AppConstants.approved])
+        .where("status", whereIn: [AppConstants.pending, AppConstants.approved,AppConstants.working])
         .get();
     List<HireModel> demoList = [];
 
@@ -131,6 +130,7 @@ getHistoryList() async {
     }
     demoList.sort((a, b) => b.createAt!.compareTo(a.createAt!));
     historyList.value = demoList;
+    historyList.refresh();
     debugPrint("===========> historyList  ${historyList.length}");
   } catch (e) {
     debugPrint("Oops, Something Wrong $e");

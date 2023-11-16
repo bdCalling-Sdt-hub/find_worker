@@ -165,5 +165,6 @@
  "waitingForProvidersResponse": "Waiting for Provider’s response",
  "noResponse": "No Response",
  "hireNow": "Hire Now",
- "startWork":"Start Work"
+ "startWork":"Start Work",
+ "doYouWantToCancelThisWork": "Do you want to cancel this work?"
 }

@@ -249,7 +249,7 @@ var loading=false.obs;
         .get();
     UserModel userData = UserModel.fromMap(data);
     debugPrint("=======> Uid ${data['uid']}");
-    debugPrint("=======> User Type ${userData.role}");
+    debugPrint("=======> User Type ${userData.role} and $userType");
   
     if (userData.role == userType) {
       await PrefsHelper.setString(AppConstants.logged, userData.role);

@@ -19,20 +19,19 @@ class SpHistoryController extends GetxController{
   final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   RxList<HireModel> historyList = <HireModel>[].obs;
+  Rx<HireModel> jobDetails=HireModel().obs;
   var loading = false.obs;
-
 
   getHistoryList(bool load) async {
     try {
       if (load) {
         loading(true);
       }
-
       final hireHistoryData = await _firebaseFirestore
           .collection(AppConstants.users)
           .doc(_firebaseAuth.currentUser!.uid)
           .collection(AppConstants.jobHistory)
-          .where("status", isEqualTo:AppConstants.complete)
+          .where("status", whereIn: [AppConstants.complete, AppConstants.canceled,])
           .get();
       List<HireModel> demoList = [];
 
@@ -78,7 +77,7 @@ class SpHistoryController extends GetxController{
   }
   var removeLoading=false.obs;
 
-  removeJobHistory(String id,int index)async {
+  removeJobHistory(String id)async {
     removeLoading(true);
     try {
       await _firebaseFirestore.collection(AppConstants.users).doc(
@@ -86,8 +85,7 @@ class SpHistoryController extends GetxController{
           .collection(AppConstants.jobHistory)
           .doc(id)
           .delete();
-      historyList.removeAt(index);
-      historyList.refresh();
+     await getHistoryList(false);
       Get.back();
       Get.back();
     } on Exception catch (e) {
@@ -95,6 +93,55 @@ class SpHistoryController extends GetxController{
       debugPrint("======>Oops, Something is wrong");
     } finally {
       removeLoading(false);
+    }
+  }
+
+
+  var getJobHistoryDetailsLoading=false.obs;
+
+  getJobHistoryDetails(String jobId) async {
+    try {
+      getJobHistoryDetailsLoading(true);
+      final hireHistoryData = await _firebaseFirestore
+          .collection(AppConstants.users)
+          .doc(_firebaseAuth.currentUser!.uid)
+          .collection(AppConstants.jobHistory)
+          .doc(jobId)
+          .get();
+      if(hireHistoryData.exists){
+        var hireHistory=hireHistoryData.data();
+        print(hireHistory!['service_id']);
+        final serviceData = await _firebaseFirestore
+            .collection(AppConstants.services)
+            .doc(hireHistory['service_id'])
+            .get();
+        final userData = await _firebaseFirestore
+            .collection(AppConstants.users)
+            .doc(hireHistory['hiring_user_id'])
+            .get();
+        if (serviceData.exists) {
+          print("print====> ${serviceData['category_name']}");
+          if (userData.exists) {
+            HireModel hireModel = HireModel(
+                id: hireHistory['id'],
+                serviceId: hireHistory['service_id'],
+                serviceName: serviceData['category_name'],
+                uid: hireHistory['hiring_user_id'],
+                status: hireHistory['status'],
+                createAt: hireHistory['create_at'].toDate(),
+                image: serviceData['image'],
+                averageRating: userData['average_rating'].toDouble(),
+                name: userData['username'],
+                address: userData['address'],
+                contact: "${userData['phone_code']} ${userData['phone']}");
+            jobDetails.value=hireModel;
+            jobDetails.refresh();
+          }
+        }
+      }
+      getJobHistoryDetailsLoading(false);
+    } catch (e) {
+      debugPrint("Oops, Something Wrong $e");
     }
   }
 

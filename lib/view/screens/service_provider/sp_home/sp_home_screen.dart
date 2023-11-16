@@ -1,5 +1,6 @@
 import 'package:find_worker/core/app_routes.dart';
 import 'package:find_worker/utils/app_colors.dart';
+import 'package:find_worker/utils/app_constents.dart';
 import 'package:find_worker/utils/app_icons.dart';
 import 'package:find_worker/utils/app_images.dart';
 import 'package:find_worker/utils/app_strings.dart';
@@ -197,13 +198,13 @@ class _SpHomeScreenState extends State<SpHomeScreen> {
                                               padding: const EdgeInsets.symmetric(
                                                   vertical: 4, horizontal: 11),
                                               decoration: BoxDecoration(
-                                                  color: AppColors.yellow_10,
+                                                  color:data.status==AppConstants.approved?const Color(0xFFE7F0FD) :data.status==AppConstants.working?Colors.cyan.shade50: AppColors.yellow_10,
                                                   borderRadius:
                                                   BorderRadius.circular(4)),
                                               child:CustomText(
                                                 text:data.status!,
                                                 fontSize: 12,
-                                                color: AppColors.yellow_100,
+                                                color:data.status==AppConstants.approved?AppColors.blue_100:data.status==AppConstants.working?Colors.cyan.shade800:AppColors.yellow_100,
                                               ),
                                             ),
                                           )

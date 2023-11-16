@@ -1,5 +1,6 @@
 import 'package:find_worker/model/hire_model.dart';
 import 'package:find_worker/utils/app_constents.dart';
+import 'package:find_worker/view/screens/service_provider/sp_home/Controller/home_controller.dart';
 import 'package:find_worker/view/screens/service_provider/sp_job_details/inner_widgets/sp_job_details_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -13,6 +14,8 @@ class SpJobDetailsController extends GetxController{
 
  FirebaseFirestore  firebaseFirestore= FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  final homeController = Get.put(SpHomeController());
 
   Rx<HireModel> jobDetails=HireModel().obs;
   var loading=false.obs;
@@ -64,9 +67,8 @@ getJobHistory(String jobId) async {
   }
 }
 
-
-
 var completeLoading=false.obs;
+
 completeService(HireModel hireModel,)async{
   completeLoading(true);
   try {
@@ -82,9 +84,12 @@ completeService(HireModel hireModel,)async{
         context: Get.context!,
         barrierDismissible: false,
         builder: (BuildContext context){
-          return  SpJobDetailsAlert();
+          return  const SpJobDetailsAlert();
         }
     );
+    jobDetails.value.status=AppConstants.complete;
+    jobDetails.refresh();
+    homeController.getHistoryList();
 
   } on Exception catch (e) {
     completeLoading(false);
@@ -93,12 +98,90 @@ completeService(HireModel hireModel,)async{
     completeLoading(false);
   }
 
-
 }
+ var startWorkLoading=false.obs;
+ var cancelWorkLoading=false.obs;
+ var acceptWorkLoading=false.obs;
 
+ acceptService(HireModel hireModel,)async{
+   acceptWorkLoading(true);
+   try {
+     await firebaseFirestore
+         .collection(AppConstants.users)
+         .doc(_auth.currentUser!.uid)
+         .collection(AppConstants.jobHistory).doc(hireModel.id).update({"status":AppConstants.approved});
+     await firebaseFirestore
+         .collection(AppConstants.users)
+         .doc(hireModel.uid)
+         .collection(AppConstants.hireHistory).doc(hireModel.id).update({"status":AppConstants.approved});
+     jobDetails.value.status=AppConstants.approved;
+     jobDetails.refresh();
+     homeController.getHistoryList();
+     update();
 
+     debugPrint("=========> Complete Accepted");
+   } on Exception catch (e) {
+     acceptWorkLoading(false);
+     Fluttertoast.showToast(msg:"Oops,something wrong");
+   }finally{
+     acceptWorkLoading(false);
+   }
 
+ }
 
+ cancelService(HireModel hireModel,)async{
+   cancelWorkLoading(true);
+   try {
+     await firebaseFirestore
+         .collection(AppConstants.users)
+         .doc(_auth.currentUser!.uid)
+         .collection(AppConstants.jobHistory).doc(hireModel.id).update({"status":AppConstants.canceled});
+     await firebaseFirestore
+         .collection(AppConstants.users)
+         .doc(hireModel.uid)
+         .collection(AppConstants.hireHistory).doc(hireModel.id).update({"status":AppConstants.canceled});
+     jobDetails.value.status=AppConstants.canceled;
+     jobDetails.refresh();
+     homeController.getHistoryList();
+     Get.back();
+     update();
+     debugPrint("=========> Complete Cancel");
+   } on Exception catch (e) {
+     cancelWorkLoading(false);
+     Fluttertoast.showToast(msg:"Oops,something wrong");
+   }finally{
+     cancelWorkLoading(false);
+   }
+
+ }
+
+ startWorkService(HireModel hireModel,)async{
+   startWorkLoading(true);
+   try {
+     await firebaseFirestore
+         .collection(AppConstants.users)
+         .doc(_auth.currentUser!.uid)
+         .collection(AppConstants.jobHistory).doc(hireModel.id).update({"status":AppConstants.working});
+     await firebaseFirestore
+         .collection(AppConstants.users)
+         .doc(hireModel.uid)
+         .collection(AppConstants.hireHistory).doc(hireModel.id).update({"status":AppConstants.working});
+
+     jobDetails.value.status=AppConstants.working;
+     print("========> Status Change accept ${jobDetails.value.status}");
+     jobDetails.refresh();
+     homeController.getHistoryList();
+     update();
+     debugPrint("=========> Complete Working");
+
+   } on Exception catch (e) {
+     startWorkLoading(false);
+     Fluttertoast.showToast(msg:"Oops,something wrong");
+   }finally{
+     startWorkLoading(false);
+   }
+
+ }
 
 
 
