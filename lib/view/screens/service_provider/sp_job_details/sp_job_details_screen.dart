@@ -42,6 +42,7 @@ class _SpJobDetailsScreenState extends State<SpJobDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print("=====> Job id : ${widget.jobId}");
     return Scaffold(
       appBar: AppBar(
         title: Text(AppStrings.jobDetails.tr),
@@ -89,7 +90,7 @@ class _SpJobDetailsScreenState extends State<SpJobDetailsScreen> {
                               borderRadius: BorderRadius.circular(8),
                               image: DecorationImage(
                                   image: NetworkImage(
-                                      _controller.jobDetails.value.image!),
+                                      _controller.jobDetails.value.image??""),
                                   fit: BoxFit.cover)),
                         ),
                         const SizedBox(

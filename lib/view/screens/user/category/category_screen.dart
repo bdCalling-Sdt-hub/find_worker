@@ -53,7 +53,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
             MasonryGridView.builder(
               shrinkWrap: true,
               padding: EdgeInsets.only(top:10.h),
-              physics: const NeverScrollableScrollPhysics(),
+              physics:const AlwaysScrollableScrollPhysics(),
               itemCount:_categoryController.categoryList.length,
               itemBuilder: (BuildContext context, int index) {
                 final data= _categoryController.categoryList[index];

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
 import '../../../../../model/hire_model.dart';
@@ -50,6 +51,8 @@ class UserHistoryController extends GetxController{
                 averageRating: userData['average_rating'].toDouble(),
                 name: userData['username'],
                 address: userData['address'],
+                userFcmToken: userData['fcmToken'],
+                userRole: userData['role'],
                 contact: "${userData['phone_code']} ${userData['phone']}");
             demoList.add(hireModel);
           }
@@ -126,13 +129,21 @@ var removeLoading=false.obs;
                 averageRating: userData['average_rating'].toDouble(),
                 name: userData['username'],
                 address: userData['address'],
+                userFcmToken: userData['fcmToken'],
+                userRole: userData['role'],
                 contact: "${userData['phone_code']} ${userData['phone']}");
             hireDetails.value=hireModel;
             hireDetails.refresh();
           }
         }
+      }else{
+        Get.back();
+        Fluttertoast.showToast(msg:"Hire details not found!",toastLength: Toast.LENGTH_LONG,gravity: ToastGravity.CENTER);
       }
-      hireLoading(false);
+      Future.delayed(const Duration(seconds:1),(){
+        hireLoading(false);
+      });
+
     } catch (e) {
       debugPrint("Oops, Something Wrong $e");
     }

@@ -11,7 +11,9 @@ class AppConstants {
   static String aboutUs="AboutUs";
   static String privacyPolicy="PrivacyPolicy";
   static String support="Support";
+
   static  String termsConditions="TermsAndConditions";
+  static String notifications="Notifications";
 
 
   // user type
@@ -33,6 +35,11 @@ static String socialMediaUser="SocialMediaUser";
  static String working="Working";
  static String approved="Approved";
 
+
+ /// Notification seen and unseen
+
+static String seen="Seen";
+static String unSeen="UnSeen";
 
 
 

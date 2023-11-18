@@ -99,26 +99,29 @@ class _UserServiceDetailsRateUsAlertState
               ),
               Row(
                 children: [
-                  CustomOutlineButton(
-                      onTap:(){
-                        Get.back();
-                      },
-                      text: AppStrings.cancel.tr,
-                      width: 120.w,
-                      height: 36.h),
+                  Expanded(
+                    child: CustomOutlineButton(
+                        onTap:(){
+                          Get.back();
+                        },
+                        text: AppStrings.cancel.tr,
+                        height: 36.h),
+                  ),
                   SizedBox(
                     width: 16.w,
                   ),
-                  Obx(
-                    () => CustomButton(
-                      onTap: () {
-                        _hireController.sendReview(
-                            widget.userUid, widget.serviceId);
-                      },
-                      loading: _hireController.ratingLoading.value,
-                      text: AppStrings.submit.tr,
-                      width: 120.w,
-                      height: 36.h,
+                  Expanded(
+                    child: Obx(
+                      () => CustomButton(
+                        onTap: () {
+                          _hireController.sendReview(
+                              widget.userUid, widget.serviceId);
+                        },
+                        loading: _hireController.ratingLoading.value,
+                        text: AppStrings.submit.tr,
+
+                        height: 36.h,
+                      ),
                     ),
                   ),
 

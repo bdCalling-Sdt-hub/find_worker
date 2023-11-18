@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -59,6 +61,8 @@ class SpHistoryController extends GetxController{
                 averageRating: userData['average_rating'].toDouble(),
                 name: userData['username'],
                 address: userData['address'],
+                userFcmToken: userData['fcmToken'],
+                userRole: userData['role'],
                 contact: "${userData['phone_code']} ${userData['phone']}");
             demoList.add(hireModel);
           }
@@ -99,6 +103,7 @@ class SpHistoryController extends GetxController{
 
   var getJobHistoryDetailsLoading=false.obs;
 
+
   getJobHistoryDetails(String jobId) async {
     try {
       getJobHistoryDetailsLoading(true);
@@ -133,13 +138,21 @@ class SpHistoryController extends GetxController{
                 averageRating: userData['average_rating'].toDouble(),
                 name: userData['username'],
                 address: userData['address'],
+                userFcmToken: userData['fcmToken'],
+                userRole: userData['role'],
                 contact: "${userData['phone_code']} ${userData['phone']}");
             jobDetails.value=hireModel;
             jobDetails.refresh();
           }
         }
+      }else{
+        Get.back();
+       Fluttertoast.showToast(msg:"Job details not found!",toastLength: Toast.LENGTH_LONG,gravity: ToastGravity.CENTER);
       }
-      getJobHistoryDetailsLoading(false);
+      Future.delayed(const Duration(seconds:1),(){
+        getJobHistoryDetailsLoading(false);
+      });
+
     } catch (e) {
       debugPrint("Oops, Something Wrong $e");
     }

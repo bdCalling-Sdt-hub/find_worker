@@ -15,6 +15,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../../../helper/Language/language_component.dart';
+import '../../../../widgets/custom_switch.dart';
+
 
 
 class SpSettingScreen extends StatefulWidget {
@@ -93,72 +96,95 @@ class _SpSettingScreenState extends State<SpSettingScreen> {
               ],
             )),
         body:LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
-          return SingleChildScrollView(
-            padding: const EdgeInsetsDirectional.symmetric(horizontal: 20,vertical: 24),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          return  GetBuilder<LocalizationController>(
+              builder: (localizationController) {
+              return SingleChildScrollView(
+                padding: const EdgeInsetsDirectional.symmetric(horizontal: 20,vertical: 24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                     CustomText(
-                      text: AppStrings.language.tr,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      color: AppColors.black_100,
-                    ),
-                    //Customized
-                    AdvancedSwitch(
-                      controller: _controller,
-                      activeColor: AppColors.blue_10,
-                      inactiveColor: AppColors.blue_10,
-                      activeChild: Text('English'
-                        ,style: GoogleFonts.poppins(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
-                            color: AppColors.black_100
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                         CustomText(
+                          text: AppStrings.language.tr,
+                          fontSize: 14,
+                          fontWeight: FontWeight.w400,
+                          color: AppColors.black_100,
                         ),
-                      ),
-                      inactiveChild:  Text('Arabic',
-                        style: GoogleFonts.poppins(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
-                            color: AppColors.black_100
-                        ),
-                      ),
-                      borderRadius: const BorderRadius.all(Radius.circular(20)),
-                      width: 90,
-                      height: 30.0,
-                      enabled: true,
-                      disabledOpacity: 0.8,
+                        //Customized
+                        CustomSwicth(onChanged: (bool value) {
+                          if(!value){
+                            localizationController.setLanguage(Locale(
+                                LanguageComponent.languages[0].languageCode,
+                                LanguageComponent
+                                    .languages[0].countryCode));
+                            localizationController.setSelectIndex(0);
+
+                          }else{
+                            localizationController.setLanguage(Locale(
+                                LanguageComponent.languages[1].languageCode,
+                                LanguageComponent
+                                    .languages[1].countryCode));
+                            localizationController.setSelectIndex(1);
+                          }
+
+                        },
+                          value:localizationController.selectIndex==1,active:"English",inActive: "Arabic",),
+
+                        // AdvancedSwitch(
+                        //   controller: _controller,
+                        //   activeColor: AppColors.blue_10,
+                        //   inactiveColor: AppColors.blue_10,
+                        //   activeChild: Text('English'
+                        //     ,style: GoogleFonts.poppins(
+                        //         fontSize: 12,
+                        //         fontWeight: FontWeight.w400,
+                        //         color: AppColors.black_100
+                        //     ),
+                        //   ),
+                        //   inactiveChild:  Text('Arabic',
+                        //     style: GoogleFonts.poppins(
+                        //         fontSize: 12,
+                        //         fontWeight: FontWeight.w400,
+                        //         color: AppColors.black_100
+                        //     ),
+                        //   ),
+                        //   borderRadius: const BorderRadius.all(Radius.circular(20)),
+                        //   width: 90,
+                        //   height: 30.0,
+                        //   enabled: true,
+                        //   disabledOpacity: 0.8,
+                        // ),
+                        //Customized
+                      ],
                     ),
-                    //Customized
+
+                    /// <------------- Change Password ------------>
+                    if(_profileController.userData.value.authType==AppConstants.normalUser)
+                      settingTile(title:AppStrings.changePassword.tr,  onTap: () {
+                        Get.toNamed(AppRoute.spChangePasswordScreen);
+                      }),
+                    /// <------------- Terms Of Conditions Password ------------>
+                      settingTile(title:AppStrings.termsOfConditions.tr,onTap: () {
+                        Get.toNamed(AppRoute.spTermsOfConditionsScreen);
+                      }),
+                    /// <------------- Privacy Policy ------------>
+                      settingTile(title:AppStrings.privacyPolicy.tr,  onTap: () {
+                        Get.toNamed(AppRoute.spPrivacyPolicyScreen);
+                      }),
+                   /// <------------- About us ------------>
+                      settingTile(title:AppStrings.aboutUs.tr, onTap: () {
+                        Get.toNamed(AppRoute.spAboutUsScreen);
+                      }),
+                    /// <------------- Support ------------>
+                      settingTile(title:AppStrings.support.tr,onTap: () {
+                        Get.toNamed(AppRoute.spSupportScreen);
+                      }),
                   ],
                 ),
-
-                /// <------------- Change Password ------------>
-                if(_profileController.userData.value.authType==AppConstants.normalUser)
-                  settingTile(title:AppStrings.changePassword.tr,  onTap: () {
-                    Get.toNamed(AppRoute.spChangePasswordScreen);
-                  }),
-                /// <------------- Terms Of Conditions Password ------------>
-                  settingTile(title:AppStrings.termsOfConditions.tr,onTap: () {
-                    Get.toNamed(AppRoute.spTermsOfConditionsScreen);
-                  }),
-                /// <------------- Privacy Policy ------------>
-                  settingTile(title:AppStrings.privacyPolicy.tr,  onTap: () {
-                    Get.toNamed(AppRoute.spPrivacyPolicyScreen);
-                  }),
-               /// <------------- About us ------------>
-                  settingTile(title:AppStrings.aboutUs.tr, onTap: () {
-                    Get.toNamed(AppRoute.spAboutUsScreen);
-                  }),
-                /// <------------- Support ------------>
-                  settingTile(title:AppStrings.support.tr,onTap: () {
-                    Get.toNamed(AppRoute.spSupportScreen);
-                  }),
-              ],
-            ),
+              );
+            }
           );
         },)
     );

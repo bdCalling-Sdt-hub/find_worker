@@ -160,7 +160,7 @@ class UserServiceDetailsController extends GetxController {
 
 
   Future<void> hireDataPost(UserByServiceModel serviceModel, String number,
-      UserModel currentUserData) async {
+      UserModel hireUserData) async {
     try {
       var id = uuid.v4();
       Map<String, dynamic> hireBody = {
@@ -179,17 +179,6 @@ class UserServiceDetailsController extends GetxController {
         "status": AppConstants.pending,
         "create_at": DateTime.now()
       };
-      Map<String, dynamic> body = {
-        "to": currentUserData.fcmToken,
-        "mutable_content": true,
-        "notification": {
-          "title":
-              "New Job Request : ${currentUserData.userName} Has Hired You!",
-          "body":
-              "Great news! ${currentUserData.userName}  has hired you for a job. They trust your skills and are looking forward to your service."
-        },
-        "data": {"body": ""}
-      };
       await _firebaseFirestore
           .collection(AppConstants.users)
           .doc(_auth.currentUser!.uid)
@@ -202,11 +191,12 @@ class UserServiceDetailsController extends GetxController {
           .collection(AppConstants.jobHistory)
           .doc(id)
           .set(jobBody);
-      await ApiService.postNotification(body);
+      await ApiService.sendNotification(content:"Congratulations! You're Hired!",userRole:AppConstants.serviceProviderType, historyId:id, fcmToken:hireUserData.fcmToken!, type:AppConstants.pending, receiverId:hireUserData.uid!);
+
+
       debugPrint("Hire Completed");
     } on Exception catch (e) {
       debugPrint("Opps!, Something error  $e ");
-
       // TODO
     }
   }

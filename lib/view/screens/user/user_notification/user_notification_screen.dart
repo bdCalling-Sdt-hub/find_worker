@@ -1,9 +1,18 @@
 import 'package:find_worker/utils/app_colors.dart';
+import 'package:find_worker/utils/app_constents.dart';
 import 'package:find_worker/utils/app_strings.dart';
+import 'package:find_worker/view/screens/user/user_hire_list/user_hire_details/user_hire_details_screen.dart';
+import 'package:find_worker/view/screens/user/user_history/user_history_details/user_history_details_screen.dart';
 import 'package:find_worker/view/widgets/app_bar/custom_app_bar.dart';
+import 'package:find_worker/view/widgets/custom_back.dart';
+import 'package:find_worker/view/widgets/custom_loader.dart';
 import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+
+import 'Controller/user_notification_controller.dart';
 
 class UserNotificationScreen extends StatefulWidget {
   const UserNotificationScreen({super.key});
@@ -13,102 +22,85 @@ class UserNotificationScreen extends StatefulWidget {
 }
 
 class _UserNotificationScreenState extends State<UserNotificationScreen> {
+  final _notificationController = Get.put(UserNotificationController());
+
+  @override
+  void initState() {
+    _notificationController.getNotification(true);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        top: true,
-        bottom: false,
-        child: Scaffold(
-          appBar: CustomAppBar(appBarContent:Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              GestureDetector(
-                onTap: (){
-                  Get.back();
-                },
-                child: const Icon(Icons.arrow_back_ios_new_outlined,size: 16,color: AppColors.black_100,),
-              ),
-              CustomText(
-               text: AppStrings.notification.tr,
-               color: AppColors.blue_100,
-               fontSize: 18,
-               fontWeight: FontWeight.w500,
-             ),
-              const SizedBox()
-            ],),),
-          body: LayoutBuilder(
-              builder: (BuildContext context, BoxConstraints constraints) {
-                return SingleChildScrollView(
-                    padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
-                    child: Column(
-                      children: [
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            border: Border.all(color: AppColors.blue_60,width: 1),
-                            borderRadius: BorderRadius.circular(8),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(AppStrings.notification.tr),
+        leading: const CustomBack(),
+      ),
+
+      body: LayoutBuilder(
+          builder: (BuildContext context, BoxConstraints constraints) {
+            return Obx(() => _notificationController.loading.value
+                ? const CustomLoader()
+                : _notificationController.notificationList.isEmpty
+                ? Center(
+              child: Text(AppStrings.noDataAvailable.tr),
+            )
+                : RefreshIndicator(
+                  onRefresh: ()async{
+                 await   _notificationController.getNotification(false);
+                  },
+                  child: ListView.separated(
+              padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 24),
+              itemBuilder: (BuildContext context, int index) {
+                  var data=_notificationController.notificationList[index];
+                  return GestureDetector(
+                    onTap:(){
+                      if(data.status==AppConstants.complete){
+                        UserHistoryDetailsScreen(hireId:data.historyId!);
+                      }else{
+                        Get.to(UserHireDetailsScreen(hireId:data.historyId!));
+                      }
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                            color: AppColors.blue_60, width: 1),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child:  Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CustomText(
+                            text:data.content!,
+                            fontSize: 14,
+                            bottom: 8,
                           ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              CustomText(
-                                text: 'Welcome to the Find Worker.',
-                                bottom: 8,
-                              ),
-                              Row(
-                                children: [
-                                  CustomText(
-                                    text: 'Fri,',
-                                    fontSize: 12,
-                                    color: AppColors.black_60,
-                                  ),
-                                  CustomText(
-                                    text: '12 am',
-                                    fontSize: 12,
-                                    color: AppColors.black_60,
-                                    left: 4,
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                        SizedBox(height: 8,),
-                        Container(
-                          padding: EdgeInsets.all(16),
-                          decoration: BoxDecoration(
-                            border: Border.all(color: AppColors.blue_60,width: 1),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              CustomText(
-                                text: 'Welcome to the Find Worker.',
-                                bottom: 8,
-                              ),
-                              Row(
-                                children: [
-                                  CustomText(
-                                    text: 'Fri,',
-                                    fontSize: 12,
-                                    color: AppColors.black_60,
-                                  ),
-                                  CustomText(
-                                    text: '12 am',
-                                    fontSize: 12,
-                                    color: AppColors.black_60,
-                                    left: 4,
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-                      ],
-                    )
-                );
-              }),
-    ));
+                          Text(formatDate(data.createAt!),style: const TextStyle(fontSize: 12,color:AppColors.black_60),)
+                        ],
+                      ),
+                    ),
+                  );
+              },
+              itemCount:
+              _notificationController.notificationList.length, separatorBuilder: (BuildContext context, int index) { return SizedBox(height:8.h,); },
+            ),
+                ));
+          }),
+    );
+  }
+
+  String formatDate(DateTime dateTime) {
+    // Format pattern for "Fri at 12:00 am"
+    String pattern = 'E \'at\' hh:mm a';
+
+    // Create a DateFormat object with the specified pattern
+    DateFormat formatter = DateFormat(pattern);
+
+    // Format the DateTime object
+    String formattedDateTime = formatter.format(dateTime);
+
+    return formattedDateTime;
   }
 }

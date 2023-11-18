@@ -8,6 +8,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:uuid/uuid.dart';
 import '../../../../../core/share_pre.dart';
+import '../../../../../helper/ApiService/api_service.dart';
 import '../user_hire_details/inner_widgets/hire_details_alert.dart';
 import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
 import '../user_hire_details/inner_widgets/user_service_details_rate_us_alert.dart';
@@ -56,6 +57,8 @@ class HireController extends GetxController {
                 averageRating: userData['average_rating'].toDouble(),
                 name: userData['username'],
                 address: userData['address'],
+                userFcmToken: userData['fcmToken'],
+                userRole: userData['role'],
                 contact: "${userData['phone_code']} ${userData['phone']}");
 
             demoList.add(hireModel);
@@ -114,13 +117,20 @@ class HireController extends GetxController {
                 averageRating: userData['average_rating'].toDouble(),
                 name: userData['username'],
                 address: userData['address'],
+                userFcmToken: userData['fcmToken'],
+                userRole: userData['role'],
                 contact: "${userData['phone_code']} ${userData['phone']}");
             hireDetails.value=hireModel;
             hireDetails.refresh();
           }
         }
+      }else{
+        Get.back();
+        Fluttertoast.showToast(msg:"Hire details not found!",toastLength: Toast.LENGTH_LONG,gravity: ToastGravity.CENTER);
       }
-      hireLoading(false);
+      Future.delayed(const Duration(seconds:1),(){
+        hireLoading(false);
+      });
     } catch (e) {
       debugPrint("Oops, Something Wrong $e");
     }
@@ -141,6 +151,8 @@ class HireController extends GetxController {
           .collection(AppConstants.users)
           .doc(hireModel.uid)
           .collection(AppConstants.jobHistory).doc(hireModel.id).update({"status":AppConstants.complete});
+      await ApiService.sendNotification(content:"Great job! The task has been successfully completed.", userRole:hireModel.userRole!,historyId:hireModel.id!, fcmToken:hireModel.userFcmToken!, type:AppConstants.complete, receiverId:hireModel.uid!);
+
 
       hireDetails.value.status=AppConstants.complete;
       showDialog(context: Get.context!, builder: (_)=>UserServiceDetailsRateUsAlert(userUid:hireModel.uid!, serviceId:hireModel.serviceId!,));
@@ -173,6 +185,8 @@ class HireController extends GetxController {
           .collection(AppConstants.users)
           .doc(hireModel.uid)
           .collection(AppConstants.jobHistory).doc(hireModel.id).update({"status":AppConstants.canceled});
+      await ApiService.sendNotification(content:"Your request has been canceled.", historyId:hireModel.id!,userRole:hireModel.userRole!, fcmToken:hireModel.userFcmToken!, type:AppConstants.canceled, receiverId:hireModel.uid!);
+
       hireDetails.value.status=AppConstants.canceled;
       hireDetails.refresh();
       getHireList(false);
@@ -199,6 +213,8 @@ class HireController extends GetxController {
           .collection(AppConstants.users)
           .doc(hireModel.uid)
           .collection(AppConstants.jobHistory).doc(hireModel.id).update({"status":AppConstants.working});
+      await ApiService.sendNotification(content:"Work has started on this service",userRole:hireModel.userRole!, historyId:hireModel.id!, fcmToken:hireModel.userFcmToken!, type:AppConstants.working, receiverId:hireModel.uid!);
+
 
       hireDetails.value.status=AppConstants.working;
       print("========> Status Change accept ${hireDetails.value.status}");
