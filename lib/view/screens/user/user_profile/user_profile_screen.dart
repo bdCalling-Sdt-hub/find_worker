@@ -28,6 +28,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
     SystemChromeHelper.blueColorSystemChrome();
     super.initState();
   }
+
   @override
   void dispose() {
     // TODO: implement dispose
@@ -41,7 +42,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
         top: false,
         bottom: false,
         child: Scaffold(
-          appBar:  CustomAppBar(
+          appBar: CustomAppBar(
               appBarBgColor: AppColors.blue_100,
               appBarContent: Center(
                 child: CustomText(
@@ -73,29 +74,28 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                 height: 130,
                                 width: 130,
                                 decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
                                     color: Colors.grey.withOpacity(0.6),
+                                    shape: BoxShape.circle,
                                     image: _profileController
-                                                .userData.value.imageSrc !=
-                                            null
+                                        .userData.value.imageSrc !=
+                                        null
                                         ? _profileController
-                                                    .userData.value.imageSrc !=
-                                                ""
-                                            ? DecorationImage(
+                                        .userData.value.imageSrc !=
+                                        ""
+                                        ? DecorationImage(
+                                        fit: BoxFit.fill,
+                                        image: NetworkImage(_profileController
+                                            .userData.value.imageSrc!))
+                                        : const DecorationImage(
                                       fit: BoxFit.fill,
-                                                image: NetworkImage(
-                                                    _profileController.userData
-                                                        .value.imageSrc!))
-                                            : DecorationImage(
+                                      image: AssetImage(
+                                          'assets/images/person.png'),
+                                    )
+                                        : const DecorationImage(
                                       fit: BoxFit.fill,
-                                                image: AssetImage(
-                                                    'assets/images/profile_smith.png'),
-                                              )
-                                        : DecorationImage(
-                                      fit: BoxFit.fill,
-                                            image: AssetImage(
-                                                'assets/images/profile_smith.png'),
-                                          )),
+                                      image: AssetImage(
+                                          'assets/images/person.png'),
+                                    )),
                               ),
                               CustomText(
                                 text: _profileController
@@ -117,7 +117,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                   color: AppColors.white,
                                   borderRadius: BorderRadius.circular(8),
                                 ),
-                                child:  CustomText(
+                                child: CustomText(
                                   text: AppStrings.purchaser.tr,
                                   fontWeight: FontWeight.w600,
                                   fontSize: 14,
@@ -149,14 +149,15 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                             bottom: BorderSide(
                                                 color: AppColors.blue_20,
                                                 width: 1))),
-                                    child:  Row(
+                                    child: Row(
                                       children: [
                                         CustomImage(
                                           imageSrc: AppIcons.user,
                                           size: 18,
                                         ),
                                         CustomText(
-                                          text: AppStrings.personalInformation.tr,
+                                          text:
+                                              AppStrings.personalInformation.tr,
                                           left: 12,
                                         )
                                       ],
@@ -175,7 +176,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                             bottom: BorderSide(
                                                 color: AppColors.blue_20,
                                                 width: 1))),
-                                    child:  Row(
+                                    child: Row(
                                       children: [
                                         CustomImage(
                                           imageSrc: AppIcons.clock,
@@ -201,7 +202,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                             bottom: BorderSide(
                                                 color: AppColors.blue_20,
                                                 width: 1))),
-                                    child:  Row(
+                                    child: Row(
                                       children: [
                                         CustomImage(
                                           imageColor: AppColors.black_100,
@@ -236,7 +237,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                             bottom: BorderSide(
                                                 color: AppColors.blue_20,
                                                 width: 1))),
-                                    child:  Row(
+                                    child: Row(
                                       children: [
                                         CustomImage(
                                           imageSrc: AppIcons.logout,

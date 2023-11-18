@@ -90,12 +90,12 @@ class _UserPersonalInformationScreenState
                                       : const DecorationImage(
                                           fit: BoxFit.fill,
                                           image: AssetImage(
-                                              'assets/images/profile_smith.png'),
+                                              'assets/images/person.png'),
                                         )
                                   : const DecorationImage(
                                       fit: BoxFit.fill,
                                       image: AssetImage(
-                                          'assets/images/profile_smith.png'),
+                                          'assets/images/person.png'),
                                     )),
                         ),
                         CustomText(
