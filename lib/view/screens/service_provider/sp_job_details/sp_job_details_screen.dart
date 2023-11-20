@@ -46,7 +46,7 @@ class _SpJobDetailsScreenState extends State<SpJobDetailsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(AppStrings.jobDetails.tr),
-        leading: const CustomBack(),
+        leading:  CustomBack(),
       ),
       // appBar: CustomAppBar(
       //   appBarContent: Row(

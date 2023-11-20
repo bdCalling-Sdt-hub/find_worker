@@ -43,7 +43,7 @@ class _SpAddNewServiceScreenState extends State<SpAddNewServiceScreen> {
         backgroundColor: AppColors.white,
         appBar: AppBar(
           title: Text(AppStrings.addNewService.tr),
-          leading: const CustomBack(),
+          leading:  CustomBack(),
         ),
         // appBar: CustomAppBar(
         //   appBarContent: Row(

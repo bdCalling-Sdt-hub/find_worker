@@ -10,6 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../../widgets/custom_back.dart';
+
 
 class SpChangeResetPasswordScreen extends StatefulWidget {
   const SpChangeResetPasswordScreen({super.key});
@@ -31,29 +33,31 @@ class _SpChangeResetPasswordScreenState extends State<SpChangeResetPasswordScree
         bottom: false,
         child: Scaffold(
           backgroundColor: AppColors.white,
-          appBar: CustomAppBar(
-              appBarContent: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GestureDetector(
-                    onTap:(){
-                      Get.back();
-                    },
-                    child:  const Icon(
-                      Icons.arrow_back_ios_new_outlined,
-                      size: 18,
-                      color: AppColors.blue_100,
-                    ),
-                  ),
-                   CustomText(
-                    text: AppStrings.resetPassword.tr,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.blue_100,
-                  ),
-                  const SizedBox()
-                ],
-              )),
+          appBar: AppBar(title: Text(AppStrings.resetPassword.tr),leading:CustomBack(),),
+
+          // appBar: CustomAppBar(
+          //     appBarContent: Row(
+          //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //       children: [
+          //         GestureDetector(
+          //           onTap:(){
+          //             Get.back();
+          //           },
+          //           child:  const Icon(
+          //             Icons.arrow_back_ios_new_outlined,
+          //             size: 18,
+          //             color: AppColors.blue_100,
+          //           ),
+          //         ),
+          //          CustomText(
+          //           text: AppStrings.resetPassword.tr,
+          //           fontSize: 18,
+          //           fontWeight: FontWeight.w500,
+          //           color: AppColors.blue_100,
+          //         ),
+          //         const SizedBox()
+          //       ],
+          //     )),
           body:  LayoutBuilder(
               builder: (BuildContext context,BoxConstraints constraints){
                 return SingleChildScrollView(

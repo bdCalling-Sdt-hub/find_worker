@@ -35,7 +35,7 @@ class _UserNotificationScreenState extends State<UserNotificationScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(AppStrings.notification.tr),
-        leading: const CustomBack(),
+        leading:  CustomBack(iconColor:AppColors.white,),
       ),
 
       body: LayoutBuilder(
@@ -57,7 +57,8 @@ class _UserNotificationScreenState extends State<UserNotificationScreen> {
                   return GestureDetector(
                     onTap:(){
                       if(data.status==AppConstants.complete){
-                        UserHistoryDetailsScreen(hireId:data.historyId!);
+                        Get.to(UserHistoryDetailsScreen(hireId:data.historyId!));
+
                       }else{
                         Get.to(UserHireDetailsScreen(hireId:data.historyId!));
                       }

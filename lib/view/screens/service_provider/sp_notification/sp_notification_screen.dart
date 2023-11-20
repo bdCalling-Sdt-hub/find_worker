@@ -35,7 +35,7 @@ class _SpNotificationScreenState extends State<SpNotificationScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(AppStrings.notification.tr),
-        leading: const CustomBack(),
+        leading:  CustomBack(),
       ),
       body: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {

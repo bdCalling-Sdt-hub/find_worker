@@ -14,6 +14,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../../widgets/custom_back.dart';
 import '../../user_auth/user_forget_password/user_forget_password_screen.dart';
 import '../Controller/setting_controller.dart';
 
@@ -34,34 +35,38 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,
-      appBar:  CustomAppBar(
-        appBarContent:
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            GestureDetector(
-              onTap: () {
-                Get.back();
-              },
-              child: const Icon(
-                Icons.arrow_back_ios_new_outlined,
-                size: 18,
-                color: AppColors.blue_100,
-              ),
-            ),
-            Text(
-              AppStrings.changePassword.tr,
-              textAlign: TextAlign.center,
-              style: GoogleFonts.poppins(
-                color: AppColors.blue_100,
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
-              ),
-            ),
-            const SizedBox()
-          ],
-        ),
+      appBar: AppBar(
+        title: Text(AppStrings.changePassword.tr),
+        leading: CustomBack(),
       ),
+      // appBar:  CustomAppBar(
+      //   appBarContent:
+      //   Row(
+      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //     children: [
+      //       GestureDetector(
+      //         onTap: () {
+      //           Get.back();
+      //         },
+      //         child: const Icon(
+      //           Icons.arrow_back_ios_new_outlined,
+      //           size: 18,
+      //           color: AppColors.blue_100,
+      //         ),
+      //       ),
+      //       Text(
+      //         AppStrings.changePassword.tr,
+      //         textAlign: TextAlign.center,
+      //         style: GoogleFonts.poppins(
+      //           color: AppColors.blue_100,
+      //           fontSize: 18,
+      //           fontWeight: FontWeight.w500,
+      //         ),
+      //       ),
+      //       const SizedBox()
+      //     ],
+      //   ),
+      // ),
       body:  LayoutBuilder(
           builder: (BuildContext context,BoxConstraints constraints){
             return SingleChildScrollView(

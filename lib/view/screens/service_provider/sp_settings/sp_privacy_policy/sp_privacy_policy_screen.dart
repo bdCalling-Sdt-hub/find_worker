@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
 
+import '../../../../widgets/custom_back.dart';
 import '../Controller/setting_controller.dart';
 
 
@@ -33,29 +34,31 @@ class _SpPrivacyPolicyScreenState extends State<SpPrivacyPolicyScreen> {
         bottom: false,
         child: Scaffold(
           backgroundColor: AppColors.white,
-          appBar: CustomAppBar(
-              appBarContent: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GestureDetector(
-                    onTap:(){
-                      Get.back();
-                    },
-                    child:  const Icon(
-                      Icons.arrow_back_ios_new_outlined,
-                      size: 18,
-                      color: AppColors.blue_100,
-                    ),
-                  ),
-                   CustomText(
-                    text: AppStrings.privacyPolicy.tr,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                    color: AppColors.blue_100,
-                  ),
-                  const SizedBox()
-                ],
-              )),
+          appBar: AppBar(title: Text(AppStrings.privacyPolicy.tr),leading:CustomBack(),),
+
+          // appBar: CustomAppBar(
+          //     appBarContent: Row(
+          //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //       children: [
+          //         GestureDetector(
+          //           onTap:(){
+          //             Get.back();
+          //           },
+          //           child:  const Icon(
+          //             Icons.arrow_back_ios_new_outlined,
+          //             size: 18,
+          //             color: AppColors.blue_100,
+          //           ),
+          //         ),
+          //          CustomText(
+          //           text: AppStrings.privacyPolicy.tr,
+          //           fontSize: 18,
+          //           fontWeight: FontWeight.w500,
+          //           color: AppColors.blue_100,
+          //         ),
+          //         const SizedBox()
+          //       ],
+          //     )),
           body: Obx(()=>_settingController.otherLoading.value?CustomLoader():
           LayoutBuilder(
               builder: (BuildContext context,BoxConstraints constraints){

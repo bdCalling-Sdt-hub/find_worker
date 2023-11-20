@@ -12,6 +12,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../../widgets/custom_back.dart';
+
 class UserPersonalInformationScreen extends StatefulWidget {
   const UserPersonalInformationScreen({super.key});
 
@@ -30,32 +32,37 @@ class _UserPersonalInformationScreenState
         top: false,
         bottom: false,
         child: Scaffold(
-          appBar: CustomAppBar(
-            appBarBgColor: AppColors.blue_100,
-
-            appBarContent: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                GestureDetector(
-                  onTap: () {
-                    Get.back();
-                  },
-                  child: const Icon(
-                    Icons.arrow_back_ios_new_outlined,
-                    size: 16,
-                    color: AppColors.white,
-                  ),
-                ),
-                 CustomText(
-                  text: AppStrings.personalInformation.tr,
-                  color: AppColors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                ),
-                const SizedBox()
-              ],
-            ),
+          appBar: AppBar(
+            backgroundColor: AppColors.blue_100,
+            title: Text(AppStrings.personalInformation.tr,style: TextStyle(fontSize: 18,fontWeight: FontWeight.w500,color: AppColors.white),),
+            leading: CustomBack(iconColor: AppColors.white,),
           ),
+          // appBar: CustomAppBar(
+          //   appBarBgColor: AppColors.blue_100,
+          //
+          //   appBarContent: Row(
+          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //     children: [
+          //       GestureDetector(
+          //         onTap: () {
+          //           Get.back();
+          //         },
+          //         child: const Icon(
+          //           Icons.arrow_back_ios_new_outlined,
+          //           size: 16,
+          //           color: AppColors.white,
+          //         ),
+          //       ),
+          //        CustomText(
+          //         text: AppStrings.personalInformation.tr,
+          //         color: AppColors.white,
+          //         fontSize: 18,
+          //         fontWeight: FontWeight.w500,
+          //       ),
+          //       const SizedBox()
+          //     ],
+          //   ),
+          // ),
           body: LayoutBuilder(
               builder: (BuildContext context, BoxConstraints constraints) {
             return Obx(

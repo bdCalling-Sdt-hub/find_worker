@@ -83,6 +83,7 @@ class MyApp extends StatelessWidget {
               backgroundColor: Colors.white,
               elevation:0,
               centerTitle: true,
+
               titleTextStyle: GoogleFonts.poppins(fontSize:18.sp,fontWeight: FontWeight.w500,color:AppColors.blue_100),
               iconTheme: const IconThemeData(
                 color: Color(0xFF0668E3),

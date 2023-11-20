@@ -37,11 +37,11 @@ class _SpPersonalInformationScreenState
             appBarContent: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                GestureDetector(
-                  onTap: () {
+                IconButton(
+                  onPressed: () {
                     Get.back();
                   },
-                  child: const Icon(
+                  icon: const Icon(
                     Icons.arrow_back_ios_new_outlined,
                     size: 16,
                     color: AppColors.white,

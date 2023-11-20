@@ -146,7 +146,8 @@ class AppStrings{
   static const String giveRatingOutOf ="Give rating out of 5!";
   static const String writeYourFeedback ="Write your feedback";
   static const String submit ="Submit";
-  static const String didNotSeeWhat  ="Didn’t see what you’re looking for?Go to";
+  static const String didNotSeeWhat  ="didNotSeeWhat";
+  static const String goto  ="Go to";
   static const String noDataAvailable="No service available!";
   static const String termsOfConditions="Terms of Conditions";
   static const String purchaser="purchaser";

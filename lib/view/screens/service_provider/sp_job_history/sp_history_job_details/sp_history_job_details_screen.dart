@@ -46,7 +46,7 @@ class _SpJobDetailsScreenState extends State<SpJobHistoryDetailsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(AppStrings.jobDetails.tr),
-        leading: const CustomBack(),
+        leading:  CustomBack(),
         actions: [
           IconButton(onPressed:(){
             showDialog(context: context, builder: (_)=>SpHistoryDetailsAlert(id: widget.jobId,));
