@@ -21,6 +21,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 
+import '../../../widgets/custom_switch.dart';
+
 class SpHomeScreen extends StatefulWidget {
   const SpHomeScreen({super.key});
 
@@ -47,33 +49,42 @@ class _SpHomeScreenState extends State<SpHomeScreen> {
               fontSize: 18,
               fontWeight: FontWeight.w500,
             ),
-            SizedBox(
-              height:35,
-              child: Obx(()=>
-                 LiteRollingSwitch(
-                  //initial value
-                  value:_homeController.status.value,
-                  width: 100,
-                  textOn: 'Online',
-                  textOff: 'Offline',
-                   colorOn:AppColors.blue_100,
-                   colorOff:AppColors.black_20 ,
-                  iconOn: Icons.done,
-                  iconOff: Icons.remove_circle_outline,
-                  textSize: 12.0,
-                  onChanged: (bool state) {
-                    _homeController.updateStatusData();
-                    print('Current State of SWITCH IS: $state');
-                  }, onTap:(){
 
-                }, onDoubleTap:(){
+            CustomSwicth(onChanged: (bool value) {
 
-                }, onSwipe:(){
+                _homeController.updateStatusData();
 
-                },
-                ),
-              ),
-            ),
+
+            },
+              value:_homeController.status.value,active:AppStrings.online.tr,inActive:AppStrings.offline.tr,),
+
+            // SizedBox(
+            //   height:35,
+            //   child: Obx(()=>
+            //      LiteRollingSwitch(
+            //       //initial value
+            //       value:_homeController.status.value,
+            //       width: 100,
+            //       textOn: 'Online',
+            //       textOff: 'Offline',
+            //        colorOn:AppColors.blue_100,
+            //        colorOff:AppColors.black_20 ,
+            //       iconOn: Icons.done,
+            //       iconOff: Icons.remove_circle_outline,
+            //       textSize: 12.0,
+            //       onChanged: (bool state) {
+            //         _homeController.updateStatusData();
+            //         print('Current State of SWITCH IS: $state');
+            //       }, onTap:(){
+            //
+            //     }, onDoubleTap:(){
+            //
+            //     }, onSwipe:(){
+            //
+            //     },
+            //     ),
+            //   ),
+            // ),
             // OnOffSwitch(
             //   controller: _controller,
             //   activeColor: AppColors.blue_100,

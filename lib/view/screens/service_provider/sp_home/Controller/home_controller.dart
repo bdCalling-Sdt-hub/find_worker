@@ -72,6 +72,7 @@ getTokenAndUpdate()async{
   status.value=userData.value.status=="Online";
     userData.refresh();
   }
+
   Future<void> updateStatusData()async{
         try {
           var inActive= status.value?"Offline":"Online";

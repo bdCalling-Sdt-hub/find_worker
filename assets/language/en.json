@@ -166,5 +166,6 @@
  "noResponse": "No Response",
  "hireNow": "Hire Now",
  "startWork":"Start Work",
- "doYouWantToCancelThisWork": "Do you want to cancel this work?"
+ "doYouWantToCancelThisWork": "Do you want to cancel this work?",
+ "Offline": "Offline"
 }

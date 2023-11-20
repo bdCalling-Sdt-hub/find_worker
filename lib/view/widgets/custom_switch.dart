@@ -83,7 +83,7 @@ class _CustomSwicthState extends State<CustomSwicth> {
                           ),
                           child:  Padding(
                             padding:  EdgeInsets.only(right:10,),
-                            child: Text(widget.inActive),
+                            child: Text(widget.inActive,maxLines: 1,overflow:TextOverflow.ellipsis,),
                           ),
                         ),),
                       //moon
@@ -124,7 +124,7 @@ class _CustomSwicthState extends State<CustomSwicth> {
                             ),
                             child:  Padding(
                               padding: EdgeInsets.only(left:5,),
-                              child: Text(widget.active),
+                              child: Text(widget.active,maxLines: 1,overflow:TextOverflow.ellipsis,),
                             ),
                           )
                       ),

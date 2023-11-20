@@ -157,6 +157,7 @@ class AppStrings{
   static const String hireNow="hireNow";
   static const String startWork="startWork";
   static const String doYouWantToCancelThisWork="doYouWantToCancelThisWork";
+  static const String offline="Offline";
 
 
 

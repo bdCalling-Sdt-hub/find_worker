@@ -160,6 +160,7 @@
   "noResponse": "لا يوجد رد",
   "hireNow": "استأجر الآن",
   "startWork":"ابدأ العمل",
-  "doYouWantToCancelThisWork": "هل تريد إلغاء هذا العمل؟"
+  "doYouWantToCancelThisWork": "هل تريد إلغاء هذا العمل؟",
+  "Offline": "غير متصل على الانترنت"
 
 }
