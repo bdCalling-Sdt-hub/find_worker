@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:find_worker/utils/app_strings.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -29,7 +30,7 @@ class NetworkController extends GetxController {
 
     if (connectivityResult == ConnectivityResult.none) {
       Get.rawSnackbar(
-          messageText: Text('PLEASE CONNECT TO THE INTERNET',
+          messageText: Text(AppStrings.pleaseConnectToTheInternet.tr,
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 14.sp,
@@ -43,7 +44,7 @@ class NetworkController extends GetxController {
             size: 35.sp,
           ),
           margin: EdgeInsets.zero,
-          snackPosition: SnackPosition.TOP,
+          snackPosition: SnackPosition.BOTTOM,
           snackStyle: SnackStyle.GROUNDED);
     } else {
       if (Get.isSnackbarOpen) {

@@ -162,6 +162,7 @@
   "hireNow": "استأجر الآن",
   "startWork":"ابدأ العمل",
   "doYouWantToCancelThisWork": "هل تريد إلغاء هذا العمل؟",
-  "Offline": "غير متصل على الانترنت"
+  "Offline": "غير متصل على الانترنت",
+  "PleaseConnectToTheInternet": "الرجاء الاتصال بالإنترنت"
 
 }

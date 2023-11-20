@@ -168,5 +168,6 @@
  "hireNow": "Hire Now",
  "startWork":"Start Work",
  "doYouWantToCancelThisWork": "Do you want to cancel this work?",
- "Offline": "Offline"
+ "Offline": "Offline",
+ "PleaseConnectToTheInternet": "Please Connect to the Internet"
 }

@@ -159,6 +159,7 @@ class AppStrings{
   static const String startWork="startWork";
   static const String doYouWantToCancelThisWork="doYouWantToCancelThisWork";
   static const String offline="Offline";
+  static const String pleaseConnectToTheInternet="PleaseConnectToTheInternet";
 
 
 
