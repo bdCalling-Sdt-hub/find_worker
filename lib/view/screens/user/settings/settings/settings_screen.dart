@@ -14,6 +14,7 @@ import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 
 import '../../../../../helper/Language/language_component.dart';
 import '../../../../../helper/Language/language_controller.dart';
+import '../../../../../helper/SystemChromeHelper/system_chrome.dart';
 import '../../../../widgets/custom_switch.dart';
 
 
@@ -28,6 +29,20 @@ class SettingScreen extends StatefulWidget {
 class _SettingScreenState extends State<SettingScreen> {
   // ...
   final _controller = ValueNotifier<bool>(false);
+
+  @override
+  void initState() {
+    SystemChromeHelper.enableSystemChrome();
+    super.initState();
+  }
+
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    SystemChromeHelper.blueColorSystemChrome();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

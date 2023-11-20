@@ -19,6 +19,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
+import '../../../../../helper/SystemChromeHelper/system_chrome.dart';
 import '../../../../widgets/custom_button.dart';
 import '../../user_auth/user_sign_up/more_sign_up_screen.dart';
 
@@ -35,8 +36,16 @@ class _UserEditPersonalInformationState
   final _profileController = Get.put(UserProfileController());
   @override
   void initState() {
+    SystemChromeHelper.enableSystemChrome();
     _profileController.setData();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    SystemChromeHelper.blueColorSystemChrome();
+    super.dispose();
   }
 
   bool isClicked = false;

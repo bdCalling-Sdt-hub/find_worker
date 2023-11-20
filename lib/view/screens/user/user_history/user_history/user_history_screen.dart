@@ -15,6 +15,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../../helper/SystemChromeHelper/system_chrome.dart';
+
 class UserHistoryScreen extends StatefulWidget {
   const UserHistoryScreen({super.key});
 
@@ -26,9 +28,19 @@ class _UserHistoryScreenState extends State<UserHistoryScreen> {
   final _controller = Get.put(UserHistoryController());
   @override
   void initState() {
+    SystemChromeHelper.enableSystemChrome();
     _controller.getHistoryList(true);
     super.initState();
   }
+
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    SystemChromeHelper.blueColorSystemChrome();
+    super.dispose();
+  }
+
 
   @override
   Widget build(BuildContext context) {

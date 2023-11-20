@@ -171,8 +171,7 @@ class NotificationHelper {
       playSound: true,
       importance: Importance.max,
       priority: Priority.high,
-    //  icon: "notification_icon",
-      sound: RawResourceAndroidNotificationSound('notification_sound'),
+
     );
 
     // var iOSPlatformChannelSpecifics = const DarwinNotificationDetails(
@@ -209,9 +208,8 @@ class NotificationHelper {
       importance: Importance.max,
       styleInformation: bigTextStyleInformation,
       priority: Priority.max,
-      //icon: "notification_icon",
       playSound: true,
-      sound: const RawResourceAndroidNotificationSound('notification_sound'),
+
     );
     NotificationDetails platformChannelSpecifics =
     NotificationDetails(android: androidPlatformChannelSpecifics);
@@ -249,8 +247,7 @@ class NotificationHelper {
       playSound: true,
       styleInformation: bigPictureStyleInformation,
       importance: Importance.max,
-   //   icon: "notification_icon",
-      sound: const RawResourceAndroidNotificationSound('notification_sound'),
+
     );
     final NotificationDetails platformChannelSpecifics =
     NotificationDetails(android: androidPlatformChannelSpecifics);

@@ -12,6 +12,7 @@ import 'package:find_worker/view/widgets/image/custom_image.dart';
 import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:find_worker/view/widgets/text_field/custom_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -180,7 +181,7 @@ class _UserSignInState extends State<UserSignIn> {
                                 ),
                               ),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   GestureDetector(
                                     onTap: (){
@@ -198,6 +199,7 @@ class _UserSignInState extends State<UserSignIn> {
                                       ),
                                     ),
                                   ),
+                                  SizedBox(width:24.w ,),
                                   GestureDetector(
                                     onTap: (){
                                       _authController.appleInWithGoogle(userType); 

@@ -12,6 +12,7 @@ import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../helper/SystemChromeHelper/system_chrome.dart';
 import '../sp_services/sp_services_screen.dart';
 
 class SpProfileScreen extends StatefulWidget {
@@ -24,6 +25,18 @@ class SpProfileScreen extends StatefulWidget {
 class _SpProfileScreenState extends State<SpProfileScreen> {
 
   final _profileController = Get.put(SpProfileController());
+  @override
+  void initState() {
+      SystemChromeHelper.blueColorSystemChrome();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    SystemChromeHelper.enableSystemChrome();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {

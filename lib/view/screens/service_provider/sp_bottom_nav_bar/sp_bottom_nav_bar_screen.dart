@@ -1,3 +1,4 @@
+import 'package:find_worker/helper/SystemChromeHelper/system_chrome.dart';
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_icons.dart';
 import 'package:find_worker/utils/app_strings.dart';
@@ -26,7 +27,11 @@ class SpBottomNavBarScreen extends StatefulWidget {
 }
 
 class _SpBottomNavBarScreenState extends State<SpBottomNavBarScreen> {
-
+  @override
+  void initState() {
+    SystemChromeHelper.enableSystemChrome();
+    super.initState();
+  }
 
   static const List<Widget> screens = <Widget>[
     SpHomeScreen(),

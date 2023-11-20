@@ -37,12 +37,12 @@ class _SplashScreenState extends State<SplashScreen> {
     });
     super.initState();
   }
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    SystemChromeHelper.enableSystemChrome();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   // TODO: implement dispose
+  //   SystemChromeHelper.enableSystemChrome();
+  //   super.dispose();
+  // }
   @override
   Widget build(BuildContext context) {
     return  SafeArea(

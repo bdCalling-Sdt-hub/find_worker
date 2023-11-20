@@ -16,6 +16,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 
+import '../../../../helper/SystemChromeHelper/system_chrome.dart';
 import '../category/Controller/category_controller.dart';
 import '../home/Controller/home_controller.dart';
 import '../user_profile/Controller/profile_controller.dart';
@@ -33,6 +34,12 @@ class UserBottomNavBarScreen extends StatefulWidget {
 
 class _UserBottomNavBarScreenState extends State<UserBottomNavBarScreen> {
 
+
+  @override
+  void initState() {
+    SystemChromeHelper.enableSystemChrome();
+    super.initState();
+  }
 
   static  List<Widget> screens = <Widget>[
     HomeScreen(),

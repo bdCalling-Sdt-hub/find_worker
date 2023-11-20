@@ -19,6 +19,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl_phone_field/intl_phone_field.dart';
 
+import '../../../../../helper/SystemChromeHelper/system_chrome.dart';
 import '../../../../widgets/custom_button.dart';
 import '../../../user/user_auth/user_sign_up/more_sign_up_screen.dart';
 import '../../sp_profile/Controller/profile_controller.dart';
@@ -38,10 +39,17 @@ class _SpEditPersonalInformationState
   @override
   void initState() {
     _profileController.setData();
+    SystemChromeHelper.enableSystemChrome();
     super.initState();
   }
 
   bool isClicked = false;
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    SystemChromeHelper.blueColorSystemChrome();
+    super.dispose();
+  }
 
   final _formKey = GlobalKey<FormState>();
   @override

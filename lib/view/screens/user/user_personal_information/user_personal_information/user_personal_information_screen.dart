@@ -32,6 +32,7 @@ class _UserPersonalInformationScreenState
         child: Scaffold(
           appBar: CustomAppBar(
             appBarBgColor: AppColors.blue_100,
+
             appBarContent: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

@@ -12,6 +12,8 @@ import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../helper/SystemChromeHelper/system_chrome.dart';
+
 class SpServicesScreen extends StatefulWidget {
   const SpServicesScreen({super.key});
 
@@ -23,6 +25,19 @@ class _SpServicesScreenState extends State<SpServicesScreen> {
   final _serviceController= Get.put(ServiceController());
 
 
+  @override
+  void initState() {
+    SystemChromeHelper.enableSystemChrome();
+    super.initState();
+  }
+
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    SystemChromeHelper.blueColorSystemChrome();
+    super.dispose();
+  }
 
 
 
