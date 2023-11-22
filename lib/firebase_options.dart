@@ -50,19 +50,19 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyDHNX44g3k-yBtFguu5ruE5lLTg9Rd_1Ts',
-    appId: '1:292374640975:android:023d0697447bb0a31a2d3a',
-    messagingSenderId: '292374640975',
-    projectId: 'find-worker-cdeee',
-    storageBucket: 'find-worker-cdeee.appspot.com',
+    apiKey: 'AIzaSyD3wVoOJlBdh3ahLbRnqgbkkRZCuOhEUMM',
+    appId: '1:205085897377:android:11043247fb53c7073876e0',
+    messagingSenderId: '205085897377',
+    projectId: 'find-worker-80228',
+    storageBucket: 'find-worker-80228.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAYeK4P6BUsjuE2NoGIJg2kuqBqIMTa67M',
-    appId: '1:292374640975:ios:66bd1aab7d7fac3f1a2d3a',
-    messagingSenderId: '292374640975',
-    projectId: 'find-worker-cdeee',
-    storageBucket: 'find-worker-cdeee.appspot.com',
+    apiKey: 'AIzaSyDBi-UiuqnHjkUE2gNcYW2i3T1Vh41Zz5k',
+    appId: '1:205085897377:ios:650db635257e07403876e0',
+    messagingSenderId: '205085897377',
+    projectId: 'find-worker-80228',
+    storageBucket: 'find-worker-80228.appspot.com',
     iosBundleId: 'com.example.findWorker',
   );
 }

@@ -62,9 +62,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
  return   ScreenUtilInit(
       designSize: const Size(390, 844),
-   //   minTextAdapt: true,
-     // splitScreenMode: true,
-      // Use builder only if you need to use library outside ScreenUtilInit context
+   // minTextAdapt: true,
+   // splitScreenMode: true,
+   // Use builder only if you need to use library outside ScreenUtilInit context
       builder: (_ , child) {
         return  GetBuilder<LocalizationController>(
           builder: (localizationController) {
@@ -92,8 +92,6 @@ class MyApp extends StatelessWidget {
       ),
       transitionDuration: const Duration(milliseconds: 200),
       getPages: AppRoute.routes,
-
-
     );
           }
         );
