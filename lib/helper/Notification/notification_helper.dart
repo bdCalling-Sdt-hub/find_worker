@@ -4,6 +4,9 @@ import 'dart:io';
 
 
 import 'package:app_settings/app_settings.dart';
+import 'package:find_worker/utils/app_constents.dart';
+import 'package:find_worker/view/screens/service_provider/sp_notification/sp_notification_screen.dart';
+import 'package:find_worker/view/screens/user/user_notification/user_notification_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
@@ -43,7 +46,7 @@ class NotificationHelper {
 
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       // Handle the notification when the app is terminated and the user taps on it.
-      // _handleNotificationRedirection(message);
+       //_handleNotificationRedirection(message);
 
       Map<String, dynamic> data = message.data;
       handleNotificationRedirection(data);
@@ -62,7 +65,7 @@ class NotificationHelper {
   static Future<void> initLocalNotification(
       FlutterLocalNotificationsPlugin fln) async {
     var initializationSettingsAndroid =
-    const AndroidInitializationSettings('notification_icon');
+    const AndroidInitializationSettings("@mipmap/ic_launcher");
     var initializationSettingsIOS = const DarwinInitializationSettings();
     var initializationSettings = InitializationSettings(
         android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
@@ -168,8 +171,7 @@ class NotificationHelper {
       playSound: true,
       importance: Importance.max,
       priority: Priority.high,
-      icon: "notification_icon",
-      sound: RawResourceAndroidNotificationSound('notification_sound'),
+
     );
 
     // var iOSPlatformChannelSpecifics = const DarwinNotificationDetails(
@@ -206,9 +208,8 @@ class NotificationHelper {
       importance: Importance.max,
       styleInformation: bigTextStyleInformation,
       priority: Priority.max,
-      icon: "notification_icon",
       playSound: true,
-      sound: const RawResourceAndroidNotificationSound('notification_sound'),
+
     );
     NotificationDetails platformChannelSpecifics =
     NotificationDetails(android: androidPlatformChannelSpecifics);
@@ -246,8 +247,7 @@ class NotificationHelper {
       playSound: true,
       styleInformation: bigPictureStyleInformation,
       importance: Importance.max,
-      icon: "notification_icon",
-      sound: const RawResourceAndroidNotificationSound('notification_sound'),
+
     );
     final NotificationDetails platformChannelSpecifics =
     NotificationDetails(android: androidPlatformChannelSpecifics);
@@ -271,6 +271,13 @@ class NotificationHelper {
   static void handleNotificationRedirection(Map<String, dynamic> data) {
     // Use the data in the message.data to determine which page to redirect to.
     // For example, suppose you send a 'page' key in your notificati  on data:
+
+    if(data['userRole']==AppConstants.userType){
+      Get.to(UserNotificationScreen());
+    }else if(data['userRole']==AppConstants.serviceProviderType){
+      Get.to(SpNotificationScreen());
+    }
+
 
 
   }

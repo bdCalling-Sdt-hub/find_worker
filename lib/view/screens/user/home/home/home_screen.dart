@@ -27,8 +27,10 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.white,
       appBar: AppBar(
           elevation: 0,
+          centerTitle: false,
           backgroundColor: Colors.transparent,
           title: CustomText(
             color: AppColors.blue_100,
@@ -98,6 +100,14 @@ class HomeScreen extends StatelessWidget {
                         style: TextStyle(
                             fontSize: 14.sp, color: const Color(0xFF333333)),
                         children: [
+                          TextSpan(
+                            text:"\n${AppStrings.goto.tr} ",
+                            recognizer: TapGestureRecognizer()..onTap = () {
+                              Get.to(CategoryScreen(isBack: true,));
+                            },
+                            style: TextStyle(
+                                fontSize: 14.sp, color: const Color(0xFF333333)),
+                          ),
                           TextSpan(
                             text:AppStrings.categories.tr,
                             recognizer: TapGestureRecognizer()..onTap = () {

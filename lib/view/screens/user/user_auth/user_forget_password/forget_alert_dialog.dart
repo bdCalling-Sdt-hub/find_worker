@@ -35,9 +35,15 @@ class ForgetAlertDialog extends StatelessWidget {
               width: 100,
               height: 36,
               onTap: (){
-                if(!inApp)
-                Get.back();
-                Get.back();
+                if(inApp){
+                  Get.back();
+                  Get.back();
+                }else{
+                  Get.back();
+                  Get.back();
+                }
+
+
               },text:"Ok",)
          
            ],

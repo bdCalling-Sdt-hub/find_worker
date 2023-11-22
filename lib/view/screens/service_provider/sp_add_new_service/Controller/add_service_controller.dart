@@ -9,6 +9,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:uuid/uuid.dart';
@@ -46,8 +47,6 @@ class AddNewServiceController extends GetxController{
     }
   }
 
-
-
   getCategory()async{
     loading(true);
     try {
@@ -67,7 +66,7 @@ class AddNewServiceController extends GetxController{
   addService()async{
     if(!addServiceLoad.value){
       if(imagePath.isEmpty){
-        Get.snackbar("Error", "Please Select Image",colorText:Colors.red);
+        Fluttertoast.showToast(msg:"Please Select Image",toastLength:Toast.LENGTH_LONG,gravity:ToastGravity.CENTER);
       }else{
         if(formKey.currentState!.validate()){
           addServiceLoad(true);
@@ -87,7 +86,8 @@ class AddNewServiceController extends GetxController{
                   description:descriptionTextCtrl.text
               );
               await firebaseStorage.collection(AppConstants.services).doc(id).set(body.toJson());
-              Get.snackbar("Success", "Service Added Successful");
+
+              Fluttertoast.showToast(msg:"Service Added Successful",toastLength:Toast.LENGTH_LONG,gravity:ToastGravity.CENTER);
               await serviceController.getService();
               serviceTextCtrl.clear();
               selectServiceId.value="";
@@ -95,8 +95,10 @@ class AddNewServiceController extends GetxController{
               descriptionTextCtrl.clear();
               imagePath.value="";
               selectedItem.value=(-1);
+              Get.back();
             }else{
-              Get.snackbar("Error","This Service Already Added");
+              Fluttertoast.showToast(msg:"This Service Already Added",toastLength:Toast.LENGTH_LONG,gravity:ToastGravity.CENTER);
+           //   Get.snackbar("Error","This Service Already Added");
             }
 
           } on Exception catch (e) {

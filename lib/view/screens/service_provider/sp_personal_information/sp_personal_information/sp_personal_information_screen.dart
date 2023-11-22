@@ -37,11 +37,11 @@ class _SpPersonalInformationScreenState
             appBarContent: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                GestureDetector(
-                  onTap: () {
+                IconButton(
+                  onPressed: () {
                     Get.back();
                   },
-                  child: const Icon(
+                  icon: const Icon(
                     Icons.arrow_back_ios_new_outlined,
                     size: 16,
                     color: AppColors.white,
@@ -75,7 +75,10 @@ class _SpPersonalInformationScreenState
                               children: [
                                 Container(
                                   height: 130,
+                                  width: 130,
+
                                   decoration: BoxDecoration(
+                                      color: Colors.grey.withOpacity(0.6),
                                       shape: BoxShape.circle,
                                       image: _profileController
                                           .userData.value.imageSrc !=
@@ -90,12 +93,12 @@ class _SpPersonalInformationScreenState
                                           : const DecorationImage(
                                         fit: BoxFit.fill,
                                         image: AssetImage(
-                                            'assets/images/profile_smith.png'),
+                                            'assets/images/person.png'),
                                       )
                                           : const DecorationImage(
                                         fit: BoxFit.fill,
                                         image: AssetImage(
-                                            'assets/images/profile_smith.png'),
+                                            'assets/images/person.png'),
                                       )),
                                 ),
                                 CustomText(

@@ -49,11 +49,12 @@ getCategory()async{
 
   RxList<UserByServiceModel> servicesList= <UserByServiceModel> [].obs;
   var serviceLoading=true.obs;
+  var isSearch=(-1).obs;
 
   Future<List<UserByServiceModel>?> getSortedServicesByCategory(String catId) async {
     final servicesCollection = FirebaseFirestore.instance.collection(AppConstants.services).where("category_id",isEqualTo:catId);
     final usersCollection = FirebaseFirestore.instance.collection(AppConstants.users);
-
+  isSearch(1);
     try {
       serviceLoading(true);
       final servicesSnapshot = await servicesCollection.get();

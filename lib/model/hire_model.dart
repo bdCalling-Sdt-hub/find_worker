@@ -20,6 +20,8 @@ class HireModel {
   String? contact;
   String? address;
   DateTime? createAt;
+  String? userFcmToken;
+  String? userRole;
 
   HireModel({
     this.id,
@@ -33,6 +35,8 @@ class HireModel {
     this.contact,
     this.address,
     this.createAt,
+    this.userFcmToken,
+    this.userRole,
   });
 
   factory HireModel.fromJson(Map<String, dynamic> json) => HireModel(
@@ -47,6 +51,8 @@ class HireModel {
     contact: json["contact"],
     address: json["address"],
     createAt: json["create_at"].toDate(),
+    userFcmToken: json['fcmToken'],
+      userRole: json['userType']
   );
 
   Map<String, dynamic> toJson() => {
@@ -61,5 +67,7 @@ class HireModel {
     "contact": contact,
     "address": address,
     "create_at": createAt,
+    "fcmToken":userFcmToken,
+    "userType":userRole,
   };
 }

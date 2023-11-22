@@ -2,12 +2,14 @@ import 'dart:async';
 
 import 'package:find_worker/core/app_routes.dart';
 import 'package:find_worker/core/share_pre.dart';
+import 'package:find_worker/helper/SystemChromeHelper/system_chrome.dart';
 import 'package:find_worker/utils/app_constents.dart';
 import 'package:find_worker/utils/app_strings.dart';
 import 'package:find_worker/view/screens/service_provider/sp_bottom_nav_bar/sp_bottom_nav_bar_screen.dart';
 import 'package:find_worker/view/screens/user/user_bottom_nav_bar/user_bottom_nav_bar_screen.dart';
 import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -19,6 +21,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
+    SystemChromeHelper.disableSystemChrome();
     Timer(const Duration(seconds: 2), ()async{
       var logged= await PrefsHelper.getString(AppConstants.logged);
       if(logged==AppConstants.userType){
@@ -34,6 +37,12 @@ class _SplashScreenState extends State<SplashScreen> {
     });
     super.initState();
   }
+  // @override
+  // void dispose() {
+  //   // TODO: implement dispose
+  //   SystemChromeHelper.enableSystemChrome();
+  //   super.dispose();
+  // }
   @override
   Widget build(BuildContext context) {
     return  SafeArea(

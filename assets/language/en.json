@@ -154,12 +154,20 @@
   "Filter": "Filter",
   "Category": "Category",
   "Apply": "Apply",
-  "Didn’t see what you’re looking for?\nGo to": "Didn’t see what you’re looking for?\nGo to ",
+  "didNotSeeWhat": "Didn’t see what you’re looking for?",
+  "Go to": "Go to",
   "See All": "See All",
   "Home": "Home",
   "Services": "Services",
   "Enter service description": "Enter service description",
  "No Job History yet.": "No Job History yet.",
  "purchaser": "Purchaser",
- "Job History": "Job History"
+ "Job History": "Job History",
+ "waitingForProvidersResponse": "Waiting for Provider’s response",
+ "noResponse": "No Response",
+ "hireNow": "Hire Now",
+ "startWork":"Start Work",
+ "doYouWantToCancelThisWork": "Do you want to cancel this work?",
+ "Offline": "Offline",
+ "PleaseConnectToTheInternet": "Please Connect to the Internet"
 }

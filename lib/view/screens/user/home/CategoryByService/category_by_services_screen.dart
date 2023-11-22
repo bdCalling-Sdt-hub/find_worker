@@ -5,6 +5,7 @@ import 'package:find_worker/utils/app_icons.dart';
 import 'package:find_worker/utils/app_images.dart';
 import 'package:find_worker/utils/app_strings.dart';
 import 'package:find_worker/view/widgets/app_bar/custom_app_bar.dart';
+import 'package:find_worker/view/widgets/custom_back.dart';
 import 'package:find_worker/view/widgets/custom_loader.dart';
 import 'package:find_worker/view/widgets/image/custom_image.dart';
 import 'package:find_worker/view/widgets/text/custom_text.dart';
@@ -36,29 +37,10 @@ class _CategoryByServiceScreenState extends State<CategoryByServiceScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:  CustomAppBar(
-          appBarContent: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              GestureDetector(
-                onTap:(){
-                  Get.back();
-                },
-                child:  const Icon(
-                  Icons.arrow_back_ios_new_outlined,
-                  size: 18,
-                  color: AppColors.blue_100,
-                ),
-              ),
-               CustomText(
-                text:parametersData["cat_name"]!,
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
-                color: AppColors.blue_100,
-              ),
-              const SizedBox()
-            ],
-          )),
+      appBar: AppBar(
+        title:Text(parametersData["cat_name"]!),
+        leading: CustomBack(),
+      ),
       body: LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
         return  Obx(()=>_controller.loading.value?const CustomLoader()
           : _controller.servicesList.isEmpty?const Center(child: Text("No data available"),) :SingleChildScrollView(

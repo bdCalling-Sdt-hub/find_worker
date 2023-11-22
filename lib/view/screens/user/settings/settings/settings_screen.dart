@@ -14,6 +14,9 @@ import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 
 import '../../../../../helper/Language/language_component.dart';
 import '../../../../../helper/Language/language_controller.dart';
+import '../../../../../helper/SystemChromeHelper/system_chrome.dart';
+import '../../../../widgets/custom_back.dart';
+import '../../../../widgets/custom_switch.dart';
 
 
 
@@ -29,32 +32,50 @@ class _SettingScreenState extends State<SettingScreen> {
   final _controller = ValueNotifier<bool>(false);
 
   @override
+  void initState() {
+    SystemChromeHelper.enableSystemChrome();
+    super.initState();
+  }
+
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    SystemChromeHelper.blueColorSystemChrome();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,
-      appBar:CustomAppBar(
-          appBarContent: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              GestureDetector(
-                onTap:(){
-                  Get.back();
-                },
-                child:  const Icon(
-                  Icons.arrow_back_ios_new_outlined,
-                  size: 18,
-                  color: AppColors.blue_100,
-                ),
-              ),
-                CustomText(
-                text: AppStrings.settings.tr,
-                fontSize: 18,
-                fontWeight: FontWeight.w500,
-                color: AppColors.blue_100,
-              ),
-              const SizedBox()
-            ],
-          )),
+        appBar: AppBar(
+          title: Text(AppStrings.settings.tr),
+          leading: CustomBack(),
+        ),
+      // appBar:CustomAppBar(
+      //     appBarContent: Row(
+      //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //       children: [
+      //         GestureDetector(
+      //           onTap:(){
+      //             Get.back();
+      //           },
+      //           child:  const Icon(
+      //             Icons.arrow_back_ios_new_outlined,
+      //             size: 18,
+      //             color: AppColors.blue_100,
+      //           ),
+      //         ),
+      //           CustomText(
+      //           text: AppStrings.settings.tr,
+      //           fontSize: 18,
+      //           fontWeight: FontWeight.w500,
+      //           color: AppColors.blue_100,
+      //         ),
+      //         const SizedBox()
+      //       ],
+      //     )),
       body:LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
         return GetBuilder<LocalizationController>(
           builder: (localizationController) {
@@ -71,51 +92,69 @@ class _SettingScreenState extends State<SettingScreen> {
                         fontWeight: FontWeight.w400,
                         color: AppColors.black_100,
                       ),
-                      SizedBox(
-                        width: 130,
-                        child:
-                            LiteRollingSwitch(
-                              //initial value
-                              value:false,
-                              textOn: 'English',
-                              textOff: 'Arabic',
-                              colorOn:AppColors.blue_100,
-                              colorOff:AppColors.black_20 ,
+                      CustomSwicth(onChanged: (bool value) {
+                         if(!value){
+                        localizationController.setLanguage(Locale(
+                            LanguageComponent.languages[0].languageCode,
+                            LanguageComponent
+                                .languages[0].countryCode));
+                        localizationController.setSelectIndex(0);
 
-                              iconOn: Icons.language,
-                              iconOff: Icons.language,
-                              textSize: 12.0,
-                              onChanged: (bool state) {
-                                if(state){
-                                  localizationController.setLanguage(Locale(
-                                      LanguageComponent.languages[0].languageCode,
-                                      LanguageComponent
-                                          .languages[0].countryCode));
-                                  localizationController.setSelectIndex(0);
+                      }else{
+                        localizationController.setLanguage(Locale(
+                            LanguageComponent.languages[1].languageCode,
+                            LanguageComponent
+                                .languages[1].countryCode));
+                        localizationController.setSelectIndex(1);
+                      }
 
-                                }else{
-                                  localizationController.setLanguage(Locale(
-                                      LanguageComponent.languages[1].languageCode,
-                                      LanguageComponent
-                                          .languages[1].countryCode));
-                                  localizationController.setSelectIndex(1);
-                                }
-
-
-
-
-
-                                print('Current State of SWITCH IS: $state');
-                              }, onTap:(){
-
-                            }, onDoubleTap:(){
-
-                            }, onSwipe:(){
-
-                            },
-
-                        ),
-                      ),
+                      },
+                        value:localizationController.selectIndex==1,active:"English",inActive: "Arabic",),
+                      // SizedBox(
+                      //   width: 130,
+                      //   child:
+                      //       LiteRollingSwitch(
+                      //         //initial value
+                      //         value:false,
+                      //         textOn: 'English',
+                      //         textOff: 'Arabic',
+                      //         colorOn:AppColors.blue_100,
+                      //         colorOff:AppColors.black_20 ,
+                      //
+                      //         iconOn: Icons.language,
+                      //         iconOff: Icons.language,
+                      //         textSize: 12.0,
+                      //         onChanged: (bool state) {
+                      //           if(state){
+                      //             localizationController.setLanguage(Locale(
+                      //                 LanguageComponent.languages[0].languageCode,
+                      //                 LanguageComponent
+                      //                     .languages[0].countryCode));
+                      //             localizationController.setSelectIndex(0);
+                      //
+                      //           }else{
+                      //             localizationController.setLanguage(Locale(
+                      //                 LanguageComponent.languages[1].languageCode,
+                      //                 LanguageComponent
+                      //                     .languages[1].countryCode));
+                      //             localizationController.setSelectIndex(1);
+                      //           }
+                      //
+                      //
+                      //
+                      //
+                      //
+                      //           print('Current State of SWITCH IS: $state');
+                      //         }, onTap:(){
+                      //
+                      //       }, onDoubleTap:(){
+                      //
+                      //       }, onSwipe:(){
+                      //
+                      //       },
+                      //
+                      //   ),
+                      // ),
                       //Customized
                       // AdvancedSwitch(
                       //   controller: _controller,

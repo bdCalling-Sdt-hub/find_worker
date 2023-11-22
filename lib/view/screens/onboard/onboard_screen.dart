@@ -10,6 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../helper/SystemChromeHelper/system_chrome.dart';
+
 class OnboardScreen extends StatefulWidget {
   const OnboardScreen({super.key});
 
@@ -18,10 +20,13 @@ class OnboardScreen extends StatefulWidget {
 }
 
 class _OnboardScreenState extends State<OnboardScreen> {
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
     body: SafeArea(
+      top: false,
       child: Container(
         height: MediaQuery.of(context).size.height,
         width:MediaQuery.of(context).size.width,
@@ -36,7 +41,7 @@ class _OnboardScreenState extends State<OnboardScreen> {
               padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: Column(
                 children: [
-                  SizedBox(height: 24.h,),
+                  SizedBox(height: 50.h,),
                    CustomText(
                     text: AppStrings.welcomeToFindWorker,
                     fontSize: 18.sp,

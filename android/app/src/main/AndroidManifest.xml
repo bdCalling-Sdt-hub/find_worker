@@ -13,9 +13,9 @@
         </intent>
     </queries>
     <application
-        android:label="find_worker"
+        android:label="Find Worker"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -53,11 +53,6 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/notification_icon" />
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_sound"
-            android:resource="@raw/notification_sound" />
+
     </application>
 </manifest>

@@ -12,6 +12,10 @@ import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../helper/SystemChromeHelper/system_chrome.dart';
+import '../../../../utils/app_strings.dart';
+import '../../../widgets/custom_back.dart';
+
 class SpServicesScreen extends StatefulWidget {
   const SpServicesScreen({super.key});
 
@@ -23,6 +27,19 @@ class _SpServicesScreenState extends State<SpServicesScreen> {
   final _serviceController= Get.put(ServiceController());
 
 
+  @override
+  void initState() {
+    SystemChromeHelper.enableSystemChrome();
+    super.initState();
+  }
+
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    SystemChromeHelper.blueColorSystemChrome();
+    super.dispose();
+  }
 
 
 
@@ -33,30 +50,32 @@ class _SpServicesScreenState extends State<SpServicesScreen> {
         bottom: false,
         child: Scaffold(
             backgroundColor: AppColors.white,
-            appBar: CustomAppBar(
-              appBarContent: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Get.back();
-                    },
-                    child: const Icon(
-                      Icons.arrow_back_ios_new_outlined,
-                      size: 16,
-                      color: AppColors.blue_100,
-                    ),
-                  ),
-                  CustomText(
-                    text: 'Services'.tr,
-                    color: AppColors.blue_100,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  const SizedBox()
-                ],
-              ),
-            ),
+          appBar: AppBar(title: Text(AppStrings.service.tr),leading:CustomBack(),),
+
+          // appBar: CustomAppBar(
+            //   appBarContent: Row(
+            //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //     children: [
+            //       GestureDetector(
+            //         onTap: () {
+            //           Get.back();
+            //         },
+            //         child: const Icon(
+            //           Icons.arrow_back_ios_new_outlined,
+            //           size: 16,
+            //           color: AppColors.blue_100,
+            //         ),
+            //       ),
+            //       CustomText(
+            //         text: 'Services'.tr,
+            //         color: AppColors.blue_100,
+            //         fontSize: 18,
+            //         fontWeight: FontWeight.w500,
+            //       ),
+            //       const SizedBox()
+            //     ],
+            //   ),
+            // ),
             body:LayoutBuilder(
                 builder: (BuildContext context, BoxConstraints constraints) {
                   return StreamBuilder<QuerySnapshot>(

@@ -9,7 +9,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class UserByServiceModel {
   final String? id;
   final String? serviceName;
-  final String? serviceId;
+  final String? serviceCatId;
   final String? image;
   final String? location;
   final String? providerUid;
@@ -21,7 +21,7 @@ class UserByServiceModel {
     this.id,
     this.providerName,
     this.serviceName,
-    this.serviceId,
+    this.serviceCatId,
     this.image,
     this.location,
     this.providerUid,
@@ -32,7 +32,7 @@ class UserByServiceModel {
   factory UserByServiceModel.fromJson(Map<String, dynamic> json) => UserByServiceModel(
     id: json["id"],
     serviceName: json["category_name"],
-    serviceId: json["category_id"],
+    serviceCatId: json["category_id"],
     providerName:json["provider_name"],
     image: json["image"],
     location: json["location"],
@@ -44,7 +44,7 @@ class UserByServiceModel {
   Map<String, dynamic> toJson() => {
     "id": id,
     "category_name": serviceName,
-    "category_id": serviceId,
+    "category_id": serviceCatId,
     "image": image,
     "location": location,
     "provider_uid": providerUid,

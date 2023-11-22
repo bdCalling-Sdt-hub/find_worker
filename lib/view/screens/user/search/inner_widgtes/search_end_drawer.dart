@@ -100,7 +100,7 @@ class _SearchEndDrawerState extends State<SearchEndDrawer> {
                       },
                       child: Container(
                         margin: EdgeInsets.all(4.h),
-                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 2),
+                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
                         decoration: ShapeDecoration(
                           color: index == selectIndex ? AppColors.blue_100 : AppColors.white,
                           shape: RoundedRectangleBorder(

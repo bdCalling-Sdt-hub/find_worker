@@ -17,6 +17,7 @@ class SpHomeController extends GetxController{
 @override
   void onInit() {
   getData(true);
+  getTokenAndUpdate();
   super.onInit();
   }
   var loading=false.obs;
@@ -30,7 +31,6 @@ class SpHomeController extends GetxController{
     if(load){
       loading(true);
     }
-    await getTokenAndUpdate();
     await getService();
     await getHistoryList();
     await getUserData();
@@ -38,6 +38,7 @@ class SpHomeController extends GetxController{
       loading(false);
     }
   }
+
 getTokenAndUpdate()async{
   try {
     var token= await FirebaseMessaging.instance.getToken();
@@ -48,8 +49,6 @@ getTokenAndUpdate()async{
   } on Exception catch (e) {
     debugPrint("Oops error $e");
   }
-
-
 }
 
 
@@ -73,6 +72,7 @@ getTokenAndUpdate()async{
   status.value=userData.value.status=="Online";
     userData.refresh();
   }
+
   Future<void> updateStatusData()async{
         try {
           var inActive= status.value?"Offline":"Online";
@@ -96,7 +96,7 @@ getHistoryList() async {
         .collection(AppConstants.users)
         .doc(_auth.currentUser!.uid)
         .collection(AppConstants.jobHistory)
-        .where("status", isEqualTo:"Pending")
+        .where("status", whereIn: [AppConstants.pending, AppConstants.approved,AppConstants.working])
         .get();
     List<HireModel> demoList = [];
 
@@ -124,6 +124,8 @@ getHistoryList() async {
               averageRating: userData['average_rating'].toDouble(),
               name: userData['username'],
               address: userData['address'],
+              userFcmToken: userData['fcmToken'],
+              userRole: userData['role'],
               contact: "${userData['phone_code']} ${userData['phone']}");
           demoList.add(hireModel);
         }
@@ -131,43 +133,12 @@ getHistoryList() async {
     }
     demoList.sort((a, b) => b.createAt!.compareTo(a.createAt!));
     historyList.value = demoList;
+    historyList.refresh();
     debugPrint("===========> historyList  ${historyList.length}");
   } catch (e) {
     debugPrint("Oops, Something Wrong $e");
   }
 }
-
-
-var completeLoading=false.obs;
-completeService(HireModel hireModel,)async{
-  completeLoading(true);
-  try {
-    await firebaseFirestore
-        .collection(AppConstants.users)
-        .doc(_auth.currentUser!.uid)
-        .collection(AppConstants.jobHistory).doc(hireModel.id).update({"status":"Complete"});
-    await firebaseFirestore
-        .collection(AppConstants.users)
-        .doc(hireModel.uid)
-        .collection(AppConstants.hireHistory).doc(hireModel.id).update({"status":"Complete"});
-    showDialog(
-        context: Get.context!,
-        barrierDismissible: false,
-        builder: (BuildContext context){
-          return  SpJobDetailsAlert();
-        }
-    );
-
-  } on Exception catch (e) {
-    completeLoading(false);
-    Fluttertoast.showToast(msg:"Oops,something wrong");
-  }finally{
-    completeLoading(false);
-  }
-
-
-}
-
 
 
 

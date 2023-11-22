@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../Check_internet/check_internet.dart';
 import 'language_component.dart';
 import 'language_controller.dart';
 import 'language_model.dart';
@@ -17,6 +18,7 @@ Future<Map<String,Map<String ,String>>> init()async{
 
   Get.lazyPut(() => sharedPreferences);
   Get.lazyPut(() => LocalizationController(sharedPreferences: Get.find()));
+  Get.put<NetworkController>(NetworkController(), permanent: true);
 
   Map<String, Map<String,String>> languages=Map();
   for(LanguageModel languageModel in LanguageComponent.languages){
