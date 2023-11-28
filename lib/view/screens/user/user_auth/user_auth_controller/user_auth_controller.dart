@@ -9,6 +9,7 @@ import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_constents.dart';
 import 'package:find_worker/view/screens/service_provider/sp_bottom_nav_bar/sp_bottom_nav_bar_screen.dart';
 import 'package:find_worker/view/screens/service_provider/sp_home/Controller/home_controller.dart';
+import 'package:find_worker/view/screens/service_provider/sp_profile/Controller/profile_controller.dart';
 import 'package:find_worker/view/screens/user/home/Controller/home_controller.dart';
 import 'package:find_worker/view/screens/user/user_auth/user_sign_in/user_sign_in_screen.dart';
 import 'package:find_worker/view/screens/user/user_auth/user_sign_up/more_sign_up_screen.dart';
@@ -434,7 +435,10 @@ var loading=false.obs;
       isSignOutLoad(true);
       await auth.signOut().then((value) async {
         localizationController.setLanguage(Locale('en',"US"));
-        Get.offAll(const OnboardScreen());
+        Get.back();
+        Get.offAll(()=>const OnboardScreen());
+        Get.find<SpHomeController>().onDelete();
+        Get.find<SpProfileController>().onDelete();
 
         await PrefsHelper.setString(AppConstants.logged, "");
         debugPrint("=========> Successful sign out");

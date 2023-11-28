@@ -70,7 +70,7 @@ dependencies:
   flutter_local_notifications:
   app_settings:
   flutter_spinkit:
-  connectivity_plus:
+  connectivity_plus: 4.0.2
 
 
 

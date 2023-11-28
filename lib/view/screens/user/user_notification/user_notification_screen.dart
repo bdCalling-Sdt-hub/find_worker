@@ -35,7 +35,7 @@ class _UserNotificationScreenState extends State<UserNotificationScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(AppStrings.notification.tr),
-        leading:  CustomBack(iconColor:AppColors.white,),
+        leading:  CustomBack(iconColor:AppColors.blue_100,),
       ),
 
       body: LayoutBuilder(

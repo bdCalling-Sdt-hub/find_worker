@@ -15,7 +15,7 @@ import '../../../../../utils/app_constents.dart';
 
 class SpProfileController extends GetxController {
 
-  SpHomeController spHomeController=Get.put(SpHomeController());
+  SpHomeController spHomeController=Get.find<SpHomeController>();
 
   @override
   void onInit() {
