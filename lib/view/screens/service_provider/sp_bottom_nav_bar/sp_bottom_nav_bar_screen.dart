@@ -41,9 +41,7 @@ class _SpBottomNavBarScreenState extends State<SpBottomNavBarScreen> {
 
   @override
   Widget build(BuildContext context) {
-     final _homeController = Get.put(SpHomeController());
-     final _profileController = Get.put(SpProfileController());
-     final _controller = Get.put(SpHistoryController());
+
 
      List<BottomNavigationBarItem> bottomBarItem=[
        BottomNavigationBarItem(icon:Padding(

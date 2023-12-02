@@ -3,13 +3,11 @@
 <plist version="1.0">
 <dict>
      <key>NSPhotoLibraryUsageDescription</key>
-     <string>Provide a reason for accessing the photo library</string>
+     <string>A profile picture helps others recognize and identify you on App. It adds a visual element to your online presence and contributes to your digital identity.</string>
      <key>NSCameraUsageDescription</key>
-     <string>Provide a reason for accessing the camera</string>
-
+     <string>A profile picture helps others recognize and identify you on App. It adds a visual element to your online presence and contributes to your digital identity.</string>
     <key>LSApplicationQueriesSchemes</key>
     <array>
-      <string>sms</string>
       <string>tel</string>
     </array>
 	<key>CFBundleDevelopmentRegion</key>

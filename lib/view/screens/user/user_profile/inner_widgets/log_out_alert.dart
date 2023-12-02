@@ -1,5 +1,6 @@
 import 'package:find_worker/core/app_routes.dart';
 import 'package:find_worker/utils/app_colors.dart';
+import 'package:find_worker/utils/app_constents.dart';
 import 'package:find_worker/utils/app_strings.dart';
 import 'package:find_worker/view/screens/user/user_auth/user_auth_controller/user_auth_controller.dart';
 import 'package:find_worker/view/widgets/text/custom_text.dart';
@@ -39,7 +40,7 @@ class _LogOutAlertState extends State<LogOutAlert> {
               Expanded(
                   child:InkWell(
                     onTap: (){
-                     _authController.signOut();
+                     _authController.signOut(AppConstants.userType);
                     },
                     child: Container(
                         decoration: BoxDecoration(

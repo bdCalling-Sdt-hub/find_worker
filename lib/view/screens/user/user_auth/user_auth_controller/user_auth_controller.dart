@@ -24,6 +24,8 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 import '../../../onboard/onboard_screen.dart';
+import '../../../service_provider/Binding/provider_bottombar_binding.dart';
+import '../../Binding/user_bottom_binding.dart';
 
 class AuthenticationController extends GetxController {
   final _dataController = Get.put(DataController());
@@ -152,9 +154,9 @@ class AuthenticationController extends GetxController {
         passwordController.clear();
         confirmPasswordController.clear();
         if (userType == AppConstants.userType) {
-          Get.offAll(UserBottomNavBarScreen(currentIndex: 0));
+          Get.offAll(UserBottomNavBarScreen(currentIndex: 0),binding:UserBottomNavBinding());
         } else {
-          Get.offAll(SpBottomNavBarScreen(currentIndex: 0));
+          Get.offAll(SpBottomNavBarScreen(currentIndex: 0,),binding:ProviderBottomNavBinding());
         }
       });
     } on Exception catch (e) {
@@ -213,9 +215,9 @@ var loading=false.obs;
         passwordController.clear();
         confirmPasswordController.clear();
         if (type == AppConstants.userType) {
-          Get.offAll(UserBottomNavBarScreen(currentIndex: 0));
+          Get.offAll(UserBottomNavBarScreen(currentIndex: 0),binding:UserBottomNavBinding());
         } else {
-          Get.offAll(SpBottomNavBarScreen(currentIndex: 0));
+          Get.offAll(SpBottomNavBarScreen(currentIndex: 0),binding:ProviderBottomNavBinding());
         }
       });
     } on Exception catch (e) {
@@ -255,7 +257,7 @@ var loading=false.obs;
     if (userData.role == userType) {
       await PrefsHelper.setString(AppConstants.logged, userData.role);
       if (userData.role == AppConstants.userType) {
-        Get.offAll(UserBottomNavBarScreen(currentIndex: 0));
+        Get.offAll(UserBottomNavBarScreen(currentIndex: 0),binding:UserBottomNavBinding());
         _dataController.setData(
             userNameD: userData.userName!,
             userRoleD: userData.role!,
@@ -265,7 +267,7 @@ var loading=false.obs;
         usernameController.clear();
         passwordController.clear();
       } else {
-        Get.offAll(SpBottomNavBarScreen(currentIndex: 0));
+        Get.offAll(SpBottomNavBarScreen(currentIndex: 0),binding:ProviderBottomNavBinding());
         _dataController.setData(
             userNameD: userData.userName!,
             userRoleD: userData.role!,
@@ -332,7 +334,7 @@ var loading=false.obs;
      if (userData.role == userType) {
         await PrefsHelper.setString(AppConstants.logged, userData.role);
         if (userData.role == AppConstants.userType) {
-          Get.offAll(UserBottomNavBarScreen(currentIndex: 0));
+          Get.offAll(UserBottomNavBarScreen(currentIndex: 0), binding:UserBottomNavBinding());
           _dataController.setData(
               userNameD: userData.userName!,
               userRoleD: userData.role!,
@@ -342,7 +344,7 @@ var loading=false.obs;
           usernameController.clear();
           passwordController.clear();
         } else {
-          Get.offAll(SpBottomNavBarScreen(currentIndex: 0));
+          Get.offAll(SpBottomNavBarScreen(currentIndex: 0),binding:ProviderBottomNavBinding());
           _dataController.setData(
               userNameD: userData.userName!,
               userRoleD: userData.role!,
@@ -388,7 +390,7 @@ var loading=false.obs;
      if (userData.role == userType) {
         await PrefsHelper.setString(AppConstants.logged, userData.role);
         if (userData.role == AppConstants.userType) {
-          Get.offAll(UserBottomNavBarScreen(currentIndex: 0));
+          Get.offAll(UserBottomNavBarScreen(currentIndex: 0),binding:UserBottomNavBinding(),);
           _dataController.setData(
               userNameD: userData.userName!,
               userRoleD: userData.role!,
@@ -398,7 +400,7 @@ var loading=false.obs;
           usernameController.clear();
           passwordController.clear();
         } else {
-          Get.offAll(SpBottomNavBarScreen(currentIndex: 0));
+          Get.offAll(SpBottomNavBarScreen(currentIndex: 0),binding:ProviderBottomNavBinding());
           _dataController.setData(
               userNameD: userData.userName!,
               userRoleD: userData.role!,
@@ -430,15 +432,15 @@ var loading=false.obs;
   ///  <------------- Sign out------------->
   var isSignOutLoad = false.obs;
   final LocalizationController localizationController=Get.find<LocalizationController>();
-  signOut() async {
+  signOut(String type) async {
     try {
       isSignOutLoad(true);
       await auth.signOut().then((value) async {
         localizationController.setLanguage(Locale('en',"US"));
         Get.back();
         Get.offAll(()=>const OnboardScreen());
-        Get.find<SpHomeController>().onDelete();
-        Get.find<SpProfileController>().onDelete();
+
+
 
         await PrefsHelper.setString(AppConstants.logged, "");
         debugPrint("=========> Successful sign out");
