@@ -76,8 +76,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const CustomText(
-                      text: 'Current Password',
+                     CustomText(
+                      text: 'Current Password'.tr,
                       color: AppColors.black_100,
                       fontWeight: FontWeight.w500,
                       fontSize: 14,
@@ -98,8 +98,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       fieldBorderColor: AppColors.blue_10,
                       fieldBorderRadius: 8,
                     ),
-                    const CustomText(
-                      text: "New Password",
+                     CustomText(
+                      text: "New Password".tr,
                       color: AppColors.black_100,
                       fontWeight: FontWeight.w500,
                       fontSize: 14,

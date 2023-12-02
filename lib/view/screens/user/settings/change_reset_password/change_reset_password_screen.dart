@@ -66,8 +66,8 @@ class _ChangeResetPasswordScreenState extends State<ChangeResetPasswordScreen> {
               child:Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const CustomText(
-                    text: "New Password",
+                   CustomText(
+                    text: "New Password".tr,
                     color: AppColors.black_100,
                     fontWeight: FontWeight.w500,
                     fontSize: 14,

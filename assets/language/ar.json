@@ -163,6 +163,7 @@
   "startWork":"ابدأ العمل",
   "doYouWantToCancelThisWork": "هل تريد إلغاء هذا العمل؟",
   "Offline": "غير متصل على الانترنت",
-  "PleaseConnectToTheInternet": "الرجاء الاتصال بالإنترنت"
-
+  "PleaseConnectToTheInternet": "الرجاء الاتصال بالإنترنت",
+  "Delete Account": "حذف الحساب",
+  "Enter your email to delete your account.": "أدخل بريدك الإلكتروني لحذف حسابك."
 }

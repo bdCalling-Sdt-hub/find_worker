@@ -76,30 +76,61 @@ class AuthenticationController extends GetxController {
   /// for firebase sign up
 
   Future<void> registerUser(String userType) async {
-    isLoading = true;
-    update();
-    if (registerFormKey.currentState!.validate()) {
-      await auth
-          .createUserWithEmailAndPassword(
-              email: emailController.text.trim(),
-              password: passController.text.trim())
-          .then((value) async {
-        print("====>sign up");
-        await postDetailsToFireStore(userType);
-      }).catchError((e) {
+    try {
+      isLoading = true;
+      update();
+      if (registerFormKey.currentState!.validate()) {
+        await auth
+            .createUserWithEmailAndPassword(
+                email: emailController.text.trim(),
+                password: passController.text.trim())
+            .then((value) async {
+          print("====>sign up");
+          await postDetailsToFireStore(userType);
+        });
+        //     .catchError((e) {
+        //   Fluttertoast.showToast(
+        //       msg: e!.message,
+        //       backgroundColor: AppColors.blue_100,
+        //       textColor: AppColors.white,
+        //       fontSize: 14,
+        //       toastLength: Toast.LENGTH_SHORT,
+        //       gravity: ToastGravity.BOTTOM);
+        //   isLoading = false;
+        //   update();
+        // });
+      }
+      isLoading = false;
+      update();
+    }on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
         Fluttertoast.showToast(
-            msg: e!.message,
+                msg: e.message!,
+                backgroundColor: AppColors.blue_100,
+                textColor: AppColors.white,
+                fontSize: 14,
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.BOTTOM);
+      } else if (e.code == 'email-already-in-use') {
+        Fluttertoast.showToast(
+            msg: e.message!,
             backgroundColor: AppColors.blue_100,
             textColor: AppColors.white,
             fontSize: 14,
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.BOTTOM);
-        isLoading = false;
-        update();
-      });
+        print('The account already exists for that email.');
+      } else {
+        print('Error during sign up: ${e.message}');
+      }
     }
-    isLoading = false;
-    update();
+    on Exception catch (e) {
+      print('Error during sign up: ${e}');
+    }finally{
+      isLoading = false;
+      update();
+
+    }
   }
 
   /// added user info in firebase fire store
@@ -280,20 +311,31 @@ var loading=false.obs;
     } else {
       Get.snackbar("Error", "User not found", colorText: Colors.red);
     }
-  }).catchError((e) {
-    Fluttertoast.showToast(
-        msg: e!.message,
-        backgroundColor: AppColors.blue_100,
-        textColor: AppColors.white  ,
-        fontSize: 14,
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM
-    );
-  
-    isLoading = false;
-    update();
   });
-} finally {
+} on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        Fluttertoast.showToast(
+            msg: e.message!,
+            backgroundColor: AppColors.blue_100,
+            textColor: AppColors.white,
+            fontSize: 14,
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM);
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        Fluttertoast.showToast(
+            msg: e.message!,
+            backgroundColor: AppColors.blue_100,
+            textColor: AppColors.white,
+            fontSize: 14,
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM);
+        print('Wrong password provided for that user.');
+      } else {
+        print('Error during sign in: ${e.message}');
+      }
+    }
+    finally {
  isLoading = false;
     update();
 }
@@ -452,5 +494,32 @@ var loading=false.obs;
     } finally {
       isSignOutLoad(false);
     }
+  }
+
+
+
+
+  ///  <------------- Account Delete ------------->
+  var isAccountDeleteLoading = false.obs;
+  TextEditingController accountDeleteCtrl=TextEditingController();
+  deleteController()async{
+    isAccountDeleteLoading(true);
+    if(auth.currentUser!.email==accountDeleteCtrl.text){
+      await auth.currentUser!.delete().then((value)async{
+        localizationController.setLanguage(Locale('en',"US"));
+        Get.back();
+        Get.offAll(()=>const OnboardScreen());
+        accountDeleteCtrl.clear();
+        await PrefsHelper.setString(AppConstants.logged, "");
+        isAccountDeleteLoading(false);
+      });
+    }
+
+
+
+
+
+
+
   }
 }
