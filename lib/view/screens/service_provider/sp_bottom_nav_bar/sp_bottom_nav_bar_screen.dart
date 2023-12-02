@@ -39,6 +39,19 @@ class _SpBottomNavBarScreenState extends State<SpBottomNavBarScreen> {
     SpProfileScreen(),
   ];
 
+
+  @override
+  void dispose() {
+    SpProfileController profileController = SpProfileController();
+    SpHomeController homeController = SpHomeController();
+    SpHistoryController spController = SpHistoryController();
+    profileController.dispose();
+    homeController.dispose();
+    spController.dispose();
+    super.dispose();
+  }
+
+
   @override
   Widget build(BuildContext context) {
 
@@ -57,27 +70,23 @@ class _SpBottomNavBarScreenState extends State<SpBottomNavBarScreen> {
          child: CustomImage(imageSrc:widget.currentIndex==2?AppIcons.userCircle:AppIcons.userCircleUn),
        ),label:"Profile"),
      ];
-    return SafeArea(
-      bottom: false,
-      child: Scaffold(
-
-        extendBody: true,
-        bottomNavigationBar: BottomNavigationBar(
-          backgroundColor:const Color(0xFF0668E3),
-          type: BottomNavigationBarType.fixed,
-          selectedItemColor: Colors.white,
-          showUnselectedLabels: false,
-          currentIndex: widget.currentIndex,
-          selectedLabelStyle: const TextStyle(fontWeight:FontWeight.w500),
-          items:bottomBarItem,
-          onTap: (value){
-            setState(() {
-              widget.currentIndex=value;
-            });
-          },
-        ),
-        body: screens[widget.currentIndex],
+    return Scaffold(
+      extendBody: true,
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor:const Color(0xFF0668E3),
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: Colors.white,
+        showUnselectedLabels: false,
+        currentIndex: widget.currentIndex,
+        selectedLabelStyle: const TextStyle(fontWeight:FontWeight.w500),
+        items:bottomBarItem,
+        onTap: (value){
+          setState(() {
+            widget.currentIndex=value;
+          });
+        },
       ),
+      body: screens[widget.currentIndex],
     );
   }
 }
