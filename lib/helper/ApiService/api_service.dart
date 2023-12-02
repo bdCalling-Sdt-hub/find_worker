@@ -11,7 +11,7 @@ import 'package:uuid/uuid.dart';
 class ApiService {
   static String sentNotificationApi = "https://fcm.googleapis.com/fcm/send";
   static String serverKey =
-      "AAAARBLi-U8:APA91bG5wFkcur9UaNnpOcVjkDQwaPHQt3Z1vekct5L_8i6-28J4eQXLxelwS1n3xTHS47tuWPgL90pOK3YzEE60Z1iGXgZGYpNCJJ2kmdAFhdMhrAKOU3vidxcp1MdrfOyrce_Aq_2Y";
+      "AAAAL8AScqE:APA91bFojuCLY8dN-dtg6fT5THU1Ypou63HIfrD9pnq2qPkAZUtKdasf_mpmjDDF1QRxn_4SZsYNr8tsDkKBf-9zwLqyqX4MEaI5DBdXywHE0mTSecC_-0264uJsY9zbLw9ikoWiO8R2";
 
   static Future<dynamic> postNotification(Map<String, dynamic> body) async {
     try {

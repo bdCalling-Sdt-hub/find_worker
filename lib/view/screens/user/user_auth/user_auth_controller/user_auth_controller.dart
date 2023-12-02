@@ -9,6 +9,7 @@ import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_constents.dart';
 import 'package:find_worker/view/screens/service_provider/sp_bottom_nav_bar/sp_bottom_nav_bar_screen.dart';
 import 'package:find_worker/view/screens/service_provider/sp_home/Controller/home_controller.dart';
+import 'package:find_worker/view/screens/service_provider/sp_profile/Controller/profile_controller.dart';
 import 'package:find_worker/view/screens/user/home/Controller/home_controller.dart';
 import 'package:find_worker/view/screens/user/user_auth/user_sign_in/user_sign_in_screen.dart';
 import 'package:find_worker/view/screens/user/user_auth/user_sign_up/more_sign_up_screen.dart';
@@ -23,6 +24,8 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 import '../../../onboard/onboard_screen.dart';
+import '../../../service_provider/Binding/provider_bottombar_binding.dart';
+import '../../Binding/user_bottom_binding.dart';
 
 class AuthenticationController extends GetxController {
   final _dataController = Get.put(DataController());
@@ -73,30 +76,61 @@ class AuthenticationController extends GetxController {
   /// for firebase sign up
 
   Future<void> registerUser(String userType) async {
-    isLoading = true;
-    update();
-    if (registerFormKey.currentState!.validate()) {
-      await auth
-          .createUserWithEmailAndPassword(
-              email: emailController.text.trim(),
-              password: passController.text.trim())
-          .then((value) async {
-        print("====>sign up");
-        await postDetailsToFireStore(userType);
-      }).catchError((e) {
+    try {
+      isLoading = true;
+      update();
+      if (registerFormKey.currentState!.validate()) {
+        await auth
+            .createUserWithEmailAndPassword(
+                email: emailController.text.trim(),
+                password: passController.text.trim())
+            .then((value) async {
+          print("====>sign up");
+          await postDetailsToFireStore(userType);
+        });
+        //     .catchError((e) {
+        //   Fluttertoast.showToast(
+        //       msg: e!.message,
+        //       backgroundColor: AppColors.blue_100,
+        //       textColor: AppColors.white,
+        //       fontSize: 14,
+        //       toastLength: Toast.LENGTH_SHORT,
+        //       gravity: ToastGravity.BOTTOM);
+        //   isLoading = false;
+        //   update();
+        // });
+      }
+      isLoading = false;
+      update();
+    }on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
         Fluttertoast.showToast(
-            msg: e!.message,
+                msg: e.message!,
+                backgroundColor: AppColors.blue_100,
+                textColor: AppColors.white,
+                fontSize: 14,
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.BOTTOM);
+      } else if (e.code == 'email-already-in-use') {
+        Fluttertoast.showToast(
+            msg: e.message!,
             backgroundColor: AppColors.blue_100,
             textColor: AppColors.white,
             fontSize: 14,
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.BOTTOM);
-        isLoading = false;
-        update();
-      });
+        print('The account already exists for that email.');
+      } else {
+        print('Error during sign up: ${e.message}');
+      }
     }
-    isLoading = false;
-    update();
+    on Exception catch (e) {
+      print('Error during sign up: ${e}');
+    }finally{
+      isLoading = false;
+      update();
+
+    }
   }
 
   /// added user info in firebase fire store
@@ -151,9 +185,9 @@ class AuthenticationController extends GetxController {
         passwordController.clear();
         confirmPasswordController.clear();
         if (userType == AppConstants.userType) {
-          Get.offAll(UserBottomNavBarScreen(currentIndex: 0));
+          Get.offAll(UserBottomNavBarScreen(currentIndex: 0),binding:UserBottomNavBinding());
         } else {
-          Get.offAll(SpBottomNavBarScreen(currentIndex: 0));
+          Get.offAll(SpBottomNavBarScreen(currentIndex: 0,),binding:ProviderBottomNavBinding());
         }
       });
     } on Exception catch (e) {
@@ -212,9 +246,9 @@ var loading=false.obs;
         passwordController.clear();
         confirmPasswordController.clear();
         if (type == AppConstants.userType) {
-          Get.offAll(UserBottomNavBarScreen(currentIndex: 0));
+          Get.offAll(UserBottomNavBarScreen(currentIndex: 0),binding:UserBottomNavBinding());
         } else {
-          Get.offAll(SpBottomNavBarScreen(currentIndex: 0));
+          Get.offAll(SpBottomNavBarScreen(currentIndex: 0),binding:ProviderBottomNavBinding());
         }
       });
     } on Exception catch (e) {
@@ -254,7 +288,7 @@ var loading=false.obs;
     if (userData.role == userType) {
       await PrefsHelper.setString(AppConstants.logged, userData.role);
       if (userData.role == AppConstants.userType) {
-        Get.offAll(UserBottomNavBarScreen(currentIndex: 0));
+        Get.offAll(UserBottomNavBarScreen(currentIndex: 0),binding:UserBottomNavBinding());
         _dataController.setData(
             userNameD: userData.userName!,
             userRoleD: userData.role!,
@@ -264,7 +298,7 @@ var loading=false.obs;
         usernameController.clear();
         passwordController.clear();
       } else {
-        Get.offAll(SpBottomNavBarScreen(currentIndex: 0));
+        Get.offAll(SpBottomNavBarScreen(currentIndex: 0),binding:ProviderBottomNavBinding());
         _dataController.setData(
             userNameD: userData.userName!,
             userRoleD: userData.role!,
@@ -277,20 +311,31 @@ var loading=false.obs;
     } else {
       Get.snackbar("Error", "User not found", colorText: Colors.red);
     }
-  }).catchError((e) {
-    Fluttertoast.showToast(
-        msg: e!.message,
-        backgroundColor: AppColors.blue_100,
-        textColor: AppColors.white  ,
-        fontSize: 14,
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM
-    );
-  
-    isLoading = false;
-    update();
   });
-} finally {
+} on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        Fluttertoast.showToast(
+            msg: e.message!,
+            backgroundColor: AppColors.blue_100,
+            textColor: AppColors.white,
+            fontSize: 14,
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM);
+        print('No user found for that email.');
+      } else if (e.code == 'wrong-password') {
+        Fluttertoast.showToast(
+            msg: e.message!,
+            backgroundColor: AppColors.blue_100,
+            textColor: AppColors.white,
+            fontSize: 14,
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM);
+        print('Wrong password provided for that user.');
+      } else {
+        print('Error during sign in: ${e.message}');
+      }
+    }
+    finally {
  isLoading = false;
     update();
 }
@@ -331,7 +376,7 @@ var loading=false.obs;
      if (userData.role == userType) {
         await PrefsHelper.setString(AppConstants.logged, userData.role);
         if (userData.role == AppConstants.userType) {
-          Get.offAll(UserBottomNavBarScreen(currentIndex: 0));
+          Get.offAll(UserBottomNavBarScreen(currentIndex: 0), binding:UserBottomNavBinding());
           _dataController.setData(
               userNameD: userData.userName!,
               userRoleD: userData.role!,
@@ -341,7 +386,7 @@ var loading=false.obs;
           usernameController.clear();
           passwordController.clear();
         } else {
-          Get.offAll(SpBottomNavBarScreen(currentIndex: 0));
+          Get.offAll(SpBottomNavBarScreen(currentIndex: 0),binding:ProviderBottomNavBinding());
           _dataController.setData(
               userNameD: userData.userName!,
               userRoleD: userData.role!,
@@ -387,7 +432,7 @@ var loading=false.obs;
      if (userData.role == userType) {
         await PrefsHelper.setString(AppConstants.logged, userData.role);
         if (userData.role == AppConstants.userType) {
-          Get.offAll(UserBottomNavBarScreen(currentIndex: 0));
+          Get.offAll(UserBottomNavBarScreen(currentIndex: 0),binding:UserBottomNavBinding(),);
           _dataController.setData(
               userNameD: userData.userName!,
               userRoleD: userData.role!,
@@ -397,7 +442,7 @@ var loading=false.obs;
           usernameController.clear();
           passwordController.clear();
         } else {
-          Get.offAll(SpBottomNavBarScreen(currentIndex: 0));
+          Get.offAll(SpBottomNavBarScreen(currentIndex: 0),binding:ProviderBottomNavBinding());
           _dataController.setData(
               userNameD: userData.userName!,
               userRoleD: userData.role!,
@@ -429,12 +474,15 @@ var loading=false.obs;
   ///  <------------- Sign out------------->
   var isSignOutLoad = false.obs;
   final LocalizationController localizationController=Get.find<LocalizationController>();
-  signOut() async {
+  signOut(String type) async {
     try {
       isSignOutLoad(true);
       await auth.signOut().then((value) async {
         localizationController.setLanguage(Locale('en',"US"));
-        Get.offAll(const OnboardScreen());
+        Get.back();
+        Get.offAll(()=>const OnboardScreen());
+
+
 
         await PrefsHelper.setString(AppConstants.logged, "");
         debugPrint("=========> Successful sign out");
@@ -446,5 +494,32 @@ var loading=false.obs;
     } finally {
       isSignOutLoad(false);
     }
+  }
+
+
+
+
+  ///  <------------- Account Delete ------------->
+  var isAccountDeleteLoading = false.obs;
+  TextEditingController accountDeleteCtrl=TextEditingController();
+  deleteController()async{
+    isAccountDeleteLoading(true);
+    if(auth.currentUser!.email==accountDeleteCtrl.text){
+      await auth.currentUser!.delete().then((value)async{
+        localizationController.setLanguage(Locale('en',"US"));
+        Get.back();
+        Get.offAll(()=>const OnboardScreen());
+        accountDeleteCtrl.clear();
+        await PrefsHelper.setString(AppConstants.logged, "");
+        isAccountDeleteLoading(false);
+      });
+    }
+
+
+
+
+
+
+
   }
 }

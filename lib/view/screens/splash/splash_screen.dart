@@ -12,6 +12,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
+import '../service_provider/Binding/provider_bottombar_binding.dart';
+import '../user/Binding/user_bottom_binding.dart';
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -25,9 +28,9 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(const Duration(seconds: 2), ()async{
       var logged= await PrefsHelper.getString(AppConstants.logged);
       if(logged==AppConstants.userType){
-        Get.off(UserBottomNavBarScreen(currentIndex: 0));
+        Get.off(UserBottomNavBarScreen(currentIndex: 0),binding:UserBottomNavBinding());
       }else if(logged==AppConstants.serviceProviderType){
-        Get.off(SpBottomNavBarScreen(currentIndex: 0));
+        Get.off(SpBottomNavBarScreen(currentIndex: 0),binding:ProviderBottomNavBinding());
       }else{
         Get.offAndToNamed(AppRoute.onboardScreen);
 

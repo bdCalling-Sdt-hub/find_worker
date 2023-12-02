@@ -17,6 +17,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../../helper/Language/language_component.dart';
 import '../../../../../helper/SystemChromeHelper/system_chrome.dart';
+import '../../../../widgets/account_delete_dialog.dart';
 import '../../../../widgets/custom_back.dart';
 import '../../../../widgets/custom_switch.dart';
 
@@ -195,6 +196,19 @@ class _SpSettingScreenState extends State<SpSettingScreen> {
                       settingTile(title:AppStrings.support.tr,onTap: () {
                         Get.toNamed(AppRoute.spSupportScreen);
                       }),
+                    const SizedBox(height:30,),
+                    Align(
+                        alignment: Alignment.centerLeft,
+                        child: TextButton(onPressed: (){
+                          showDialog(context: context, builder:(_)=>AccountDeleteAccount(),
+
+                          );
+
+
+
+
+                        }, child: Text("Delete Account".tr,style: TextStyle(color:Colors.red),)))
+
                   ],
                 ),
               );

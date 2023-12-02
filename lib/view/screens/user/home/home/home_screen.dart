@@ -73,7 +73,7 @@ class HomeScreen extends StatelessWidget {
            await  _homeController.getData(false);
            },
            child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
+            physics: const AlwaysScrollableScrollPhysics(),
             child: Column(
               children: [
                 SizedBox(height: 12.h,),

@@ -293,6 +293,7 @@ class HireController extends GetxController {
 
 
   Future<void> launchPhoneDialer(String contactNumber) async {
+    debugPrint("LunchDialer nubmer : $contactNumber");
     final Uri phoneUri = Uri(scheme: "tel", path: contactNumber);
     try {
       if (!await UrlLauncher.launchUrl(phoneUri)) {

@@ -10,6 +10,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../Binding/user_bottom_binding.dart';
+
 class HomeScreenData extends StatefulWidget {
   const HomeScreenData({super.key});
 
@@ -320,7 +322,7 @@ class _HomeScreenDataState extends State<HomeScreenData> {
         Center(
           child: GestureDetector(
             onTap: (){
-              Get.to(UserBottomNavBarScreen(currentIndex: 1));
+              Get.to(UserBottomNavBarScreen(currentIndex: 1),binding:UserBottomNavBinding());
             },
             child: Text.rich(
               textAlign: TextAlign.center,

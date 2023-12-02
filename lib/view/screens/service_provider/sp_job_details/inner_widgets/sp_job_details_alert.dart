@@ -8,6 +8,8 @@ import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../Binding/provider_bottombar_binding.dart';
+
 class SpJobDetailsAlert extends StatefulWidget {
   const SpJobDetailsAlert({super.key});
 
@@ -42,7 +44,7 @@ class _SpJobDetailsAlertState extends State<SpJobDetailsAlert> {
             bottom: 24,
           ),
           CustomButton(onPressed: (){
-            Get.offAll(SpBottomNavBarScreen(currentIndex: 0));
+            Get.offAll(SpBottomNavBarScreen(currentIndex: 0),binding:ProviderBottomNavBinding());
           }, titleText: 'Go to Home',buttonBgColor: AppColors.blue_100,buttonHeight: 36,leftPadding: 18,rightPadding: 18,)
         ],
       ),

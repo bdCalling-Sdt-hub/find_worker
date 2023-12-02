@@ -9,6 +9,8 @@ import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../Binding/user_bottom_binding.dart';
+
 class HireDetailsAlert extends StatefulWidget {
   const HireDetailsAlert({super.key});
 
@@ -43,7 +45,7 @@ class _HireDetailsAlertState extends State<HireDetailsAlert> {
             bottom: 24,
           ),
           CustomButton(onPressed: (){
-            Get.offAll(UserBottomNavBarScreen(currentIndex: 0));
+            Get.offAll(UserBottomNavBarScreen(currentIndex: 0),binding:UserBottomNavBinding());
           }, titleText: 'Go to Home',buttonBgColor: AppColors.blue_100,buttonHeight: 36,leftPadding: 18,rightPadding: 18,)
         ],
       ),

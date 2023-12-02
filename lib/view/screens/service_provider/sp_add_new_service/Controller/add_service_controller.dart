@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:find_worker/model/category_model.dart';
 import 'package:find_worker/model/service_model.dart';
 import 'package:find_worker/utils/app_constents.dart';
+import 'package:find_worker/view/screens/service_provider/sp_home/Controller/home_controller.dart';
 import 'package:find_worker/view/screens/service_provider/sp_services/Controller/service_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -86,7 +87,7 @@ class AddNewServiceController extends GetxController{
                   description:descriptionTextCtrl.text
               );
               await firebaseStorage.collection(AppConstants.services).doc(id).set(body.toJson());
-
+                Get.find<SpHomeController>().getService();
               Fluttertoast.showToast(msg:"Service Added Successful",toastLength:Toast.LENGTH_LONG,gravity:ToastGravity.CENTER);
               await serviceController.getService();
               serviceTextCtrl.clear();

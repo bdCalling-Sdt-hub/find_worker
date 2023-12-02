@@ -5,9 +5,12 @@ import 'package:find_worker/utils/app_icons.dart';
 import 'package:find_worker/utils/app_strings.dart';
 import 'package:find_worker/view/widgets/advanced_switch/advanced_switch.dart';
 import 'package:find_worker/view/widgets/app_bar/custom_app_bar.dart';
+import 'package:find_worker/view/widgets/custom_button.dart';
 import 'package:find_worker/view/widgets/image/custom_image.dart';
 import 'package:find_worker/view/widgets/text/custom_text.dart';
+import 'package:find_worker/view/widgets/text_field/custom_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
@@ -15,6 +18,7 @@ import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 import '../../../../../helper/Language/language_component.dart';
 import '../../../../../helper/Language/language_controller.dart';
 import '../../../../../helper/SystemChromeHelper/system_chrome.dart';
+import '../../../../widgets/account_delete_dialog.dart';
 import '../../../../widgets/custom_back.dart';
 import '../../../../widgets/custom_switch.dart';
 
@@ -292,6 +296,17 @@ class _SettingScreenState extends State<SettingScreen> {
                     ),),
 
                   const SizedBox(height:30,),
+                  Align(
+                      alignment: Alignment.centerLeft,
+                      child: TextButton(onPressed: (){
+                        showDialog(context: context, builder:(_)=>AccountDeleteAccount(),
+
+                        );
+                        
+                        
+                        
+                        
+                      }, child: Text("Delete Account".tr,style: TextStyle(color:Colors.red),)))
                 ],
               ),
             );
@@ -301,3 +316,4 @@ class _SettingScreenState extends State<SettingScreen> {
     );
   }
 }
+

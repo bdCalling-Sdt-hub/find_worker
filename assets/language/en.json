@@ -169,5 +169,7 @@
  "startWork":"Start Work",
  "doYouWantToCancelThisWork": "Do you want to cancel this work?",
  "Offline": "Offline",
- "PleaseConnectToTheInternet": "Please Connect to the Internet"
+ "PleaseConnectToTheInternet": "Please Connect to the Internet",
+ "Delete Account": "Delete Account",
+ "Enter your email to delete your account.": "Enter your email to delete your account."
 }

@@ -48,11 +48,20 @@ class _UserBottomNavBarScreenState extends State<UserBottomNavBarScreen> {
     const UserProfileScreen()
   ];
 
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    // Get.delete<UserHomeController>();
+    // Get.delete<CategoryController>();
+    // Get.delete<UserProfileController>();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
-    final _homeController = Get.put(UserHomeController());
-    final _categoryController = Get.put(CategoryController());
-    final _profileController = Get.put(UserProfileController());
+    // final _homeController = Get.put(UserHomeController());
+    // final _categoryController = Get.put(CategoryController());
+    // final _profileController = Get.put(UserProfileController());
 
     // List<Widget> manuBarItems = [
     //   MenuBarItems(
@@ -101,26 +110,23 @@ class _UserBottomNavBarScreenState extends State<UserBottomNavBarScreen> {
     ];
 
 
-    return SafeArea(
-      bottom: false,
-      child: Scaffold(
-        extendBody: true,
-        bottomNavigationBar: BottomNavigationBar(
-          backgroundColor:const Color(0xFF0668E3),
-          type: BottomNavigationBarType.fixed,
-          selectedItemColor: Colors.white,
-          showUnselectedLabels: false,
-          currentIndex: widget.currentIndex,
-          selectedLabelStyle: const TextStyle(fontWeight:FontWeight.w500),
-          items:bottomBarItem,
-        onTap: (value){
-          setState(() {
-            widget.currentIndex=value;
-          });
-        },
-        ),
-        body: screens[widget.currentIndex],
+    return Scaffold(
+      extendBody: true,
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor:const Color(0xFF0668E3),
+        type: BottomNavigationBarType.fixed,
+        selectedItemColor: Colors.white,
+        showUnselectedLabels: false,
+        currentIndex: widget.currentIndex,
+        selectedLabelStyle: const TextStyle(fontWeight:FontWeight.w500),
+        items:bottomBarItem,
+      onTap: (value){
+        setState(() {
+          widget.currentIndex=value;
+        });
+      },
       ),
+      body: screens[widget.currentIndex],
     );
   }
 }

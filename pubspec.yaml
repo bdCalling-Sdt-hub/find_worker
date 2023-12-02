@@ -64,13 +64,13 @@ dependencies:
   shimmer:
   url_launcher:
   sign_in_with_apple:
-  flutter_typeahead:
+  flutter_typeahead: 4.8.0
   flutter_staggered_grid_view:
   flutter_html:
   flutter_local_notifications:
   app_settings:
   flutter_spinkit:
-  connectivity_plus:
+  connectivity_plus: 4.0.2
 
 
 
