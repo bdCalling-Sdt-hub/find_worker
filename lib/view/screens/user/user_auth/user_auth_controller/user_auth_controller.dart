@@ -152,7 +152,7 @@ class AuthenticationController extends GetxController {
     userModel.address = addressController.text.toString();
     userModel.authType = AppConstants.normalUser;
     userModel.role = userType;
-    userModel.password = passController.text;
+    //userModel.password = passController.text;
     userModel.timestamp = DateTime.now();
     userModel.status = "Online";
     userModel.imageSrc = "";
@@ -213,7 +213,7 @@ var loading=false.obs;
     userModel.address = addressController.text.toString();
     userModel.authType = AppConstants.socialMediaUser;
     userModel.role = type;
-    userModel.password = passController.text;
+    //userModel.password = passController.text;
     userModel.timestamp = DateTime.now();
     userModel.status = "Online";
     userModel.imageSrc = image;

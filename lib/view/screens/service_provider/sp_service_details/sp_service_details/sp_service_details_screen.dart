@@ -12,6 +12,7 @@ import 'package:find_worker/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../../helper/AdMob/ad_display.dart';
 import '../../../../widgets/custom_back.dart';
 
 class SpServiceDetailsScreen extends StatefulWidget {
@@ -33,9 +34,14 @@ class _SpServiceDetailsScreenState extends State<SpServiceDetailsScreen> {
   @override
   void initState() {
     serviceModel.value=data;
+    interstitialAdd();
     super.initState();
   }
-
+  interstitialAdd() {
+    Future.delayed(Duration(seconds: 3), () {
+      AdDsiplay().loadInterstitial();
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

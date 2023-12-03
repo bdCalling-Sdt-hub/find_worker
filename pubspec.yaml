@@ -71,6 +71,7 @@ dependencies:
   app_settings:
   flutter_spinkit:
   connectivity_plus: 4.0.2
+  google_mobile_ads: ^3.1.0
 
 
 

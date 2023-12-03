@@ -20,6 +20,8 @@ import 'package:intl/intl.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:find_worker/view/widgets/custom_button.dart';
 
+import '../../../../helper/AdMob/ad_display.dart';
+
 class UserServiceDetailsScreen extends StatefulWidget {
   const UserServiceDetailsScreen({super.key});
 
@@ -36,9 +38,14 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
   void initState() {
     _userServiceDetailsController
         .getTopReviews(userByServiceModel.providerUid!);
+    interstitialAdd();
     super.initState();
   }
-
+  interstitialAdd() {
+    Future.delayed(Duration(seconds:3), () {
+      AdDsiplay().loadInterstitial();
+    });
+  }
   @override
   Widget build(BuildContext context) {
 
