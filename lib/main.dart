@@ -12,6 +12,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'helper/Language/dep.dart' as dep;
 import 'firebase_options.dart';
 import '';
@@ -25,6 +26,7 @@ void main() async{
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  MobileAds.instance.initialize();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
@@ -71,7 +73,7 @@ class MyApp extends StatelessWidget {
             return GetMaterialApp(
       debugShowCheckedModeBanner: false,
      // defaultTransition: Transition.noTransition,
-      initialRoute: AppRoute.splashScreen,
+
 
       navigatorKey: Get.key,
                 locale: localizationController.locale,
@@ -92,6 +94,8 @@ class MyApp extends StatelessWidget {
       ),
       transitionDuration: const Duration(milliseconds: 200),
       getPages: AppRoute.routes,
+                initialRoute: AppRoute.splashScreen,
+
     );
           }
         );

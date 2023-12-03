@@ -14,6 +14,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../helper/AdMob/ad_display.dart';
 import '../../../../model/hire_model.dart';
 import '../../../widgets/custom_button.dart';
 import 'controller/sp_job_details_controller.dart';
@@ -37,7 +38,14 @@ class _SpJobDetailsScreenState extends State<SpJobDetailsScreen> {
   @override
   void initState() {
     _controller.getJobHistory(widget.jobId);
+    interstitialAdd();
     super.initState();
+  }
+
+  interstitialAdd() {
+    Future.delayed(Duration(seconds: 3), () {
+      AdDsiplay().loadInterstitial();
+    });
   }
 
   @override

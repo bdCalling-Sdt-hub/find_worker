@@ -10,6 +10,8 @@
     <array>
       <string>tel</string>
     </array>
+    <key>GADApplicationIdentifier</key>
+    <string>ca-app-pub-1976486377144082~2106018074</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
