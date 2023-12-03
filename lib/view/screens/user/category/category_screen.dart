@@ -52,7 +52,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
             return  Obx(()=>_categoryController.loading.value?const CustomLoader():
             MasonryGridView.builder(
               shrinkWrap: true,
-              padding: EdgeInsets.only(top:10.h),
+              padding: EdgeInsets.only(top:10.h,left: 10.w,right: 10.w),
               physics:const AlwaysScrollableScrollPhysics(),
               itemCount:_categoryController.categoryList.length,
               itemBuilder: (BuildContext context, int index) {
