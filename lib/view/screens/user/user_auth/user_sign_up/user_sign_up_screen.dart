@@ -482,9 +482,6 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                                     validator: (value) {
                                       if (value.isEmpty) {
                                         return "Password Not Be Empty".tr;
-                                      } else if (controller.passController.text !=
-                                          controller.confirmPasswordController.text) {
-                                        return "Password doesn't match".tr;
                                       }
                                       return null;
                                     },
@@ -520,6 +517,9 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                                         return "Please use uppercase, lowercase, special character, and number".tr;
                                       } else if (value.length < 8) {
                                         return "Please use 8 character long password".tr;
+                                      } else if (controller.passController.text !=
+                                          controller.confirmPasswordController.text) {
+                                        return "Password doesn't match".tr;
                                       }
                                       return null;
                                     },

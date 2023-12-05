@@ -129,11 +129,6 @@ class _UserSignInState extends State<UserSignIn> {
                                 validator: (value) {
                                   if (value.isEmpty) {
                                     return 'Enter your Password'.tr;
-                                  } else if (!RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
-                                      .hasMatch(controller.passwordController.text)) {
-                                    return "Please use uppercase, lowercase, special character, and number".tr;
-                                  } else if (value.length < 8) {
-                                    return "Please use 8 character long password".tr;
                                   }
                                   return null;
                                 },

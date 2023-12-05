@@ -332,7 +332,16 @@ var loading=false.obs;
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.BOTTOM);
         print('Wrong password provided for that user.');
-      } else {
+      } else if(e.code=="INVALID_LOGIN_CREDENTIALS") {
+        Fluttertoast.showToast(
+            msg:"Oops, user not found!".tr,
+            backgroundColor: AppColors.blue_100,
+            textColor: AppColors.white,
+            fontSize: 14,
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM);
+
+      }else{
         print('Error during sign in: ${e.message}');
       }
     }
@@ -340,12 +349,6 @@ var loading=false.obs;
  isLoading = false;
     update();
 }
-
-    // usernameController.text = "";
-    // passwordController.text = "";
-
-    isLoading = false;
-    update();
   }
 
   Future<void> signInWithGoogle(String userType) async {
@@ -482,9 +485,6 @@ var loading=false.obs;
         localizationController.setLanguage(Locale('en',"US"));
         Get.back();
         Get.offAll(()=>const OnboardScreen());
-
-
-
         await PrefsHelper.setString(AppConstants.logged, "");
         debugPrint("=========> Successful sign out");
         isSignOutLoad(false);
@@ -508,10 +508,11 @@ var loading=false.obs;
     if(auth.currentUser!.email==accountDeleteCtrl.text){
       await auth.currentUser!.delete().then((value)async{
         localizationController.setLanguage(Locale('en',"US"));
-        Get.back();
-        Get.offAll(()=>const OnboardScreen());
+        await GoogleSignIn().signOut();
         accountDeleteCtrl.clear();
         await PrefsHelper.setString(AppConstants.logged, "");
+        Get.back();
+        Get.offAll(()=>const OnboardScreen());
         Fluttertoast.showToast(msg:AppStrings.accountDelete.tr);
         isAccountDeleteLoading(false);
       }).catchError((v){
