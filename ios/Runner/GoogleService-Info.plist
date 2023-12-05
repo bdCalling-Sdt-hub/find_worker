@@ -2,18 +2,24 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CLIENT_ID</key>
+	<string>205085897377-03qjje25kk06mi3q2dfdlbv8eginv2h2.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.205085897377-03qjje25kk06mi3q2dfdlbv8eginv2h2</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>205085897377-2nvb6t7ake443c2shmeq3kg4nbfsc6h9.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAYeK4P6BUsjuE2NoGIJg2kuqBqIMTa67M</string>
+	<string>AIzaSyDBi-UiuqnHjkUE2gNcYW2i3T1Vh41Zz5k</string>
 	<key>GCM_SENDER_ID</key>
-	<string>292374640975</string>
+	<string>205085897377</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.findWorker</string>
+	<string>com.hkk4coding.findworker</string>
 	<key>PROJECT_ID</key>
-	<string>find-worker-cdeee</string>
+	<string>find-worker-80228</string>
 	<key>STORAGE_BUCKET</key>
-	<string>find-worker-cdeee.appspot.com</string>
+	<string>find-worker-80228.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -25,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:292374640975:ios:66bd1aab7d7fac3f1a2d3a</string>
+	<string>1:205085897377:ios:abfdae533eec090b3876e0</string>
 </dict>
 </plist>

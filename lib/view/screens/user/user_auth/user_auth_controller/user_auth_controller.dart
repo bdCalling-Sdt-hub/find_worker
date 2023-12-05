@@ -7,6 +7,7 @@ import 'package:find_worker/helper/Language/language_controller.dart';
 import 'package:find_worker/model/user_model.dart';
 import 'package:find_worker/utils/app_colors.dart';
 import 'package:find_worker/utils/app_constents.dart';
+import 'package:find_worker/utils/app_strings.dart';
 import 'package:find_worker/view/screens/service_provider/sp_bottom_nav_bar/sp_bottom_nav_bar_screen.dart';
 import 'package:find_worker/view/screens/service_provider/sp_home/Controller/home_controller.dart';
 import 'package:find_worker/view/screens/service_provider/sp_profile/Controller/profile_controller.dart';
@@ -511,8 +512,12 @@ var loading=false.obs;
         Get.offAll(()=>const OnboardScreen());
         accountDeleteCtrl.clear();
         await PrefsHelper.setString(AppConstants.logged, "");
+        Fluttertoast.showToast(msg:AppStrings.accountDelete.tr);
         isAccountDeleteLoading(false);
+      }).catchError((v){
+        Fluttertoast.showToast(msg: v.toString());
       });
+      isAccountDeleteLoading(false);
     }
 
 

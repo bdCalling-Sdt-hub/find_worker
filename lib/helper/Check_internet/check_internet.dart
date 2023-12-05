@@ -33,7 +33,7 @@ class NetworkController extends GetxController {
           messageText: Text(AppStrings.pleaseConnectToTheInternet.tr,
               style: TextStyle(
                   color: Colors.white,
-                  fontSize: 14.sp,
+                  fontSize: 14,
                   fontWeight: FontWeight.w600)),
           isDismissible: false,
           duration: const Duration(days: 1),
@@ -41,7 +41,7 @@ class NetworkController extends GetxController {
           icon: Icon(
             Icons.wifi_off,
             color: Colors.white,
-            size: 35.sp,
+            size: 35,
           ),
           margin: EdgeInsets.zero,
           snackPosition: SnackPosition.BOTTOM,
