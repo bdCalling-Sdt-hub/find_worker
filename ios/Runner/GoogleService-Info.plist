@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>205085897377-03qjje25kk06mi3q2dfdlbv8eginv2h2.apps.googleusercontent.com</string>
+	<string>205085897377-inepsgtfjos8u37f8i99qeg9afpb305g.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.205085897377-03qjje25kk06mi3q2dfdlbv8eginv2h2</string>
+	<string>com.googleusercontent.apps.205085897377-inepsgtfjos8u37f8i99qeg9afpb305g</string>
 	<key>ANDROID_CLIENT_ID</key>
 	<string>205085897377-2nvb6t7ake443c2shmeq3kg4nbfsc6h9.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
@@ -15,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.hkk4coding.findworker</string>
+	<string>com.hkk4coding.wrcontacts</string>
 	<key>PROJECT_ID</key>
 	<string>find-worker-80228</string>
 	<key>STORAGE_BUCKET</key>
@@ -31,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:205085897377:ios:abfdae533eec090b3876e0</string>
+	<string>1:205085897377:ios:b4c6dd38d9b417763876e0</string>
 </dict>
 </plist>
