@@ -46,15 +46,9 @@ class _OnboardScreenState extends State<OnboardScreen> {
                     text: AppStrings.welcomeToFindWorker,
                     fontSize: 18.sp,
                     fontWeight: FontWeight.w500,
-                    bottom: 67.h,
+                    bottom: 30.h,
                   ),
-                   CustomText(
-                    text: AppStrings.logo,
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.blue_100,
-                    bottom: 66.h,
-                  ),
+                  Image.asset(AppIcons.logoImage,height:94,width: 60,fit: BoxFit.fill,),
                    CustomImage(
                     imageSrc: AppImages.rafiKi,
                     imageType: ImageType.png,

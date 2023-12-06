@@ -40,5 +40,6 @@ class AppIcons{
   static const String home_un = "$basePath/home_un.svg";
   static const String profile_s = "$basePath/profile_s.svg";
   static const String exclamationIcon = "$basePath/exclamation-circle.svg";
+  static const String logoImage = "$basePath/logo_image.png";
 
 }

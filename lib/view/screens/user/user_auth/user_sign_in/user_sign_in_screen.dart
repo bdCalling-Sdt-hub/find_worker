@@ -64,15 +64,10 @@ class _UserSignInState extends State<UserSignIn> {
                             text: AppStrings.welcomeToFindWorker,
                             fontSize: 18,
                             fontWeight: FontWeight.w500,
-                            bottom: 66,
+                            bottom: 30,
                           ),
-                          const CustomText(
-                            text: AppStrings.logo,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.blue_100,
-                            bottom: 66,
-                          ),
+                          Image.asset(AppIcons.logoImage,height:94,width: 60,fit: BoxFit.fill,),
+                          SizedBox(height: 30,),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
