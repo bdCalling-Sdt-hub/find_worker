@@ -15,6 +15,16 @@
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
 		97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */; };
+		BD3784F82B219C4100099CF9 /* cloud_firestore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD3784F72B219C4100099CF9 /* cloud_firestore.framework */; };
+		BD3784FB2B219C4800099CF9 /* connectivity_plus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD3784FA2B219C4800099CF9 /* connectivity_plus.framework */; };
+		BD3784FE2B219C4D00099CF9 /* firebase_auth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD3784FD2B219C4D00099CF9 /* firebase_auth.framework */; };
+		BD3785012B219C5700099CF9 /* firebase_core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD3785002B219C5700099CF9 /* firebase_core.framework */; };
+		BD3785042B219C6100099CF9 /* firebase_messaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD3785032B219C6100099CF9 /* firebase_messaging.framework */; };
+		BD3785072B219C6900099CF9 /* firebase_storage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD3785062B219C6900099CF9 /* firebase_storage.framework */; };
+		BD37850A2B219C7400099CF9 /* FirebaseAuth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD3785092B219C7400099CF9 /* FirebaseAuth.framework */; };
+		BD37850D2B219C7E00099CF9 /* flutter_local_notifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD37850C2B219C7E00099CF9 /* flutter_local_notifications.framework */; };
+		BD3785102B219C8B00099CF9 /* fluttertoast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD37850F2B219C8B00099CF9 /* fluttertoast.framework */; };
+		BD3785132B219CA000099CF9 /* flutter_local_notifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD3785122B219CA000099CF9 /* flutter_local_notifications.framework */; };
 		CE5BE615C9EA1CA07609B8F8 /* Pods_Runner.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D57A7C1FB6D4EFF0B3A83449 /* Pods_Runner.framework */; };
 /* End PBXBuildFile section */
 
@@ -27,19 +37,6 @@
 			remoteInfo = Runner;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		9705A1C41CF9048500538489 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1498D2321E8E86230040F4C2 /* GeneratedPluginRegistrant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GeneratedPluginRegistrant.h; sourceTree = "<group>"; };
@@ -61,6 +58,17 @@
 		97C147001CF9000F007C117D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97C147021CF9000F007C117D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B3224DED27DAE2AA4B960360 /* Pods-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"; sourceTree = "<group>"; };
+		BD3784F62B2195C000099CF9 /* Runner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Runner.entitlements; sourceTree = "<group>"; };
+		BD3784F72B219C4100099CF9 /* cloud_firestore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = cloud_firestore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD3784FA2B219C4800099CF9 /* connectivity_plus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = connectivity_plus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD3784FD2B219C4D00099CF9 /* firebase_auth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = firebase_auth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD3785002B219C5700099CF9 /* firebase_core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = firebase_core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD3785032B219C6100099CF9 /* firebase_messaging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = firebase_messaging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD3785062B219C6900099CF9 /* firebase_storage.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = firebase_storage.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD3785092B219C7400099CF9 /* FirebaseAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FirebaseAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD37850C2B219C7E00099CF9 /* flutter_local_notifications.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = flutter_local_notifications.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD37850F2B219C8B00099CF9 /* fluttertoast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = fluttertoast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD3785122B219CA000099CF9 /* flutter_local_notifications.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = flutter_local_notifications.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAE7F17BC675769B139D0571 /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
 		CC1C7C22D5B52A90F59669F2 /* Pods-RunnerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.release.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.release.xcconfig"; sourceTree = "<group>"; };
 		D2CB69A636CD6DDB335E33C2 /* Pods-RunnerTests.profile.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.profile.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.profile.xcconfig"; sourceTree = "<group>"; };
@@ -80,7 +88,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD3785012B219C5700099CF9 /* firebase_core.framework in Frameworks */,
+				BD3785102B219C8B00099CF9 /* fluttertoast.framework in Frameworks */,
+				BD3784FB2B219C4800099CF9 /* connectivity_plus.framework in Frameworks */,
+				BD3784FE2B219C4D00099CF9 /* firebase_auth.framework in Frameworks */,
+				BD3785072B219C6900099CF9 /* firebase_storage.framework in Frameworks */,
+				BD37850D2B219C7E00099CF9 /* flutter_local_notifications.framework in Frameworks */,
+				BD3784F82B219C4100099CF9 /* cloud_firestore.framework in Frameworks */,
+				BD37850A2B219C7400099CF9 /* FirebaseAuth.framework in Frameworks */,
+				BD3785042B219C6100099CF9 /* firebase_messaging.framework in Frameworks */,
 				CE5BE615C9EA1CA07609B8F8 /* Pods_Runner.framework in Frameworks */,
+				BD3785132B219CA000099CF9 /* flutter_local_notifications.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,6 +148,7 @@
 		97C146F01CF9000F007C117D /* Runner */ = {
 			isa = PBXGroup;
 			children = (
+				BD3784F62B2195C000099CF9 /* Runner.entitlements */,
 				97C146FA1CF9000F007C117D /* Main.storyboard */,
 				97C146FD1CF9000F007C117D /* Assets.xcassets */,
 				97C146FF1CF9000F007C117D /* LaunchScreen.storyboard */,
@@ -152,13 +171,22 @@
 				CC1C7C22D5B52A90F59669F2 /* Pods-RunnerTests.release.xcconfig */,
 				D2CB69A636CD6DDB335E33C2 /* Pods-RunnerTests.profile.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
 		F3B208E555C49631427228EB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BD3785122B219CA000099CF9 /* flutter_local_notifications.framework */,
+				BD37850F2B219C8B00099CF9 /* fluttertoast.framework */,
+				BD37850C2B219C7E00099CF9 /* flutter_local_notifications.framework */,
+				BD3785092B219C7400099CF9 /* FirebaseAuth.framework */,
+				BD3785062B219C6900099CF9 /* firebase_storage.framework */,
+				BD3785032B219C6100099CF9 /* firebase_messaging.framework */,
+				BD3785002B219C5700099CF9 /* firebase_core.framework */,
+				BD3784FD2B219C4D00099CF9 /* firebase_auth.framework */,
+				BD3784FA2B219C4800099CF9 /* connectivity_plus.framework */,
+				BD3784F72B219C4100099CF9 /* cloud_firestore.framework */,
 				D57A7C1FB6D4EFF0B3A83449 /* Pods_Runner.framework */,
 				58252D034D35BA42D25DEBAB /* Pods_RunnerTests.framework */,
 			);
@@ -196,7 +224,6 @@
 				97C146EA1CF9000F007C117D /* Sources */,
 				97C146EB1CF9000F007C117D /* Frameworks */,
 				97C146EC1CF9000F007C117D /* Resources */,
-				9705A1C41CF9048500538489 /* Embed Frameworks */,
 				3B06AD1E1E4923F5004D2608 /* Thin Binary */,
 				34FFC6091F2D7FFAE28D57A4 /* [CP] Embed Pods Frameworks */,
 				D4D15C47EC09FE0A9D9D3FCC /* [CP] Copy Pods Resources */,
@@ -486,17 +513,26 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = VBW7399Y9F;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Wrcontacts;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.findWorker;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hkk4coding.wrcontacts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Profile;
@@ -664,18 +700,27 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = VBW7399Y9F;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Wrcontacts;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.findWorker;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hkk4coding.wrcontacts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -686,17 +731,26 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Runner/Runner.entitlements;
 				CURRENT_PROJECT_VERSION = "$(FLUTTER_BUILD_NUMBER)";
+				DEVELOPMENT_TEAM = VBW7399Y9F;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Runner/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Wrcontacts;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.business";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.findWorker;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hkk4coding.wrcontacts;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "Runner/Runner-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

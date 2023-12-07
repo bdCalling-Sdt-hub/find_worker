@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:find_worker/model/notification_model.dart';
-import 'package:find_worker/utils/app_constents.dart';
+import 'package:wrcontacts/model/notification_model.dart';
+import 'package:wrcontacts/utils/app_constents.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';

@@ -2,20 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-     <key>NSPhotoLibraryUsageDescription</key>
-     <string>A profile picture helps others recognize and identify you on App. It adds a visual element to your online presence and contributes to your digital identity.</string>
-     <key>NSCameraUsageDescription</key>
-     <string>A profile picture helps others recognize and identify you on App. It adds a visual element to your online presence and contributes to your digital identity.</string>
-    <key>LSApplicationQueriesSchemes</key>
-    <array>
-      <string>tel</string>
-    </array>
-    <key>GADApplicationIdentifier</key>
-    <string>ca-app-pub-1976486377144082~2106018074</string>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Find Worker</string>
+	<string>Wrcontacts</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -23,16 +15,41 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>find_worker</string>
+	<string>wrcontacts</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.205085897377-inepsgtfjos8u37f8i99qeg9afpb305g</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<key>GADApplicationIdentifier</key>
+	<string>ca-app-pub-1976486377144082~2106018074</string>
+	<key>GIDClientID</key>
+	<string>205085897377-inepsgtfjos8u37f8i99qeg9afpb305g.apps.googleusercontent.com</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>tel</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>A profile picture helps others recognize and identify you on App. It adds a visual element to your online presence and contributes to your digital identity.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>A profile picture helps others recognize and identify you on App. It adds a visual element to your online presence and contributes to your digital identity.</string>
+	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
@@ -51,9 +68,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>CADisableMinimumFrameDurationOnPhone</key>
-	<true/>
-	<key>UIApplicationSupportsIndirectInputEvents</key>
-	<true/>
 </dict>
 </plist>

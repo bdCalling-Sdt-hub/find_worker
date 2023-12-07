@@ -1,15 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:find_worker/core/app_routes.dart';
-import 'package:find_worker/utils/app_colors.dart';
-import 'package:find_worker/utils/app_icons.dart';
-import 'package:find_worker/utils/app_images.dart';
-import 'package:find_worker/utils/app_strings.dart';
-import 'package:find_worker/view/screens/user/category/category_screen.dart';
-import 'package:find_worker/view/screens/user/home/Controller/home_controller.dart';
-import 'package:find_worker/view/screens/user/home/home/home_screen_data/home_screen_data.dart';
-import 'package:find_worker/view/widgets/custom_loader.dart';
+import 'package:wrcontacts/core/app_routes.dart';
+import 'package:wrcontacts/utils/app_colors.dart';
+import 'package:wrcontacts/utils/app_icons.dart';
+import 'package:wrcontacts/utils/app_images.dart';
+import 'package:wrcontacts/utils/app_strings.dart';
+import 'package:wrcontacts/view/screens/user/category/category_screen.dart';
+import 'package:wrcontacts/view/screens/user/home/Controller/home_controller.dart';
+import 'package:wrcontacts/view/screens/user/home/home/home_screen_data/home_screen_data.dart';
+import 'package:wrcontacts/view/widgets/custom_loader.dart';
 
-import 'package:find_worker/view/widgets/text/custom_text.dart';
+import 'package:wrcontacts/view/widgets/text/custom_text.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

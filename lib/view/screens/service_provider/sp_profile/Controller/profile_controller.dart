@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:find_worker/view/screens/service_provider/sp_home/Controller/home_controller.dart';
+import 'package:wrcontacts/view/screens/service_provider/sp_home/Controller/home_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';

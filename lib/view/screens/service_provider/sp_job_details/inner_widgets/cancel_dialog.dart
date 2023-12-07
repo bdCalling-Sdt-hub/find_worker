@@ -1,7 +1,7 @@
-import 'package:find_worker/utils/app_strings.dart';
-import 'package:find_worker/view/screens/service_provider/sp_job_details/controller/sp_job_details_controller.dart';
-import 'package:find_worker/view/widgets/custom_button.dart';
-import 'package:find_worker/view/widgets/custom_outline_button.dart';
+import 'package:wrcontacts/utils/app_strings.dart';
+import 'package:wrcontacts/view/screens/service_provider/sp_job_details/controller/sp_job_details_controller.dart';
+import 'package:wrcontacts/view/widgets/custom_button.dart';
+import 'package:wrcontacts/view/widgets/custom_outline_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';

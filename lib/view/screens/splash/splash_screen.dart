@@ -1,14 +1,14 @@
 import 'dart:async';
 
-import 'package:find_worker/core/app_routes.dart';
-import 'package:find_worker/core/share_pre.dart';
-import 'package:find_worker/helper/SystemChromeHelper/system_chrome.dart';
-import 'package:find_worker/utils/app_constents.dart';
-import 'package:find_worker/utils/app_icons.dart';
-import 'package:find_worker/utils/app_strings.dart';
-import 'package:find_worker/view/screens/service_provider/sp_bottom_nav_bar/sp_bottom_nav_bar_screen.dart';
-import 'package:find_worker/view/screens/user/user_bottom_nav_bar/user_bottom_nav_bar_screen.dart';
-import 'package:find_worker/view/widgets/text/custom_text.dart';
+import 'package:wrcontacts/core/app_routes.dart';
+import 'package:wrcontacts/core/share_pre.dart';
+import 'package:wrcontacts/helper/SystemChromeHelper/system_chrome.dart';
+import 'package:wrcontacts/utils/app_constents.dart';
+import 'package:wrcontacts/utils/app_icons.dart';
+import 'package:wrcontacts/utils/app_strings.dart';
+import 'package:wrcontacts/view/screens/service_provider/sp_bottom_nav_bar/sp_bottom_nav_bar_screen.dart';
+import 'package:wrcontacts/view/screens/user/user_bottom_nav_bar/user_bottom_nav_bar_screen.dart';
+import 'package:wrcontacts/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';

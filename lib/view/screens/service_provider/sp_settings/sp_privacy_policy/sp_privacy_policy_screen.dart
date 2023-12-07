@@ -1,8 +1,8 @@
-import 'package:find_worker/utils/app_colors.dart';
-import 'package:find_worker/utils/app_strings.dart';
-import 'package:find_worker/view/widgets/app_bar/custom_app_bar.dart';
-import 'package:find_worker/view/widgets/custom_loader.dart';
-import 'package:find_worker/view/widgets/text/custom_text.dart';
+import 'package:wrcontacts/utils/app_colors.dart';
+import 'package:wrcontacts/utils/app_strings.dart';
+import 'package:wrcontacts/view/widgets/app_bar/custom_app_bar.dart';
+import 'package:wrcontacts/view/widgets/custom_loader.dart';
+import 'package:wrcontacts/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';

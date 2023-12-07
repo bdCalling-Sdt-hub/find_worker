@@ -1,7 +1,7 @@
-import 'package:find_worker/utils/app_colors.dart';
-import 'package:find_worker/utils/app_strings.dart';
-import 'package:find_worker/view/screens/user/search/Controller/search_controller.dart';
-import 'package:find_worker/view/widgets/buttons/bottom_nav_button.dart';
+import 'package:wrcontacts/utils/app_colors.dart';
+import 'package:wrcontacts/utils/app_strings.dart';
+import 'package:wrcontacts/view/screens/user/search/Controller/search_controller.dart';
+import 'package:wrcontacts/view/widgets/buttons/bottom_nav_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';

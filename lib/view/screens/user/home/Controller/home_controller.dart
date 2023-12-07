@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:find_worker/model/category_model.dart';
-import 'package:find_worker/model/service_by_user_model.dart';
-import 'package:find_worker/model/service_model.dart';
-import 'package:find_worker/utils/app_constents.dart';
+import 'package:wrcontacts/model/category_model.dart';
+import 'package:wrcontacts/model/service_by_user_model.dart';
+import 'package:wrcontacts/model/service_model.dart';
+import 'package:wrcontacts/utils/app_constents.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';

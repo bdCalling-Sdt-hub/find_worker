@@ -1,10 +1,10 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:find_worker/model/category_model.dart';
-import 'package:find_worker/model/service_model.dart';
-import 'package:find_worker/utils/app_constents.dart';
-import 'package:find_worker/view/screens/service_provider/sp_services/Controller/service_controller.dart';
+import 'package:wrcontacts/model/category_model.dart';
+import 'package:wrcontacts/model/service_model.dart';
+import 'package:wrcontacts/utils/app_constents.dart';
+import 'package:wrcontacts/view/screens/service_provider/sp_services/Controller/service_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
