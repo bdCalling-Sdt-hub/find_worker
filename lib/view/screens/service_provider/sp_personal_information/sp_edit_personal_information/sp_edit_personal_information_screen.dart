@@ -124,15 +124,15 @@ class _SpEditPersonalInformationState
                                                       .userData
                                                       .value
                                                       .imageSrc!))
-                                              : const DecorationImage(
+                                              :  DecorationImage(
                                             fit: BoxFit.fill,
                                             image: AssetImage(
-                                                'assets/images/person.png'),
+                                                AppIcons.unSplashProfileImage),
                                           )
-                                              : const DecorationImage(
+                                              :  DecorationImage(
                                             fit: BoxFit.fill,
                                             image: AssetImage(
-                                                'assets/images/person.png'),
+                                                AppIcons.unSplashProfileImage),
                                           )),
                                     ),
                                   ),

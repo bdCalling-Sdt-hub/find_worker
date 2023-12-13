@@ -142,5 +142,13 @@ getHistoryList() async {
 
 
 
+Stream<DocumentSnapshot> getItems() {
+  return FirebaseFirestore.instance.collection(AppConstants.users).doc(_auth.currentUser!.uid).snapshots().map(
+        (DocumentSnapshot snapshot) {
+      return snapshot;
+    },
+  );
+}
+
 
 }

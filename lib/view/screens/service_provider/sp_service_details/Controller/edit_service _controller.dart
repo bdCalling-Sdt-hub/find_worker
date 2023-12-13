@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:wrcontacts/model/category_model.dart';
 import 'package:wrcontacts/model/service_model.dart';
 import 'package:wrcontacts/utils/app_constents.dart';
@@ -84,7 +85,7 @@ class EditServiceController extends GetxController{
             );
             await firebaseStorage.collection(AppConstants.services).doc(model.id).update(body.toJson());
             await serviceController.getService();
-            Get.snackbar("Success", "Service Update Successful");
+            Fluttertoast.showToast(msg:"Service Update Successful");
             return body;
         } on Exception catch (e) {
           debugPrint("Add error. Reason ${e.toString()}");

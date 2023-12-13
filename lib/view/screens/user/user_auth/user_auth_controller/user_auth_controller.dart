@@ -310,7 +310,7 @@ var loading=false.obs;
         passwordController.clear();
       }
     } else {
-      Get.snackbar("Error", "User not found", colorText: Colors.red);
+     Fluttertoast.showToast(msg: "User not found");
     }
   });
 } on FirebaseAuthException catch (e) {
@@ -343,6 +343,13 @@ var loading=false.obs;
 
       }else{
         print('Error during sign in: ${e.message}');
+        Fluttertoast.showToast(
+            msg:e.message!,
+            backgroundColor: AppColors.blue_100,
+            textColor: AppColors.white,
+            fontSize: 14,
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM);
       }
     }
     finally {
@@ -401,7 +408,7 @@ var loading=false.obs;
           passwordController.clear();
         }
       } else {
-        Get.snackbar("Error", "User not found", colorText: Colors.red);
+       Fluttertoast.showToast(msg: "User not found");
       }
     } else {
       Get.to(MoreSignUpScreen(uid: userData.user!.uid, email:userData.user!.email??"", image:userData.user!.photoURL??"", name:userData.user!.displayName??"", userType: userType));
@@ -457,7 +464,7 @@ var loading=false.obs;
           passwordController.clear();
         }
       } else {
-        Get.snackbar("Error", "User not found", colorText: Colors.red);
+       Fluttertoast.showToast(msg: "User not found");
       }
     } else {
       Get.to(MoreSignUpScreen(uid: userData.user!.uid, email:userData.user!.email??"", image:userData.user!.photoURL??"", name:userData.user!.displayName??"", userType: userType));

@@ -60,14 +60,15 @@ class _UserSignInState extends State<UserSignIn> {
                       key: loginFormKey,
                       child: Column(
                         children: [
+                          SizedBox(height: 30,),
                           const CustomText(
                             text: AppStrings.welcomeToFindWorker,
                             fontSize: 18,
                             fontWeight: FontWeight.w500,
                             bottom: 30,
                           ),
-                          Image.asset(AppIcons.logoImage,height:94,width: 60,fit: BoxFit.fill,),
-                          SizedBox(height: 30,),
+                          // Image.asset(AppIcons.logoImage,height:94,width: 60,fit: BoxFit.fill,),
+                           SizedBox(height: 80,),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [

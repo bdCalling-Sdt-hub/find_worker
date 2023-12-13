@@ -92,12 +92,12 @@ class _SpProfileScreenState extends State<SpProfileScreen> {
                                           : DecorationImage(
                                         fit: BoxFit.fill,
                                         image: AssetImage(
-                                            'assets/images/person.png'),
+                                            AppIcons.unSplashProfileImage),
                                       )
                                           : DecorationImage(
                                         fit: BoxFit.fill,
                                         image: AssetImage(
-                                            'assets/images/person.png'),
+                                            AppIcons.unSplashProfileImage),
                                       )),
                                 ),
                                 CustomText(

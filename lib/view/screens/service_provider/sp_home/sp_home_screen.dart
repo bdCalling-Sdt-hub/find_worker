@@ -8,6 +8,7 @@ import 'package:wrcontacts/view/screens/service_provider/sp_add_new_service/sp_a
 import 'package:wrcontacts/view/screens/service_provider/sp_home/Controller/home_controller.dart';
 import 'package:wrcontacts/view/screens/service_provider/sp_home/inner_widgets/sp_home_bottom_modal.dart';
 import 'package:wrcontacts/view/screens/service_provider/sp_job_details/sp_job_details_screen.dart';
+import 'package:wrcontacts/view/screens/service_provider/sp_profile/Controller/profile_controller.dart';
 import 'package:wrcontacts/view/widgets/app_bar/custom_app_bar.dart';
 import 'package:wrcontacts/view/widgets/custom_button.dart';
 import 'package:wrcontacts/view/widgets/custom_loader.dart';
@@ -34,6 +35,7 @@ class _SpHomeScreenState extends State<SpHomeScreen> {
   bool status = false;
   final _controller = ValueNotifier<bool>(false);
   final _homeController = Get.put(SpHomeController());
+  final _profileController = Get.put(SpProfileController());
 
   @override
   Widget build(BuildContext context) {
@@ -43,20 +45,65 @@ class _SpHomeScreenState extends State<SpHomeScreen> {
         appBarContent: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-             CustomText(
-              text: AppStrings.logo.tr,
-              color: AppColors.blue_100,
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
+             _profileController.userData.value.imageSrc==null||_profileController.userData.value.imageSrc==""? Container(
+              height: 45,
+              width: 45,
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                      color: Colors.grey.shade200,
+                      width: 0.5
+                  ),
+                  image: const DecorationImage(
+                      image:AssetImage(AppIcons.unSplashProfileImage),fit: BoxFit.fill)
+              ),
+
+
+            ):Container(
+              height: 45,
+              width: 45,
+              decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                      color: Colors.grey.shade200,
+                      width: 0.5
+                  ),
+                  image: DecorationImage(
+                      image:NetworkImage(_profileController.userData.value.imageSrc??""),fit: BoxFit.fill)),
             ),
 
-            CustomSwicth(onChanged: (bool value) {
+      StreamBuilder(
+        stream: _homeController.getItems(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return CircularProgressIndicator();
+          }else{
+            debugPrint("user data get : ${snapshot.data!.data()}");
+            var da=snapshot.data!;
+            debugPrint("user data get : ${da['status']}");
+              if(da['status']=="Online"){
+                print("Online");
+                _homeController.status.value=true;
+              }else{
+                _homeController.status.value=false;
+                print("Offline");
+              }
 
+
+            return Obx(()=>
+               CustomSwicth(onChanged: (bool value) {
                 _homeController.updateStatusData();
 
+              },
+                value:_homeController.status.value,active:AppStrings.online.tr,inActive:AppStrings.offline.tr,),
+            );
 
-            },
-              value:_homeController.status.value,active:AppStrings.online.tr,inActive:AppStrings.offline.tr,),
+
+          }
+
+        },
+      ),
+
 
             // SizedBox(
             //   height:35,
@@ -343,7 +390,7 @@ class _SpHomeScreenState extends State<SpHomeScreen> {
                                             color: AppColors.blue_100),
                                       ),
                                       child: Image.asset(
-                                          'assets/images/person.png'),
+                                          AppIcons.unSplashProfileImage),
                                     ),
                               const SizedBox(
                                 width: 16,
