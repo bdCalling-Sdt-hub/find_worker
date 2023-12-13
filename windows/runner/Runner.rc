@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "find_worker" "\0"
+            VALUE "FileDescription", "wrcontacts" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "find_worker" "\0"
+            VALUE "InternalName", "wrcontacts" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2023 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "find_worker.exe" "\0"
-            VALUE "ProductName", "find_worker" "\0"
+            VALUE "OriginalFilename", "wrcontacts.exe" "\0"
+            VALUE "ProductName", "wrcontacts" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

@@ -1,7 +1,7 @@
 import 'package:device_preview/device_preview.dart';
-import 'package:find_worker/core/app_routes.dart';
-import 'package:find_worker/helper/Language/language_controller.dart';
-import 'package:find_worker/utils/app_colors.dart';
+import 'package:wrcontacts/core/app_routes.dart';
+import 'package:wrcontacts/helper/Language/language_controller.dart';
+import 'package:wrcontacts/utils/app_colors.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';

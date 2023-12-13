@@ -1,16 +1,16 @@
-import 'package:find_worker/core/app_routes.dart';
-import 'package:find_worker/utils/app_colors.dart';
-import 'package:find_worker/utils/app_icons.dart';
-import 'package:find_worker/utils/app_images.dart';
-import 'package:find_worker/utils/app_strings.dart';
-import 'package:find_worker/view/screens/user/user_auth/user_auth_controller/user_auth_controller.dart';
-import 'package:find_worker/view/screens/user/user_auth/user_forget_password/user_forget_password_screen.dart';
-import 'package:find_worker/view/screens/user/user_bottom_nav_bar/user_bottom_nav_bar_screen.dart';
-import 'package:find_worker/view/widgets/buttons/custom_button.dart';
-import 'package:find_worker/view/widgets/custom_elevated_loading_button/custom_elevated_loading_button.dart';
-import 'package:find_worker/view/widgets/image/custom_image.dart';
-import 'package:find_worker/view/widgets/text/custom_text.dart';
-import 'package:find_worker/view/widgets/text_field/custom_text_field.dart';
+import 'package:wrcontacts/core/app_routes.dart';
+import 'package:wrcontacts/utils/app_colors.dart';
+import 'package:wrcontacts/utils/app_icons.dart';
+import 'package:wrcontacts/utils/app_images.dart';
+import 'package:wrcontacts/utils/app_strings.dart';
+import 'package:wrcontacts/view/screens/user/user_auth/user_auth_controller/user_auth_controller.dart';
+import 'package:wrcontacts/view/screens/user/user_auth/user_forget_password/user_forget_password_screen.dart';
+import 'package:wrcontacts/view/screens/user/user_bottom_nav_bar/user_bottom_nav_bar_screen.dart';
+import 'package:wrcontacts/view/widgets/buttons/custom_button.dart';
+import 'package:wrcontacts/view/widgets/custom_elevated_loading_button/custom_elevated_loading_button.dart';
+import 'package:wrcontacts/view/widgets/image/custom_image.dart';
+import 'package:wrcontacts/view/widgets/text/custom_text.dart';
+import 'package:wrcontacts/view/widgets/text_field/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -64,15 +64,10 @@ class _UserSignInState extends State<UserSignIn> {
                             text: AppStrings.welcomeToFindWorker,
                             fontSize: 18,
                             fontWeight: FontWeight.w500,
-                            bottom: 66,
+                            bottom: 30,
                           ),
-                          const CustomText(
-                            text: AppStrings.logo,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.blue_100,
-                            bottom: 66,
-                          ),
+                          Image.asset(AppIcons.logoImage,height:94,width: 60,fit: BoxFit.fill,),
+                          SizedBox(height: 30,),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -129,11 +124,6 @@ class _UserSignInState extends State<UserSignIn> {
                                 validator: (value) {
                                   if (value.isEmpty) {
                                     return 'Enter your Password'.tr;
-                                  } else if (!RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
-                                      .hasMatch(controller.passwordController.text)) {
-                                    return "Please use uppercase, lowercase, special character, and number".tr;
-                                  } else if (value.length < 8) {
-                                    return "Please use 8 character long password".tr;
                                   }
                                   return null;
                                 },

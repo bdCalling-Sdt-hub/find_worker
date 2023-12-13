@@ -1,19 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:encrypt/encrypt.dart';
-import 'package:find_worker/controller/data_controller.dart';
-import 'package:find_worker/core/app_routes.dart';
-import 'package:find_worker/core/share_pre.dart';
-import 'package:find_worker/helper/Language/language_controller.dart';
-import 'package:find_worker/model/user_model.dart';
-import 'package:find_worker/utils/app_colors.dart';
-import 'package:find_worker/utils/app_constents.dart';
-import 'package:find_worker/view/screens/service_provider/sp_bottom_nav_bar/sp_bottom_nav_bar_screen.dart';
-import 'package:find_worker/view/screens/service_provider/sp_home/Controller/home_controller.dart';
-import 'package:find_worker/view/screens/service_provider/sp_profile/Controller/profile_controller.dart';
-import 'package:find_worker/view/screens/user/home/Controller/home_controller.dart';
-import 'package:find_worker/view/screens/user/user_auth/user_sign_in/user_sign_in_screen.dart';
-import 'package:find_worker/view/screens/user/user_auth/user_sign_up/more_sign_up_screen.dart';
-import 'package:find_worker/view/screens/user/user_bottom_nav_bar/user_bottom_nav_bar_screen.dart';
+import 'package:wrcontacts/controller/data_controller.dart';
+import 'package:wrcontacts/core/app_routes.dart';
+import 'package:wrcontacts/core/share_pre.dart';
+import 'package:wrcontacts/helper/Language/language_controller.dart';
+import 'package:wrcontacts/model/user_model.dart';
+import 'package:wrcontacts/utils/app_colors.dart';
+import 'package:wrcontacts/utils/app_constents.dart';
+import 'package:wrcontacts/utils/app_strings.dart';
+import 'package:wrcontacts/view/screens/service_provider/sp_bottom_nav_bar/sp_bottom_nav_bar_screen.dart';
+import 'package:wrcontacts/view/screens/service_provider/sp_home/Controller/home_controller.dart';
+import 'package:wrcontacts/view/screens/service_provider/sp_profile/Controller/profile_controller.dart';
+import 'package:wrcontacts/view/screens/user/home/Controller/home_controller.dart';
+import 'package:wrcontacts/view/screens/user/user_auth/user_sign_in/user_sign_in_screen.dart';
+import 'package:wrcontacts/view/screens/user/user_auth/user_sign_up/more_sign_up_screen.dart';
+import 'package:wrcontacts/view/screens/user/user_bottom_nav_bar/user_bottom_nav_bar_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -331,7 +332,16 @@ var loading=false.obs;
             toastLength: Toast.LENGTH_SHORT,
             gravity: ToastGravity.BOTTOM);
         print('Wrong password provided for that user.');
-      } else {
+      } else if(e.code=="INVALID_LOGIN_CREDENTIALS") {
+        Fluttertoast.showToast(
+            msg:"Oops, user not found!".tr,
+            backgroundColor: AppColors.blue_100,
+            textColor: AppColors.white,
+            fontSize: 14,
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM);
+
+      }else{
         print('Error during sign in: ${e.message}');
       }
     }
@@ -339,12 +349,6 @@ var loading=false.obs;
  isLoading = false;
     update();
 }
-
-    // usernameController.text = "";
-    // passwordController.text = "";
-
-    isLoading = false;
-    update();
   }
 
   Future<void> signInWithGoogle(String userType) async {
@@ -481,9 +485,6 @@ var loading=false.obs;
         localizationController.setLanguage(Locale('en',"US"));
         Get.back();
         Get.offAll(()=>const OnboardScreen());
-
-
-
         await PrefsHelper.setString(AppConstants.logged, "");
         debugPrint("=========> Successful sign out");
         isSignOutLoad(false);
@@ -507,12 +508,17 @@ var loading=false.obs;
     if(auth.currentUser!.email==accountDeleteCtrl.text){
       await auth.currentUser!.delete().then((value)async{
         localizationController.setLanguage(Locale('en',"US"));
-        Get.back();
-        Get.offAll(()=>const OnboardScreen());
+        await GoogleSignIn().signOut();
         accountDeleteCtrl.clear();
         await PrefsHelper.setString(AppConstants.logged, "");
+        Get.back();
+        Get.offAll(()=>const OnboardScreen());
+        Fluttertoast.showToast(msg:AppStrings.accountDelete.tr);
         isAccountDeleteLoading(false);
+      }).catchError((v){
+        Fluttertoast.showToast(msg: v.toString());
       });
+      isAccountDeleteLoading(false);
     }
 
 

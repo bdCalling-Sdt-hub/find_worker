@@ -165,5 +165,7 @@
   "Offline": "غير متصل على الانترنت",
   "PleaseConnectToTheInternet": "الرجاء الاتصال بالإنترنت",
   "Delete Account": "حذف الحساب",
-  "Enter your email to delete your account.": "أدخل بريدك الإلكتروني لحذف حسابك."
+  "Enter your email to delete your account.": "أدخل بريدك الإلكتروني لحذف حسابك.",
+  "The account has been deleted": "تم حذف الحساب",
+  "Oops, user not found!": "عفوًا، لم يتم العثور على المستخدم!"
 }

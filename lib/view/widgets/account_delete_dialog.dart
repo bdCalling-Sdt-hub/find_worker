@@ -1,6 +1,6 @@
-import 'package:find_worker/view/screens/user/user_auth/user_auth_controller/user_auth_controller.dart';
-import 'package:find_worker/view/widgets/custom_button.dart';
-import 'package:find_worker/view/widgets/text_field/custom_text_field.dart';
+import 'package:wrcontacts/view/screens/user/user_auth/user_auth_controller/user_auth_controller.dart';
+import 'package:wrcontacts/view/widgets/custom_button.dart';
+import 'package:wrcontacts/view/widgets/text_field/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';

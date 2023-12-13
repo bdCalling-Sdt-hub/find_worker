@@ -1,14 +1,14 @@
 import 'package:country_code_picker/country_code_picker.dart';
-import 'package:find_worker/core/app_routes.dart';
-import 'package:find_worker/utils/app_colors.dart';
-import 'package:find_worker/utils/app_icons.dart';
-import 'package:find_worker/utils/app_strings.dart';
-import 'package:find_worker/view/screens/user/user_auth/user_auth_controller/user_auth_controller.dart';
-import 'package:find_worker/view/widgets/buttons/custom_button.dart';
-import 'package:find_worker/view/widgets/custom_elevated_loading_button/custom_elevated_loading_button.dart';
-import 'package:find_worker/view/widgets/image/custom_image.dart';
-import 'package:find_worker/view/widgets/text/custom_text.dart';
-import 'package:find_worker/view/widgets/text_field/custom_text_field.dart';
+import 'package:wrcontacts/core/app_routes.dart';
+import 'package:wrcontacts/utils/app_colors.dart';
+import 'package:wrcontacts/utils/app_icons.dart';
+import 'package:wrcontacts/utils/app_strings.dart';
+import 'package:wrcontacts/view/screens/user/user_auth/user_auth_controller/user_auth_controller.dart';
+import 'package:wrcontacts/view/widgets/buttons/custom_button.dart';
+import 'package:wrcontacts/view/widgets/custom_elevated_loading_button/custom_elevated_loading_button.dart';
+import 'package:wrcontacts/view/widgets/image/custom_image.dart';
+import 'package:wrcontacts/view/widgets/text/custom_text.dart';
+import 'package:wrcontacts/view/widgets/text_field/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -482,9 +482,6 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                                     validator: (value) {
                                       if (value.isEmpty) {
                                         return "Password Not Be Empty".tr;
-                                      } else if (controller.passController.text !=
-                                          controller.confirmPasswordController.text) {
-                                        return "Password doesn't match".tr;
                                       }
                                       return null;
                                     },
@@ -520,6 +517,9 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                                         return "Please use uppercase, lowercase, special character, and number".tr;
                                       } else if (value.length < 8) {
                                         return "Please use 8 character long password".tr;
+                                      } else if (controller.passController.text !=
+                                          controller.confirmPasswordController.text) {
+                                        return "Password doesn't match".tr;
                                       }
                                       return null;
                                     },

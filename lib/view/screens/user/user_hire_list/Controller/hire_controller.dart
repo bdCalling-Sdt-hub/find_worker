@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:find_worker/model/hire_model.dart';
-import 'package:find_worker/utils/app_constents.dart';
+import 'package:wrcontacts/model/hire_model.dart';
+import 'package:wrcontacts/utils/app_constents.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';

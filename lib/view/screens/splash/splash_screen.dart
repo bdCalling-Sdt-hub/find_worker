@@ -1,13 +1,14 @@
 import 'dart:async';
 
-import 'package:find_worker/core/app_routes.dart';
-import 'package:find_worker/core/share_pre.dart';
-import 'package:find_worker/helper/SystemChromeHelper/system_chrome.dart';
-import 'package:find_worker/utils/app_constents.dart';
-import 'package:find_worker/utils/app_strings.dart';
-import 'package:find_worker/view/screens/service_provider/sp_bottom_nav_bar/sp_bottom_nav_bar_screen.dart';
-import 'package:find_worker/view/screens/user/user_bottom_nav_bar/user_bottom_nav_bar_screen.dart';
-import 'package:find_worker/view/widgets/text/custom_text.dart';
+import 'package:wrcontacts/core/app_routes.dart';
+import 'package:wrcontacts/core/share_pre.dart';
+import 'package:wrcontacts/helper/SystemChromeHelper/system_chrome.dart';
+import 'package:wrcontacts/utils/app_constents.dart';
+import 'package:wrcontacts/utils/app_icons.dart';
+import 'package:wrcontacts/utils/app_strings.dart';
+import 'package:wrcontacts/view/screens/service_provider/sp_bottom_nav_bar/sp_bottom_nav_bar_screen.dart';
+import 'package:wrcontacts/view/screens/user/user_bottom_nav_bar/user_bottom_nav_bar_screen.dart';
+import 'package:wrcontacts/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -33,10 +34,7 @@ class _SplashScreenState extends State<SplashScreen> {
         Get.off(SpBottomNavBarScreen(currentIndex: 0),binding:ProviderBottomNavBinding());
       }else{
         Get.offAndToNamed(AppRoute.onboardScreen);
-
       }
-
-
     });
     super.initState();
   }
@@ -60,12 +58,13 @@ class _SplashScreenState extends State<SplashScreen> {
             colors: [Color(0xFFF3F3F3),Color(0xFFCCE0FA),],
           ),
         ),
-        child: const Center(
-          child:CustomText(
-            text: AppStrings.logo,
-            fontSize: 16,
-            fontWeight: FontWeight.w600,
-          ),
+        child:  Center(
+          child: Image.asset(AppIcons.logoImage,height:94,width: 60,fit: BoxFit.fill,),
+          // child:CustomText(
+          //   text: AppStrings.logo,
+          //   fontSize: 16,
+          //   fontWeight: FontWeight.w600,
+          // ),
         ),
       ),
     ));

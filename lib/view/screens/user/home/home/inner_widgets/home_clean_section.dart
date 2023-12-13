@@ -1,7 +1,7 @@
-import 'package:find_worker/utils/app_icons.dart';
-import 'package:find_worker/utils/app_images.dart';
-import 'package:find_worker/view/widgets/image/custom_image.dart';
-import 'package:find_worker/view/widgets/text/custom_text.dart';
+import 'package:wrcontacts/utils/app_icons.dart';
+import 'package:wrcontacts/utils/app_images.dart';
+import 'package:wrcontacts/view/widgets/image/custom_image.dart';
+import 'package:wrcontacts/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
 
 class HomeCleanSection extends StatefulWidget {

@@ -1,11 +1,11 @@
-import 'package:find_worker/core/app_routes.dart';
-import 'package:find_worker/utils/app_colors.dart';
-import 'package:find_worker/utils/app_constents.dart';
-import 'package:find_worker/utils/app_icons.dart';
-import 'package:find_worker/utils/app_images.dart';
-import 'package:find_worker/utils/app_strings.dart';
-import 'package:find_worker/view/widgets/image/custom_image.dart';
-import 'package:find_worker/view/widgets/text/custom_text.dart';
+import 'package:wrcontacts/core/app_routes.dart';
+import 'package:wrcontacts/utils/app_colors.dart';
+import 'package:wrcontacts/utils/app_constents.dart';
+import 'package:wrcontacts/utils/app_icons.dart';
+import 'package:wrcontacts/utils/app_images.dart';
+import 'package:wrcontacts/utils/app_strings.dart';
+import 'package:wrcontacts/view/widgets/image/custom_image.dart';
+import 'package:wrcontacts/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -46,15 +46,9 @@ class _OnboardScreenState extends State<OnboardScreen> {
                     text: AppStrings.welcomeToFindWorker,
                     fontSize: 18.sp,
                     fontWeight: FontWeight.w500,
-                    bottom: 67.h,
+                    bottom: 30.h,
                   ),
-                   CustomText(
-                    text: AppStrings.logo,
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.w600,
-                    color: AppColors.blue_100,
-                    bottom: 66.h,
-                  ),
+                  Image.asset(AppIcons.logoImage,height:94,width: 60,fit: BoxFit.fill,),
                    CustomImage(
                     imageSrc: AppImages.rafiKi,
                     imageType: ImageType.png,
