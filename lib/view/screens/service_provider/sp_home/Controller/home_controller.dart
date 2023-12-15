@@ -73,11 +73,10 @@ getTokenAndUpdate()async{
     userData.refresh();
   }
 
-  Future<void> updateStatusData()async{
+  Future<void> updateStatusData(bool value)async{
         try {
-          var inActive= status.value?"Offline":"Online";
+          var inActive= value?"Online":"Offline";
                  await firebaseFirestore.collection(AppConstants.users).doc(_auth.currentUser!.uid).update({"status":inActive});
-                 status.value=!status.value;
         } on Exception catch (e) {
           debugPrint("Oops error $e");
         }

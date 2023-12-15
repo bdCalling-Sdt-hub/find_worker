@@ -42,129 +42,145 @@ class _SpHomeScreenState extends State<SpHomeScreen> {
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: CustomAppBar(
-        appBarContent: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-             _profileController.userData.value.imageSrc==null||_profileController.userData.value.imageSrc==""? Container(
-              height: 45,
-              width: 45,
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                      color: Colors.grey.shade200,
-                      width: 0.5
-                  ),
-                  image: const DecorationImage(
-                      image:AssetImage(AppIcons.unSplashProfileImage),fit: BoxFit.fill)
+        appBarContent: Obx(()=>
+           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+               _profileController.userData.value.imageSrc==null||_profileController.userData.value.imageSrc==""? Container(
+                height: 45,
+                width: 45,
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                        color: Colors.grey.shade200,
+                        width: 0.5
+                    ),
+                    image: const DecorationImage(
+                        image:AssetImage(AppIcons.unSplashProfileImage),fit: BoxFit.fill)
+                ),
+
+
+              ):Container(
+                height: 45,
+                width: 45,
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                        color: Colors.grey.shade200,
+                        width: 0.5
+                    ),
+                    image: DecorationImage(
+                        image:NetworkImage(_profileController.userData.value.imageSrc??""),fit: BoxFit.fill)),
               ),
 
-
-            ):Container(
-              height: 45,
-              width: 45,
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                      color: Colors.grey.shade200,
-                      width: 0.5
-                  ),
-                  image: DecorationImage(
-                      image:NetworkImage(_profileController.userData.value.imageSrc??""),fit: BoxFit.fill)),
-            ),
-
       StreamBuilder(
-        stream: _homeController.getItems(),
-        builder: (context, snapshot) {
-          if (!snapshot.hasData) {
-            return CircularProgressIndicator();
-          }else{
-            debugPrint("user data get : ${snapshot.data!.data()}");
-            var da=snapshot.data!;
-            debugPrint("user data get : ${da['status']}");
-              if(da['status']=="Online"){
-                print("Online");
-                _homeController.status.value=true;
-              }else{
-                _homeController.status.value=false;
-                print("Offline");
-              }
+          stream: _homeController.getItems(),
+          builder: (context, snapshot) {
+            if (!snapshot.hasData) {
+              return const CircularProgressIndicator();
+            }else{
+              debugPrint("user data get : ${snapshot.data!.data()}");
+              var da=snapshot.data!;
+              debugPrint("user data get : ${da['status']}");
+                if(da['status']=="Online"){
+                  print("Online");
+                  _homeController.status.value=true;
+                  _homeController.refresh();
+
+                }else{
+                  _homeController.status.value=false;
+
+                  print("Offline");
+                }
 
 
-            return Obx(()=>
-               CustomSwicth(onChanged: (bool value) {
-                _homeController.updateStatusData();
+              return Obx(()=>
+                  SizedBox(
+                    height:100,
+                    child: Switch(value:_homeController.status.value, onChanged:(value){
+                _homeController.updateStatusData(value);
 
-              },
-                value:_homeController.status.value,active:AppStrings.online.tr,inActive:AppStrings.offline.tr,),
-            );
+             }),
+                  )
+              //    CustomSwicth(onChanged: (bool value) {
+              //     _homeController.updateStatusData();
+              //
+              //   },
+              //     value:_homeController.status.value,active:AppStrings.online.tr,inActive:AppStrings.offline.tr,),
 
 
-          }
 
-        },
+
+              );
+
+
+            }
+
+          },
       ),
 
 
-            // SizedBox(
-            //   height:35,
-            //   child: Obx(()=>
-            //      LiteRollingSwitch(
-            //       //initial value
-            //       value:_homeController.status.value,
-            //       width: 100,
-            //       textOn: 'Online',
-            //       textOff: 'Offline',
-            //        colorOn:AppColors.blue_100,
-            //        colorOff:AppColors.black_20 ,
-            //       iconOn: Icons.done,
-            //       iconOff: Icons.remove_circle_outline,
-            //       textSize: 12.0,
-            //       onChanged: (bool state) {
-            //         _homeController.updateStatusData();
-            //         print('Current State of SWITCH IS: $state');
-            //       }, onTap:(){
-            //
-            //     }, onDoubleTap:(){
-            //
-            //     }, onSwipe:(){
-            //
-            //     },
-            //     ),
-            //   ),
-            // ),
-            // OnOffSwitch(
-            //   controller: _controller,
-            //   activeColor: AppColors.blue_100,
-            //   inactiveColor: AppColors.black_100,
-            //   activeChild: Text(
-            //     'Online',
-            //     style: GoogleFonts.poppins(
-            //         fontSize: 14,
-            //         fontWeight: FontWeight.w500,
-            //         color: AppColors.white),
-            //   ),
-            //   inactiveChild: Text(
-            //     'Offline',
-            //     style: GoogleFonts.poppins(
-            //         fontSize: 14,
-            //         fontWeight: FontWeight.w500,
-            //         color: AppColors.white),
-            //   ),
-            //   borderRadius: const BorderRadius.all(Radius.circular(20)),
-            //   width: 80,
-            //   height: 26.0,
-            //   enabled: true,
-            //   disabledOpacity: 0.8,
-            // ),
-            GestureDetector(
-                onTap: () {
-                  Get.toNamed(AppRoute.spNotificationScreen);
-                },
-                child: const CustomImage(
-                  imageSrc: AppIcons.bell,
-                  size: 24,
-                ))
-          ],
+              // SizedBox(
+              //   height:35,
+              //   child: Obx(()=>
+              //      LiteRollingSwitch(
+              //       //initial value
+              //       value:_homeController.status.value,
+              //       width: 100,
+              //       textOn: 'Online',
+              //       textOff: 'Offline',
+              //        colorOn:AppColors.blue_100,
+              //        colorOff:AppColors.black_20 ,
+              //       iconOn: Icons.done,
+              //       iconOff: Icons.remove_circle_outline,
+              //       textSize: 12.0,
+              //       onChanged: (bool state) {
+              //         _homeController.updateStatusData();
+              //         print('Current State of SWITCH IS: $state');
+              //       }, onTap:(){
+              //
+              //     }, onDoubleTap:(){
+              //
+              //     }, onSwipe:(){
+              //
+              //     },
+              //     ),
+              //   ),
+              // ),
+              // OnOffSwitch(
+              //   controller: _controller,
+              //   activeColor: AppColors.blue_100,
+              //   inactiveColor: AppColors.black_100,
+              //   activeChild: Text(
+              //     'Online',
+              //     style: GoogleFonts.poppins(
+              //         fontSize: 14,
+              //         fontWeight: FontWeight.w500,
+              //         color: AppColors.white),
+              //   ),
+              //   inactiveChild: Text(
+              //     'Offline',
+              //     style: GoogleFonts.poppins(
+              //         fontSize: 14,
+              //         fontWeight: FontWeight.w500,
+              //         color: AppColors.white),
+              //   ),
+              //   borderRadius: const BorderRadius.all(Radius.circular(20)),
+              //   width: 80,
+              //   height: 26.0,
+              //   enabled: true,
+              //   disabledOpacity: 0.8,
+              // ),
+              GestureDetector(
+                  onTap: () {
+                    Get.toNamed(AppRoute.spNotificationScreen);
+                  },
+                  child: const CustomImage(
+                    imageSrc: AppIcons.bell,
+                    size: 24,
+                  ))
+            ],
+          ),
         ),
       ),
       body: LayoutBuilder(
@@ -385,12 +401,12 @@ class _SpHomeScreenState extends State<SpHomeScreen> {
                                       alignment: Alignment.center,
                                       decoration: BoxDecoration(
                                         shape: BoxShape.circle,
+                                        image: const DecorationImage(image:AssetImage( AppIcons.unSplashProfileImage)),
                                         border: Border.all(
                                             width: 1,
                                             color: AppColors.blue_100),
                                       ),
-                                      child: Image.asset(
-                                          AppIcons.unSplashProfileImage),
+
                                     ),
                               const SizedBox(
                                 width: 16,
