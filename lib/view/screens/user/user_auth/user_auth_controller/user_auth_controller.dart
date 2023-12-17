@@ -13,6 +13,7 @@ import 'package:wrcontacts/view/screens/service_provider/sp_home/Controller/home
 import 'package:wrcontacts/view/screens/service_provider/sp_profile/Controller/profile_controller.dart';
 import 'package:wrcontacts/view/screens/user/home/Controller/home_controller.dart';
 import 'package:wrcontacts/view/screens/user/user_auth/user_sign_in/user_sign_in_screen.dart';
+import 'package:wrcontacts/view/screens/user/user_auth/user_sign_up/email_verification.dart';
 import 'package:wrcontacts/view/screens/user/user_auth/user_sign_up/more_sign_up_screen.dart';
 import 'package:wrcontacts/view/screens/user/user_bottom_nav_bar/user_bottom_nav_bar_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -87,7 +88,7 @@ class AuthenticationController extends GetxController {
                 password: passController.text.trim())
             .then((value) async {
           print("====>sign up");
-          await postDetailsToFireStore(userType);
+          Get.to(EmailVerificationScreen(userType:userType,));
         });
         //     .catchError((e) {
         //   Fluttertoast.showToast(
@@ -270,6 +271,46 @@ var loading=false.obs;
       .signInWithEmailAndPassword(
           email: email.trim(), password: password.trim())
       .then((value) async {
+        if(value.user!.emailVerified){
+          DocumentSnapshot data = await firebaseFireStore
+              .collection(AppConstants.users)
+              .doc(value.user!.uid)
+              .get();
+          UserModel userData = UserModel.fromMap(data);
+          debugPrint("=======> Uid ${data['uid']}");
+          debugPrint("=======> User Type ${userData.role} and $userType");
+
+          if (userData.role == userType) {
+            await PrefsHelper.setString(AppConstants.logged, userData.role);
+            if (userData.role == AppConstants.userType) {
+              Get.offAll(UserBottomNavBarScreen(currentIndex: 0),binding:UserBottomNavBinding());
+              _dataController.setData(
+                  userNameD: userData.userName!,
+                  userRoleD: userData.role!,
+                  uidD: userData.uid!,
+                  imageD: userData.imageSrc!,
+                  authTypeD: userData.authType!);
+              usernameController.clear();
+              passwordController.clear();
+            } else {
+              Get.offAll(SpBottomNavBarScreen(currentIndex: 0),binding:ProviderBottomNavBinding());
+              _dataController.setData(
+                  userNameD: userData.userName!,
+                  userRoleD: userData.role!,
+                  uidD: userData.uid!,
+                  imageD: userData.imageSrc!,
+                  authTypeD: userData.authType!);
+              usernameController.clear();
+              passwordController.clear();
+            }
+          } else {
+            Fluttertoast.showToast(msg: "User not found");
+          }
+        }else{
+          auth.signOut();
+          Fluttertoast.showToast(msg: "User not found");
+        }
+
     // Fluttertoast.showToast(
     //     msg: "Login Successfully",
     //     backgroundColor: AppColors.blue_100,
@@ -278,40 +319,7 @@ var loading=false.obs;
     //     toastLength: Toast.LENGTH_SHORT,
     //     gravity: ToastGravity.BOTTOM
     // );
-    DocumentSnapshot data = await firebaseFireStore
-        .collection(AppConstants.users)
-        .doc(value.user!.uid)
-        .get();
-    UserModel userData = UserModel.fromMap(data);
-    debugPrint("=======> Uid ${data['uid']}");
-    debugPrint("=======> User Type ${userData.role} and $userType");
-  
-    if (userData.role == userType) {
-      await PrefsHelper.setString(AppConstants.logged, userData.role);
-      if (userData.role == AppConstants.userType) {
-        Get.offAll(UserBottomNavBarScreen(currentIndex: 0),binding:UserBottomNavBinding());
-        _dataController.setData(
-            userNameD: userData.userName!,
-            userRoleD: userData.role!,
-            uidD: userData.uid!,
-            imageD: userData.imageSrc!,
-            authTypeD: userData.authType!);
-        usernameController.clear();
-        passwordController.clear();
-      } else {
-        Get.offAll(SpBottomNavBarScreen(currentIndex: 0),binding:ProviderBottomNavBinding());
-        _dataController.setData(
-            userNameD: userData.userName!,
-            userRoleD: userData.role!,
-            uidD: userData.uid!,
-            imageD: userData.imageSrc!,
-            authTypeD: userData.authType!);
-        usernameController.clear();
-        passwordController.clear();
-      }
-    } else {
-     Fluttertoast.showToast(msg: "User not found");
-    }
+
   });
 } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {

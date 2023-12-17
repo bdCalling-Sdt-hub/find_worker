@@ -10,7 +10,6 @@ import 'package:wrcontacts/view/widgets/image/custom_image.dart';
 import 'package:wrcontacts/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../sp_home/Controller/home_controller.dart';
 import '../sp_job_history/Controller/sp_history_controller.dart';
 import '../sp_profile/Controller/profile_controller.dart';
@@ -33,7 +32,7 @@ class _SpBottomNavBarScreenState extends State<SpBottomNavBarScreen> {
     super.initState();
   }
 
-  static const List<Widget> screens = <Widget>[
+  static  List<Widget> screens = <Widget>[
     SpHomeScreen(),
     SpJobHistoryScreen(),
     SpProfileScreen(),

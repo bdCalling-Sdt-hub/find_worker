@@ -149,7 +149,7 @@ class _UserServiceDetailsHireNoeBottomModalState extends State<UserServiceDetail
 
         Obx(()=>
            CustomButton(onTap:(){
-             _controller.hireNow(widget.userByServiceModel,widget.number,widget.userModel);
+            // _controller.hireNow(widget.userByServiceModel,widget.number,widget.userModel);
           },
               loading:_controller.hireLoading.value,
               text:"Call"),

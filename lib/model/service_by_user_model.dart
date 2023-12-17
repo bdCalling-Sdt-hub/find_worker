@@ -16,8 +16,12 @@ class UserByServiceModel {
   final double? averageRating;
   final String? description;
   final String? providerName;
+  final String? phoneCode;
+  final String? phone;
 
   UserByServiceModel({
+    this.phone,
+    this.phoneCode,
     this.id,
     this.providerName,
     this.serviceName,
@@ -39,6 +43,8 @@ class UserByServiceModel {
     providerUid: json["provider_uid"],
     averageRating: json["average_rating"]?.toDouble(),
     description: json["description"],
+    phone: json['phone'],
+    phoneCode: json['phone_code']
   );
 
   Map<String, dynamic> toJson() => {

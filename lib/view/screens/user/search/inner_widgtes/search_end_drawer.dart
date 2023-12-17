@@ -137,6 +137,7 @@ class _SearchEndDrawerState extends State<SearchEndDrawer> {
               if(selectIndex==(-1)){
                 Get.back();
               }else{
+                _searchController.focusNode.unfocus();
                 _searchController.getSortedServicesByCategory(_searchController.categoryList[selectIndex].id!);
                 Get.back();
               }

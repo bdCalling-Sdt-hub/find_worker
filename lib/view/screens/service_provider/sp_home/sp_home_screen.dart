@@ -22,6 +22,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 
+import '../../../../model/hire_model.dart';
 import '../../../widgets/custom_switch.dart';
 
 class SpHomeScreen extends StatefulWidget {
@@ -185,176 +186,358 @@ class _SpHomeScreenState extends State<SpHomeScreen> {
       ),
       body: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
-        return Obx(
-          () => _homeController.loading.value
-              ? const CustomLoader()
-              : RefreshIndicator(
-                onRefresh: ()async {
-                  _homeController.getData(false);
-                },
-                child: SingleChildScrollView(
-                  physics: const AlwaysScrollableScrollPhysics(),
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 24, horizontal: 20),
-                    child: Column(
-                      children: [
-                        _userProfile(),
-                        const SizedBox(
-                          height: 24,
-                        ),
+            return  Obx(()=>_homeController.loading.value?const Center(child: CustomLoader()):
+               StreamBuilder<List<HireModel>>(
+                stream: _homeController.getHistoryList(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                      child: CustomLoader()
+                    );
+                  } else if (snapshot.hasError) {
+                    return Center(
+                      child: Text('Error: ${snapshot.error}'),
+                    );
+                  } else {
+                    List<HireModel> historyList = snapshot.data ?? [];
 
-                        _homeController.serviceList.isEmpty?Column(
+                      return SingleChildScrollView(
+                        physics: const AlwaysScrollableScrollPhysics(),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 24, horizontal: 20),
+                        child: Column(
                           children: [
-                            SizedBox(height:94.h ,),
-                            Image.asset(AppImages.empty,height: 100,width: 100,),
-                            const SizedBox(height: 10),
-                            CustomButton(onTap:(){
-                              Get.to(const SpAddNewServiceScreen());
+                            _userProfile(),
+                            const SizedBox(
+                              height: 24,
+                            ),
 
-                            }, text:"Add Service",width: 200.w,height: 44.h,)
+                            _homeController.serviceList.isEmpty?Column(
+                              children: [
+                                SizedBox(height:94.h ,),
+                                Image.asset(AppImages.empty,height: 100,width: 100,),
+                                const SizedBox(height: 10),
+                                CustomButton(onTap:(){
+                                  Get.to(const SpAddNewServiceScreen());
 
-                          ],
-                        ) : _homeController.historyList.isEmpty?Container(
-                          height: Get.height/2,
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8.r),
-                            border: Border.all(
-                              color: const Color(0xFFCDE1F9),
-                              width: 1
-                            )
-                          ),
-                          child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset(AppImages.empty,height: 100,width: 100,),
-                              const SizedBox(height: 10),
-                                Text(AppStrings.noJobsPending.tr)
-                            ],
-                          ),
+                                }, text:"Add Service",width: 200.w,height: 44.h,)
 
-                        ):
+                              ],
+                            ) : historyList.isEmpty?Container(
+                              height: Get.height/2,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8.r),
+                                  border: Border.all(
+                                      color: const Color(0xFFCDE1F9),
+                                      width: 1
+                                  )
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Image.asset(AppImages.empty,height: 100,width: 100,),
+                                  const SizedBox(height: 10),
+                                  Text(AppStrings.noJobsPending.tr)
+                                ],
+                              ),
+
+                            ):
                             ListView.separated(
                                 physics: const NeverScrollableScrollPhysics(),
                                 shrinkWrap: true,
                                 itemBuilder:(context,index){
-                                  final data=_homeController.historyList[index];
-                              return GestureDetector(
-                                onTap: () {
-                                  Get.to(SpJobDetailsScreen(jobId:data.id!,));
-                                },
-                                child: Container(
-                                  padding: const EdgeInsets.all(16),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    border: Border.all(
-                                        color: AppColors.blue_100, width: 1),
-                                  ),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                       CustomText(
-                                        text:data.name!,
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w500,
+                                  final data=historyList[index];
+                                  return GestureDetector(
+                                    onTap: () {
+                                      Get.to(SpJobDetailsScreen(jobId:data.id!,));
+                                    },
+                                    child: Container(
+                                      padding: const EdgeInsets.all(16),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(8),
+                                        border: Border.all(
+                                            color: AppColors.blue_100, width: 1),
                                       ),
-                                      const Divider(color:Color(0xFFCDE1F9),),
-
-                                      Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                           CustomText(
-                                            text: AppStrings.status.tr,
-                                          ),
-                                          Flexible(
-                                            child: Container(
-                                              padding: const EdgeInsets.symmetric(
-                                                  vertical: 4, horizontal: 11),
-                                              decoration: BoxDecoration(
-                                                  color:data.status==AppConstants.approved?const Color(0xFFE7F0FD) :data.status==AppConstants.working?Colors.cyan.shade50: AppColors.yellow_10,
-                                                  borderRadius:
-                                                  BorderRadius.circular(4)),
-                                              child:CustomText(
-                                                text:data.status!,
-                                                fontSize: 12,
-                                                color:data.status==AppConstants.approved?AppColors.blue_100:data.status==AppConstants.working?Colors.cyan.shade800:AppColors.yellow_100,
-                                              ),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                       Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                        children: [
-                                           CustomText(
-                                            text: AppStrings.service.tr,
-                                          ),
-                                          SizedBox(width: 10.w,),
-                                          Flexible(
-                                            child: CustomText(
-                                              text:data.serviceName!,
-                                              fontWeight: FontWeight.w500,
-                                              left: 4,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                       Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                        children: [
-                                           CustomText(
-                                            text: AppStrings.time.tr,
-                                          ),
                                           CustomText(
-                                            text: DateFormat.jm().format(data.createAt!),
+                                            text:data.name!,
+                                            fontSize: 18,
                                             fontWeight: FontWeight.w500,
-                                            left: 4,
                                           ),
-                                        ],
-                                      ),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                       Row(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                        children: [
-                                           CustomText(
-                                            text: AppStrings.date.tr,
-                                          ),
-                                          Flexible(
-                                            child: CustomText(
-                                              text:"${DateFormat.d().format(data.createAt!)} ${DateFormat.MMMM().format(data.createAt!)}",
-                                              fontWeight: FontWeight.w500,
-                                              left: 4,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              );
+                                          const Divider(color:Color(0xFFCDE1F9),),
 
-                            }, separatorBuilder:(context,index){
+                                          Row(
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              CustomText(
+                                                text: AppStrings.status.tr,
+                                              ),
+                                              Flexible(
+                                                child: Container(
+                                                  padding: const EdgeInsets.symmetric(
+                                                      vertical: 4, horizontal: 11),
+                                                  decoration: BoxDecoration(
+                                                      color:data.status==AppConstants.approved?const Color(0xFFE7F0FD) :data.status==AppConstants.working?Colors.cyan.shade50: AppColors.yellow_10,
+                                                      borderRadius:
+                                                      BorderRadius.circular(4)),
+                                                  child:CustomText(
+                                                    text:data.status!,
+                                                    fontSize: 12,
+                                                    color:data.status==AppConstants.approved?AppColors.blue_100:data.status==AppConstants.working?Colors.cyan.shade800:AppColors.yellow_100,
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 10,
+                                          ),
+                                          Row(
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              CustomText(
+                                                text: AppStrings.service.tr,
+                                              ),
+                                              SizedBox(width: 10.w,),
+                                              Flexible(
+                                                child: CustomText(
+                                                  text:data.serviceName!,
+                                                  fontWeight: FontWeight.w500,
+                                                  left: 4,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 10,
+                                          ),
+                                          Row(
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              CustomText(
+                                                text: AppStrings.time.tr,
+                                              ),
+                                              CustomText(
+                                                text: DateFormat.jm().format(data.createAt!),
+                                                fontWeight: FontWeight.w500,
+                                                left: 4,
+                                              ),
+                                            ],
+                                          ),
+                                          const SizedBox(
+                                            height: 10,
+                                          ),
+                                          Row(
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              CustomText(
+                                                text: AppStrings.date.tr,
+                                              ),
+                                              Flexible(
+                                                child: CustomText(
+                                                  text:"${DateFormat.d().format(data.createAt!)} ${DateFormat.MMMM().format(data.createAt!)}",
+                                                  fontWeight: FontWeight.w500,
+                                                  left: 4,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  );
+
+                                }, separatorBuilder:(context,index){
                               return SizedBox(height: 10.h,);
-                            }, itemCount: _homeController.historyList.length)
+                            }, itemCount: historyList.length)
 
 
 
-                      ],
-                    )),
+                          ],
+                        ),
+                      );
+
+                  }
+                },
               ),
-        );
+            );
+        // return Obx(
+        //   () => _homeController.loading.value
+        //       ? const CustomLoader()
+        //       : RefreshIndicator(
+        //         onRefresh: ()async {
+        //           _homeController.getData(false);
+        //         },
+        //         child: SingleChildScrollView(
+        //           physics: const AlwaysScrollableScrollPhysics(),
+        //             padding: const EdgeInsets.symmetric(
+        //                 vertical: 24, horizontal: 20),
+        //             child: Column(
+        //               children: [
+        //                 _userProfile(),
+        //                 const SizedBox(
+        //                   height: 24,
+        //                 ),
+        //
+        //                 _homeController.serviceList.isEmpty?Column(
+        //                   children: [
+        //                     SizedBox(height:94.h ,),
+        //                     Image.asset(AppImages.empty,height: 100,width: 100,),
+        //                     const SizedBox(height: 10),
+        //                     CustomButton(onTap:(){
+        //                       Get.to(const SpAddNewServiceScreen());
+        //
+        //                     }, text:"Add Service",width: 200.w,height: 44.h,)
+        //
+        //                   ],
+        //                 ) : _homeController.historyList.isEmpty?Container(
+        //                   height: Get.height/2,
+        //                   width: double.infinity,
+        //                   decoration: BoxDecoration(
+        //                     borderRadius: BorderRadius.circular(8.r),
+        //                     border: Border.all(
+        //                       color: const Color(0xFFCDE1F9),
+        //                       width: 1
+        //                     )
+        //                   ),
+        //                   child: Column(
+        //                   mainAxisAlignment: MainAxisAlignment.center,
+        //                     children: [
+        //                       Image.asset(AppImages.empty,height: 100,width: 100,),
+        //                       const SizedBox(height: 10),
+        //                         Text(AppStrings.noJobsPending.tr)
+        //                     ],
+        //                   ),
+        //
+        //                 ):
+        //                     ListView.separated(
+        //                         physics: const NeverScrollableScrollPhysics(),
+        //                         shrinkWrap: true,
+        //                         itemBuilder:(context,index){
+        //                           final data=_homeController.historyList[index];
+        //                       return GestureDetector(
+        //                         onTap: () {
+        //                           Get.to(SpJobDetailsScreen(jobId:data.id!,));
+        //                         },
+        //                         child: Container(
+        //                           padding: const EdgeInsets.all(16),
+        //                           decoration: BoxDecoration(
+        //                             borderRadius: BorderRadius.circular(8),
+        //                             border: Border.all(
+        //                                 color: AppColors.blue_100, width: 1),
+        //                           ),
+        //                           child: Column(
+        //                             crossAxisAlignment: CrossAxisAlignment.start,
+        //                             children: [
+        //                                CustomText(
+        //                                 text:data.name!,
+        //                                 fontSize: 18,
+        //                                 fontWeight: FontWeight.w500,
+        //                               ),
+        //                               const Divider(color:Color(0xFFCDE1F9),),
+        //
+        //                               Row(
+        //                                 mainAxisAlignment:
+        //                                 MainAxisAlignment.spaceBetween,
+        //                                 children: [
+        //                                    CustomText(
+        //                                     text: AppStrings.status.tr,
+        //                                   ),
+        //                                   Flexible(
+        //                                     child: Container(
+        //                                       padding: const EdgeInsets.symmetric(
+        //                                           vertical: 4, horizontal: 11),
+        //                                       decoration: BoxDecoration(
+        //                                           color:data.status==AppConstants.approved?const Color(0xFFE7F0FD) :data.status==AppConstants.working?Colors.cyan.shade50: AppColors.yellow_10,
+        //                                           borderRadius:
+        //                                           BorderRadius.circular(4)),
+        //                                       child:CustomText(
+        //                                         text:data.status!,
+        //                                         fontSize: 12,
+        //                                         color:data.status==AppConstants.approved?AppColors.blue_100:data.status==AppConstants.working?Colors.cyan.shade800:AppColors.yellow_100,
+        //                                       ),
+        //                                     ),
+        //                                   )
+        //                                 ],
+        //                               ),
+        //                               const SizedBox(
+        //                                 height: 10,
+        //                               ),
+        //                                Row(
+        //                                 mainAxisAlignment:
+        //                                 MainAxisAlignment.spaceBetween,
+        //                                 children: [
+        //                                    CustomText(
+        //                                     text: AppStrings.service.tr,
+        //                                   ),
+        //                                   SizedBox(width: 10.w,),
+        //                                   Flexible(
+        //                                     child: CustomText(
+        //                                       text:data.serviceName!,
+        //                                       fontWeight: FontWeight.w500,
+        //                                       left: 4,
+        //                                     ),
+        //                                   ),
+        //                                 ],
+        //                               ),
+        //                               const SizedBox(
+        //                                 height: 10,
+        //                               ),
+        //                                Row(
+        //                                 mainAxisAlignment:
+        //                                 MainAxisAlignment.spaceBetween,
+        //                                 children: [
+        //                                    CustomText(
+        //                                     text: AppStrings.time.tr,
+        //                                   ),
+        //                                   CustomText(
+        //                                     text: DateFormat.jm().format(data.createAt!),
+        //                                     fontWeight: FontWeight.w500,
+        //                                     left: 4,
+        //                                   ),
+        //                                 ],
+        //                               ),
+        //                               const SizedBox(
+        //                                 height: 10,
+        //                               ),
+        //                                Row(
+        //                                 mainAxisAlignment:
+        //                                 MainAxisAlignment.spaceBetween,
+        //                                 children: [
+        //                                    CustomText(
+        //                                     text: AppStrings.date.tr,
+        //                                   ),
+        //                                   Flexible(
+        //                                     child: CustomText(
+        //                                       text:"${DateFormat.d().format(data.createAt!)} ${DateFormat.MMMM().format(data.createAt!)}",
+        //                                       fontWeight: FontWeight.w500,
+        //                                       left: 4,
+        //                                     ),
+        //                                   ),
+        //                                 ],
+        //                               ),
+        //                             ],
+        //                           ),
+        //                         ),
+        //                       );
+        //
+        //                     }, separatorBuilder:(context,index){
+        //                       return SizedBox(height: 10.h,);
+        //                     }, itemCount: _homeController.historyList.length)
+        //
+        //
+        //
+        //               ],
+        //             )),
+        //       ),
+        // );
       }),
     );
   }

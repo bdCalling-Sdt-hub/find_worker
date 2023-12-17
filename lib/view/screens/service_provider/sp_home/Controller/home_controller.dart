@@ -25,14 +25,13 @@ class SpHomeController extends GetxController{
   FirebaseFirestore  firebaseFirestore= FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   RxList<ServiceModel> serviceList= <ServiceModel> [].obs;
-  RxList<HireModel> historyList = <HireModel>[].obs;
+  // RxList<HireModel> historyList = <HireModel>[].obs;
 
   getData(bool load)async{
     if(load){
       loading(true);
     }
     await getService();
-    await getHistoryList();
     await getUserData();
     if(load){
       loading(false);
@@ -84,61 +83,205 @@ getTokenAndUpdate()async{
   }
 
 
-
-
-
-
-
-getHistoryList() async {
+Stream<List<HireModel>> getHistoryList() async* {
   try {
-    final hireHistoryData = await firebaseFirestore
+    final hireHistoryData = FirebaseFirestore.instance
         .collection(AppConstants.users)
         .doc(_auth.currentUser!.uid)
         .collection(AppConstants.jobHistory)
         .where("status", whereIn: [AppConstants.pending, AppConstants.approved,AppConstants.working])
-        .get();
-    List<HireModel> demoList = [];
+        .snapshots();
 
-    for (final hireHistory in hireHistoryData.docs) {
-      print(hireHistory['service_id']);
-      final serviceData = await firebaseFirestore
-          .collection(AppConstants.services)
-          .doc(hireHistory['service_id'])
-          .get();
-      final userData = await firebaseFirestore
-          .collection(AppConstants.users)
-          .doc(hireHistory['hiring_user_id'])
-          .get();
-      if (serviceData.exists) {
-        print("print====> ${serviceData['category_name']}");
-        if (userData.exists) {
-          HireModel hireModel = HireModel(
-              id: hireHistory['id'],
-              serviceId: hireHistory['service_id'],
-              serviceName: serviceData['category_name'],
-              uid: hireHistory['hiring_user_id'],
-              status: hireHistory['status'],
-              createAt: hireHistory['create_at'].toDate(),
-              image: serviceData['image'],
-              averageRating: userData['average_rating'].toDouble(),
-              name: userData['username'],
-              address: userData['address'],
-              userFcmToken: userData['fcmToken'],
-              userRole: userData['role'],
-              contact: "${userData['phone_code']} ${userData['phone']}");
-          demoList.add(hireModel);
+    await for (QuerySnapshot querySnapshot in hireHistoryData) {
+      List<HireModel> demoList = [];
+
+      for (final hireHistory in querySnapshot.docs) {
+        final serviceData = await FirebaseFirestore.instance
+            .collection(AppConstants.services)
+            .doc(hireHistory['service_id'])
+            .get();
+        final userData = await FirebaseFirestore.instance
+            .collection(AppConstants.users)
+            .doc(hireHistory['hiring_user_id'])
+            .get();
+        if (serviceData.exists) {
+          if (userData.exists) {
+            HireModel hireModel = HireModel(
+                id: hireHistory['id'],
+                serviceId: hireHistory['service_id'],
+                serviceName: serviceData['category_name'],
+                uid: hireHistory['hiring_user_id'],
+                status: hireHistory['status'],
+                createAt: hireHistory['create_at'].toDate(),
+                image: serviceData['image'],
+                averageRating: userData['average_rating'].toDouble(),
+                name: userData['username'],
+                address: userData['address'],
+                userFcmToken: userData['fcmToken'],
+                userRole: userData['role'],
+                contact: "${userData['phone_code']} ${userData['phone']}");;
+            demoList.add(hireModel);
+          }
         }
       }
+
+      demoList.sort((a, b) => b.createAt!.compareTo(a.createAt!));
+      yield demoList;
     }
-    demoList.sort((a, b) => b.createAt!.compareTo(a.createAt!));
-    historyList.value = demoList;
-    historyList.refresh();
-    debugPrint("===========> historyList  ${historyList.length}");
   } catch (e) {
-    debugPrint("Oops, Something Wrong $e");
+    print("Oops, Something Wrong $e");
   }
 }
 
+//  fetchFeed() async {
+//   _programList.bindStream(FirebaseFirestore.instance
+//       .collection(AppConstants.users)
+//       .doc(_auth.currentUser!.uid)
+//       .collection(AppConstants.jobHistory)
+//       .where("status", whereIn: [AppConstants.pending, AppConstants.approved, AppConstants.working])
+//       .snapshots()
+//       .map((QuerySnapshot query) => _processQuerySnapshot(query)));
+// }
+//
+// Future<List<HireModel>> _processQuerySnapshot(QuerySnapshot query) async {
+//   List<HireModel> demoList = [];
+//
+//   for (final hireHistory in query.docs) {
+//     print(hireHistory['service_id']);
+//     final serviceData = await firebaseFirestore
+//         .collection(AppConstants.services)
+//         .doc(hireHistory['service_id'])
+//         .get();
+//     final userData = await firebaseFirestore
+//         .collection(AppConstants.users)
+//         .doc(hireHistory['hiring_user_id'])
+//         .get();
+//     if (serviceData.exists) {
+//       print("print====> ${serviceData['category_name']}");
+//       if (userData.exists) {
+//         HireModel hireModel = HireModel(
+//           id: hireHistory['id'],
+//           serviceId: hireHistory['service_id'],
+//           serviceName: serviceData['category_name'],
+//           uid: hireHistory['hiring_user_id'],
+//           status: hireHistory['status'],
+//           createAt: hireHistory['create_at'].toDate(),
+//           image: serviceData['image'],
+//           averageRating: userData['average_rating'].toDouble(),
+//           name: userData['username'],
+//           address: userData['address'],
+//           userFcmToken: userData['fcmToken'],
+//           userRole: userData['role'],
+//           contact: "${userData['phone_code']} ${userData['phone']}",
+//         );
+//         demoList.add(hireModel);
+//       }
+//     }
+//   }
+//   demoList.sort((a, b) => b.createAt!.compareTo(a.createAt!));
+//
+//   return demoList;
+// }
+
+  // Future<void> fetchFeed() async {
+  //   _programList.bindStream(FirebaseFirestore.instance
+  //       .collection(AppConstants.users)
+  //       .doc(_auth.currentUser!.uid)
+  //       .collection(AppConstants.jobHistory)
+  //       .where("status", whereIn: [AppConstants.pending, AppConstants.approved, AppConstants.working])
+  //       .snapshots()
+  //       .map((QuerySnapshot query) async {
+  //     final List<Future<HireModel>> futures = query.docs.map((hireHistory) async {
+  //       print(hireHistory['service_id']);
+  //       final serviceData = await firebaseFirestore
+  //           .collection(AppConstants.services)
+  //           .doc(hireHistory['service_id'])
+  //           .get();
+  //       final userData = await firebaseFirestore
+  //           .collection(AppConstants.users)
+  //           .doc(hireHistory['hiring_user_id'])
+  //           .get();
+  //       if (serviceData.exists && userData.exists) {
+  //         return HireModel(
+  //           id: hireHistory['id'],
+  //           serviceId: hireHistory['service_id'],
+  //           serviceName: serviceData['category_name'],
+  //           uid: hireHistory['hiring_user_id'],
+  //           status: hireHistory['status'],
+  //           createAt: hireHistory['create_at'].toDate(),
+  //           image: serviceData['image'],
+  //           averageRating: userData['average_rating'].toDouble(),
+  //           name: userData['username'],
+  //           address: userData['address'],
+  //           userFcmToken: userData['fcmToken'],
+  //           userRole: userData['role'],
+  //           contact: "${userData['phone_code']} ${userData['phone']}",
+  //         );
+  //       }
+  //       // Handle the case where either serviceData or userData doesn't exist
+  //       return null;
+  //     }).toList();
+  //
+  //     final List<HireModel?> results = await Future.wait(futures);
+  //     final List<HireModel> demoList = results.where((hireModel) => hireModel != null).cast<HireModel>().toList();
+  //     demoList.sort((a, b) => b.createAt!.compareTo(a.createAt!));
+  //
+  //     return demoList;
+  //   });
+  //   }
+
+
+
+//   getHistoryList() async {
+//   try {
+//     final hireHistoryData = await firebaseFirestore
+//         .collection(AppConstants.users)
+//         .doc(_auth.currentUser!.uid)
+//         .collection(AppConstants.jobHistory)
+//         .where("status", whereIn: [AppConstants.pending, AppConstants.approved,AppConstants.working])
+//         .get();
+//     List<HireModel> demoList = [];
+//
+//     for (final hireHistory in hireHistoryData.docs) {
+//       print(hireHistory['service_id']);
+//       final serviceData = await firebaseFirestore
+//           .collection(AppConstants.services)
+//           .doc(hireHistory['service_id'])
+//           .get();
+//       final userData = await firebaseFirestore
+//           .collection(AppConstants.users)
+//           .doc(hireHistory['hiring_user_id'])
+//           .get();
+//       if (serviceData.exists) {
+//         print("print====> ${serviceData['category_name']}");
+//         if (userData.exists) {
+//           HireModel hireModel = HireModel(
+//               id: hireHistory['id'],
+//               serviceId: hireHistory['service_id'],
+//               serviceName: serviceData['category_name'],
+//               uid: hireHistory['hiring_user_id'],
+//               status: hireHistory['status'],
+//               createAt: hireHistory['create_at'].toDate(),
+//               image: serviceData['image'],
+//               averageRating: userData['average_rating'].toDouble(),
+//               name: userData['username'],
+//               address: userData['address'],
+//               userFcmToken: userData['fcmToken'],
+//               userRole: userData['role'],
+//               contact: "${userData['phone_code']} ${userData['phone']}");
+//           demoList.add(hireModel);
+//         }
+//       }
+//     }
+//     demoList.sort((a, b) => b.createAt!.compareTo(a.createAt!));
+//     historyList.value = demoList;
+//     historyList.refresh();
+//     debugPrint("===========> historyList  ${historyList.length}");
+//   } catch (e) {
+//     debugPrint("Oops, Something Wrong $e");
+//   }
+// }
+//
 
 
 Stream<DocumentSnapshot> getItems() {

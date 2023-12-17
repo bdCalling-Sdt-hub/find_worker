@@ -19,6 +19,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
 
 import 'package:uuid/uuid.dart';
 
@@ -134,26 +135,37 @@ class UserServiceDetailsController extends GetxController {
   RxInt start = 300.obs; // 5 minutes in seconds
   RxInt current = 0.obs;
 
-  hireNow(UserByServiceModel servicedata, String number,
-      UserModel currentUserData) async {
-    hireLoading(true);
-    start.value = 300;
+  // hireNow(UserByServiceModel servicedata, String number,
+  //     UserModel currentUserData) async {
+  //   hireLoading(true);
+  //   start.value = 300;
+  //   try {
+  //     var result = await getCheckTime(servicedata);
+  //     if (result == -1) {
+  //       await hireDataPost(servicedata, number, currentUserData);
+  //       timerSystem(servicedata);
+  //     } else {
+  //       current.value = result;
+  //       timerSystem(servicedata);
+  //     }
+  //     print("======> After Hiring Time $result");
+  //     // await hireDataPost(userdata, number, currentUserData);
+  //   } catch (e) {
+  //     debugPrint("Opps error $e");
+  //     Fluttertoast.showToast(msg: "Oops, Something error!,Please try again");
+  //   } finally {
+  //     hireLoading(false);
+  //   }
+  // }
+  Future<void> launchPhoneDialer(String contactNumber) async {
+    debugPrint("LunchDialer nubmer : $contactNumber");
+    final Uri phoneUri = Uri(scheme: "tel", path: contactNumber);
     try {
-      var result = await getCheckTime(servicedata);
-      if (result == -1) {
-        await hireDataPost(servicedata, number, currentUserData);
-        timerSystem(servicedata);
-      } else {
-        current.value = result;
-        timerSystem(servicedata);
+      if (!await UrlLauncher.launchUrl(phoneUri)) {
+        UrlLauncher.launchUrl(phoneUri);
       }
-      print("======> After Hiring Time $result");
-      // await hireDataPost(userdata, number, currentUserData);
-    } catch (e) {
-      debugPrint("Opps error $e");
-      Fluttertoast.showToast(msg: "Oops, Something error!,Please try again");
-    } finally {
-      hireLoading(false);
+    } catch (error) {
+      throw ("Cannot dial");
     }
   }
 
@@ -162,6 +174,7 @@ class UserServiceDetailsController extends GetxController {
   Future<void> hireDataPost(UserByServiceModel serviceModel, String number,
       UserModel hireUserData) async {
     try {
+      hireLoading(true);
       var id = uuid.v4();
       Map<String, dynamic> hireBody = {
         "id": id,
@@ -193,11 +206,13 @@ class UserServiceDetailsController extends GetxController {
           .set(jobBody);
       await ApiService.sendNotification(content:"Congratulations! You're Hired!",userRole:AppConstants.serviceProviderType, historyId:id, fcmToken:hireUserData.fcmToken!, type:AppConstants.pending, receiverId:hireUserData.uid!);
 
-
+      Fluttertoast.showToast(msg: "Hired Successful".tr);
       debugPrint("Hire Completed");
     } on Exception catch (e) {
       debugPrint("Opps!, Something error  $e ");
       // TODO
+    }finally{
+      hireLoading(false);
     }
   }
 
