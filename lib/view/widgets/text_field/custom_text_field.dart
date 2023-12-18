@@ -28,6 +28,7 @@ class CustomTextField extends StatefulWidget {
     this.isPrefixIcon = true,
     this.readOnly = false,
     this.maxLength,
+    this.onTap,
     super.key
   });
 
@@ -54,6 +55,7 @@ class CustomTextField extends StatefulWidget {
   final bool isPrefixIcon;
   final bool readOnly;
   final int? maxLength;
+  final Function()? onTap;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -69,6 +71,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
     return TextFormField(
       onFieldSubmitted: widget.onFieldSubmitted,
       readOnly: widget.readOnly,
+      onTap: widget.onTap,
       controller: widget.textEditingController,
       focusNode: widget.focusNode,
       maxLength:widget.maxLength,

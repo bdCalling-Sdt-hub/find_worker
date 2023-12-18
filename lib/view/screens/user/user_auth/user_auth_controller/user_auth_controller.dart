@@ -52,6 +52,7 @@ class AuthenticationController extends GetxController {
   final TextEditingController addressController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passController = TextEditingController();
+  final TextEditingController dobController = TextEditingController();
   final TextEditingController confirmPasswordController =
       TextEditingController();
   String phoneCode = "+93";
@@ -76,7 +77,36 @@ class AuthenticationController extends GetxController {
   final TextEditingController otpController = TextEditingController();
 
   /// for firebase sign up
+  DateTime selectedDate = DateTime.now();
+  Future<void> selectDate(BuildContext context) async {
+    final DateTime currentDate = DateTime.now();
+    final DateTime minimumAllowedDate =
+    currentDate.subtract(Duration(days: 365 * 18));
 
+    DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: minimumAllowedDate,
+      firstDate: DateTime(1900),
+      lastDate: currentDate,
+    );
+
+    if (picked != null) {
+      selectedDate = picked;
+      dobController.text =
+      "${selectedDate.year}/${selectedDate.month}/${selectedDate.day}";
+    }
+
+    // if (picked != null && picked != selectedDate && picked.isBefore(minimumAllowedDate)) {
+    //   // The selected date is valid (not null, not equal to the current date, and at least 18 years ago)
+    //     selectedDate = picked;
+    //
+    // } else {
+    //
+    // //  Fluttertoast.showToast(msg:"Invalid date selection.You must be at least 18 years old.");
+    //
+    //   print('Invalid date selection. You must be at least 18 years old.');
+    // }
+  }
   Future<void> registerUser(String userType) async {
     try {
       isLoading = true;
@@ -148,8 +178,9 @@ class AuthenticationController extends GetxController {
     userModel.email = user!.email;
     userModel.uid = user.uid;
     userModel.userName = nameController.text.toString();
-    userModel.dob = DateTime(int.parse(yearController.text),
-        int.parse(monthController.text), int.parse(dayController.text));
+    userModel.dob=selectedDate;
+    // userModel.dob = DateTime(int.parse(yearController.text),
+    //     int.parse(monthController.text), int.parse(dayController.text));
     userModel.phone = phoneController.text.toString();
     userModel.address = addressController.text.toString();
     userModel.authType = AppConstants.normalUser;
@@ -209,8 +240,9 @@ var loading=false.obs;
     userModel.email =emailController.text;
     userModel.uid = uid;
     userModel.userName = nameController.text.toString();
-    userModel.dob = DateTime(int.parse(yearController.text),
-        int.parse(monthController.text), int.parse(dayController.text));
+      userModel.dob=selectedDate;
+    // userModel.dob = DateTime(int.parse(yearController.text),
+    //     int.parse(monthController.text), int.parse(dayController.text));
     userModel.phone = phoneController.text.toString();
     userModel.address = addressController.text.toString();
     userModel.authType = AppConstants.socialMediaUser;
@@ -307,7 +339,7 @@ var loading=false.obs;
             Fluttertoast.showToast(msg: "User not found");
           }
         }else{
-          auth.signOut();
+          auth.currentUser!.delete();
           Fluttertoast.showToast(msg: "User not found");
         }
 
