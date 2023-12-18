@@ -44,7 +44,7 @@ getTokenAndUpdate()async{
     print("======> Get Fcm Token $token");
     FirebaseFirestore  firebaseFirestore= FirebaseFirestore.instance;
     final FirebaseAuth _auth = FirebaseAuth.instance;
-    await firebaseFirestore.collection(AppConstants.users).doc(_auth.currentUser!.uid).update({"fcmToken":token});
+   // await firebaseFirestore.collection(AppConstants.users).doc(_auth.currentUser!.uid).update({"fcmToken":token});
   } on Exception catch (e) {
     debugPrint("Oops error $e");
   }

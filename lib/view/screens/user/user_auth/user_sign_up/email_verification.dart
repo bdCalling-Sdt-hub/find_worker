@@ -48,11 +48,12 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
 
   Future<void> _checkEmailVerified() async {
     try {
-      await _user!.reload();
-      print("Email verified status: ${_user?.emailVerified}");
+      await _user?.getIdToken(true);
+      await FirebaseAuth.instance.currentUser!.reload();
+       print("Email verified status: ${ FirebaseAuth.instance.currentUser!.emailVerified}");
 
       setState(() {
-        _isEmailVerified = _user?.emailVerified == true;
+        _isEmailVerified = FirebaseAuth.instance.currentUser!.emailVerified == true;
       });
 
       if (_isEmailVerified) {
@@ -82,13 +83,12 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
       debugPrint("Account Create and verification completed");
       await _authController.postDetailsToFireStore(widget.userType);
     } catch (e) {
-      print("Error navigating to home screen: $e");
+      debugPrint("Error navigating to home screen: $e");
     }
   }
 
   @override
   void dispose() {
-    _accountDelete();
     _timer.cancel();
     super.dispose();
   }
@@ -106,31 +106,24 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
   }
 
   Widget _buildVerificationStatus() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          'Welcome, ${_user?.displayName ?? "Anonymous"}!',
-          style: const TextStyle(fontSize: 18.0),
-        ),
-        const SizedBox(height: 20.0),
-        Text(
-          'Email: ${_user?.email}',
-          style: const TextStyle(fontSize: 16.0),
-        ),
-        const SizedBox(height: 20.0),
-        _isEmailVerified
-            ? const Text(
-          'Email Verified',
-          style: TextStyle(fontSize: 18.0, color: Colors.green),
-        )
-            : ElevatedButton(
-          onPressed: () {
-            _sendEmailVerification();
-          },
-          child: const Text('Send Email Verification'),
-        ),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal:20),
+      child:  Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Icon(Icons.email_outlined,size: 100,),
+          const SizedBox(height: 20,),
+          const Text("Verify your email address",
+            style: TextStyle(fontSize: 18.0,fontWeight: FontWeight.w500),
+          ),
+          const SizedBox(height: 20.0),
+          Text(
+            "We have just send email verification link on your email. Please check email and click on that link to verify your email address.",
+            style: TextStyle(fontSize: 16.0,color:Colors.grey.shade800),
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
     );
   }
 }
