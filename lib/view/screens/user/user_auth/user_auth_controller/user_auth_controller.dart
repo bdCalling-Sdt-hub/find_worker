@@ -118,7 +118,8 @@ class AuthenticationController extends GetxController {
                 password: passController.text.trim())
             .then((value) async {
           print("====>sign up");
-          Get.to(EmailVerificationScreen(userType:userType,));
+          await postDetailsToFireStore(userType);
+
         });
         //     .catchError((e) {
         //   Fluttertoast.showToast(
@@ -217,11 +218,7 @@ class AuthenticationController extends GetxController {
         addressController.clear();
         passwordController.clear();
         confirmPasswordController.clear();
-        if (userType == AppConstants.userType) {
-          Get.offAll(UserBottomNavBarScreen(currentIndex: 0),binding:UserBottomNavBinding());
-        } else {
-          Get.offAll(SpBottomNavBarScreen(currentIndex: 0,),binding:ProviderBottomNavBinding());
-        }
+       Get.to(EmailVerificationScreen(userType: userType));
       });
     } on Exception catch (e) {
       debugPrint("=====> Sign up catch error fire store $e");
@@ -303,45 +300,51 @@ var loading=false.obs;
       .signInWithEmailAndPassword(
           email: email.trim(), password: password.trim())
       .then((value) async {
-        if(value.user!.emailVerified){
+    usernameController.clear();
+    passwordController.clear();
           DocumentSnapshot data = await firebaseFireStore
               .collection(AppConstants.users)
               .doc(value.user!.uid)
               .get();
-          UserModel userData = UserModel.fromMap(data);
-          debugPrint("=======> Uid ${data['uid']}");
-          debugPrint("=======> User Type ${userData.role} and $userType");
 
-          if (userData.role == userType) {
-            await PrefsHelper.setString(AppConstants.logged, userData.role);
-            if (userData.role == AppConstants.userType) {
-              Get.offAll(UserBottomNavBarScreen(currentIndex: 0),binding:UserBottomNavBinding());
+          if(data.exists){
+            UserModel userData = UserModel.fromMap(data);
+            if (userData.role == userType) {
+              debugPrint("=======> Uid ${data['uid']}");
+              debugPrint("=======> User Type ${userData.role} and $userType");
+              await PrefsHelper.setString(AppConstants.logged, userData.role);
               _dataController.setData(
                   userNameD: userData.userName!,
                   userRoleD: userData.role!,
                   uidD: userData.uid!,
                   imageD: userData.imageSrc!,
                   authTypeD: userData.authType!);
-              usernameController.clear();
-              passwordController.clear();
-            } else {
-              Get.offAll(SpBottomNavBarScreen(currentIndex: 0),binding:ProviderBottomNavBinding());
-              _dataController.setData(
-                  userNameD: userData.userName!,
-                  userRoleD: userData.role!,
-                  uidD: userData.uid!,
-                  imageD: userData.imageSrc!,
-                  authTypeD: userData.authType!);
-              usernameController.clear();
-              passwordController.clear();
+
+              if(value.user!.emailVerified){
+                if (userData.role == AppConstants.userType) {
+                  Get.offAll(UserBottomNavBarScreen(currentIndex: 0),binding:UserBottomNavBinding());
+                } else {
+                  Get.offAll(SpBottomNavBarScreen(currentIndex: 0),binding:ProviderBottomNavBinding());
+                }
+              }else{
+                Get.to(EmailVerificationScreen(userType: userType));
+              }
+            }else{
+              Get.snackbar("Error", "User not found", colorText: Colors.red);
             }
-          } else {
-            Fluttertoast.showToast(msg: "User not found");
+
+
+
+
+
+
           }
-        }else{
-          auth.currentUser!.delete();
-          Fluttertoast.showToast(msg: "User not found");
-        }
+
+
+
+
+
+
 
     // Fluttertoast.showToast(
     //     msg: "Login Successfully",
@@ -555,7 +558,6 @@ var loading=false.obs;
     if(auth.currentUser!.email==accountDeleteCtrl.text){
       await auth.currentUser!.delete().then((value)async{
         localizationController.setLanguage(Locale('en',"US"));
-        await GoogleSignIn().signOut();
         accountDeleteCtrl.clear();
         await PrefsHelper.setString(AppConstants.logged, "");
         Get.back();
@@ -574,5 +576,11 @@ var loading=false.obs;
 
 
 
+  }
+  @override
+  void dispose() {
+    accountDeleteCtrl.dispose();
+    // TODO: implement dispose
+    super.dispose();
   }
 }
