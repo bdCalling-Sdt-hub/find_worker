@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:wrcontacts/core/app_routes.dart';
 import 'package:wrcontacts/utils/app_colors.dart';
 import 'package:wrcontacts/utils/app_icons.dart';
@@ -34,38 +35,40 @@ class HomeScreen extends StatelessWidget {
           elevation: 0,
           centerTitle: false,
           backgroundColor: Colors.transparent,
-          title: _profileController.userData.value.imageSrc==null||_profileController.userData.value.imageSrc==""? Container(
-            height: 45,
-            width: 45,
-            decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(
-                    color: Colors.grey.shade200,
-                    width: 0.5
-                ),
-                image: const DecorationImage(
-                    image:AssetImage(AppIcons.unSplashProfileImage),fit: BoxFit.fill)
-                 ),
-
-
-          ):Container(
-            height: 45,
-            width: 45,
-            decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(
-                  color: Colors.grey.shade200,
-                  width: 0.5
-                ),
-                image: DecorationImage(
-                    image:NetworkImage(_profileController.userData.value.imageSrc??""),fit: BoxFit.fill)),
-          ),
+          // title: _profileController.userData.value.imageSrc==null||_profileController.userData.value.imageSrc==""? Container(
+          //   height: 45,
+          //   width: 45,
+          //   decoration: BoxDecoration(
+          //       shape: BoxShape.circle,
+          //       border: Border.all(
+          //           color: Colors.grey.shade200,
+          //           width: 0.5
+          //       ),
+          //       image: const DecorationImage(
+          //           image:AssetImage(AppIcons.unSplashProfileImage),fit: BoxFit.fill)
+          //        ),
+          //
+          //
+          // ):Container(
+          //   height: 45,
+          //   width: 45,
+          //   decoration: BoxDecoration(
+          //       shape: BoxShape.circle,
+          //       border: Border.all(
+          //         color: Colors.grey.shade200,
+          //         width: 0.5
+          //       ),
+          //       image: DecorationImage(
+          //           image:NetworkImage(_profileController.userData.value.imageSrc??""),fit: BoxFit.fill)),
+          // ),
           // title: CustomText(
           //   color: AppColors.blue_100,
           //   text: AppStrings.logo.tr,
           //   fontSize: 18.sp,
           //   fontWeight: FontWeight.w500,
           // ),
+          //title:const CustomImage(imageSrc:AppIcons.appLogo,imageType: ImageType.svg,),
+          leading:Image.asset(AppIcons.appLogo,height:35,width: 22,),
           actions: [
             Padding(
               padding: const EdgeInsets.only(right: 20),

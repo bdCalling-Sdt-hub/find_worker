@@ -216,7 +216,7 @@ class AuthenticationController extends GetxController {
         emailController.clear();
         phoneController.clear();
         addressController.clear();
-        passwordController.clear();
+        passController.clear();
         confirmPasswordController.clear();
        Get.to(EmailVerificationScreen(userType: userType));
       });
@@ -275,6 +275,7 @@ var loading=false.obs;
         phoneController.clear();
         addressController.clear();
         passwordController.clear();
+        passController.clear();
         confirmPasswordController.clear();
         if (type == AppConstants.userType) {
           Get.offAll(UserBottomNavBarScreen(currentIndex: 0),binding:UserBottomNavBinding());
@@ -560,6 +561,7 @@ var loading=false.obs;
         localizationController.setLanguage(Locale('en',"US"));
         accountDeleteCtrl.clear();
         await PrefsHelper.setString(AppConstants.logged, "");
+        await GoogleSignIn().signOut();
         Get.back();
         Get.offAll(()=>const OnboardScreen());
         Fluttertoast.showToast(msg:AppStrings.accountDelete.tr);
@@ -568,6 +570,10 @@ var loading=false.obs;
         Fluttertoast.showToast(msg: v.toString());
       });
       isAccountDeleteLoading(false);
+    }else{
+      Fluttertoast.showToast(msg:"Email Not matching");
+      isAccountDeleteLoading(false);
+
     }
 
 

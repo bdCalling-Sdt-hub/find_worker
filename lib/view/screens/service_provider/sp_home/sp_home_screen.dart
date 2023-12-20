@@ -43,36 +43,37 @@ class _SpHomeScreenState extends State<SpHomeScreen> {
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: CustomAppBar(
-        appBarContent: Obx(()=>
+        appBarContent:
            Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-               _profileController.userData.value.imageSrc==null||_profileController.userData.value.imageSrc==""? Container(
-                height: 45,
-                width: 45,
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                        color: Colors.grey.shade200,
-                        width: 0.5
-                    ),
-                    image: const DecorationImage(
-                        image:AssetImage(AppIcons.unSplashProfileImage),fit: BoxFit.fill)
-                ),
-
-
-              ):Container(
-                height: 45,
-                width: 45,
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                        color: Colors.grey.shade200,
-                        width: 0.5
-                    ),
-                    image: DecorationImage(
-                        image:NetworkImage(_profileController.userData.value.imageSrc??""),fit: BoxFit.fill)),
-              ),
+              Image.asset(AppIcons.appLogo,height:35,width: 22,),
+              //  _profileController.userData.value.imageSrc==null||_profileController.userData.value.imageSrc==""? Container(
+              //   height: 45,
+              //   width: 45,
+              //   decoration: BoxDecoration(
+              //       shape: BoxShape.circle,
+              //       border: Border.all(
+              //           color: Colors.grey.shade200,
+              //           width: 0.5
+              //       ),
+              //       image: const DecorationImage(
+              //           image:AssetImage(AppIcons.unSplashProfileImage),fit: BoxFit.fill)
+              //   ),
+              //
+              //
+              // ):Container(
+              //   height: 45,
+              //   width: 45,
+              //   decoration: BoxDecoration(
+              //       shape: BoxShape.circle,
+              //       border: Border.all(
+              //           color: Colors.grey.shade200,
+              //           width: 0.5
+              //       ),
+              //       image: DecorationImage(
+              //           image:NetworkImage(_profileController.userData.value.imageSrc??""),fit: BoxFit.fill)),
+              // ),
 
       StreamBuilder(
           stream: _homeController.getItems(),
@@ -182,7 +183,7 @@ class _SpHomeScreenState extends State<SpHomeScreen> {
                   ))
             ],
           ),
-        ),
+
       ),
       body: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {

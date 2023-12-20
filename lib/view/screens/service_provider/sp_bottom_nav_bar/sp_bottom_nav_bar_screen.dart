@@ -47,6 +47,9 @@ class _SpBottomNavBarScreenState extends State<SpBottomNavBarScreen> {
     profileController.dispose();
     homeController.dispose();
     spController.dispose();
+    Get.delete<SpProfileController>();
+    Get.delete<SpHomeController>();
+    Get.delete<SpHistoryController>();
     super.dispose();
   }
 
