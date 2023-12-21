@@ -47,7 +47,8 @@ class _SpHomeScreenState extends State<SpHomeScreen> {
            Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Image.asset(AppIcons.appLogo,height:35,width: 22,),
+              SizedBox(),
+              //Image.asset(AppIcons.appLogo,height:35,width: 22,),
               //  _profileController.userData.value.imageSrc==null||_profileController.userData.value.imageSrc==""? Container(
               //   height: 45,
               //   width: 45,

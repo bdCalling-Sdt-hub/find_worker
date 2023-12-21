@@ -68,7 +68,7 @@ class HomeScreen extends StatelessWidget {
           //   fontWeight: FontWeight.w500,
           // ),
           //title:const CustomImage(imageSrc:AppIcons.appLogo,imageType: ImageType.svg,),
-          leading:Image.asset(AppIcons.appLogo,height:35,width: 22,),
+          // leading:Image.asset(AppIcons.appLogo,height:35,width: 22,),
           actions: [
             Padding(
               padding: const EdgeInsets.only(right: 20),
