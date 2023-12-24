@@ -14,6 +14,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 
+import '../../../../../helper/Language/language_controller.dart';
 import 'category_by_services_controller.dart';
 
 class CategoryByServiceScreen extends StatefulWidget {
@@ -25,6 +26,8 @@ class CategoryByServiceScreen extends StatefulWidget {
 
 class _CategoryByServiceScreenState extends State<CategoryByServiceScreen> {
     final _controller = Get.put(CategoryByServiceController());
+    final _localizationController = Get.put(LocalizationController(sharedPreferences:Get.find()));
+
     var parametersData= Get.parameters;
 
     @override
@@ -38,7 +41,7 @@ class _CategoryByServiceScreenState extends State<CategoryByServiceScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:Text(parametersData["cat_name"]!),
+        title:Text(_localizationController.selectedIndex==0? parametersData["cat_name"]!:parametersData['cat_arabic']!),
         leading: CustomBack(),
       ),
       body: LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {

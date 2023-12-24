@@ -18,6 +18,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 
+import '../../../../../helper/Language/language_controller.dart';
 import '../../../../widgets/image/custom_image.dart';
 import '../../user_bottom_nav_bar/user_bottom_nav_bar_screen.dart';
 import 'inner_widgets/car_wash_section.dart';
@@ -25,6 +26,8 @@ import 'inner_widgets/car_wash_section.dart';
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
   final _homeController = Get.put(UserHomeController());
+  final _localizationController = Get.put(LocalizationController(sharedPreferences:Get.find()));
+
   final _profileController = Get.put(UserProfileController());
 
   @override
@@ -638,6 +641,7 @@ class HomeScreen extends StatelessWidget {
               Get.toNamed(AppRoute.carWashDetailsScreen,parameters:{
               "cat_id":data.id!,
               "cat_name":data.name!,
+                "cat_arabic":data.nameArabic!,
               });
                 },
                 child: Column(
@@ -658,7 +662,7 @@ class HomeScreen extends StatelessWidget {
                       height: 10.h,
                     ),
                     Text(
-                      data.name!,
+                    _localizationController.selectedIndex==0?  data.name!:data.nameArabic!,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 10.sp,

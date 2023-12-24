@@ -16,8 +16,8 @@ class LocalizationController extends GetxController implements GetxService {
       LanguageComponent.languages[0].countryCode);
   Locale get locale => _locale;
 
-  int _selectIndex = 0;
-  int get selectIndex => _selectIndex;
+  int selectedIndex = 0;
+  int get selectIndex => selectedIndex;
 
   List<LanguageModel> _languages = [];
   List<LanguageModel> get languages => _languages;
@@ -32,7 +32,7 @@ class LocalizationController extends GetxController implements GetxService {
     for (int index = 0; index < LanguageComponent.languages.length; index++) {
       if (LanguageComponent.languages[index].languageCode ==
           _locale.languageCode) {
-        _selectIndex = index; 
+        selectedIndex = index;
         break;
       }
     }
@@ -49,7 +49,7 @@ class LocalizationController extends GetxController implements GetxService {
   }
 
   void setSelectIndex(int index){
-    _selectIndex=index;
+    selectedIndex=index;
     update();
 
 

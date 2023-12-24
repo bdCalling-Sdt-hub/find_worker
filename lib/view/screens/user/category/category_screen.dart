@@ -12,6 +12,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 
+import '../../../../helper/Language/language_controller.dart';
+
 class CategoryScreen extends StatefulWidget {
    CategoryScreen({super.key,required this.isBack});
   bool isBack;
@@ -25,6 +27,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
 
 
   final _categoryController = Get.put(CategoryController());
+  final _localizationController = Get.put(LocalizationController(sharedPreferences:Get.find()));
 
 
   @override
@@ -66,6 +69,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                       Get.toNamed(AppRoute.carWashDetailsScreen,parameters:{
                         "cat_id":data.id!,
                         "cat_name":data.name!,
+                        "cat_arabic":data.nameArabic??"",
                       });
 
                     },
@@ -97,7 +101,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                           height: 8.h,
                         ),
                         Text(
-                          data.name!,
+                          _localizationController.selectedIndex==0? data.name!:data.nameArabic!,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(fontSize:14.h),
