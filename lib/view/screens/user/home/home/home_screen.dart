@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:wrcontacts/core/app_routes.dart';
 import 'package:wrcontacts/utils/app_colors.dart';
 import 'package:wrcontacts/utils/app_icons.dart';
@@ -23,12 +26,45 @@ import '../../../../widgets/image/custom_image.dart';
 import '../../user_bottom_nav_bar/user_bottom_nav_bar_screen.dart';
 import 'inner_widgets/car_wash_section.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   final _homeController = Get.put(UserHomeController());
+
   final _localizationController = Get.put(LocalizationController(sharedPreferences:Get.find()));
 
   final _profileController = Get.put(UserProfileController());
+  BannerAd? bannerAd;
+  @override
+  void initState() {
+
+    super.initState();
+    loadBannerAd();
+  }
+
+  void loadBannerAd() {
+    bannerAd = BannerAd(
+      adUnitId:  Platform.isAndroid ? 'ca-app-pub-1808373041988261/7745091633' :'',
+      request: const AdRequest(),
+      size: AdSize.banner,
+      listener: BannerAdListener(
+        onAdLoaded: (ad) {
+          debugPrint('$ad loaded.');
+          setState(() {
+            
+          });
+        },
+        onAdFailedToLoad: (ad, err) {
+          ad.dispose();
+        },
+      ),
+    )..load();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -153,6 +189,13 @@ class HomeScreen extends StatelessWidget {
                                 color: const Color(0xFF0668E3)),
                           ),
                         ])),
+                SizedBox(height: 16,),
+
+                bannerAd != null ? SizedBox(
+                  width: bannerAd!.size.width.toDouble(),
+                  height: bannerAd!.size.height.toDouble(),
+                  child: AdWidget(ad: bannerAd!),
+                ) : SizedBox(),
 
                 SizedBox(
                   height: 100.h,

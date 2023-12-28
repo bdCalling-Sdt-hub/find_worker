@@ -25,6 +25,7 @@ class SpServiceDetailsScreen extends StatefulWidget {
 
 class _SpServiceDetailsScreenState extends State<SpServiceDetailsScreen> {
 
+
   ServiceModel  data= Get.arguments;
   Rx<ServiceModel>  serviceModel= ServiceModel().obs;
   update(ServiceModel value){

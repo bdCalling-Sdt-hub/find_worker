@@ -143,24 +143,7 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
                           ), SizedBox(
                             width: 10.w,
                           ),
-                          InkWell(
-                            onTap: () {
-                              _userServiceDetailsController.launchPhoneDialer(
-                                "${userByServiceModel.phoneCode}${userByServiceModel.phone}");
-                            },
-                            child: CircleAvatar(
-                              backgroundColor: AppColors.blue_100,
-                              radius: 20.r,
-                              child: Padding(
-                                padding: EdgeInsets.all(8.r),
-                                child: Icon(
-                                  Icons.call,
-                                  color: Colors.white,
-                                  size: 22.r,
-                                ),
-                              ),
-                            ),
-                          )
+
                         ],
                       ),
                       const SizedBox(
@@ -315,65 +298,78 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
                       const SizedBox(
                         height: 24,
                       ),
-                      StreamBuilder<DocumentSnapshot>(
-                          stream: FirebaseFirestore.instance
-                              .collection(AppConstants.users)
-                              .doc(userByServiceModel.providerUid!)
-                              .snapshots(),
-                          builder: (context,
-                              AsyncSnapshot<DocumentSnapshot> snapshot) {
-                            if (snapshot.connectionState ==
-                                ConnectionState.waiting) {
-                              return CircularProgressIndicator();
-                            } else if (snapshot.hasData) {
-                              final userData =
-                                  UserModel.fromMap(snapshot.data!);
-                              return userData.status == "Online"
-                                  ? Obx(()=>
-                                     CustomButton(
-                                       loading: _userServiceDetailsController.hireLoading.value,
-                                        onTap: () {
-                                         _userServiceDetailsController.hireDataPost(userByServiceModel, "${userData.phoneCode} ${userData.phone}", userData);
-                                        //  _userServiceDetailsController.hireNow(userByServiceModel, "${userData.phoneCode} ${userData.phone}", userData);
-                                          // showModalBottomSheet(
-                                          //     backgroundColor:
-                                          //         Colors.transparent,
-                                          //     barrierColor:
-                                          //         Colors.transparent,
-                                          //     context: context,
-                                          //     builder:
-                                          //         (BuildContext context) {
-                                          //       return UserServiceDetailsHireNoeBottomModal(
-                                          //         userModel: userData,
-                                          //         userImage:
-                                          //             userData.imageSrc!,
-                                          //         userByServiceModel:
-                                          //             userByServiceModel,
-                                          //         number:
-                                          //             "${userData.phoneCode} ${userData.phone}",
-                                          //       );
-                                          //     });
-                                        },
-                                     text: AppStrings.hireNow.tr,
-                                      ),
-                                  )
-                                  : CustomButton(
-                                     color: Colors.white10,
-                                      onTap: () {
-                                        // Get.snackbar("Alerts!",
-                                        //     "The service provider is now busy.");
-                                      },
-                                     text:AppStrings.hireNow.tr,
+                      Row(
+                        children: [
+                          Expanded(
+                            child: CustomButton(onTap: (){
+                              _userServiceDetailsController.launchPhoneDialer(
+                                  "${userByServiceModel.phoneCode}${userByServiceModel.phone}");
+                            }, text: 'Call'),
+                          ),
+                          SizedBox(width: 16,),
+                          Expanded(
+                            child: StreamBuilder<DocumentSnapshot>(
+                                stream: FirebaseFirestore.instance
+                                    .collection(AppConstants.users)
+                                    .doc(userByServiceModel.providerUid!)
+                                    .snapshots(),
+                                builder: (context,
+                                    AsyncSnapshot<DocumentSnapshot> snapshot) {
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return CircularProgressIndicator();
+                                  } else if (snapshot.hasData) {
+                                    final userData =
+                                        UserModel.fromMap(snapshot.data!);
+                                    return userData.status == "Online"
+                                        ? Obx(()=>
+                                           CustomButton(
+                                             loading: _userServiceDetailsController.hireLoading.value,
+                                              onTap: () {
+                                               _userServiceDetailsController.hireDataPost(userByServiceModel, "${userData.phoneCode} ${userData.phone}", userData);
+                                              //  _userServiceDetailsController.hireNow(userByServiceModel, "${userData.phoneCode} ${userData.phone}", userData);
+                                                // showModalBottomSheet(
+                                                //     backgroundColor:
+                                                //         Colors.transparent,
+                                                //     barrierColor:
+                                                //         Colors.transparent,
+                                                //     context: context,
+                                                //     builder:
+                                                //         (BuildContext context) {
+                                                //       return UserServiceDetailsHireNoeBottomModal(
+                                                //         userModel: userData,
+                                                //         userImage:
+                                                //             userData.imageSrc!,
+                                                //         userByServiceModel:
+                                                //             userByServiceModel,
+                                                //         number:
+                                                //             "${userData.phoneCode} ${userData.phone}",
+                                                //       );
+                                                //     });
+                                              },
+                                           text: AppStrings.hireNow.tr,
+                                            ),
+                                        )
+                                        : CustomButton(
+                                           color: Colors.white10,
+                                            onTap: () {
+                                              // Get.snackbar("Alerts!",
+                                              //     "The service provider is now busy.");
+                                            },
+                                           text:AppStrings.hireNow.tr,
+                                          );
+                                  } else {
+                                    return CustomButton(
+                                      color: Colors.white10,
+                                      onTap: () {},
+                                   text:AppStrings.hireNow,
+                            
                                     );
-                            } else {
-                              return CustomButton(
-                                color: Colors.white10,
-                                onTap: () {},
-                             text:AppStrings.hireNow,
-
-                              );
-                            }
-                          })
+                                  }
+                                }),
+                          ),
+                        ],
+                      )
                     ],
                   )),
         );

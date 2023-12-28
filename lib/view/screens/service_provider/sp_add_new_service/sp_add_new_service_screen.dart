@@ -25,6 +25,13 @@ class SpAddNewServiceScreen extends StatefulWidget {
       _SpAddNewServiceScreenState();
 }
 class _SpAddNewServiceScreenState extends State<SpAddNewServiceScreen> {
+
+  List<String> selectStatus=[
+    'Direct Call',
+    'Waiting for Approval'
+  ];
+    int selectIndex=0;
+
     final _controller = Get.put(AddNewServiceController());
 
     @override
@@ -252,6 +259,53 @@ class _SpAddNewServiceScreenState extends State<SpAddNewServiceScreen> {
                                 color: AppColors.black_100),
                             fieldBorderColor: AppColors.blue_10,
                             fieldBorderRadius: 8,
+                          ),
+                          CustomText(
+                            text: 'Select Status'.tr,
+                            color: AppColors.black_100,
+                            fontWeight: FontWeight.w500,
+                            top: 16,
+                            bottom: 8,
+                          ),
+                          Row(
+                            children: List.generate(
+                              selectStatus.length,
+                                  (index) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      selectIndex =index;
+                                    });
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                      right: 24, top: 12,),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Container(
+                                          height: 20,
+                                          width: 20,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(50),
+                                            border: Border.all(
+                                                color: AppColors.blue_100, width: 1),
+                                            color: index == selectIndex ? AppColors.blue_100 : AppColors.white,
+                                          ),
+                                        ),
+                                        CustomText(
+                                          text: selectStatus[index],
+                                          color: AppColors.black_100,
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w400,
+                                          left: 10,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              },
+                            ),
                           ),
                            CustomText(
                             text: AppStrings.description.tr,
