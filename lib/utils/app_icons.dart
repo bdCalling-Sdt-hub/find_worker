@@ -41,5 +41,7 @@ class AppIcons{
   static const String profile_s = "$basePath/profile_s.svg";
   static const String exclamationIcon = "$basePath/exclamation-circle.svg";
   static const String logoImage = "$basePath/logo_image.png";
+  static const String unSplashProfileImage = "$basePath/person_image.jpeg";
+  static const String appLogo = "$basePath/app_logo.png";
 
 }

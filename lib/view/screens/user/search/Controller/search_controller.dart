@@ -44,12 +44,13 @@ getCategory()async{
     List<CategoryModel> matches = <CategoryModel>[];
     matches.addAll(categoryList);
     matches.retainWhere((s) => s.name!.toLowerCase().contains(query.toLowerCase()));
-    return matches;
+    return matches.length > 5 ? matches.sublist(0, 5) : matches;
   }
 
   RxList<UserByServiceModel> servicesList= <UserByServiceModel> [].obs;
   var serviceLoading=true.obs;
   var isSearch=(-1).obs;
+  final FocusNode focusNode = FocusNode();
 
   Future<List<UserByServiceModel>?> getSortedServicesByCategory(String catId) async {
     final servicesCollection = FirebaseFirestore.instance.collection(AppConstants.services).where("category_id",isEqualTo:catId);
@@ -57,6 +58,8 @@ getCategory()async{
   isSearch(1);
     try {
       serviceLoading(true);
+      typeAheadController.clear();
+
       final servicesSnapshot = await servicesCollection.get();
 
       List<UserByServiceModel> sortedServices = [];

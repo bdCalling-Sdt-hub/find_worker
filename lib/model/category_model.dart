@@ -11,22 +11,26 @@ class CategoryModel {
   final String? name;
   final String? id;
   final String? image;
+  final String? nameArabic;
 
   CategoryModel({
     this.name,
     this.id,
     this.image,
+    this.nameArabic
   });
 
   factory CategoryModel.fromJson(QueryDocumentSnapshot json) => CategoryModel(
     name: json["name"],
     id: json["id"],
     image: json["image"],
+    nameArabic: json['nameArbic']
   );
 
   Map<String, dynamic> toJson() => {
     "name": name,
     "id": id,
     "image": image,
+    "nameArbic":nameArabic
   };
 }

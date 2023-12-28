@@ -13,6 +13,7 @@ import 'package:wrcontacts/view/screens/service_provider/sp_home/Controller/home
 import 'package:wrcontacts/view/screens/service_provider/sp_profile/Controller/profile_controller.dart';
 import 'package:wrcontacts/view/screens/user/home/Controller/home_controller.dart';
 import 'package:wrcontacts/view/screens/user/user_auth/user_sign_in/user_sign_in_screen.dart';
+import 'package:wrcontacts/view/screens/user/user_auth/user_sign_up/email_verification.dart';
 import 'package:wrcontacts/view/screens/user/user_auth/user_sign_up/more_sign_up_screen.dart';
 import 'package:wrcontacts/view/screens/user/user_bottom_nav_bar/user_bottom_nav_bar_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -51,6 +52,7 @@ class AuthenticationController extends GetxController {
   final TextEditingController addressController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passController = TextEditingController();
+  final TextEditingController dobController = TextEditingController();
   final TextEditingController confirmPasswordController =
       TextEditingController();
   String phoneCode = "+93";
@@ -75,7 +77,36 @@ class AuthenticationController extends GetxController {
   final TextEditingController otpController = TextEditingController();
 
   /// for firebase sign up
+  DateTime selectedDate = DateTime.now();
+  Future<void> selectDate(BuildContext context) async {
+    final DateTime currentDate = DateTime.now();
+    final DateTime minimumAllowedDate =
+    currentDate.subtract(Duration(days: 365 * 18));
 
+    DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: minimumAllowedDate,
+      firstDate: DateTime(1900),
+      lastDate: currentDate,
+    );
+
+    if (picked != null) {
+      selectedDate = picked;
+      dobController.text =
+      "${selectedDate.year}/${selectedDate.month}/${selectedDate.day}";
+    }
+
+    // if (picked != null && picked != selectedDate && picked.isBefore(minimumAllowedDate)) {
+    //   // The selected date is valid (not null, not equal to the current date, and at least 18 years ago)
+    //     selectedDate = picked;
+    //
+    // } else {
+    //
+    // //  Fluttertoast.showToast(msg:"Invalid date selection.You must be at least 18 years old.");
+    //
+    //   print('Invalid date selection. You must be at least 18 years old.');
+    // }
+  }
   Future<void> registerUser(String userType) async {
     try {
       isLoading = true;
@@ -88,6 +119,7 @@ class AuthenticationController extends GetxController {
             .then((value) async {
           print("====>sign up");
           await postDetailsToFireStore(userType);
+
         });
         //     .catchError((e) {
         //   Fluttertoast.showToast(
@@ -147,8 +179,9 @@ class AuthenticationController extends GetxController {
     userModel.email = user!.email;
     userModel.uid = user.uid;
     userModel.userName = nameController.text.toString();
-    userModel.dob = DateTime(int.parse(yearController.text),
-        int.parse(monthController.text), int.parse(dayController.text));
+    userModel.dob=selectedDate;
+    // userModel.dob = DateTime(int.parse(yearController.text),
+    //     int.parse(monthController.text), int.parse(dayController.text));
     userModel.phone = phoneController.text.toString();
     userModel.address = addressController.text.toString();
     userModel.authType = AppConstants.normalUser;
@@ -183,13 +216,9 @@ class AuthenticationController extends GetxController {
         emailController.clear();
         phoneController.clear();
         addressController.clear();
-        passwordController.clear();
+        passController.clear();
         confirmPasswordController.clear();
-        if (userType == AppConstants.userType) {
-          Get.offAll(UserBottomNavBarScreen(currentIndex: 0),binding:UserBottomNavBinding());
-        } else {
-          Get.offAll(SpBottomNavBarScreen(currentIndex: 0,),binding:ProviderBottomNavBinding());
-        }
+       Get.to(EmailVerificationScreen(userType: userType));
       });
     } on Exception catch (e) {
       debugPrint("=====> Sign up catch error fire store $e");
@@ -208,8 +237,9 @@ var loading=false.obs;
     userModel.email =emailController.text;
     userModel.uid = uid;
     userModel.userName = nameController.text.toString();
-    userModel.dob = DateTime(int.parse(yearController.text),
-        int.parse(monthController.text), int.parse(dayController.text));
+      userModel.dob=selectedDate;
+    // userModel.dob = DateTime(int.parse(yearController.text),
+    //     int.parse(monthController.text), int.parse(dayController.text));
     userModel.phone = phoneController.text.toString();
     userModel.address = addressController.text.toString();
     userModel.authType = AppConstants.socialMediaUser;
@@ -245,6 +275,7 @@ var loading=false.obs;
         phoneController.clear();
         addressController.clear();
         passwordController.clear();
+        passController.clear();
         confirmPasswordController.clear();
         if (type == AppConstants.userType) {
           Get.offAll(UserBottomNavBarScreen(currentIndex: 0),binding:UserBottomNavBinding());
@@ -270,6 +301,52 @@ var loading=false.obs;
       .signInWithEmailAndPassword(
           email: email.trim(), password: password.trim())
       .then((value) async {
+    usernameController.clear();
+    passwordController.clear();
+          DocumentSnapshot data = await firebaseFireStore
+              .collection(AppConstants.users)
+              .doc(value.user!.uid)
+              .get();
+
+          if(data.exists){
+            UserModel userData = UserModel.fromMap(data);
+            if (userData.role == userType) {
+              debugPrint("=======> Uid ${data['uid']}");
+              debugPrint("=======> User Type ${userData.role} and $userType");
+              await PrefsHelper.setString(AppConstants.logged, userData.role);
+              _dataController.setData(
+                  userNameD: userData.userName!,
+                  userRoleD: userData.role!,
+                  uidD: userData.uid!,
+                  imageD: userData.imageSrc!,
+                  authTypeD: userData.authType!);
+
+              if(value.user!.emailVerified){
+                if (userData.role == AppConstants.userType) {
+                  Get.offAll(UserBottomNavBarScreen(currentIndex: 0),binding:UserBottomNavBinding());
+                } else {
+                  Get.offAll(SpBottomNavBarScreen(currentIndex: 0),binding:ProviderBottomNavBinding());
+                }
+              }else{
+                Get.to(EmailVerificationScreen(userType: userType));
+              }
+            }else{
+              Get.snackbar("Error", "User not found", colorText: Colors.red);
+            }
+
+
+
+
+
+
+          }
+
+
+
+
+
+
+
     // Fluttertoast.showToast(
     //     msg: "Login Successfully",
     //     backgroundColor: AppColors.blue_100,
@@ -278,40 +355,7 @@ var loading=false.obs;
     //     toastLength: Toast.LENGTH_SHORT,
     //     gravity: ToastGravity.BOTTOM
     // );
-    DocumentSnapshot data = await firebaseFireStore
-        .collection(AppConstants.users)
-        .doc(value.user!.uid)
-        .get();
-    UserModel userData = UserModel.fromMap(data);
-    debugPrint("=======> Uid ${data['uid']}");
-    debugPrint("=======> User Type ${userData.role} and $userType");
-  
-    if (userData.role == userType) {
-      await PrefsHelper.setString(AppConstants.logged, userData.role);
-      if (userData.role == AppConstants.userType) {
-        Get.offAll(UserBottomNavBarScreen(currentIndex: 0),binding:UserBottomNavBinding());
-        _dataController.setData(
-            userNameD: userData.userName!,
-            userRoleD: userData.role!,
-            uidD: userData.uid!,
-            imageD: userData.imageSrc!,
-            authTypeD: userData.authType!);
-        usernameController.clear();
-        passwordController.clear();
-      } else {
-        Get.offAll(SpBottomNavBarScreen(currentIndex: 0),binding:ProviderBottomNavBinding());
-        _dataController.setData(
-            userNameD: userData.userName!,
-            userRoleD: userData.role!,
-            uidD: userData.uid!,
-            imageD: userData.imageSrc!,
-            authTypeD: userData.authType!);
-        usernameController.clear();
-        passwordController.clear();
-      }
-    } else {
-      Get.snackbar("Error", "User not found", colorText: Colors.red);
-    }
+
   });
 } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
@@ -343,6 +387,13 @@ var loading=false.obs;
 
       }else{
         print('Error during sign in: ${e.message}');
+        Fluttertoast.showToast(
+            msg:e.message!,
+            backgroundColor: AppColors.blue_100,
+            textColor: AppColors.white,
+            fontSize: 14,
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM);
       }
     }
     finally {
@@ -401,7 +452,7 @@ var loading=false.obs;
           passwordController.clear();
         }
       } else {
-        Get.snackbar("Error", "User not found", colorText: Colors.red);
+       Fluttertoast.showToast(msg: "User not found");
       }
     } else {
       Get.to(MoreSignUpScreen(uid: userData.user!.uid, email:userData.user!.email??"", image:userData.user!.photoURL??"", name:userData.user!.displayName??"", userType: userType));
@@ -457,7 +508,7 @@ var loading=false.obs;
           passwordController.clear();
         }
       } else {
-        Get.snackbar("Error", "User not found", colorText: Colors.red);
+       Fluttertoast.showToast(msg: "User not found");
       }
     } else {
       Get.to(MoreSignUpScreen(uid: userData.user!.uid, email:userData.user!.email??"", image:userData.user!.photoURL??"", name:userData.user!.displayName??"", userType: userType));
@@ -508,9 +559,9 @@ var loading=false.obs;
     if(auth.currentUser!.email==accountDeleteCtrl.text){
       await auth.currentUser!.delete().then((value)async{
         localizationController.setLanguage(Locale('en',"US"));
-        await GoogleSignIn().signOut();
         accountDeleteCtrl.clear();
         await PrefsHelper.setString(AppConstants.logged, "");
+        await GoogleSignIn().signOut();
         Get.back();
         Get.offAll(()=>const OnboardScreen());
         Fluttertoast.showToast(msg:AppStrings.accountDelete.tr);
@@ -519,6 +570,10 @@ var loading=false.obs;
         Fluttertoast.showToast(msg: v.toString());
       });
       isAccountDeleteLoading(false);
+    }else{
+      Fluttertoast.showToast(msg:"Email Not matching");
+      isAccountDeleteLoading(false);
+
     }
 
 
@@ -527,5 +582,11 @@ var loading=false.obs;
 
 
 
+  }
+  @override
+  void dispose() {
+    accountDeleteCtrl.dispose();
+    // TODO: implement dispose
+    super.dispose();
   }
 }

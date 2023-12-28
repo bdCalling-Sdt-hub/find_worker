@@ -127,12 +127,12 @@ class _UserEditPersonalInformationState
                                               : const DecorationImage(
                                     fit: BoxFit.fill,
                                                   image: AssetImage(
-                                                      'assets/images/person.png'),
+                                                      AppIcons.unSplashProfileImage),
                                                 )
                                           : const DecorationImage(
                                     fit: BoxFit.fill,
                                               image: AssetImage(
-                                                  'assets/images/person.png'),
+                                                  AppIcons.unSplashProfileImage),
                                             )),
                             ),
                           ),

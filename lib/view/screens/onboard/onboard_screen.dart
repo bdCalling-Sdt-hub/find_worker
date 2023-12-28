@@ -41,14 +41,15 @@ class _OnboardScreenState extends State<OnboardScreen> {
               padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: Column(
                 children: [
-                  SizedBox(height: 50.h,),
+                  SizedBox(height: 70.h,),
                    CustomText(
                     text: AppStrings.welcomeToFindWorker,
                     fontSize: 18.sp,
                     fontWeight: FontWeight.w500,
                     bottom: 30.h,
                   ),
-                  Image.asset(AppIcons.logoImage,height:94,width: 60,fit: BoxFit.fill,),
+
+                  SizedBox(height: 70.h,),
                    CustomImage(
                     imageSrc: AppImages.rafiKi,
                     imageType: ImageType.png,

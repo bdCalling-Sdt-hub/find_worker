@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:wrcontacts/core/app_routes.dart';
 import 'package:wrcontacts/utils/app_colors.dart';
 import 'package:wrcontacts/utils/app_icons.dart';
@@ -7,6 +8,7 @@ import 'package:wrcontacts/utils/app_strings.dart';
 import 'package:wrcontacts/view/screens/user/category/category_screen.dart';
 import 'package:wrcontacts/view/screens/user/home/Controller/home_controller.dart';
 import 'package:wrcontacts/view/screens/user/home/home/home_screen_data/home_screen_data.dart';
+import 'package:wrcontacts/view/screens/user/user_profile/Controller/profile_controller.dart';
 import 'package:wrcontacts/view/widgets/custom_loader.dart';
 
 import 'package:wrcontacts/view/widgets/text/custom_text.dart';
@@ -16,6 +18,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 
+import '../../../../../helper/Language/language_controller.dart';
 import '../../../../widgets/image/custom_image.dart';
 import '../../user_bottom_nav_bar/user_bottom_nav_bar_screen.dart';
 import 'inner_widgets/car_wash_section.dart';
@@ -23,6 +26,9 @@ import 'inner_widgets/car_wash_section.dart';
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
   final _homeController = Get.put(UserHomeController());
+  final _localizationController = Get.put(LocalizationController(sharedPreferences:Get.find()));
+
+  final _profileController = Get.put(UserProfileController());
 
   @override
   Widget build(BuildContext context) {
@@ -32,12 +38,40 @@ class HomeScreen extends StatelessWidget {
           elevation: 0,
           centerTitle: false,
           backgroundColor: Colors.transparent,
-          title: CustomText(
-            color: AppColors.blue_100,
-            text: AppStrings.logo.tr,
-            fontSize: 18.sp,
-            fontWeight: FontWeight.w500,
-          ),
+          // title: _profileController.userData.value.imageSrc==null||_profileController.userData.value.imageSrc==""? Container(
+          //   height: 45,
+          //   width: 45,
+          //   decoration: BoxDecoration(
+          //       shape: BoxShape.circle,
+          //       border: Border.all(
+          //           color: Colors.grey.shade200,
+          //           width: 0.5
+          //       ),
+          //       image: const DecorationImage(
+          //           image:AssetImage(AppIcons.unSplashProfileImage),fit: BoxFit.fill)
+          //        ),
+          //
+          //
+          // ):Container(
+          //   height: 45,
+          //   width: 45,
+          //   decoration: BoxDecoration(
+          //       shape: BoxShape.circle,
+          //       border: Border.all(
+          //         color: Colors.grey.shade200,
+          //         width: 0.5
+          //       ),
+          //       image: DecorationImage(
+          //           image:NetworkImage(_profileController.userData.value.imageSrc??""),fit: BoxFit.fill)),
+          // ),
+          // title: CustomText(
+          //   color: AppColors.blue_100,
+          //   text: AppStrings.logo.tr,
+          //   fontSize: 18.sp,
+          //   fontWeight: FontWeight.w500,
+          // ),
+          //title:const CustomImage(imageSrc:AppIcons.appLogo,imageType: ImageType.svg,),
+          // leading:Image.asset(AppIcons.appLogo,height:35,width: 22,),
           actions: [
             Padding(
               padding: const EdgeInsets.only(right: 20),
@@ -607,11 +641,11 @@ class HomeScreen extends StatelessWidget {
               Get.toNamed(AppRoute.carWashDetailsScreen,parameters:{
               "cat_id":data.id!,
               "cat_name":data.name!,
+                "cat_arabic":data.nameArabic!,
               });
                 },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
-
                   children: [
                     Container(
                       height: 60.h,
@@ -628,7 +662,7 @@ class HomeScreen extends StatelessWidget {
                       height: 10.h,
                     ),
                     Text(
-                      data.name!,
+                    _localizationController.selectedIndex==0?  data.name!:data.nameArabic!,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 10.sp,

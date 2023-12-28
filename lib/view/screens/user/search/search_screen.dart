@@ -66,6 +66,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       Expanded(
                         flex: 4,
                         child: TypeAheadFormField(
+
                           textFieldConfiguration: TextFieldConfiguration(
                             onChanged: (v){
                               if(v.isEmpty){

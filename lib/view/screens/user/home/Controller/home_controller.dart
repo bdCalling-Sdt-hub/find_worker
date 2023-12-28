@@ -106,7 +106,7 @@ Future<List<UserByServiceModel>?> getSortedServicesByAverageRatingCarWash() asyn
     for (final serviceDoc in servicesSnapshot.docs) {
       final serviceData = serviceDoc.data();
       final serviceProviderId = serviceData['provider_uid'];
-       print("service id ========> ${serviceData['provider_uid']}");
+       print("Provider id ========> ${serviceData['provider_uid']}");
 
       final userDoc = await usersCollection.doc(serviceProviderId).get();
 
@@ -114,9 +114,14 @@ Future<List<UserByServiceModel>?> getSortedServicesByAverageRatingCarWash() asyn
         final userData = userDoc.data();
         final averageRating = userData!['average_rating'];
         final providerName = userData['username'];
+        final phone = userData['phone'];
+        final phoneCode = userData['phone_code'];
 
+        serviceData['phone_code']=phoneCode;
+        serviceData['phone']=phone;
         serviceData['average_rating'] = averageRating;
         serviceData['provider_name'] = providerName;
+
         sortedServices.add(UserByServiceModel.fromJson(serviceData));
       }
     }
@@ -143,7 +148,7 @@ Future<List<UserByServiceModel>?> getSortedServicesByAverageRatingHomeClean() as
     for (final serviceDoc in servicesSnapshot.docs) {
       final serviceData = serviceDoc.data();
       final serviceProviderId = serviceData['provider_uid'];
-       print("service id ========> ${serviceData['provider_uid']}");
+       print("Provider id ========> ${serviceData['provider_uid']}");
 
       final userDoc = await usersCollection.doc(serviceProviderId).get();
 
@@ -151,6 +156,11 @@ Future<List<UserByServiceModel>?> getSortedServicesByAverageRatingHomeClean() as
         final userData = userDoc.data();
         final averageRating = userData!['average_rating'];
         final providerName = userData['username'];
+        final phone = userData['phone'];
+        final phoneCode = userData['phone_code'];
+
+        serviceData['phone_code']=phoneCode;
+        serviceData['phone']=phone;
 
         serviceData['average_rating'] = averageRating;
         serviceData['provider_name'] = providerName;
@@ -181,7 +191,7 @@ Future<List<UserByServiceModel>?> getSortedServicesByAverageRatingAirCondition()
     for (final serviceDoc in servicesSnapshot.docs) {
       final serviceData = serviceDoc.data();
       final serviceProviderId = serviceData['provider_uid'];
-       print("service id ========> ${serviceData['provider_uid']}");
+       print("Provider id ========> ${serviceData['provider_uid']}");
 
       final userDoc = await usersCollection.doc(serviceProviderId).get();
 
@@ -189,7 +199,11 @@ Future<List<UserByServiceModel>?> getSortedServicesByAverageRatingAirCondition()
         final userData = userDoc.data();
         final averageRating = userData!['average_rating'];
         final providerName = userData['username'];
+        final phone = userData['phone'];
+        final phoneCode = userData['phone_code'];
 
+        serviceData['phone_code']=phoneCode;
+        serviceData['phone']=phone;
         serviceData['average_rating'] = averageRating;
         serviceData['provider_name'] = providerName;
         sortedServices.add(UserByServiceModel.fromJson(serviceData));

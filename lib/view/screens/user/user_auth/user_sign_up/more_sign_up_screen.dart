@@ -136,139 +136,166 @@ class _MoreSignUpScreenState extends State<MoreSignUpScreen> {
                                     ),
                     
                                     /// <----------------------- Date of Birth---------------->
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Expanded(
-                                            child:Container(
-                                              width: MediaQuery.of(context).size.width,
-                                              padding: const EdgeInsetsDirectional.symmetric(horizontal:15,vertical: 3),
-                                              alignment: Alignment.center,
-                                              decoration: BoxDecoration(
-                                                  color: AppColors.white,
-                                                  borderRadius: BorderRadius.circular(8),
-                                                  border: Border.all(
-                                                    color: Color(0xffE2E2E2)
-                                                      // color: controller.year.isEmpty ? const Color(0xffE2E2E2) : AppColors.blue_100
-                                                  )
-                                              ),
-                                              child: TextFormField(
-                                                controller:authController.dayController,
-                                                textAlign: TextAlign.center,
-                                                validator: (value){
-                                                  if(value!.isEmpty){
-                                                    return "Empty";
-                                                  }
-                                                },
-                                                 keyboardType: TextInputType.datetime,
-                                                decoration: const InputDecoration(
-                                                  hintText: "DD",
-                                                  contentPadding: EdgeInsets.zero,
-                                                  enabledBorder: OutlineInputBorder(
-                                                      borderSide: BorderSide.none
-                                                  ),
-                    
-                                                  focusedBorder: OutlineInputBorder(
-                                                      borderSide: BorderSide.none
-                                                  ),
-                                                ),
-                                                inputFormatters: [
-                                                  FilteringTextInputFormatter.allow(RegExp("[0-9-]")),
-                                                  LengthLimitingTextInputFormatter(2),
-                                                  DayFormatter(),
-                                                ],
-                                              ),
-                                            )
-                                        ),
-                    
-                                        const SizedBox(width: 12),
-                                        Expanded(
-                                            child:Container(
-                                              width: MediaQuery.of(context).size.width,
-                                              padding: const EdgeInsetsDirectional.symmetric(horizontal:15,vertical: 3),
-                                              alignment: Alignment.center,
-                                              decoration: BoxDecoration(
-                                                  color: AppColors.white,
-                                                  borderRadius: BorderRadius.circular(8),
-                                                  border: Border.all(
-                                                      color: Color(0xffE2E2E2)
-                                                  //    color: controller.year.isEmpty ? const Color(0xffE2E2E2) : AppColors.blue_100
-                                                  )
-                                              ),
-                                              child: TextFormField(
-                                                textAlign: TextAlign.center,
-                                                controller:authController.monthController,
-                                                validator: (value){
-                                                  if(value!.isEmpty){
-                                                    return "Empty";
-                                                  }
-                                                },
-                                                 keyboardType: TextInputType.datetime,
-                                                decoration: const InputDecoration(
-                                                  hintText: "MM",
-                                                  contentPadding: EdgeInsets.zero,
-                                                  enabledBorder: OutlineInputBorder(
-                                                      borderSide: BorderSide.none
-                                                  ),
-                    
-                                                  focusedBorder: OutlineInputBorder(
-                                                      borderSide: BorderSide.none
-                                                  ),
-                                                ),
-                                                inputFormatters: [
-                                                  FilteringTextInputFormatter.allow(RegExp("[0-9-]")),
-                                                  LengthLimitingTextInputFormatter(2),
-                                                  MonthFormatter(),
-                                                ],
-                                              ),
-                                            )
-                                        ),
-                                        const SizedBox(width: 12),
-                                        Expanded(
-                                            child: Container(
-                                              width: MediaQuery.of(context).size.width,
-                                              padding: const EdgeInsetsDirectional.symmetric(horizontal:15,vertical: 3),
-                                              alignment: Alignment.center,
-                                              decoration: BoxDecoration(
-                                                  color: AppColors.white,
-                                                  borderRadius: BorderRadius.circular(8),
-                                                  border: Border.all(
-                                                      color: Color(0xffE2E2E2)
-                                                   //   color: controller.year.isEmpty ? const Color(0xffE2E2E2) : AppColors.blue_100
-                                                  )
-                                              ),
-                                              child: TextFormField(
-                                                textAlign: TextAlign.center,
-                                                keyboardType: TextInputType.datetime,
-                                                controller:authController.yearController,
-                                                validator: (value){
-                                                  if(value!.isEmpty){
-                                                    return "Empty";
-                                                  }else if(value.length<4){
-                                                    return "Valid Year";
-                                                  }
-                                                },
-                                                decoration: const InputDecoration(
-                                                  hintText: "YYYY",
-                                                  contentPadding: EdgeInsets.zero,
-                                                  enabledBorder: OutlineInputBorder(
-                                                    borderSide: BorderSide.none
-                                                  ),
-                    
-                                                  focusedBorder: OutlineInputBorder(
-                                                    borderSide: BorderSide.none
-                                                  ),
-                                                ),
-                                                inputFormatters: [
-                                                  FilteringTextInputFormatter.allow(RegExp("[0-9-]")),
-                                                  LengthLimitingTextInputFormatter(4),
-                                                  YearFormatter(),
-                                                ],
-                                              ),
-                                            )
-                                        ),
-                                      ],
+                                    CustomTextField(
+                                      validator: (value) {
+                                        if (value == null || value.isEmpty) {
+                                          return "Date of Birth Not Be Empty".tr;
+                                        }
+                                        return null;
+                                      },
+                                      readOnly: true,
+                                      onTap: (){
+                                        authController.selectDate(context);
+                                      },
+                                      suffixIcon: const Icon(Icons.date_range,color: Colors.grey,),
+                                      textEditingController: controller.dobController,
+                                      textAlign: TextAlign.start,
+                                      hintText: AppStrings.dateOfBirth,
+                                      hintStyle: GoogleFonts.montserrat(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w500,
+                                          color: AppColors.black_40),
+                                      inputTextStyle: GoogleFonts.montserrat(
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 14,
+                                          color: AppColors.black_100),
+                                      fieldBorderColor: AppColors.blue_10,
+                                      fieldBorderRadius: 8,
+
                                     ),
+                                    // Row(
+                                    //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    //   children: [
+                                    //     Expanded(
+                                    //         child:Container(
+                                    //           width: MediaQuery.of(context).size.width,
+                                    //           padding: const EdgeInsetsDirectional.symmetric(horizontal:15,vertical: 3),
+                                    //           alignment: Alignment.center,
+                                    //           decoration: BoxDecoration(
+                                    //               color: AppColors.white,
+                                    //               borderRadius: BorderRadius.circular(8),
+                                    //               border: Border.all(
+                                    //                 color: Color(0xffE2E2E2)
+                                    //                   // color: controller.year.isEmpty ? const Color(0xffE2E2E2) : AppColors.blue_100
+                                    //               )
+                                    //           ),
+                                    //           child: TextFormField(
+                                    //             controller:authController.dayController,
+                                    //             textAlign: TextAlign.center,
+                                    //             validator: (value){
+                                    //               if(value!.isEmpty){
+                                    //                 return "Empty";
+                                    //               }
+                                    //             },
+                                    //              keyboardType: TextInputType.datetime,
+                                    //             decoration: const InputDecoration(
+                                    //               hintText: "DD",
+                                    //               contentPadding: EdgeInsets.zero,
+                                    //               enabledBorder: OutlineInputBorder(
+                                    //                   borderSide: BorderSide.none
+                                    //               ),
+                                    //
+                                    //               focusedBorder: OutlineInputBorder(
+                                    //                   borderSide: BorderSide.none
+                                    //               ),
+                                    //             ),
+                                    //             inputFormatters: [
+                                    //               FilteringTextInputFormatter.allow(RegExp("[0-9-]")),
+                                    //               LengthLimitingTextInputFormatter(2),
+                                    //               DayFormatter(),
+                                    //             ],
+                                    //           ),
+                                    //         )
+                                    //     ),
+                                    //
+                                    //     const SizedBox(width: 12),
+                                    //     Expanded(
+                                    //         child:Container(
+                                    //           width: MediaQuery.of(context).size.width,
+                                    //           padding: const EdgeInsetsDirectional.symmetric(horizontal:15,vertical: 3),
+                                    //           alignment: Alignment.center,
+                                    //           decoration: BoxDecoration(
+                                    //               color: AppColors.white,
+                                    //               borderRadius: BorderRadius.circular(8),
+                                    //               border: Border.all(
+                                    //                   color: Color(0xffE2E2E2)
+                                    //               //    color: controller.year.isEmpty ? const Color(0xffE2E2E2) : AppColors.blue_100
+                                    //               )
+                                    //           ),
+                                    //           child: TextFormField(
+                                    //             textAlign: TextAlign.center,
+                                    //             controller:authController.monthController,
+                                    //             validator: (value){
+                                    //               if(value!.isEmpty){
+                                    //                 return "Empty";
+                                    //               }
+                                    //             },
+                                    //              keyboardType: TextInputType.datetime,
+                                    //             decoration: const InputDecoration(
+                                    //               hintText: "MM",
+                                    //               contentPadding: EdgeInsets.zero,
+                                    //               enabledBorder: OutlineInputBorder(
+                                    //                   borderSide: BorderSide.none
+                                    //               ),
+                                    //
+                                    //               focusedBorder: OutlineInputBorder(
+                                    //                   borderSide: BorderSide.none
+                                    //               ),
+                                    //             ),
+                                    //             inputFormatters: [
+                                    //               FilteringTextInputFormatter.allow(RegExp("[0-9-]")),
+                                    //               LengthLimitingTextInputFormatter(2),
+                                    //               MonthFormatter(),
+                                    //             ],
+                                    //           ),
+                                    //         )
+                                    //     ),
+                                    //     const SizedBox(width: 12),
+                                    //     Expanded(
+                                    //         child: Container(
+                                    //           width: MediaQuery.of(context).size.width,
+                                    //           padding: const EdgeInsetsDirectional.symmetric(horizontal:15,vertical: 3),
+                                    //           alignment: Alignment.center,
+                                    //           decoration: BoxDecoration(
+                                    //               color: AppColors.white,
+                                    //               borderRadius: BorderRadius.circular(8),
+                                    //               border: Border.all(
+                                    //                   color: Color(0xffE2E2E2)
+                                    //                //   color: controller.year.isEmpty ? const Color(0xffE2E2E2) : AppColors.blue_100
+                                    //               )
+                                    //           ),
+                                    //           child: TextFormField(
+                                    //             textAlign: TextAlign.center,
+                                    //             keyboardType: TextInputType.datetime,
+                                    //             controller:authController.yearController,
+                                    //             validator: (value){
+                                    //               if(value!.isEmpty){
+                                    //                 return "Empty";
+                                    //               }else if(value.length<4){
+                                    //                 return "Valid Year";
+                                    //               }
+                                    //             },
+                                    //             decoration: const InputDecoration(
+                                    //               hintText: "YYYY",
+                                    //               contentPadding: EdgeInsets.zero,
+                                    //               enabledBorder: OutlineInputBorder(
+                                    //                 borderSide: BorderSide.none
+                                    //               ),
+                                    //
+                                    //               focusedBorder: OutlineInputBorder(
+                                    //                 borderSide: BorderSide.none
+                                    //               ),
+                                    //             ),
+                                    //             inputFormatters: [
+                                    //               FilteringTextInputFormatter.allow(RegExp("[0-9-]")),
+                                    //               LengthLimitingTextInputFormatter(4),
+                                    //               YearFormatter(),
+                                    //             ],
+                                    //           ),
+                                    //         )
+                                    //     ),
+                                    //   ],
+                                    // ),
                                     const CustomText(
                                       text: AppStrings.gender,
                                       color: AppColors.black_100,

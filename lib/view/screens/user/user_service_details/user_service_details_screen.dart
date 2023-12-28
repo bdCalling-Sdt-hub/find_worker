@@ -140,6 +140,26 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
                                 left: 4,
                               ),
                             ],
+                          ), SizedBox(
+                            width: 10.w,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              _userServiceDetailsController.launchPhoneDialer(
+                                "${userByServiceModel.phoneCode}${userByServiceModel.phone}");
+                            },
+                            child: CircleAvatar(
+                              backgroundColor: AppColors.blue_100,
+                              radius: 20.r,
+                              child: Padding(
+                                padding: EdgeInsets.all(8.r),
+                                child: Icon(
+                                  Icons.call,
+                                  color: Colors.white,
+                                  size: 22.r,
+                                ),
+                              ),
+                            ),
                           )
                         ],
                       ),
@@ -313,7 +333,8 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
                                      CustomButton(
                                        loading: _userServiceDetailsController.hireLoading.value,
                                         onTap: () {
-                                          _userServiceDetailsController.hireNow(userByServiceModel, "${userData.phoneCode} ${userData.phone}", userData);
+                                         _userServiceDetailsController.hireDataPost(userByServiceModel, "${userData.phoneCode} ${userData.phone}", userData);
+                                        //  _userServiceDetailsController.hireNow(userByServiceModel, "${userData.phoneCode} ${userData.phone}", userData);
                                           // showModalBottomSheet(
                                           //     backgroundColor:
                                           //         Colors.transparent,

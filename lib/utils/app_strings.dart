@@ -1,7 +1,7 @@
 class AppStrings{
 
   static const String logo = "Logo";
-  static const String welcomeToFindWorker = "Welcome to Find Worker!";
+  static const String welcomeToFindWorker = "Welcome";
   static const String loginAs = "Login As";
   static const String user = "User";
   static const String serviceProvider = "Service Provider";

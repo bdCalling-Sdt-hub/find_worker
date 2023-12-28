@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:wrcontacts/utils/app_strings.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -17,39 +18,44 @@ class NetworkController extends GetxController {
   void onInit() async {
     super.onInit();
     _initConnectivity();
-    _streamSubscription =
-        _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
+
   }
 
   Future<void> _initConnectivity() async {
     _connectivityResult = await _connectivity.checkConnectivity();
+    _streamSubscription =
+        _connectivity.onConnectivityChanged.listen(_updateConnectionStatus);
   }
 
   void _updateConnectionStatus(ConnectivityResult connectivityResult) {
     if (kDebugMode) print("STATUS : $connectivityResult");
 
     if (connectivityResult == ConnectivityResult.none) {
-      Get.rawSnackbar(
-          messageText: Text(AppStrings.pleaseConnectToTheInternet.tr,
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600)),
-          isDismissible: false,
-          duration: const Duration(days: 1),
-          backgroundColor: Colors.red[400]!,
-          icon: Icon(
-            Icons.wifi_off,
-            color: Colors.white,
-            size: 35,
-          ),
-          margin: EdgeInsets.zero,
-          snackPosition: SnackPosition.BOTTOM,
-          snackStyle: SnackStyle.GROUNDED);
+
+
+
+      Fluttertoast.showToast(msg:AppStrings.pleaseConnectToTheInternet.tr,toastLength:Toast.LENGTH_LONG,gravity:ToastGravity.BOTTOM,);
+      // Get.rawSnackbar(
+      //     messageText: Text(AppStrings.pleaseConnectToTheInternet.tr,
+      //         style: TextStyle(
+      //             color: Colors.white,
+      //             fontSize: 14,
+      //             fontWeight: FontWeight.w600)),
+      //     isDismissible: false,
+      //     duration: const Duration(days: 1),
+      //     backgroundColor: Colors.red[400]!,
+      //     icon: Icon(
+      //       Icons.wifi_off,
+      //       color: Colors.white,
+      //       size: 35,
+      //     ),
+      //     margin: EdgeInsets.zero,
+      //     snackPosition: SnackPosition.BOTTOM,
+      //     snackStyle: SnackStyle.GROUNDED);
     } else {
-      if (Get.isSnackbarOpen) {
-        Get.closeCurrentSnackbar();
-      }
+      // if (Get.isSnackbarOpen) {
+      //   Get.closeCurrentSnackbar();
+      // }
     }
   }
 

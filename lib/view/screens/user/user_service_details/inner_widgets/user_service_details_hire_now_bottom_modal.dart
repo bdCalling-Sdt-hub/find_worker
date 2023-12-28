@@ -66,7 +66,7 @@ class _UserServiceDetailsHireNoeBottomModalState extends State<UserServiceDetail
             decoration: BoxDecoration(
                 color: Colors.grey.withOpacity(0.7),
                 shape: BoxShape.circle,
-                image:const DecorationImage(image:AssetImage("assets/images/person.png"),)
+                image: DecorationImage(image:AssetImage(AppIcons.unSplashProfileImage),)
             ),
           )  :CachedNetworkImage(imageUrl:widget.userImage,
               imageBuilder: (context,imageProvider){
@@ -149,7 +149,7 @@ class _UserServiceDetailsHireNoeBottomModalState extends State<UserServiceDetail
 
         Obx(()=>
            CustomButton(onTap:(){
-             _controller.hireNow(widget.userByServiceModel,widget.number,widget.userModel);
+            // _controller.hireNow(widget.userByServiceModel,widget.number,widget.userModel);
           },
               loading:_controller.hireLoading.value,
               text:"Call"),

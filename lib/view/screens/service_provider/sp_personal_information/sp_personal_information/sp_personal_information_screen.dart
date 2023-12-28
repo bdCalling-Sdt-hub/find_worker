@@ -90,15 +90,15 @@ class _SpPersonalInformationScreenState
                                           fit: BoxFit.fill,
                                           image: NetworkImage(_profileController
                                               .userData.value.imageSrc!))
-                                          : const DecorationImage(
+                                          :  DecorationImage(
                                         fit: BoxFit.fill,
                                         image: AssetImage(
-                                            'assets/images/person.png'),
+                                            AppIcons.unSplashProfileImage),
                                       )
-                                          : const DecorationImage(
+                                          :  DecorationImage(
                                         fit: BoxFit.fill,
                                         image: AssetImage(
-                                            'assets/images/person.png'),
+                                            AppIcons.unSplashProfileImage),
                                       )),
                                 ),
                                 CustomText(

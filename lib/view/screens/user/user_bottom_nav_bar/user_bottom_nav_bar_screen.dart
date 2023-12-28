@@ -52,9 +52,9 @@ class _UserBottomNavBarScreenState extends State<UserBottomNavBarScreen> {
   @override
   void dispose() {
     // TODO: implement dispose
-    // Get.delete<UserHomeController>();
-    // Get.delete<CategoryController>();
-    // Get.delete<UserProfileController>();
+    Get.delete<UserHomeController>();
+    Get.delete<CategoryController>();
+    Get.delete<UserProfileController>();
     super.dispose();
   }
   @override
