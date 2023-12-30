@@ -39,32 +39,15 @@ class _HomeScreenState extends State<HomeScreen> {
   final _localizationController = Get.put(LocalizationController(sharedPreferences:Get.find()));
 
   final _profileController = Get.put(UserProfileController());
-  BannerAd? bannerAd;
+
   @override
   void initState() {
 
     super.initState();
-    loadBannerAd();
+
   }
 
-  void loadBannerAd() {
-    bannerAd = BannerAd(
-      adUnitId:  Platform.isAndroid ? 'ca-app-pub-1808373041988261/7745091633' :'',
-      request: const AdRequest(),
-      size: AdSize.banner,
-      listener: BannerAdListener(
-        onAdLoaded: (ad) {
-          debugPrint('$ad loaded.');
-          setState(() {
-            
-          });
-        },
-        onAdFailedToLoad: (ad, err) {
-          ad.dispose();
-        },
-      ),
-    )..load();
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -191,14 +174,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         ])),
                 SizedBox(height: 16,),
 
-                bannerAd != null ? SizedBox(
-                  width: bannerAd!.size.width.toDouble(),
-                  height: bannerAd!.size.height.toDouble(),
-                  child: AdWidget(ad: bannerAd!),
-                ) : SizedBox(),
-
                 SizedBox(
-                  height: 100.h,
+                  height: 200.h,
                 ),
               ],
             ),

@@ -34,6 +34,7 @@ class AddNewServiceController extends GetxController{
        var imagePath="".obs;
       var selectedItem =(-1).obs;
       var uuid = const Uuid();
+      RxString selectedOption = 'Direct call'.obs;
 // Pick an image.
 
 
@@ -84,7 +85,8 @@ class AddNewServiceController extends GetxController{
                   serviceId: selectServiceId.value,
                   location: addressTextCtrl.text,
                   providerUid:_auth.currentUser!.uid,
-                  description:descriptionTextCtrl.text
+                  description:descriptionTextCtrl.text,
+                  options: selectedOption.value,
               );
               await firebaseStorage.collection(AppConstants.services).doc(id).set(body.toJson());
                 Get.find<SpHomeController>().getService();
@@ -95,6 +97,7 @@ class AddNewServiceController extends GetxController{
               addressTextCtrl.clear();
               descriptionTextCtrl.clear();
               imagePath.value="";
+              selectedOption.value="Direct call";
               selectedItem.value=(-1);
               Get.back();
             }else{

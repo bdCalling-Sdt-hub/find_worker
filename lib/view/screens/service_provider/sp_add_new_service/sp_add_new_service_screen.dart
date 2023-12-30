@@ -261,52 +261,55 @@ class _SpAddNewServiceScreenState extends State<SpAddNewServiceScreen> {
                             fieldBorderRadius: 8,
                           ),
                           CustomText(
-                            text: 'Select Status'.tr,
+                            text: 'Select Options'.tr,
                             color: AppColors.black_100,
                             fontWeight: FontWeight.w500,
                             top: 16,
                             bottom: 8,
                           ),
-                          Row(
-                            children: List.generate(
-                              selectStatus.length,
-                                  (index) {
-                                return GestureDetector(
-                                  onTap: () {
-                                    setState(() {
-                                      selectIndex =index;
-                                    });
-                                  },
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(
-                                      right: 24, top: 12,),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Container(
-                                          height: 20,
-                                          width: 20,
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(50),
-                                            border: Border.all(
-                                                color: AppColors.blue_100, width: 1),
-                                            color: index == selectIndex ? AppColors.blue_100 : AppColors.white,
-                                          ),
-                                        ),
-                                        CustomText(
-                                          text: selectStatus[index],
-                                          color: AppColors.black_100,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.w400,
-                                          left: 10,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
+                          buildRadioTile("Direct call".tr,"Direct call"),
+                          buildRadioTile("Waiting for Approval".tr,"Waiting for Approval"),
+                          // Wrap(
+                          //
+                          //   children: List.generate(
+                          //     selectStatus.length,
+                          //         (index) {
+                          //       return GestureDetector(
+                          //         onTap: () {
+                          //           setState(() {
+                          //             selectIndex =index;
+                          //           });
+                          //         },
+                          //         child: Padding(
+                          //           padding: const EdgeInsets.only(
+                          //             right: 24, top: 12,),
+                          //           child: Row(
+                          //             mainAxisSize: MainAxisSize.min,
+                          //             children: [
+                          //               Container(
+                          //                 height: 20,
+                          //                 width: 20,
+                          //                 decoration: BoxDecoration(
+                          //                   borderRadius: BorderRadius.circular(50),
+                          //                   border: Border.all(
+                          //                       color: AppColors.blue_100, width: 1),
+                          //                   color: index == selectIndex ? AppColors.blue_100 : AppColors.white,
+                          //                 ),
+                          //               ),
+                          //               CustomText(
+                          //                 text: selectStatus[index],
+                          //                 color: AppColors.black_100,
+                          //                 fontSize: 16,
+                          //                 fontWeight: FontWeight.w400,
+                          //                 left: 10,
+                          //               ),
+                          //             ],
+                          //           ),
+                          //         ),
+                          //       );
+                          //     },
+                          //   ),
+                          // ),
                            CustomText(
                             text: AppStrings.description.tr,
                             color: AppColors.black_100,
@@ -367,6 +370,28 @@ class _SpAddNewServiceScreenState extends State<SpAddNewServiceScreen> {
               _controller.addService();
             }, text: AppStrings.addNewService.tr,loading:_controller.addServiceLoad.value,),
           )  )
+    );
+  }
+
+  Widget buildRadioTile(String title, String value) {
+    return Obx(()=>
+       RadioListTile(
+         dense: true,
+         contentPadding: EdgeInsets.zero,
+         hoverColor: Colors.transparent,
+
+         visualDensity: const VisualDensity(horizontal: 0,vertical: -4),
+
+         title: Text(title,style: const TextStyle(fontSize: 14,),),
+        value: value,
+        activeColor:AppColors.blue_100,
+
+        groupValue: _controller.selectedOption.value,
+
+        onChanged: (String? val) {
+            _controller.selectedOption.value = val!;
+        },
+      ),
     );
   }
 }

@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:wrcontacts/helper/SystemChromeHelper/system_chrome.dart';
 import 'package:wrcontacts/utils/app_colors.dart';
 import 'package:wrcontacts/utils/app_icons.dart';
@@ -29,6 +32,7 @@ class _SpBottomNavBarScreenState extends State<SpBottomNavBarScreen> {
   @override
   void initState() {
     SystemChromeHelper.enableSystemChrome();
+    displayBannerAd();
     super.initState();
   }
 
@@ -37,6 +41,47 @@ class _SpBottomNavBarScreenState extends State<SpBottomNavBarScreen> {
     SpJobHistoryScreen(),
     SpProfileScreen(),
   ];
+
+  BannerAd? banner_ad;
+
+  bool _isLoaded=false;
+
+  final adUnitId = Platform.isAndroid
+      ? 'ca-app-pub-3940256099942544/6300978111' // Test Mode
+      : 'ca-app-pub-3940256099942544/2934735716' //  Test Mode
+      ;
+  final adUnitIdLive = Platform.isAndroid
+      ? 'ca-app-pub-1976486377144082/5956333402' //  Live Mode
+      : 'ca-app-pub-1976486377144082/9700137293';
+  displayBannerAd(){
+    banner_ad=BannerAd(
+      adUnitId: adUnitIdLive,
+      request: const AdRequest(),
+      size: AdSize.banner,
+      listener: BannerAdListener(
+        // Called when an ad is successfully received.
+        onAdLoaded: (ad) {
+          print('$ad loaded.');
+          setState(() {
+            _isLoaded = true;
+          });
+          // setState(() {
+          //   _isLoaded = true;
+          // });
+        },
+        // Called when an ad request failed.
+        onAdFailedToLoad: (ad, err) {
+          print('BannerAd failed to load: $err');
+          // Dispose the ad here to free resources.
+          ad.dispose();
+        },
+      ),
+    )..load();
+    setState(() {
+
+    });
+  }
+
 
 
   @override
@@ -74,19 +119,32 @@ class _SpBottomNavBarScreenState extends State<SpBottomNavBarScreen> {
      ];
     return Scaffold(
       extendBody: true,
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor:const Color(0xFF0668E3),
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.white,
-        showUnselectedLabels: false,
-        currentIndex: widget.currentIndex,
-        selectedLabelStyle: const TextStyle(fontWeight:FontWeight.w500),
-        items:bottomBarItem,
-        onTap: (value){
-          setState(() {
-            widget.currentIndex=value;
-          });
-        },
+      bottomNavigationBar: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          !_isLoaded?Container():Align(
+            alignment: Alignment.bottomCenter,
+            child: SizedBox(
+              width: banner_ad!.size.width.toDouble(),
+              height: banner_ad!.size.height.toDouble(),
+              child: AdWidget(ad: banner_ad!),
+            ),
+          ),
+          BottomNavigationBar(
+            backgroundColor:const Color(0xFF0668E3),
+            type: BottomNavigationBarType.fixed,
+            selectedItemColor: Colors.white,
+            showUnselectedLabels: false,
+            currentIndex: widget.currentIndex,
+            selectedLabelStyle: const TextStyle(fontWeight:FontWeight.w500),
+            items:bottomBarItem,
+            onTap: (value){
+              setState(() {
+                widget.currentIndex=value;
+              });
+            },
+          ),
+        ],
       ),
       body: screens[widget.currentIndex],
     );

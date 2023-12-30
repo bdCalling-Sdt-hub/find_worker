@@ -13,6 +13,7 @@ class ServiceModel {
   final String? image;
   final String? location;
   final String? providerUid;
+  final String? options;
   final String? description;
 
   ServiceModel({
@@ -22,7 +23,7 @@ class ServiceModel {
     this.image,
     this.location,
     this.providerUid,
-
+    this.options,
     this.description,
   });
 
@@ -34,6 +35,7 @@ class ServiceModel {
     location: json["location"],
     providerUid: json["provider_uid"],
     description: json["description"],
+    options: json['options']
   );
 
   Map<String, dynamic> toJson() => {
@@ -44,5 +46,6 @@ class ServiceModel {
     "location": location,
     "provider_uid": providerUid,
     "description": description,
+    "options":options
   };
 }

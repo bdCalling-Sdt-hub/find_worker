@@ -39,6 +39,7 @@ class _SpEditServiceScreenState extends State<SpEditServiceScreen> {
   void initState() {
     _controller.getCategory();
     _controller.imagePath.value="";
+    _controller.selectedOption.value=widget.serviceModel.options!;
     _controller.descriptionTextCtrl.text=widget.serviceModel.description!;
     _controller.addressTextCtrl.text=widget.serviceModel.location!;
     _controller.serviceTextCtrl.text=widget.serviceModel.serviceName!;
@@ -270,6 +271,15 @@ class _SpEditServiceScreenState extends State<SpEditServiceScreen> {
                           fieldBorderColor: AppColors.blue_10,
                           fieldBorderRadius: 8,
                         ),
+                        CustomText(
+                          text: 'Select Options'.tr,
+                          color: AppColors.black_100,
+                          fontWeight: FontWeight.w500,
+                          top: 16,
+                          bottom: 8,
+                        ),
+                        buildRadioTile("Direct call".tr,"Direct call"),
+                        buildRadioTile("Waiting for Approval".tr,"Waiting for Approval"),
                          CustomText(
                           text: AppStrings.description.tr,
                           color: AppColors.black_100,
@@ -329,9 +339,31 @@ class _SpEditServiceScreenState extends State<SpEditServiceScreen> {
                 CustomButton(onTap:()async{
        ServiceModel result=await  _controller.updateService(widget.serviceModel);
               widget.callback(result);
+              Get.back();
 
                 }, text: AppStrings.update.tr,loading:_controller.updateServiceLoad.value,),
             )  )
+    );
+  }
+  Widget buildRadioTile(String title, String value) {
+    return Obx(()=>
+        RadioListTile(
+          dense: true,
+          contentPadding: EdgeInsets.zero,
+          hoverColor: Colors.transparent,
+
+          visualDensity: const VisualDensity(horizontal: 0,vertical: -4),
+
+          title: Text(title,style: const TextStyle(fontSize: 14,),),
+          value: value,
+          activeColor:AppColors.blue_100,
+
+          groupValue: _controller.selectedOption.value,
+
+          onChanged: (String? val) {
+            _controller.selectedOption.value = val!;
+          },
+        ),
     );
   }
 }

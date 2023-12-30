@@ -33,6 +33,7 @@ class EditServiceController extends GetxController{
   late  XFile? image;
   var imagePath="".obs;
   var uuid = Uuid();
+   RxString selectedOption = 'Direct call'.obs;
 // Pick an image.
 
 
@@ -81,7 +82,8 @@ class EditServiceController extends GetxController{
                 serviceId: selectServiceId.value,
                 location: addressTextCtrl.text,
                 providerUid:model.providerUid,
-                description:descriptionTextCtrl.text
+                description:descriptionTextCtrl.text,
+                  options: selectedOption.value
             );
             await firebaseStorage.collection(AppConstants.services).doc(model.id).update(body.toJson());
             await serviceController.getService();
