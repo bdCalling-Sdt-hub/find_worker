@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:wrcontacts/utils/app_constents.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -10,6 +11,9 @@ import 'package:uuid/uuid.dart';
 
 class ApiService {
   static String sentNotificationApi = "https://fcm.googleapis.com/fcm/send";
+  static String sendOtp = "https://us-central1-find-worker-80228.cloudfunctions.net/sendOTP";
+  static String otpVerify = "https://us-central1-find-worker-80228.cloudfunctions.net/verifyOTP";
+
   static String serverKey =
       "AAAAL8AScqE:APA91bFojuCLY8dN-dtg6fT5THU1Ypou63HIfrD9pnq2qPkAZUtKdasf_mpmjDDF1QRxn_4SZsYNr8tsDkKBf-9zwLqyqX4MEaI5DBdXywHE0mTSecC_-0264uJsY9zbLw9ikoWiO8R2";
 
@@ -20,6 +24,40 @@ class ApiService {
         'Authorization': 'key=$serverKey'
       };
       var response = await http.post(Uri.parse(sentNotificationApi),
+          headers: headers, body: json.encode(body));
+      if (response.statusCode == 200) {
+        return response.body;
+      } else {
+        return response.statusCode;
+      }
+    } on Exception catch (e) {
+      return 1;
+    }
+  }
+
+  static Future<dynamic> otpVerifyFunction(Map<String, dynamic> body) async {
+    try {
+      var headers = {
+        'Content-Type': 'application/json',
+      };
+      var response = await http.post(Uri.parse(otpVerify),
+          headers: headers, body: json.encode(body));
+      if (response.statusCode == 200) {
+        return response.body;
+      } else {
+        debugPrint("verify error : ${response.body}");
+        return response.statusCode;
+
+      }
+    } on Exception catch (e) {
+      return 1;
+    }
+  }  static Future<dynamic> sendOtpFunction(Map<String, dynamic> body) async {
+    try {
+      var headers = {
+        'Content-Type': 'application/json',
+      };
+      var response = await http.post(Uri.parse(sendOtp),
           headers: headers, body: json.encode(body));
       if (response.statusCode == 200) {
         return response.body;

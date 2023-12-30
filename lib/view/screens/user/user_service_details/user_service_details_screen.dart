@@ -49,6 +49,8 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
   @override
   Widget build(BuildContext context) {
 
+    debugPrint("=============> Check option ${userByServiceModel.options}");
+
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBar(
@@ -119,9 +121,10 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Flexible(
+                          Expanded(
                             child: CustomText(
                               text: userByServiceModel.providerName!,
+                              textAlign: TextAlign.start,
                               fontSize: 18,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
@@ -130,7 +133,7 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
                           ),
                           Row(
                             children: [
-                              CustomImage(
+                              const CustomImage(
                                 imageSrc: AppIcons.star,
                                 size: 12,
                               ),
@@ -140,8 +143,6 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
                                 left: 4,
                               ),
                             ],
-                          ), SizedBox(
-                            width: 10.w,
                           ),
 
                         ],
@@ -298,6 +299,7 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
                       const SizedBox(
                         height: 24,
                       ),
+                      userByServiceModel.options !="Waiting for Approval"?
                       Row(
                         children: [
                           Expanded(
@@ -306,7 +308,7 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
                                   "${userByServiceModel.phoneCode}${userByServiceModel.phone}");
                             }, text: 'Call'),
                           ),
-                          SizedBox(width: 16,),
+                          const SizedBox(width: 16,),
                           Expanded(
                             child: StreamBuilder<DocumentSnapshot>(
                                 stream: FirebaseFirestore.instance
@@ -369,7 +371,65 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
                                 }),
                           ),
                         ],
-                      )
+                      ): StreamBuilder<DocumentSnapshot>(
+                          stream: FirebaseFirestore.instance
+                              .collection(AppConstants.users)
+                              .doc(userByServiceModel.providerUid!)
+                              .snapshots(),
+                          builder: (context,
+                              AsyncSnapshot<DocumentSnapshot> snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return const CircularProgressIndicator();
+                            } else if (snapshot.hasData) {
+                              final userData =
+                              UserModel.fromMap(snapshot.data!);
+                              return userData.status == "Online"
+                                  ? Obx(()=>
+                                  CustomButton(
+                                    loading: _userServiceDetailsController.hireLoading.value,
+                                    onTap: () {
+                                      //_userServiceDetailsController.hireDataPost(userByServiceModel, "${userData.phoneCode} ${userData.phone}", userData);
+                                       _userServiceDetailsController.hireNow(userByServiceModel, "${userData.phoneCode} ${userData.phone}", userData);
+                                      // showModalBottomSheet(
+                                      //     backgroundColor:
+                                      //         Colors.transparent,
+                                      //     barrierColor:
+                                      //         Colors.transparent,
+                                      //     context: context,
+                                      //     builder:
+                                      //         (BuildContext context) {
+                                      //       return UserServiceDetailsHireNoeBottomModal(
+                                      //         userModel: userData,
+                                      //         userImage:
+                                      //             userData.imageSrc!,
+                                      //         userByServiceModel:
+                                      //             userByServiceModel,
+                                      //         number:
+                                      //             "${userData.phoneCode} ${userData.phone}",
+                                      //       );
+                                      //     });
+                                    },
+                                    text: AppStrings.hireNow.tr,
+                                  ),
+                              )
+                                  : CustomButton(
+                                color: Colors.white10,
+                                onTap: () {
+                                  // Get.snackbar("Alerts!",
+                                  //     "The service provider is now busy.");
+                                },
+                                text:AppStrings.hireNow.tr,
+                              );
+                            } else {
+                              return CustomButton(
+                                color: Colors.white10,
+                                onTap: () {},
+                                text:AppStrings.hireNow,
+
+                              );
+                            }
+                          }),
                     ],
                   )),
         );

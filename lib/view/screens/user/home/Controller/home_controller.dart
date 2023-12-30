@@ -102,7 +102,6 @@ Future<List<UserByServiceModel>?> getSortedServicesByAverageRatingCarWash() asyn
 
     List<UserByServiceModel> sortedServices = [];
 
-
     for (final serviceDoc in servicesSnapshot.docs) {
       final serviceData = serviceDoc.data();
       final serviceProviderId = serviceData['provider_uid'];

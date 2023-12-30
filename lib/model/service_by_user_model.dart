@@ -18,6 +18,7 @@ class UserByServiceModel {
   final String? providerName;
   final String? phoneCode;
   final String? phone;
+  final String? options;
 
   UserByServiceModel({
     this.phone,
@@ -31,6 +32,7 @@ class UserByServiceModel {
     this.providerUid,
     this.averageRating,
     this.description,
+    this.options
   });
 
   factory UserByServiceModel.fromJson(Map<String, dynamic> json) => UserByServiceModel(
@@ -44,7 +46,8 @@ class UserByServiceModel {
     averageRating: json["average_rating"]?.toDouble(),
     description: json["description"],
     phone: json['phone'],
-    phoneCode: json['phone_code']
+    phoneCode: json['phone_code'],
+    options: json['options']
   );
 
   Map<String, dynamic> toJson() => {
@@ -56,5 +59,6 @@ class UserByServiceModel {
     "provider_uid": providerUid,
     "average_rating": averageRating,
     "description": description,
+    "options":options
   };
 }
