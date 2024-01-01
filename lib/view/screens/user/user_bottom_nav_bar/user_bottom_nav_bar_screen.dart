@@ -61,7 +61,7 @@ class _UserBottomNavBarScreenState extends State<UserBottomNavBarScreen> {
       : 'ca-app-pub-3940256099942544/2934735716' //  Test Mode
   ;
   final adUnitIdLive = Platform.isAndroid
-      ? 'ca-app-pub-1976486377144082/5956333402' //  Live Mode
+      ? 'ca-app-pub-1976486377144082/6277581818' //  Live Mode
       : 'ca-app-pub-1976486377144082/9700137293';
   displayBannerAd(){
     banner_ad=BannerAd(

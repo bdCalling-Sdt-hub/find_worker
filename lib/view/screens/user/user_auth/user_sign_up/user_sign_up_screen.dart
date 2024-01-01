@@ -394,6 +394,7 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                                             color: Colors.white,
                                           ),
                                           child:CountryCodePicker(
+
                                               onChanged: (value) {
                                                 authController.phoneCode=value.dialCode!;
                                                 print(authController.phoneCode);
@@ -401,6 +402,7 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                                               showCountryOnly: false,
                                               showOnlyCountryWhenClosed: false,
                                               alignLeft: false,
+
 
                                         ),),
 
@@ -547,7 +549,7 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                                       } else if (value.length < 8) {
                                         return "Please use 8 character long password".tr;
                                       } else if (controller.passController.text !=
-                                          controller.confirmPasswordController.text) {
+                                          value) {
                                         return "Password doesn't match".tr;
                                       }
                                       return null;
@@ -572,7 +574,11 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                                   controller.sendOtpLoading.value ? const CustomElevatedLoadingButton(): CustomButton(
                                     buttonWidth: MediaQuery.of(context).size.width,
                                     onPressed: () {
-                                      controller.sendOtp(userType);
+                                      if(controller.registerFormKey.currentState!.validate()){
+                                        controller.sendOtp(userType);
+                                      }
+
+
                                     },
                                     titleText: AppStrings.signUp,
                                     titleColor: AppColors.white,

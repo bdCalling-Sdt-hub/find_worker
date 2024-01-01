@@ -17,6 +17,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../../helper/Language/language_controller.dart';
+
 class SpAddNewServiceScreen extends StatefulWidget {
   const SpAddNewServiceScreen({super.key});
 
@@ -31,6 +33,7 @@ class _SpAddNewServiceScreenState extends State<SpAddNewServiceScreen> {
     'Waiting for Approval'
   ];
     int selectIndex=0;
+  final _localizationController = Get.put(LocalizationController(sharedPreferences:Get.find()));
 
     final _controller = Get.put(AddNewServiceController());
 
@@ -218,7 +221,7 @@ class _SpAddNewServiceScreenState extends State<SpAddNewServiceScreen> {
                                               ),
                                             ),
                                             CustomText(
-                                              text: _controller.categoryList[index].name!,
+                                              text: _localizationController.selectedIndex==0?  _controller.categoryList[index].name!:_controller.categoryList[index].nameArabic!,
                                               color: AppColors.black_100,
                                               left: 10,
                                             ),
@@ -241,7 +244,7 @@ class _SpAddNewServiceScreenState extends State<SpAddNewServiceScreen> {
                           CustomTextField(
                             textEditingController: _controller.addressTextCtrl,
                             textAlign: TextAlign.start,
-                            hintText: 'Enter your address',
+                            hintText: 'Enter your address'.tr,
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return "Address Not Be Empty".tr;
