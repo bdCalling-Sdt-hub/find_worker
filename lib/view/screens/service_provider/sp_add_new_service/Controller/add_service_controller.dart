@@ -87,6 +87,7 @@ class AddNewServiceController extends GetxController{
                   providerUid:_auth.currentUser!.uid,
                   description:descriptionTextCtrl.text,
                   options: selectedOption.value,
+                   createAt: DateTime.now()
               );
               await firebaseStorage.collection(AppConstants.services).doc(id).set(body.toJson());
                 Get.find<SpHomeController>().getService();

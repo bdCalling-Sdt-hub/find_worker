@@ -15,6 +15,7 @@ class ServiceModel {
   final String? providerUid;
   final String? options;
   final String? description;
+  final DateTime? createAt;
 
   ServiceModel({
     this.id,
@@ -25,6 +26,7 @@ class ServiceModel {
     this.providerUid,
     this.options,
     this.description,
+    this.createAt
   });
 
   factory ServiceModel.fromJson(QueryDocumentSnapshot json) => ServiceModel(
@@ -35,7 +37,8 @@ class ServiceModel {
     location: json["location"],
     providerUid: json["provider_uid"],
     description: json["description"],
-    options: json['options']
+    options: json['options'],
+    createAt: json['create_at'].toDate(),
   );
 
   Map<String, dynamic> toJson() => {
@@ -46,6 +49,7 @@ class ServiceModel {
     "location": location,
     "provider_uid": providerUid,
     "description": description,
-    "options":options
+    "options":options,
+    "create_at": createAt
   };
 }

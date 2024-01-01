@@ -328,8 +328,8 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
                                            CustomButton(
                                              loading: _userServiceDetailsController.hireLoading.value,
                                               onTap: () {
-                                               _userServiceDetailsController.hireDataPost(userByServiceModel, "${userData.phoneCode} ${userData.phone}", userData);
-                                              //  _userServiceDetailsController.hireNow(userByServiceModel, "${userData.phoneCode} ${userData.phone}", userData);
+                                            //   _userServiceDetailsController.hireDataPost(userByServiceModel, "${userData.phoneCode} ${userData.phone}", userData);
+                                                _userServiceDetailsController.hireNow(userByServiceModel, "${userData.phoneCode} ${userData.phone}", userData);
                                                 // showModalBottomSheet(
                                                 //     backgroundColor:
                                                 //         Colors.transparent,
@@ -391,6 +391,7 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
                                     onTap: () {
                                       //_userServiceDetailsController.hireDataPost(userByServiceModel, "${userData.phoneCode} ${userData.phone}", userData);
                                        _userServiceDetailsController.hireNow(userByServiceModel, "${userData.phoneCode} ${userData.phone}", userData);
+
                                       // showModalBottomSheet(
                                       //     backgroundColor:
                                       //         Colors.transparent,

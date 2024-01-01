@@ -19,6 +19,7 @@ class UserByServiceModel {
   final String? phoneCode;
   final String? phone;
   final String? options;
+  final DateTime? createAt;
 
   UserByServiceModel({
     this.phone,
@@ -32,7 +33,8 @@ class UserByServiceModel {
     this.providerUid,
     this.averageRating,
     this.description,
-    this.options
+    this.options,
+    this.createAt
   });
 
   factory UserByServiceModel.fromJson(Map<String, dynamic> json) => UserByServiceModel(
@@ -47,7 +49,8 @@ class UserByServiceModel {
     description: json["description"],
     phone: json['phone'],
     phoneCode: json['phone_code'],
-    options: json['options']
+    options: json['options'],
+    createAt: json['create_at'].toDate(),
   );
 
   Map<String, dynamic> toJson() => {
@@ -59,6 +62,7 @@ class UserByServiceModel {
     "provider_uid": providerUid,
     "average_rating": averageRating,
     "description": description,
-    "options":options
+    "options":options,
+    "create_at":createAt
   };
 }
