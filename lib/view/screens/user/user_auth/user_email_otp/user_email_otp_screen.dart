@@ -93,6 +93,8 @@ class _UserEmailOtpScreenState extends State<UserEmailOtpScreen> {
                   child: PinCodeTextField(
                         cursorColor: AppColors.black_10,
                         controller:_controller.otpController,
+                        keyboardType: TextInputType.number,
+
                         appContext: (context),
                         validator: (value){
                           if (value!.length <= 4) {
