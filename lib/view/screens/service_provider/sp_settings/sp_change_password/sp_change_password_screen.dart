@@ -106,7 +106,7 @@ class _SpChangePasswordScreenState extends State<SpChangePasswordScreen> {
                     CustomTextField(
                       isPassword: true,
                       textAlign: TextAlign.start,
-                      hintText: "Enter your new password",
+                      hintText: "Enter your new password".tr,
                       textEditingController:_settingController.newPassCtrl,
                       validator: (value) {
                         if (value.isEmpty) {

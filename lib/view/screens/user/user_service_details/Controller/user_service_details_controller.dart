@@ -135,28 +135,28 @@ class UserServiceDetailsController extends GetxController {
   RxInt start = 300.obs; // 5 minutes in seconds
   RxInt current = 0.obs;
 
-  // hireNow(UserByServiceModel servicedata, String number,
-  //     UserModel currentUserData) async {
-  //   hireLoading(true);
-  //   start.value = 300;
-  //   try {
-  //     var result = await getCheckTime(servicedata);
-  //     if (result == -1) {
-  //       await hireDataPost(servicedata, number, currentUserData);
-  //       timerSystem(servicedata);
-  //     } else {
-  //       current.value = result;
-  //       timerSystem(servicedata);
-  //     }
-  //     print("======> After Hiring Time $result");
-  //     // await hireDataPost(userdata, number, currentUserData);
-  //   } catch (e) {
-  //     debugPrint("Opps error $e");
-  //     Fluttertoast.showToast(msg: "Oops, Something error!,Please try again");
-  //   } finally {
-  //     hireLoading(false);
-  //   }
-  // }
+  hireNow(UserByServiceModel servicedata, String number,
+      UserModel currentUserData) async {
+    hireLoading(true);
+    start.value = 300;
+    try {
+      var result = await getCheckTime(servicedata);
+      if (result == -1) {
+        await hireDataPost(servicedata, number, currentUserData);
+        timerSystem(servicedata);
+      } else {
+        current.value = result;
+        timerSystem(servicedata);
+      }
+      print("======> After Hiring Time $result");
+      // await hireDataPost(userdata, number, currentUserData);
+    } catch (e) {
+      debugPrint("Opps error $e");
+      Fluttertoast.showToast(msg: "Oops, Something error!,Please try again");
+    } finally {
+      hireLoading(false);
+    }
+  }
   Future<void> launchPhoneDialer(String contactNumber) async {
     debugPrint("LunchDialer nubmer : $contactNumber");
     final Uri phoneUri = Uri(scheme: "tel", path: contactNumber);

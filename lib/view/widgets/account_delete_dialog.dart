@@ -17,6 +17,7 @@ class AccountDeleteAccount extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _authController.accountDeleteCtrl.clear();
     return AlertDialog(
       // title:ListTile(title:Text("Enter your email to delete your account.".tr,style:TextStyle(fontWeight: FontWeight.w500,color: Colors.black),),
       // trailing: IconButton(onPressed:(){

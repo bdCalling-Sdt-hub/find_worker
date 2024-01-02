@@ -141,7 +141,7 @@ class _UserForgetPasswordScreenState extends State<UserForgetPasswordScreen> {
                                     ),
                                   ),
                                   Text(
-                                    AppStrings.forgetPassword,
+                                    AppStrings.forgetPassword.tr,
                                     textAlign: TextAlign.center,
                                     style: GoogleFonts.poppins(
                                       color: AppColors.black_100,
@@ -167,18 +167,18 @@ class _UserForgetPasswordScreenState extends State<UserForgetPasswordScreen> {
                               const SizedBox(
                                 height: 44,
                               ),
-                               const CustomText(
+                                CustomText(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w500,
                                 color: AppColors.black_100,
-                                text: AppStrings.enterEmailAddressToResetPassword,
+                                text: AppStrings.enterEmailAddressToResetPassword.tr,
                               ),
-                              widget.inAppForget?SizedBox(height: 20,):
+                              widget.inAppForget?const SizedBox(height: 20,):
                               const SizedBox(
                                 height: 44,
                               ),
-                              const CustomText(
-                                text: AppStrings.email,
+                               CustomText(
+                                text: AppStrings.email.tr,
                                 fontSize: 14,
                                 fontWeight: FontWeight.w500,
                                 color: AppColors.black_100,
@@ -189,7 +189,7 @@ class _UserForgetPasswordScreenState extends State<UserForgetPasswordScreen> {
                                 textInputAction: TextInputAction.next,
                                 keyboardType: TextInputType.text,
                                 textAlign: TextAlign.start,
-                                hintText: 'Enter your email',
+                                hintText: 'Enter your email'.tr,
                                 hintStyle: GoogleFonts.poppins(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w400,
@@ -203,7 +203,7 @@ class _UserForgetPasswordScreenState extends State<UserForgetPasswordScreen> {
                                 validator: (value) {
                                   if(value!.isEmpty || !value.contains("@") || !emailRegExP.hasMatch(value))
                                   {
-                                    return "Please, enter your valid email";
+                                    return "Please, enter your valid email".tr;
                                   }
                                   return null;
                                 },
@@ -220,7 +220,7 @@ class _UserForgetPasswordScreenState extends State<UserForgetPasswordScreen> {
                           padding: EdgeInsets.symmetric(horizontal: 20.w),
                           child: CustomButton(
                             loading: _forgotPassController.loading.value,
-                            text: AppStrings.submit,
+                            text: AppStrings.submit.tr,
                             height: 56.h ,
                             width: MediaQuery.of(context).size.width,
                             onTap: (){

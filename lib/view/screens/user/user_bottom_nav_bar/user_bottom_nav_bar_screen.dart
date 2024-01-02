@@ -1,4 +1,7 @@
 
+import 'dart:io';
+
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:wrcontacts/utils/app_colors.dart';
 import 'package:wrcontacts/utils/app_icons.dart';
 import 'package:wrcontacts/utils/app_strings.dart';
@@ -38,6 +41,7 @@ class _UserBottomNavBarScreenState extends State<UserBottomNavBarScreen> {
   @override
   void initState() {
     SystemChromeHelper.enableSystemChrome();
+    displayBannerAd();
     super.initState();
   }
 
@@ -48,6 +52,45 @@ class _UserBottomNavBarScreenState extends State<UserBottomNavBarScreen> {
     const UserProfileScreen()
   ];
 
+  BannerAd? banner_ad;
+
+  bool _isLoaded=false;
+
+  final adUnitId = Platform.isAndroid
+      ? 'ca-app-pub-3940256099942544/6300978111' // Test Mode
+      : 'ca-app-pub-3940256099942544/2934735716' //  Test Mode
+  ;
+  final adUnitIdLive = Platform.isAndroid
+      ? 'ca-app-pub-1976486377144082/6277581818' //  Live Mode
+      : 'ca-app-pub-1976486377144082/9700137293';
+  displayBannerAd(){
+    banner_ad=BannerAd(
+      adUnitId: adUnitIdLive,
+      request: const AdRequest(),
+      size: AdSize.banner,
+      listener: BannerAdListener(
+        // Called when an ad is successfully received.
+        onAdLoaded: (ad) {
+          print('$ad loaded.');
+          setState(() {
+            _isLoaded = true;
+          });
+          // setState(() {
+          //   _isLoaded = true;
+          // });
+        },
+        // Called when an ad request failed.
+        onAdFailedToLoad: (ad, err) {
+          print('BannerAd failed to load: $err');
+          // Dispose the ad here to free resources.
+          ad.dispose();
+        },
+      ),
+    )..load();
+    setState(() {
+
+    });
+  }
 
   @override
   void dispose() {
@@ -59,36 +102,7 @@ class _UserBottomNavBarScreenState extends State<UserBottomNavBarScreen> {
   }
   @override
   Widget build(BuildContext context) {
-    // final _homeController = Get.put(UserHomeController());
-    // final _categoryController = Get.put(CategoryController());
-    // final _profileController = Get.put(UserProfileController());
 
-    // List<Widget> manuBarItems = [
-    //   MenuBarItems(
-    //       text: AppStrings.home.tr,
-    //       index: 0,
-    //       selectedIndex: widget.currentIndex,
-    //       image:  AppIcons.home_un),
-    //   MenuBarItems(
-    //       text:AppStrings.category.tr,
-    //       index: 1,
-    //       selectedIndex: widget.currentIndex,
-    //       image: AppIcons.viewGrid
-    //   ),
-    //   MenuBarItems(
-    //       text: AppStrings.hireList.tr,
-    //       index: 2,
-    //       selectedIndex: widget.currentIndex,
-    //       image: AppIcons.speakerphone
-    //   ),
-    //   MenuBarItems(
-    //       text: AppStrings.profile.tr,
-    //       index: 3,
-    //       selectedIndex: widget.currentIndex,
-    //       image: AppIcons.userCircle
-    //   ),
-    //
-    // ];
 
     List<BottomNavigationBarItem> bottomBarItem=[
       BottomNavigationBarItem(icon:Padding(
@@ -112,19 +126,33 @@ class _UserBottomNavBarScreenState extends State<UserBottomNavBarScreen> {
 
     return Scaffold(
       extendBody: true,
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor:const Color(0xFF0668E3),
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.white,
-        showUnselectedLabels: false,
-        currentIndex: widget.currentIndex,
-        selectedLabelStyle: const TextStyle(fontWeight:FontWeight.w500),
-        items:bottomBarItem,
-      onTap: (value){
-        setState(() {
-          widget.currentIndex=value;
-        });
-      },
+      bottomNavigationBar: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          !_isLoaded?Container():Align(
+            alignment: Alignment.bottomCenter,
+            child: SizedBox(
+              width: banner_ad!.size.width.toDouble(),
+              height: banner_ad!.size.height.toDouble(),
+              child: AdWidget(ad: banner_ad!),
+            ),
+          ),
+          BottomNavigationBar(
+            backgroundColor:const Color(0xFF0668E3),
+            type: BottomNavigationBarType.fixed,
+            selectedItemColor: Colors.white,
+            showUnselectedLabels: false,
+            currentIndex: widget.currentIndex,
+            selectedLabelStyle: const TextStyle(fontWeight:FontWeight.w500),
+            items:bottomBarItem,
+          onTap: (value){
+            setState(() {
+              widget.currentIndex=value;
+            });
+          },
+          ),
+        ],
       ),
       body: screens[widget.currentIndex],
     );

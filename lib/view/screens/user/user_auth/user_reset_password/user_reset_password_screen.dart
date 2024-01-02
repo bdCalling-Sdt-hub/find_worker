@@ -178,7 +178,7 @@ class _UserResetPasswordScreenState extends State<UserResetPasswordScreen> {
                           isPassword: true,
                           isPrefixIcon: false,
                           textAlign: TextAlign.start,
-                          hintText: 'Enter your password',
+                          hintText: 'Enter your password'.tr,
                           hintStyle: GoogleFonts.montserrat(
                               fontSize: 14,
                               fontWeight: FontWeight.w500,

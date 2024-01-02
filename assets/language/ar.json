@@ -172,5 +172,9 @@
   "Enter your email to delete your account.": "أدخل بريدك الإلكتروني لحذف حسابك.",
   "The account has been deleted": "تم حذف الحساب",
   "Oops, user not found!": "عفوًا، لم يتم العثور على المستخدم!",
-  "Hired Successful": "تم التوظيف بنجاح"
+  "Hired Successful": "تم التوظيف بنجاح",
+  "Select Options": "اشر على الخيارات",
+  "Direct call": "دعوة مباشرة",
+  "Waiting for Approval": "بانتظار الموافقة",
+  "Enter your password": "ادخل رقمك السري"
 }

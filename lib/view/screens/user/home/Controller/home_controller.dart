@@ -102,7 +102,6 @@ Future<List<UserByServiceModel>?> getSortedServicesByAverageRatingCarWash() asyn
 
     List<UserByServiceModel> sortedServices = [];
 
-
     for (final serviceDoc in servicesSnapshot.docs) {
       final serviceData = serviceDoc.data();
       final serviceProviderId = serviceData['provider_uid'];
@@ -125,7 +124,7 @@ Future<List<UserByServiceModel>?> getSortedServicesByAverageRatingCarWash() asyn
         sortedServices.add(UserByServiceModel.fromJson(serviceData));
       }
     }
-    sortedServices.sort((a, b) => b.averageRating!.compareTo(a.averageRating!));
+    sortedServices.sort((a, b) => b.createAt!.compareTo(a.createAt!));
     print("service list ========> ${sortedServices.length}");
     carWashList.value=sortedServices;
     carWashList.refresh();
@@ -168,7 +167,7 @@ Future<List<UserByServiceModel>?> getSortedServicesByAverageRatingHomeClean() as
       }
     }
 
-    sortedServices.sort((a, b) => b.averageRating!.compareTo(a.averageRating!));
+    sortedServices.sort((a, b) => b.createAt!.compareTo(a.createAt!));
     print("service list ========> ${sortedServices.length}");
     homeCleanList.value=sortedServices;
     homeCleanList.refresh();
@@ -210,7 +209,7 @@ Future<List<UserByServiceModel>?> getSortedServicesByAverageRatingAirCondition()
       }
     }
 
-    sortedServices.sort((a, b) => b.averageRating!.compareTo(a.averageRating!));
+    sortedServices.sort((a, b) => b.createAt!.compareTo(a.createAt!));
     print("service list ========> ${sortedServices.length}");
     airConditionList.value=sortedServices;
     airConditionList.refresh();

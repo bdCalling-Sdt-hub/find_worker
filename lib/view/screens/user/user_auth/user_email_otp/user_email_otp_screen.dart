@@ -1,7 +1,10 @@
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wrcontacts/core/app_routes.dart';
 import 'package:wrcontacts/utils/app_colors.dart';
 import 'package:wrcontacts/utils/app_images.dart';
 import 'package:wrcontacts/utils/app_strings.dart';
+import 'package:wrcontacts/view/screens/user/user_auth/user_auth_controller/user_auth_controller.dart';
+import 'package:wrcontacts/view/widgets/custom_button.dart';
 import 'package:wrcontacts/view/widgets/image/custom_image.dart';
 import 'package:wrcontacts/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
@@ -11,23 +14,21 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 
 
 class UserEmailOtpScreen extends StatefulWidget {
-  const UserEmailOtpScreen({super.key});
+   UserEmailOtpScreen({super.key,required this.userType});
+
+  String userType;
 
   @override
   State<UserEmailOtpScreen> createState() => _UserEmailOtpScreenState();
 }
 
 class _UserEmailOtpScreenState extends State<UserEmailOtpScreen> {
-/*  @override
-  void initState() {
-    DeviceUtils.allScreenUtils();
-    super.initState();
-  }
-  @override
-  void dispose() {
-    DeviceUtils.allScreenUtils();
-    super.dispose();
-  }*/
+
+
+  final _controller = Get.put(AuthenticationController());
+
+
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -86,50 +87,57 @@ class _UserEmailOtpScreenState extends State<UserEmailOtpScreen> {
                     ),
                   ),
                   const SizedBox(height: 44,),
-                  Flexible(
-                    flex: 0,
-                    child: PinCodeTextField(
-                      cursorColor: AppColors.black_10,
 
-                      appContext: (context),
-                      validator: (value){
-                        if (value!.length <= 6) {
-                          return null;
-                        } else {
-                          return "Please enter the OTP code.";
-                        }
-                      },
-                      autoFocus: true,
-                      pinTheme: PinTheme(
-                        shape: PinCodeFieldShape.box,
-                        borderRadius: BorderRadius.circular(8),
-                        fieldHeight: 56,
-                        fieldWidth: 44,
-                        activeFillColor: AppColors.white,
-                        selectedFillColor: AppColors.white,
-                        inactiveFillColor: AppColors.white,
-                        borderWidth: 0.1,
-                        errorBorderColor: AppColors.blue_10,
-                        selectedColor: AppColors.blue_80,
-                        activeColor: AppColors.blue_80,
-                        inactiveColor: AppColors.blue_10,
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal:20.w),
+                  child: PinCodeTextField(
+                        cursorColor: AppColors.black_10,
+                        controller:_controller.otpController,
+                        keyboardType: TextInputType.number,
+
+                        appContext: (context),
+                        validator: (value){
+                          if (value!.length <= 4) {
+                            return null;
+                          } else {
+                            return "Please enter the OTP code.";
+                          }
+                        },
+                        autoFocus: true,
+                        pinTheme: PinTheme(
+                          shape: PinCodeFieldShape.box,
+                          borderRadius: BorderRadius.circular(8),
+                          fieldHeight: 56,
+                          fieldWidth: 44,
+
+                          activeFillColor: AppColors.white,
+                          selectedFillColor: AppColors.white,
+                          inactiveFillColor: AppColors.white,
+                          borderWidth: 0.1,
+
+                          errorBorderColor: AppColors.blue_10,
+                          selectedColor: AppColors.blue_80,
+                          activeColor: AppColors.blue_80,
+                          inactiveColor: AppColors.blue_10,
+                        ),
+                        length: 4,
+                        enableActiveFill: true,
                       ),
-                      length: 6,
-                      enableActiveFill: true,
-                    ),
-                  ),
+                ),
+
                   const SizedBox(height: 16),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const CustomText(
-                        text: AppStrings.didNotGetTheCode ,
+                        text: AppStrings.didNotGetTheCode,
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
                         color: AppColors.black_100,
                       ),
                       GestureDetector(
                         onTap: () {
+                          _controller.reSendOtp();
                           /*Get.to(()=> const OtpScreen());*/
                         },
                         child: const CustomText(
@@ -142,27 +150,14 @@ class _UserEmailOtpScreenState extends State<UserEmailOtpScreen> {
                       ),
                     ],
                   ),
-                  Container(
-                      margin: const EdgeInsets.only(top: 216),
-                      height: 56 ,
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          color: const Color(0xff0668E3)
-                      ),
-                      child: InkWell(
-                        onTap: (){
-                          Get.toNamed(AppRoute.userSignIn);
-                        },
-                        child: const Center(
-                            child: CustomText(
-                              text: AppStrings.verify,
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.w600,
-                            )),
-                      )
-                  )
+                SizedBox(height: 216.h,),
+                  Obx(()=>
+                     CustomButton(onTap:(){
+                      if(_controller.otpController.text.length>=4){
+                        _controller.verifyOtp(widget.userType);
+                      }
+                    }, text:AppStrings.verify,loading:_controller.otpVerifyLoading.value,),
+                  ),
                 ],
               ),
             );

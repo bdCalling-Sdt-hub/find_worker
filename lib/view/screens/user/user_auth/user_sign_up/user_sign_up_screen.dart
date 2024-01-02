@@ -4,6 +4,7 @@ import 'package:wrcontacts/utils/app_colors.dart';
 import 'package:wrcontacts/utils/app_icons.dart';
 import 'package:wrcontacts/utils/app_strings.dart';
 import 'package:wrcontacts/view/screens/user/user_auth/user_auth_controller/user_auth_controller.dart';
+import 'package:wrcontacts/view/screens/user/user_auth/user_email_otp/user_email_otp_screen.dart';
 import 'package:wrcontacts/view/widgets/buttons/custom_button.dart';
 import 'package:wrcontacts/view/widgets/custom_elevated_loading_button/custom_elevated_loading_button.dart';
 import 'package:wrcontacts/view/widgets/image/custom_image.dart';
@@ -393,6 +394,7 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                                             color: Colors.white,
                                           ),
                                           child:CountryCodePicker(
+
                                               onChanged: (value) {
                                                 authController.phoneCode=value.dialCode!;
                                                 print(authController.phoneCode);
@@ -400,6 +402,7 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                                               showCountryOnly: false,
                                               showOnlyCountryWhenClosed: false,
                                               alignLeft: false,
+
 
                                         ),),
 
@@ -546,7 +549,7 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                                       } else if (value.length < 8) {
                                         return "Please use 8 character long password".tr;
                                       } else if (controller.passController.text !=
-                                          controller.confirmPasswordController.text) {
+                                          value) {
                                         return "Password doesn't match".tr;
                                       }
                                       return null;
@@ -568,10 +571,14 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                                   const SizedBox(
                                     height: 24,
                                   ),
-                                  controller.isLoading ? const CustomElevatedLoadingButton(): CustomButton(
+                                  controller.sendOtpLoading.value ? const CustomElevatedLoadingButton(): CustomButton(
                                     buttonWidth: MediaQuery.of(context).size.width,
                                     onPressed: () {
-                                      controller.registerUser(userType);
+                                      if(controller.registerFormKey.currentState!.validate()){
+                                        controller.sendOtp(userType);
+                                      }
+
+
                                     },
                                     titleText: AppStrings.signUp,
                                     titleColor: AppColors.white,

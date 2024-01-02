@@ -66,7 +66,7 @@ class AppRoute {
    static String onboardScreen = "/onboard_screen";
    static String userSignIn = "/user_sign_in_screen";
    static String userSignUp = "/user_sign_up_screen";
-   static String userEmailOtpScreen = "/user_email_otp_screen";
+   // static String userEmailOtpScreen = "/user_email_otp_screen";
    static String userNotificationScreen = "/user_notification_screen";
    static String userProfileScreen = "/user_profile_screen";
    static String userPersonalInformationScreen = "/user_personal_information_screen";
@@ -124,7 +124,7 @@ class AppRoute {
      GetPage(name: onboardScreen, page: () => const OnboardScreen()),
      GetPage(name: userSignIn, page: () => const UserSignIn()),
      GetPage(name: userSignUp, page: () => const UserSignUpScreen()),
-     GetPage(name: userEmailOtpScreen, page: () => const UserEmailOtpScreen()),
+     // GetPage(name: userEmailOtpScreen, page: () => const UserEmailOtpScreen()),
      GetPage(name: userNotificationScreen, page: () => const UserNotificationScreen()),
      GetPage(name: userProfileScreen, page: () => const UserProfileScreen()),
      GetPage(name: userPersonalInformationScreen, page: () => const UserPersonalInformationScreen()),

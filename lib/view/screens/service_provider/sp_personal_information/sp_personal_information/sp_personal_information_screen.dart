@@ -123,8 +123,8 @@ class _SpPersonalInformationScreenState
                                       color: AppColors.white,
                                       borderRadius: BorderRadius.circular(8),
                                     ),
-                                    child: const CustomText(
-                                      text: 'Edit Profile',
+                                    child: CustomText(
+                                      text: 'Edit Profile'.tr,
                                       fontWeight: FontWeight.w600,
                                       fontSize: 14,
                                       color: AppColors.blue_100,

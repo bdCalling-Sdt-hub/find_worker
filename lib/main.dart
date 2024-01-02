@@ -1,3 +1,4 @@
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:wrcontacts/core/app_routes.dart';
 import 'package:wrcontacts/helper/Language/language_controller.dart';
@@ -74,7 +75,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
      // defaultTransition: Transition.noTransition,
 
-
+              localizationsDelegates: const [
+                CountryLocalizations.delegate,
+              ],
+              supportedLocales: [
+                Locale('en', ''), // arabic, no country code
+              ],
       navigatorKey: Get.key,
                 locale: localizationController.locale,
               translations: Messages(languages:languages),

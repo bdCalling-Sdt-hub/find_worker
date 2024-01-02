@@ -86,12 +86,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
 
   Future<void> _navigateToHomeScreen() async {
     try {
-      debugPrint("Account Create and verification completed");
-      if (widget.userType == AppConstants.userType) {
-        Get.offAll(UserBottomNavBarScreen(currentIndex: 0),binding:UserBottomNavBinding());
-      } else {
-        Get.offAll(SpBottomNavBarScreen(currentIndex: 0,),binding:ProviderBottomNavBinding());
-      }
+
     } catch (e) {
       debugPrint("Error navigating to home screen: $e");
     }
