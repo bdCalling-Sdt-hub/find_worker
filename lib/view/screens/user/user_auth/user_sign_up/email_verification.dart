@@ -56,10 +56,12 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
     try {
       await _user?.getIdToken(true);
       await FirebaseAuth.instance.currentUser!.reload();
-       print("Email verified status: ${ FirebaseAuth.instance.currentUser!.emailVerified}");
+      print(
+          "Email verified status: ${FirebaseAuth.instance.currentUser!.emailVerified}");
 
       setState(() {
-        _isEmailVerified = FirebaseAuth.instance.currentUser!.emailVerified == true;
+        _isEmailVerified =
+            FirebaseAuth.instance.currentUser!.emailVerified == true;
       });
 
       if (_isEmailVerified) {
@@ -74,7 +76,6 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
     }
   }
 
-
   Future<void> _accountDelete() async {
     try {
       await _auth.currentUser?.delete();
@@ -85,9 +86,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
   }
 
   Future<void> _navigateToHomeScreen() async {
-    try {
-
-    } catch (e) {
+    try {} catch (e) {
       debugPrint("Error navigating to home screen: $e");
     }
   }
@@ -112,19 +111,25 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
 
   Widget _buildVerificationStatus() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal:20),
-      child:  Column(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Icon(Icons.email_outlined,size: 100,),
-          const SizedBox(height: 20,),
-          const Text("Verify your email address",
-            style: TextStyle(fontSize: 18.0,fontWeight: FontWeight.w500),
+          const Icon(
+            Icons.email_outlined,
+            size: 100,
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          const Text(
+            "Verify your email address",
+            style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500),
           ),
           const SizedBox(height: 20.0),
           Text(
             "We have just send email verification link on your email. Please check email and click on that link to verify your email address.",
-            style: TextStyle(fontSize: 16.0,color:Colors.grey.shade800),
+            style: TextStyle(fontSize: 16.0, color: Colors.grey.shade800),
             textAlign: TextAlign.center,
           ),
         ],
