@@ -5,18 +5,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wrcontacts/view/screens/user/user_auth/user_auth_controller/user_auth_controller.dart';
 
-import '../../../../../utils/app_constents.dart';
-import '../../../service_provider/Binding/provider_bottombar_binding.dart';
-import '../../../service_provider/sp_bottom_nav_bar/sp_bottom_nav_bar_screen.dart';
-import '../../Binding/user_bottom_binding.dart';
-import '../../user_bottom_nav_bar/user_bottom_nav_bar_screen.dart';
-
 class EmailVerificationScreen extends StatefulWidget {
-  EmailVerificationScreen({Key? key, required this.userType}) : super(key: key);
+  const EmailVerificationScreen({Key? key, required this.userType})
+      : super(key: key);
 
   final String userType;
 
   @override
+  // ignore: library_private_types_in_public_api
   _EmailVerificationScreenState createState() =>
       _EmailVerificationScreenState();
 }

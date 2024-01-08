@@ -26,598 +26,625 @@ class UserSignUpScreen extends StatefulWidget {
 }
 
 class _UserSignUpScreenState extends State<UserSignUpScreen> {
-    final authController =  Get.put(AuthenticationController());
-  String userType= Get.arguments;
+  final authController = Get.put(AuthenticationController());
+  String userType = Get.arguments;
   final registerFormKey = GlobalKey<FormState>();
   void changeGender(int index) {
     authController.selectedGender = index;
     setState(() {});
   }
 
-
   @override
   Widget build(BuildContext context) {
-    return GetBuilder<AuthenticationController>(builder: (controller) {
-      return SafeArea(
-          top: false,
-          bottom: false,
-          child: Scaffold(
-            body: Container(
-              height: MediaQuery.of(context).size.height,
-              width: MediaQuery.of(context).size.width,
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    Color(0xFFF3F3F3),
-                    Color(0xFFCCE0FA),
-                  ],
+    return GetBuilder<AuthenticationController>(
+      builder: (controller) {
+        return SafeArea(
+            top: false,
+            bottom: false,
+            child: Scaffold(
+              body: Container(
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      Color(0xFFF3F3F3),
+                      Color(0xFFCCE0FA),
+                    ],
+                  ),
                 ),
-              ),
-              child: LayoutBuilder(
-                  builder: (BuildContext context, BoxConstraints constraints) {
-                    return SingleChildScrollView(
-                        padding:
-                        const EdgeInsets.only(top: 44, left: 20,right: 20,bottom: 24),
-                        child: Form(
-                          key: controller.registerFormKey,
-                          child: Column(children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                child: LayoutBuilder(builder:
+                    (BuildContext context, BoxConstraints constraints) {
+                  return SingleChildScrollView(
+                      padding: const EdgeInsets.only(
+                          top: 44, left: 20, right: 20, bottom: 24),
+                      child: Form(
+                        key: controller.registerFormKey,
+                        child: Column(children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  Get.back();
+                                },
+                                child: const CustomImage(
+                                  imageSrc: AppIcons.chevronLeft,
+                                  size: 18,
+                                ),
+                              ),
+                              const CustomText(
+                                text: AppStrings.signUp,
+                                fontSize: 18,
+                                fontWeight: FontWeight.w500,
+                              ),
+                              const SizedBox()
+                            ],
+                          ),
+                          const SizedBox(
+                            height: 34,
+                          ),
+                          Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                GestureDetector(
-                                  onTap: (){
-                                    Get.back();
+                                const CustomText(
+                                  text: AppStrings.fullName,
+                                  color: AppColors.black_100,
+                                  fontWeight: FontWeight.w500,
+                                  bottom: 8,
+                                ),
+                                CustomTextField(
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return "Name Not Be Empty".tr;
+                                    } else if (value.length > 30) {
+                                      return "Name is to long".tr;
+                                    } else {
+                                      return null;
+                                    }
                                   },
-                                  child: const CustomImage(
-                                    imageSrc: AppIcons.chevronLeft,
-                                    size: 18,
-                                  ),
+                                  textEditingController:
+                                      controller.nameController,
+                                  textAlign: TextAlign.start,
+                                  hintText: AppStrings.enterYourFullName,
+                                  hintStyle: GoogleFonts.montserrat(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500,
+                                      color: AppColors.black_40),
+                                  inputTextStyle: GoogleFonts.montserrat(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 14,
+                                      color: AppColors.black_100),
+                                  fieldBorderColor: AppColors.blue_10,
+                                  fieldBorderRadius: 8,
                                 ),
                                 const CustomText(
-                                  text: AppStrings.signUp,
-                                  fontSize: 18,
+                                  text: AppStrings.dateOfBirth,
+                                  color: AppColors.black_100,
                                   fontWeight: FontWeight.w500,
+                                  bottom: 8,
+                                  top: 16,
                                 ),
-                                const SizedBox()
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 34,
-                            ),
-                            Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const CustomText(
-                                    text: AppStrings.fullName,
-                                    color: AppColors.black_100,
-                                    fontWeight: FontWeight.w500,
-                                    bottom: 8,
-                                  ),
-                                  CustomTextField(
-                                    validator: (value) {
-                                      if (value == null || value.isEmpty) {
-                                        return "Name Not Be Empty".tr;
-                                      } else if (value.length > 30) {
-                                        return "Name is to long".tr;
-                                      } else {
-                                        return null;
-                                      }
-                                    },
-                                    textEditingController: controller.nameController,
-                                    textAlign: TextAlign.start,
-                                    hintText: AppStrings.enterYourFullName,
-                                    hintStyle: GoogleFonts.montserrat(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w500,
-                                        color: AppColors.black_40),
-                                    inputTextStyle: GoogleFonts.montserrat(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 14,
-                                        color: AppColors.black_100),
-                                    fieldBorderColor: AppColors.blue_10,
-                                    fieldBorderRadius: 8,
-                                  ),
-                                  const CustomText(
-                                    text: AppStrings.dateOfBirth,
-                                    color: AppColors.black_100,
-                                    fontWeight: FontWeight.w500,
-                                    bottom: 8,
-                                    top: 16,
-                                  ),
 
-                                  /// <----------------------- Date of Birth---------------->
-                                  CustomTextField(
-                                    validator: (value) {
-                                      if (value == null || value.isEmpty) {
-                                        return "Date of Birth Not Be Empty".tr;
-                                      }
-                                        return null;
-                                    },
-                                    readOnly: true,
-                                    onTap: (){
-                                      authController.selectDate(context);
-                                    },
-                                    suffixIcon: const Icon(Icons.date_range,color: Colors.grey,),
-                                    textEditingController: controller.dobController,
-                                    textAlign: TextAlign.start,
-                                    hintText: AppStrings.dateOfBirth,
-                                    hintStyle: GoogleFonts.montserrat(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w500,
-                                        color: AppColors.black_40),
-                                    inputTextStyle: GoogleFonts.montserrat(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 14,
-                                        color: AppColors.black_100),
-                                    fieldBorderColor: AppColors.blue_10,
-                                    fieldBorderRadius: 8,
-                                    
+                                /// <----------------------- Date of Birth---------------->
+                                CustomTextField(
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return "Date of Birth Not Be Empty".tr;
+                                    }
+                                    return null;
+                                  },
+                                  readOnly: true,
+                                  onTap: () {
+                                    authController.selectDate(context);
+                                  },
+                                  suffixIcon: const Icon(
+                                    Icons.date_range,
+                                    color: Colors.grey,
                                   ),
+                                  textEditingController:
+                                      controller.dobController,
+                                  textAlign: TextAlign.start,
+                                  hintText: AppStrings.dateOfBirth,
+                                  hintStyle: GoogleFonts.montserrat(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500,
+                                      color: AppColors.black_40),
+                                  inputTextStyle: GoogleFonts.montserrat(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 14,
+                                      color: AppColors.black_100),
+                                  fieldBorderColor: AppColors.blue_10,
+                                  fieldBorderRadius: 8,
+                                ),
 
-                                  // Row(
-                                  //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  //   children: [
-                                  //     Expanded(
-                                  //         child:Container(
-                                  //           width: MediaQuery.of(context).size.width,
-                                  //           padding: const EdgeInsetsDirectional.symmetric(horizontal:15,vertical: 3),
-                                  //           alignment: Alignment.center,
-                                  //           decoration: BoxDecoration(
-                                  //               color: AppColors.white,
-                                  //               borderRadius: BorderRadius.circular(8),
-                                  //               border: Border.all(
-                                  //                 color: Color(0xffE2E2E2)
-                                  //                   // color: controller.year.isEmpty ? const Color(0xffE2E2E2) : AppColors.blue_100
-                                  //               )
-                                  //           ),
-                                  //           child: TextFormField(
-                                  //             controller:authController.dayController,
-                                  //             textAlign: TextAlign.center,
-                                  //             validator: (value){
-                                  //               if(value!.isEmpty){
-                                  //                 return "Empty";
-                                  //               }
-                                  //             },
-                                  //             keyboardType: TextInputType.datetime,
-                                  //             decoration: const InputDecoration(
-                                  //               hintText: "DD",
-                                  //               contentPadding: EdgeInsets.zero,
-                                  //               enabledBorder: OutlineInputBorder(
-                                  //                   borderSide: BorderSide.none
-                                  //               ),
-                                  //
-                                  //               focusedBorder: OutlineInputBorder(
-                                  //                   borderSide: BorderSide.none
-                                  //               ),
-                                  //             ),
-                                  //             inputFormatters: [
-                                  //               FilteringTextInputFormatter.allow(RegExp("[0-9-]")),
-                                  //               LengthLimitingTextInputFormatter(2),
-                                  //               DayFormatter(),
-                                  //             ],
-                                  //           ),
-                                  //         )
-                                  //     ),
-                                  //
-                                  //     const SizedBox(width: 12),
-                                  //     Expanded(
-                                  //         child:Container(
-                                  //           width: MediaQuery.of(context).size.width,
-                                  //           padding: const EdgeInsetsDirectional.symmetric(horizontal:15,vertical: 3),
-                                  //           alignment: Alignment.center,
-                                  //           decoration: BoxDecoration(
-                                  //               color: AppColors.white,
-                                  //               borderRadius: BorderRadius.circular(8),
-                                  //               border: Border.all(
-                                  //                   color: Color(0xffE2E2E2)
-                                  //               //    color: controller.year.isEmpty ? const Color(0xffE2E2E2) : AppColors.blue_100
-                                  //               )
-                                  //           ),
-                                  //           child: TextFormField(
-                                  //             textAlign: TextAlign.center,
-                                  //             controller:authController.monthController,
-                                  //              keyboardType: TextInputType.datetime,
-                                  //             validator: (value){
-                                  //               if(value!.isEmpty){
-                                  //                 return "Empty";
-                                  //               }
-                                  //               return null;
-                                  //             },
-                                  //             decoration: const InputDecoration(
-                                  //               hintText: "MM",
-                                  //               contentPadding: EdgeInsets.zero,
-                                  //               enabledBorder: OutlineInputBorder(
-                                  //                   borderSide: BorderSide.none
-                                  //               ),
-                                  //
-                                  //               focusedBorder: OutlineInputBorder(
-                                  //                   borderSide: BorderSide.none
-                                  //               ),
-                                  //             ),
-                                  //             inputFormatters: [
-                                  //               FilteringTextInputFormatter.allow(RegExp("[0-9-]")),
-                                  //               LengthLimitingTextInputFormatter(2),
-                                  //               MonthFormatter(),
-                                  //             ],
-                                  //           ),
-                                  //         )
-                                  //     ),
-                                  //     const SizedBox(width: 12),
-                                  //     Expanded(
-                                  //         child: Container(
-                                  //           width: MediaQuery.of(context).size.width,
-                                  //           padding: const EdgeInsetsDirectional.symmetric(horizontal:15,vertical: 3),
-                                  //           alignment: Alignment.center,
-                                  //           decoration: BoxDecoration(
-                                  //               color: AppColors.white,
-                                  //               borderRadius: BorderRadius.circular(8),
-                                  //               border: Border.all(
-                                  //                   color: Color(0xffE2E2E2)
-                                  //                //   color: controller.year.isEmpty ? const Color(0xffE2E2E2) : AppColors.blue_100
-                                  //               )
-                                  //           ),
-                                  //           child: TextFormField(
-                                  //             textAlign: TextAlign.center,
-                                  //              keyboardType: TextInputType.datetime,
-                                  //             controller:authController.yearController,
-                                  //             validator: (value){
-                                  //               if(value!.isEmpty){
-                                  //                 return "Empty";
-                                  //               }else if(value.length<4){
-                                  //                 return "Valid Year";
-                                  //               }
-                                  //             },
-                                  //             decoration: const InputDecoration(
-                                  //               hintText: "YYYY",
-                                  //               contentPadding: EdgeInsets.zero,
-                                  //               enabledBorder: OutlineInputBorder(
-                                  //                 borderSide: BorderSide.none
-                                  //               ),
-                                  //
-                                  //               focusedBorder: OutlineInputBorder(
-                                  //                 borderSide: BorderSide.none
-                                  //               ),
-                                  //             ),
-                                  //             inputFormatters: [
-                                  //               FilteringTextInputFormatter.allow(RegExp("[0-9-]")),
-                                  //               LengthLimitingTextInputFormatter(4),
-                                  //               YearFormatter(),
-                                  //             ],
-                                  //           ),
-                                  //         )
-                                  //     ),
-                                  //   ],
-                                  // ),
-                                  const CustomText(
-                                    text: AppStrings.gender,
-                                    color: AppColors.black_100,
-                                    fontWeight: FontWeight.w500,
-                                    bottom: 8,
-                                    top: 16,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                    children: List.generate(
-                                        authController.genderList.length,
-                                            (index) => GestureDetector(
-                                          onTap: () => changeGender(index),
-                                          child: Row(
-                                            children: [
-                                              Container(
-                                                height: 20,
-                                                width: 20,
-                                                padding:
-                                                const EdgeInsetsDirectional
-                                                    .all(0.5),
-                                                decoration: BoxDecoration(
-                                                    color: Colors.transparent,
-                                                    border: Border.all(
-                                                        color:
-                                                        AppColors.blue_100),
-                                                    shape: BoxShape.circle),
-                                                child: Container(
+                                // Row(
+                                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                //   children: [
+                                //     Expanded(
+                                //         child:Container(
+                                //           width: MediaQuery.of(context).size.width,
+                                //           padding: const EdgeInsetsDirectional.symmetric(horizontal:15,vertical: 3),
+                                //           alignment: Alignment.center,
+                                //           decoration: BoxDecoration(
+                                //               color: AppColors.white,
+                                //               borderRadius: BorderRadius.circular(8),
+                                //               border: Border.all(
+                                //                 color: Color(0xffE2E2E2)
+                                //                   // color: controller.year.isEmpty ? const Color(0xffE2E2E2) : AppColors.blue_100
+                                //               )
+                                //           ),
+                                //           child: TextFormField(
+                                //             controller:authController.dayController,
+                                //             textAlign: TextAlign.center,
+                                //             validator: (value){
+                                //               if(value!.isEmpty){
+                                //                 return "Empty";
+                                //               }
+                                //             },
+                                //             keyboardType: TextInputType.datetime,
+                                //             decoration: const InputDecoration(
+                                //               hintText: "DD",
+                                //               contentPadding: EdgeInsets.zero,
+                                //               enabledBorder: OutlineInputBorder(
+                                //                   borderSide: BorderSide.none
+                                //               ),
+                                //
+                                //               focusedBorder: OutlineInputBorder(
+                                //                   borderSide: BorderSide.none
+                                //               ),
+                                //             ),
+                                //             inputFormatters: [
+                                //               FilteringTextInputFormatter.allow(RegExp("[0-9-]")),
+                                //               LengthLimitingTextInputFormatter(2),
+                                //               DayFormatter(),
+                                //             ],
+                                //           ),
+                                //         )
+                                //     ),
+                                //
+                                //     const SizedBox(width: 12),
+                                //     Expanded(
+                                //         child:Container(
+                                //           width: MediaQuery.of(context).size.width,
+                                //           padding: const EdgeInsetsDirectional.symmetric(horizontal:15,vertical: 3),
+                                //           alignment: Alignment.center,
+                                //           decoration: BoxDecoration(
+                                //               color: AppColors.white,
+                                //               borderRadius: BorderRadius.circular(8),
+                                //               border: Border.all(
+                                //                   color: Color(0xffE2E2E2)
+                                //               //    color: controller.year.isEmpty ? const Color(0xffE2E2E2) : AppColors.blue_100
+                                //               )
+                                //           ),
+                                //           child: TextFormField(
+                                //             textAlign: TextAlign.center,
+                                //             controller:authController.monthController,
+                                //              keyboardType: TextInputType.datetime,
+                                //             validator: (value){
+                                //               if(value!.isEmpty){
+                                //                 return "Empty";
+                                //               }
+                                //               return null;
+                                //             },
+                                //             decoration: const InputDecoration(
+                                //               hintText: "MM",
+                                //               contentPadding: EdgeInsets.zero,
+                                //               enabledBorder: OutlineInputBorder(
+                                //                   borderSide: BorderSide.none
+                                //               ),
+                                //
+                                //               focusedBorder: OutlineInputBorder(
+                                //                   borderSide: BorderSide.none
+                                //               ),
+                                //             ),
+                                //             inputFormatters: [
+                                //               FilteringTextInputFormatter.allow(RegExp("[0-9-]")),
+                                //               LengthLimitingTextInputFormatter(2),
+                                //               MonthFormatter(),
+                                //             ],
+                                //           ),
+                                //         )
+                                //     ),
+                                //     const SizedBox(width: 12),
+                                //     Expanded(
+                                //         child: Container(
+                                //           width: MediaQuery.of(context).size.width,
+                                //           padding: const EdgeInsetsDirectional.symmetric(horizontal:15,vertical: 3),
+                                //           alignment: Alignment.center,
+                                //           decoration: BoxDecoration(
+                                //               color: AppColors.white,
+                                //               borderRadius: BorderRadius.circular(8),
+                                //               border: Border.all(
+                                //                   color: Color(0xffE2E2E2)
+                                //                //   color: controller.year.isEmpty ? const Color(0xffE2E2E2) : AppColors.blue_100
+                                //               )
+                                //           ),
+                                //           child: TextFormField(
+                                //             textAlign: TextAlign.center,
+                                //              keyboardType: TextInputType.datetime,
+                                //             controller:authController.yearController,
+                                //             validator: (value){
+                                //               if(value!.isEmpty){
+                                //                 return "Empty";
+                                //               }else if(value.length<4){
+                                //                 return "Valid Year";
+                                //               }
+                                //             },
+                                //             decoration: const InputDecoration(
+                                //               hintText: "YYYY",
+                                //               contentPadding: EdgeInsets.zero,
+                                //               enabledBorder: OutlineInputBorder(
+                                //                 borderSide: BorderSide.none
+                                //               ),
+                                //
+                                //               focusedBorder: OutlineInputBorder(
+                                //                 borderSide: BorderSide.none
+                                //               ),
+                                //             ),
+                                //             inputFormatters: [
+                                //               FilteringTextInputFormatter.allow(RegExp("[0-9-]")),
+                                //               LengthLimitingTextInputFormatter(4),
+                                //               YearFormatter(),
+                                //             ],
+                                //           ),
+                                //         )
+                                //     ),
+                                //   ],
+                                // ),
+                                const CustomText(
+                                  text: AppStrings.gender,
+                                  color: AppColors.black_100,
+                                  fontWeight: FontWeight.w500,
+                                  bottom: 8,
+                                  top: 16,
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: List.generate(
+                                      authController.genderList.length,
+                                      (index) => GestureDetector(
+                                            onTap: () => changeGender(index),
+                                            child: Row(
+                                              children: [
+                                                Container(
+                                                  height: 20,
+                                                  width: 20,
+                                                  padding:
+                                                      const EdgeInsetsDirectional
+                                                          .all(0.5),
                                                   decoration: BoxDecoration(
-                                                      color: index ==
-                                                          authController.selectedGender
-                                                          ? AppColors.blue_100
-                                                          : Colors.transparent,
+                                                      color: Colors.transparent,
+                                                      border: Border.all(
+                                                          color: AppColors
+                                                              .blue_100),
                                                       shape: BoxShape.circle),
+                                                  child: Container(
+                                                    decoration: BoxDecoration(
+                                                        color: index ==
+                                                                authController
+                                                                    .selectedGender
+                                                            ? AppColors.blue_100
+                                                            : Colors
+                                                                .transparent,
+                                                        shape: BoxShape.circle),
+                                                  ),
                                                 ),
-                                              ),
-                                              const SizedBox(width: 8),
-                                              Text(
-                                                authController.genderList[index],
-                                                style: GoogleFonts.poppins(
-                                                    color: AppColors.black_100,
-                                                    fontSize: 14,
-                                                    fontWeight:
-                                                    FontWeight.w500),
-                                              )
-                                            ],
-                                          ),
-                                        )),
-                                  ),
-                                  const CustomText(
-                                    text: AppStrings.email,
-                                    color: AppColors.black_100,
-                                    fontWeight: FontWeight.w500,
-                                    top: 16,
-                                    bottom: 8,
-                                  ),
-                                  CustomTextField(
-                                    textEditingController: controller.emailController,
-                                    validator: (value) {
-                                      if (value == null || value.isEmpty) {
-                                        return "Please enter your email".tr;
-                                      } else if (!RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                                          .hasMatch(controller.emailController.text)) {
-                                        return "Please enter your valid email".tr;
-                                      } else {
-                                        return null;
-                                      }
-                                    },
-                                    textAlign: TextAlign.start,
-                                    hintText: AppStrings.enterYourEmail,
-                                    hintStyle: GoogleFonts.poppins(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w500,
-                                        color: AppColors.black_40),
-                                    inputTextStyle: GoogleFonts.poppins(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 14,
-                                        color: AppColors.black_100),
-                                    fieldBorderColor: AppColors.blue_10,
-                                    fieldBorderRadius: 8,
-                                  ),
-                                  const CustomText(
-                                    text: AppStrings.phoneNumber,
-                                    color: AppColors.black_100,
-                                    fontWeight: FontWeight.w500,
-                                    top: 16,
-                                    bottom: 8,
-                                  ),
+                                                const SizedBox(width: 8),
+                                                Text(
+                                                  authController
+                                                      .genderList[index],
+                                                  style: GoogleFonts.poppins(
+                                                      color:
+                                                          AppColors.black_100,
+                                                      fontSize: 14,
+                                                      fontWeight:
+                                                          FontWeight.w500),
+                                                )
+                                              ],
+                                            ),
+                                          )),
+                                ),
+                                const CustomText(
+                                  text: AppStrings.email,
+                                  color: AppColors.black_100,
+                                  fontWeight: FontWeight.w500,
+                                  top: 16,
+                                  bottom: 8,
+                                ),
+                                CustomTextField(
+                                  textEditingController:
+                                      controller.emailController,
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return "Please enter your email".tr;
+                                    } else if (!RegExp(
+                                            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                        .hasMatch(
+                                            controller.emailController.text)) {
+                                      return "Please enter your valid email".tr;
+                                    } else {
+                                      return null;
+                                    }
+                                  },
+                                  textAlign: TextAlign.start,
+                                  hintText: AppStrings.enterYourEmail,
+                                  hintStyle: GoogleFonts.poppins(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500,
+                                      color: AppColors.black_40),
+                                  inputTextStyle: GoogleFonts.poppins(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 14,
+                                      color: AppColors.black_100),
+                                  fieldBorderColor: AppColors.blue_10,
+                                  fieldBorderRadius: 8,
+                                ),
+                                const CustomText(
+                                  text: AppStrings.phoneNumber,
+                                  color: AppColors.black_100,
+                                  fontWeight: FontWeight.w500,
+                                  top: 16,
+                                  bottom: 8,
+                                ),
 
-                                  /// <------------------  Phone Number ------------------->
-                                  Row(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                       Flexible(
-                                        flex: 1,
-                                        child: Container(
-                                          alignment: Alignment.center,
-                                          padding: EdgeInsets.symmetric(vertical:4 ),
-                                          decoration: BoxDecoration(
-                                            border:
-                                            Border.all(color: const Color(0xFFE2E2E2)),
-                                            borderRadius: BorderRadius.circular(8),
-                                            color: Colors.white,
-                                          ),
-                                          child:CountryCodePicker(
-
-                                              onChanged: (value) {
-                                                authController.phoneCode=value.dialCode!;
-                                                print(authController.phoneCode);
-                                              },
-                                              showCountryOnly: false,
-                                              showOnlyCountryWhenClosed: false,
-                                              alignLeft: false,
-
-
-                                        ),),
-
-                                        // child:  CountryCodePicker(
-                                        //   onChanged: print,
-                                        //   showCountryOnly: false,
-                                        //   showOnlyCountryWhenClosed: false,
-                                        //   alignLeft: false,
-                                        // ),
-
-                                        // child: Container(
-                                        //     height: 60,
-                                        //     padding: const EdgeInsets.symmetric(
-                                        //         vertical: 6, horizontal: 8),
-                                        //     decoration: BoxDecoration(
-                                        //         color: AppColors.white,
-                                        //         borderRadius:
-                                        //         BorderRadius.circular(8),
-                                        //         border: Border.all(
-                                        //             color: AppColors.blue_10)),
-                                        //     child: IntlPhoneField(
-                                        //       initialCountryCode: 'MX',
-                                        //       disableLengthCheck: true,
-                                        //       showDropdownIcon: false,
-                                        //       showCountryFlag: true,
-                                        //       decoration: const InputDecoration(
-                                        //           border: OutlineInputBorder(
-                                        //             borderSide: BorderSide.none,
-                                        //           )),
-                                        //       onChanged: (phone) {
-                                        //    //     authController.phoneCode=phone;
-                                        //         print(phone.completeNumber);
-                                        //       },
-                                        //     )),
-                                      ),
-                                      const SizedBox(width: 8),
-                                      Expanded(
-                                        flex: 2,
-                                        child: CustomTextField(
-                                          textEditingController: controller.phoneController,
-                                          keyboardType: TextInputType.number,
-                                          maxLength: 10,
-                                          textInputAction: TextInputAction.next,
-                                          validator: (value) {
-                                            if (value!.length > 10) {
-                                              return "Phone number not less than 10 digits".tr;
-                                            } else if (value.length < 6) {
-                                              return "Phone number not more then 14 digits".tr;
-                                            } else {
-                                              return null;
-                                            }
+                                /// <------------------  Phone Number ------------------->
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Flexible(
+                                      flex: 1,
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        padding:
+                                            EdgeInsets.symmetric(vertical: 4),
+                                        decoration: BoxDecoration(
+                                          border: Border.all(
+                                              color: const Color(0xFFE2E2E2)),
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          color: Colors.white,
+                                        ),
+                                        child: CountryCodePicker(
+                                          onChanged: (value) {
+                                            authController.phoneCode =
+                                                value.dialCode!;
+                                            print(authController.phoneCode);
                                           },
-                                          textAlign: TextAlign.start,
-                                          hintText: "Phone Number".tr,
-                                          hintStyle: GoogleFonts.poppins(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w500,
-                                              color: AppColors.black_40),
-                                          inputTextStyle: GoogleFonts.poppins(
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: 14,
-                                              color: AppColors.black_100),
-                                          fieldBorderColor: AppColors.blue_10,
-                                          fieldBorderRadius: 8,
+                                          showCountryOnly: false,
+                                          showOnlyCountryWhenClosed: false,
+                                          alignLeft: false,
                                         ),
                                       ),
-                                    ],
-                                  ),
-                                  const CustomText(
-                                    text: AppStrings.address,
-                                    color: AppColors.black_100,
-                                    fontWeight: FontWeight.w500,
-                                    top: 16,
-                                    bottom: 8,
-                                  ),
-                                  CustomTextField(
-                                    textEditingController: controller.addressController,
-                                    validator: (value) {
-                                      if (value == null || value.isEmpty) {
-                                        return "Address Not Be Empty".tr;
-                                      } else {
-                                        return null;
-                                      }
-                                    },
-                                    textAlign: TextAlign.start,
-                                    hintText: 'Enter your address',
-                                    hintStyle: GoogleFonts.poppins(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w500,
-                                        color: AppColors.black_40),
-                                    inputTextStyle: GoogleFonts.poppins(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 14,
-                                        color: AppColors.black_100),
-                                    fieldBorderColor: AppColors.blue_10,
-                                    fieldBorderRadius: 8,
-                                  ),
 
-                                  const CustomText(
-                                    text: AppStrings.password,
-                                    color: AppColors.black_100,
-                                    fontWeight: FontWeight.w500,
-                                    top: 16,
-                                    bottom: 8,
-                                  ),
-                                  CustomTextField(
-                                    textEditingController: controller.passController,
-                                    validator: (value) {
-                                      if (value.isEmpty) {
-                                        return "Password Not Be Empty".tr;
-                                      }
-                                      return null;
-                                    },
-                                    isPassword: true,
-                                    textAlign: TextAlign.start,
-                                    hintText: 'Enter 8 digit password',
-                                    hintStyle: GoogleFonts.poppins(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w500,
-                                        color: AppColors.black_40),
-                                    inputTextStyle: GoogleFonts.poppins(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 14,
-                                        color: AppColors.black_100),
-                                    fieldBorderColor: AppColors.blue_10,
-                                    fieldBorderRadius: 8,
-                                  ),
-                                  const CustomText(
-                                    text: AppStrings.confirmPassword,
-                                    color: AppColors.black_100,
-                                    fontWeight: FontWeight.w500,
-                                    top: 16,
-                                    bottom: 8,
-                                  ),
-                                  CustomTextField(
-                                    textInputAction: TextInputAction.done,
-                                    textEditingController: controller.confirmPasswordController,
-                                    validator: (value) {
-                                      if (value.isEmpty) {
-                                        return 'Enter your Password'.tr;
-                                      } else if (!RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
-                                          .hasMatch(controller.confirmPasswordController.text)) {
-                                        return "Please use uppercase, lowercase, special character, and number".tr;
-                                      } else if (value.length < 8) {
-                                        return "Please use 8 character long password".tr;
-                                      } else if (controller.passController.text !=
-                                          value) {
-                                        return "Password doesn't match".tr;
-                                      }
-                                      return null;
-                                    },
-                                    isPassword: true,
-                                    textAlign: TextAlign.start,
-                                    hintText: AppStrings.enterYourPassword,
-                                    hintStyle: GoogleFonts.poppins(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w500,
-                                        color: AppColors.black_40),
-                                    inputTextStyle: GoogleFonts.poppins(
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: 14,
-                                        color: AppColors.black_100),
-                                    fieldBorderColor: AppColors.blue_10,
-                                    fieldBorderRadius: 8,
-                                  ),
-                                  const SizedBox(
-                                    height: 24,
-                                  ),
-                                  controller.sendOtpLoading.value ? const CustomElevatedLoadingButton(): CustomButton(
-                                    buttonWidth: MediaQuery.of(context).size.width,
-                                    onPressed: () {
-                                      if(controller.registerFormKey.currentState!.validate()){
-                                        controller.sendOtp(userType);
-                                      }
+                                      // child:  CountryCodePicker(
+                                      //   onChanged: print,
+                                      //   showCountryOnly: false,
+                                      //   showOnlyCountryWhenClosed: false,
+                                      //   alignLeft: false,
+                                      // ),
 
-
-                                    },
-                                    titleText: AppStrings.signUp,
-                                    titleColor: AppColors.white,
-                                    buttonBgColor: AppColors.blue_100,
-                                    titleSize: 18,
-                                    titleWeight: FontWeight.w600,
-                                  ),
-                                  const SizedBox(height: 24,),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      const CustomText(
-                                        text: AppStrings.alreadyHaveAnAccount,
-                                        color: AppColors.black_100,
-                                      ),
-                                      GestureDetector(
-                                        onTap: () {
-                                         Get.back();
+                                      // child: Container(
+                                      //     height: 60,
+                                      //     padding: const EdgeInsets.symmetric(
+                                      //         vertical: 6, horizontal: 8),
+                                      //     decoration: BoxDecoration(
+                                      //         color: AppColors.white,
+                                      //         borderRadius:
+                                      //         BorderRadius.circular(8),
+                                      //         border: Border.all(
+                                      //             color: AppColors.blue_10)),
+                                      //     child: IntlPhoneField(
+                                      //       initialCountryCode: 'MX',
+                                      //       disableLengthCheck: true,
+                                      //       showDropdownIcon: false,
+                                      //       showCountryFlag: true,
+                                      //       decoration: const InputDecoration(
+                                      //           border: OutlineInputBorder(
+                                      //             borderSide: BorderSide.none,
+                                      //           )),
+                                      //       onChanged: (phone) {
+                                      //    //     authController.phoneCode=phone;
+                                      //         print(phone.completeNumber);
+                                      //       },
+                                      //     )),
+                                    ),
+                                    const SizedBox(width: 8),
+                                    Expanded(
+                                      flex: 2,
+                                      child: CustomTextField(
+                                        textEditingController:
+                                            controller.phoneController,
+                                        keyboardType: TextInputType.number,
+                                        maxLength: 10,
+                                        textInputAction: TextInputAction.next,
+                                        validator: (value) {
+                                          if (value!.length > 10) {
+                                            return "Phone number not less than 10 digits"
+                                                .tr;
+                                          } else if (value.length < 6) {
+                                            return "Phone number not more then 14 digits"
+                                                .tr;
+                                          } else {
+                                            return null;
+                                          }
                                         },
-                                        child: const CustomText(
-                                          text: AppStrings.signIn,
-                                          color: AppColors.blue_100,
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 16,
-                                          left: 4,
-                                        ),
+                                        textAlign: TextAlign.start,
+                                        hintText: "Phone Number".tr,
+                                        hintStyle: GoogleFonts.poppins(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500,
+                                            color: AppColors.black_40),
+                                        inputTextStyle: GoogleFonts.poppins(
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 14,
+                                            color: AppColors.black_100),
+                                        fieldBorderColor: AppColors.blue_10,
+                                        fieldBorderRadius: 8,
                                       ),
-                                    ],
-                                  )
-                                ])
-                          ]),
-                        ));
-                  }),
-            ),
-          ));
-    },);
+                                    ),
+                                  ],
+                                ),
+                                const CustomText(
+                                  text: AppStrings.address,
+                                  color: AppColors.black_100,
+                                  fontWeight: FontWeight.w500,
+                                  top: 16,
+                                  bottom: 8,
+                                ),
+                                CustomTextField(
+                                  textEditingController:
+                                      controller.addressController,
+                                  validator: (value) {
+                                    if (value == null || value.isEmpty) {
+                                      return "Address Not Be Empty".tr;
+                                    } else {
+                                      return null;
+                                    }
+                                  },
+                                  textAlign: TextAlign.start,
+                                  hintText: 'Enter your address',
+                                  hintStyle: GoogleFonts.poppins(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500,
+                                      color: AppColors.black_40),
+                                  inputTextStyle: GoogleFonts.poppins(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 14,
+                                      color: AppColors.black_100),
+                                  fieldBorderColor: AppColors.blue_10,
+                                  fieldBorderRadius: 8,
+                                ),
+
+                                const CustomText(
+                                  text: AppStrings.password,
+                                  color: AppColors.black_100,
+                                  fontWeight: FontWeight.w500,
+                                  top: 16,
+                                  bottom: 8,
+                                ),
+                                CustomTextField(
+                                  textEditingController:
+                                      controller.passController,
+                                  validator: (value) {
+                                    if (value.isEmpty) {
+                                      return "Password Not Be Empty".tr;
+                                    }
+                                    return null;
+                                  },
+                                  isPassword: true,
+                                  textAlign: TextAlign.start,
+                                  hintText: 'Enter 8 digit password',
+                                  hintStyle: GoogleFonts.poppins(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500,
+                                      color: AppColors.black_40),
+                                  inputTextStyle: GoogleFonts.poppins(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 14,
+                                      color: AppColors.black_100),
+                                  fieldBorderColor: AppColors.blue_10,
+                                  fieldBorderRadius: 8,
+                                ),
+                                const CustomText(
+                                  text: AppStrings.confirmPassword,
+                                  color: AppColors.black_100,
+                                  fontWeight: FontWeight.w500,
+                                  top: 16,
+                                  bottom: 8,
+                                ),
+                                CustomTextField(
+                                  textInputAction: TextInputAction.done,
+                                  textEditingController:
+                                      controller.confirmPasswordController,
+                                  validator: (value) {
+                                    if (value.isEmpty) {
+                                      return 'Enter your Password'.tr;
+                                    } else if (!RegExp(
+                                            r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
+                                        .hasMatch(controller
+                                            .confirmPasswordController.text)) {
+                                      return "Please use uppercase, lowercase, special character, and number"
+                                          .tr;
+                                    } else if (value.length < 8) {
+                                      return "Please use 8 character long password"
+                                          .tr;
+                                    } else if (controller.passController.text !=
+                                        value) {
+                                      return "Password doesn't match".tr;
+                                    }
+                                    return null;
+                                  },
+                                  isPassword: true,
+                                  textAlign: TextAlign.start,
+                                  hintText: AppStrings.enterYourPassword,
+                                  hintStyle: GoogleFonts.poppins(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w500,
+                                      color: AppColors.black_40),
+                                  inputTextStyle: GoogleFonts.poppins(
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 14,
+                                      color: AppColors.black_100),
+                                  fieldBorderColor: AppColors.blue_10,
+                                  fieldBorderRadius: 8,
+                                ),
+                                const SizedBox(
+                                  height: 24,
+                                ),
+                                controller.sendOtpLoading.value
+                                    ? const CustomElevatedLoadingButton()
+                                    : CustomButton(
+                                        buttonWidth:
+                                            MediaQuery.of(context).size.width,
+                                        onPressed: () {
+                                          if (controller
+                                              .registerFormKey.currentState!
+                                              .validate()) {
+                                            controller.sendOtp(userType);
+                                          }
+                                        },
+                                        titleText: AppStrings.signUp,
+                                        titleColor: AppColors.white,
+                                        buttonBgColor: AppColors.blue_100,
+                                        titleSize: 18,
+                                        titleWeight: FontWeight.w600,
+                                      ),
+                                const SizedBox(
+                                  height: 24,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    const CustomText(
+                                      text: AppStrings.alreadyHaveAnAccount,
+                                      color: AppColors.black_100,
+                                    ),
+                                    GestureDetector(
+                                      onTap: () {
+                                        Get.back();
+                                      },
+                                      child: const CustomText(
+                                        text: AppStrings.signIn,
+                                        color: AppColors.blue_100,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 16,
+                                        left: 4,
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              ])
+                        ]),
+                      ));
+                }),
+              ),
+            ));
+      },
+    );
   }
 }
-
 
 class YearFormatter extends TextInputFormatter {
   @override
@@ -660,8 +687,6 @@ class YearFormatter extends TextInputFormatter {
   }
 }
 
-
-
 class DayFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(
@@ -699,6 +724,7 @@ class DayFormatter extends TextInputFormatter {
     );
   }
 }
+
 class MonthFormatter extends TextInputFormatter {
   @override
   TextEditingValue formatEditUpdate(

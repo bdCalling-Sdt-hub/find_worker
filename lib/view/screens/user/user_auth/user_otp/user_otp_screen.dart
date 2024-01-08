@@ -2,6 +2,7 @@ import 'package:wrcontacts/core/app_routes.dart';
 import 'package:wrcontacts/utils/app_colors.dart';
 import 'package:wrcontacts/utils/app_images.dart';
 import 'package:wrcontacts/utils/app_strings.dart';
+import 'package:wrcontacts/view/screens/user/user_auth/user_auth_controller/user_auth_controller.dart';
 import 'package:wrcontacts/view/widgets/custom_elevated_loading_button/custom_elevated_loading_button.dart';
 import 'package:wrcontacts/view/widgets/email_otp/email_otp.dart';
 import 'package:wrcontacts/view/widgets/image/custom_image.dart';
@@ -182,25 +183,34 @@ class _UserOtpScreenState extends State<UserOtpScreen> {
                     ),
                     isLoading
                         ? const CustomElevatedLoadingButton()
-                        : GestureDetector(
-                            onTap: () {
-                              // verifyEmailOTP();
-                            },
-                            child: Container(
-                                margin: const EdgeInsets.only(top: 252),
-                                height: 56,
-                                width: MediaQuery.of(context).size.width,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    color: const Color(0xff0668E3)),
-                                child: const Center(
-                                    child: CustomText(
-                                  text: AppStrings.verify,
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w600,
-                                ))),
-                          )
+                        : GetBuilder<AuthenticationController>(
+                            builder: (controller) {
+                            return GestureDetector(
+                              onTap: () {
+                                // verifyEmailOTP();
+
+                                print(
+                                    "OTP++++++++++++++++++++${otpController.text}");
+
+                                controller.varifyPhoneOTP(
+                                    smsCode: otpController.text);
+                              },
+                              child: Container(
+                                  margin: const EdgeInsets.only(top: 252),
+                                  height: 56,
+                                  width: MediaQuery.of(context).size.width,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      color: const Color(0xff0668E3)),
+                                  child: const Center(
+                                      child: CustomText(
+                                    text: AppStrings.verify,
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.w600,
+                                  ))),
+                            );
+                          })
                   ],
                 ),
               );
