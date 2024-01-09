@@ -1,14 +1,11 @@
-import 'package:wrcontacts/core/app_routes.dart';
 import 'package:wrcontacts/utils/app_colors.dart';
 import 'package:wrcontacts/utils/app_images.dart';
 import 'package:wrcontacts/utils/app_strings.dart';
 import 'package:wrcontacts/view/screens/user/user_auth/user_auth_controller/user_auth_controller.dart';
 import 'package:wrcontacts/view/widgets/custom_elevated_loading_button/custom_elevated_loading_button.dart';
-import 'package:wrcontacts/view/widgets/email_otp/email_otp.dart';
 import 'package:wrcontacts/view/widgets/image/custom_image.dart';
 import 'package:wrcontacts/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -26,11 +23,13 @@ class _UserOtpScreenState extends State<UserOtpScreen> {
 
   final TextEditingController otpController = TextEditingController();
   bool isLoading = false;
+  String userType = "";
+  bool isSignIn = false;
 
   @override
   void initState() {
-    // email = Get.arguments[0];
-    // emailOTP = Get.arguments[1];
+    userType = Get.arguments[0];
+    isSignIn = Get.arguments[1];
     super.initState();
   }
 
@@ -193,7 +192,9 @@ class _UserOtpScreenState extends State<UserOtpScreen> {
                                     "OTP++++++++++++++++++++${otpController.text}");
 
                                 controller.varifyPhoneOTP(
-                                    smsCode: otpController.text);
+                                    smsCode: otpController.text,
+                                    isSignIn: isSignIn,
+                                    userType: userType);
                               },
                               child: Container(
                                   margin: const EdgeInsets.only(top: 252),

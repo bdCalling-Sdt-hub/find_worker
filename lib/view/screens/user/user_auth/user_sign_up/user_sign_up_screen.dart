@@ -1,10 +1,8 @@
 import 'package:country_code_picker/country_code_picker.dart';
-import 'package:wrcontacts/core/app_routes.dart';
 import 'package:wrcontacts/utils/app_colors.dart';
 import 'package:wrcontacts/utils/app_icons.dart';
 import 'package:wrcontacts/utils/app_strings.dart';
 import 'package:wrcontacts/view/screens/user/user_auth/user_auth_controller/user_auth_controller.dart';
-import 'package:wrcontacts/view/screens/user/user_auth/user_email_otp/user_email_otp_screen.dart';
 import 'package:wrcontacts/view/widgets/buttons/custom_button.dart';
 import 'package:wrcontacts/view/widgets/custom_elevated_loading_button/custom_elevated_loading_button.dart';
 import 'package:wrcontacts/view/widgets/image/custom_image.dart';
@@ -14,9 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl_phone_field/intl_phone_field.dart';
-
-import '../../../../../utils/app_constents.dart';
 
 class UserSignUpScreen extends StatefulWidget {
   const UserSignUpScreen({super.key});
@@ -128,12 +123,12 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
 
                                 /// <----------------------- Date of Birth---------------->
                                 CustomTextField(
-                                  validator: (value) {
-                                    if (value == null || value.isEmpty) {
-                                      return "Date of Birth Not Be Empty".tr;
-                                    }
-                                    return null;
-                                  },
+                                  // validator: (value) {
+                                  //   if (value == null || value.isEmpty) {
+                                  //     return "Date of Birth Not Be Empty".tr;
+                                  //   }
+                                  //   return null;
+                                  // },
                                   readOnly: true,
                                   onTap: () {
                                     authController.selectDate(context);
@@ -410,6 +405,7 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                                           onChanged: (value) {
                                             authController.phoneCode =
                                                 value.dialCode!;
+                                            authController.update();
                                             print(authController.phoneCode);
                                           },
                                           showCountryOnly: false,
@@ -417,38 +413,6 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                                           alignLeft: false,
                                         ),
                                       ),
-
-                                      // child:  CountryCodePicker(
-                                      //   onChanged: print,
-                                      //   showCountryOnly: false,
-                                      //   showOnlyCountryWhenClosed: false,
-                                      //   alignLeft: false,
-                                      // ),
-
-                                      // child: Container(
-                                      //     height: 60,
-                                      //     padding: const EdgeInsets.symmetric(
-                                      //         vertical: 6, horizontal: 8),
-                                      //     decoration: BoxDecoration(
-                                      //         color: AppColors.white,
-                                      //         borderRadius:
-                                      //         BorderRadius.circular(8),
-                                      //         border: Border.all(
-                                      //             color: AppColors.blue_10)),
-                                      //     child: IntlPhoneField(
-                                      //       initialCountryCode: 'MX',
-                                      //       disableLengthCheck: true,
-                                      //       showDropdownIcon: false,
-                                      //       showCountryFlag: true,
-                                      //       decoration: const InputDecoration(
-                                      //           border: OutlineInputBorder(
-                                      //             borderSide: BorderSide.none,
-                                      //           )),
-                                      //       onChanged: (phone) {
-                                      //    //     authController.phoneCode=phone;
-                                      //         print(phone.completeNumber);
-                                      //       },
-                                      //     )),
                                     ),
                                     const SizedBox(width: 8),
                                     Expanded(
@@ -490,19 +454,18 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                                   text: AppStrings.address,
                                   color: AppColors.black_100,
                                   fontWeight: FontWeight.w500,
-                                  top: 16,
                                   bottom: 8,
                                 ),
                                 CustomTextField(
                                   textEditingController:
                                       controller.addressController,
-                                  validator: (value) {
-                                    if (value == null || value.isEmpty) {
-                                      return "Address Not Be Empty".tr;
-                                    } else {
-                                      return null;
-                                    }
-                                  },
+                                  // validator: (value) {
+                                  //   if (value == null || value.isEmpty) {
+                                  //     return "Address Not Be Empty".tr;
+                                  //   } else {
+                                  //     return null;
+                                  //   }
+                                  // },
                                   textAlign: TextAlign.start,
                                   hintText: 'Enter your address',
                                   hintStyle: GoogleFonts.poppins(
@@ -517,79 +480,79 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                                   fieldBorderRadius: 8,
                                 ),
 
-                                const CustomText(
-                                  text: AppStrings.password,
-                                  color: AppColors.black_100,
-                                  fontWeight: FontWeight.w500,
-                                  top: 16,
-                                  bottom: 8,
-                                ),
-                                CustomTextField(
-                                  textEditingController:
-                                      controller.passController,
-                                  validator: (value) {
-                                    if (value.isEmpty) {
-                                      return "Password Not Be Empty".tr;
-                                    }
-                                    return null;
-                                  },
-                                  isPassword: true,
-                                  textAlign: TextAlign.start,
-                                  hintText: 'Enter 8 digit password',
-                                  hintStyle: GoogleFonts.poppins(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500,
-                                      color: AppColors.black_40),
-                                  inputTextStyle: GoogleFonts.poppins(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 14,
-                                      color: AppColors.black_100),
-                                  fieldBorderColor: AppColors.blue_10,
-                                  fieldBorderRadius: 8,
-                                ),
-                                const CustomText(
-                                  text: AppStrings.confirmPassword,
-                                  color: AppColors.black_100,
-                                  fontWeight: FontWeight.w500,
-                                  top: 16,
-                                  bottom: 8,
-                                ),
-                                CustomTextField(
-                                  textInputAction: TextInputAction.done,
-                                  textEditingController:
-                                      controller.confirmPasswordController,
-                                  validator: (value) {
-                                    if (value.isEmpty) {
-                                      return 'Enter your Password'.tr;
-                                    } else if (!RegExp(
-                                            r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
-                                        .hasMatch(controller
-                                            .confirmPasswordController.text)) {
-                                      return "Please use uppercase, lowercase, special character, and number"
-                                          .tr;
-                                    } else if (value.length < 8) {
-                                      return "Please use 8 character long password"
-                                          .tr;
-                                    } else if (controller.passController.text !=
-                                        value) {
-                                      return "Password doesn't match".tr;
-                                    }
-                                    return null;
-                                  },
-                                  isPassword: true,
-                                  textAlign: TextAlign.start,
-                                  hintText: AppStrings.enterYourPassword,
-                                  hintStyle: GoogleFonts.poppins(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500,
-                                      color: AppColors.black_40),
-                                  inputTextStyle: GoogleFonts.poppins(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 14,
-                                      color: AppColors.black_100),
-                                  fieldBorderColor: AppColors.blue_10,
-                                  fieldBorderRadius: 8,
-                                ),
+                                // const CustomText(
+                                //   text: AppStrings.password,
+                                //   color: AppColors.black_100,
+                                //   fontWeight: FontWeight.w500,
+                                //   top: 16,
+                                //   bottom: 8,
+                                // ),
+                                // CustomTextField(
+                                //   textEditingController:
+                                //       controller.passController,
+                                //   validator: (value) {
+                                //     if (value.isEmpty) {
+                                //       return "Password Not Be Empty".tr;
+                                //     }
+                                //     return null;
+                                //   },
+                                //   isPassword: true,
+                                //   textAlign: TextAlign.start,
+                                //   hintText: 'Enter 8 digit password',
+                                //   hintStyle: GoogleFonts.poppins(
+                                //       fontSize: 14,
+                                //       fontWeight: FontWeight.w500,
+                                //       color: AppColors.black_40),
+                                //   inputTextStyle: GoogleFonts.poppins(
+                                //       fontWeight: FontWeight.w400,
+                                //       fontSize: 14,
+                                //       color: AppColors.black_100),
+                                //   fieldBorderColor: AppColors.blue_10,
+                                //   fieldBorderRadius: 8,
+                                // ),
+                                // const CustomText(
+                                //   text: AppStrings.confirmPassword,
+                                //   color: AppColors.black_100,
+                                //   fontWeight: FontWeight.w500,
+                                //   top: 16,
+                                //   bottom: 8,
+                                // ),
+                                // CustomTextField(
+                                //   textInputAction: TextInputAction.done,
+                                //   textEditingController:
+                                //       controller.confirmPasswordController,
+                                //   validator: (value) {
+                                //     if (value.isEmpty) {
+                                //       return 'Enter your Password'.tr;
+                                //     } else if (!RegExp(
+                                //             r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
+                                //         .hasMatch(controller
+                                //             .confirmPasswordController.text)) {
+                                //       return "Please use uppercase, lowercase, special character, and number"
+                                //           .tr;
+                                //     } else if (value.length < 8) {
+                                //       return "Please use 8 character long password"
+                                //           .tr;
+                                //     } else if (controller.passController.text !=
+                                //         value) {
+                                //       return "Password doesn't match".tr;
+                                //     }
+                                //     return null;
+                                //   },
+                                //   isPassword: true,
+                                //   textAlign: TextAlign.start,
+                                //   hintText: AppStrings.enterYourPassword,
+                                //   hintStyle: GoogleFonts.poppins(
+                                //       fontSize: 14,
+                                //       fontWeight: FontWeight.w500,
+                                //       color: AppColors.black_40),
+                                //   inputTextStyle: GoogleFonts.poppins(
+                                //       fontWeight: FontWeight.w400,
+                                //       fontSize: 14,
+                                //       color: AppColors.black_100),
+                                //   fieldBorderColor: AppColors.blue_10,
+                                //   fieldBorderRadius: 8,
+                                // ),
                                 const SizedBox(
                                   height: 24,
                                 ),
@@ -602,7 +565,10 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                                           if (controller
                                               .registerFormKey.currentState!
                                               .validate()) {
-                                            controller.sendOtp(userType);
+                                            controller
+                                                .loginWithPhoneGenerateOTP(
+                                                    isSignIn: false,
+                                                    userType: userType);
                                           }
                                         },
                                         titleText: AppStrings.signUp,

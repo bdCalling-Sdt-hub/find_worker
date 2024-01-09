@@ -1,24 +1,28 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../model/service_by_user_model.dart';
 import '../../../../../utils/app_constents.dart';
 
-class CategoryByServiceController extends GetxController{
-  RxList<UserByServiceModel> servicesList= <UserByServiceModel> [].obs;
-var loading=false.obs;
+class CategoryByServiceController extends GetxController {
+  RxList<UserByServiceModel> servicesList = <UserByServiceModel>[].obs;
+  var loading = false.obs;
 
-  Future<List<UserByServiceModel>?> getSortedServicesByCategory(String catId) async {
-    final servicesCollection = FirebaseFirestore.instance.collection(AppConstants.services).where("category_id",isEqualTo:catId);
-    final usersCollection = FirebaseFirestore.instance.collection(AppConstants.users);
+  Future<List<UserByServiceModel>?> getSortedServicesByCategory(
+      String catId) async {
+    debugPrint("======>$catId");
+    final servicesCollection = FirebaseFirestore.instance
+        .collection(AppConstants.services)
+        .where("category_id", isEqualTo: catId);
+    final usersCollection =
+        FirebaseFirestore.instance.collection(AppConstants.users);
 
     try {
       loading(true);
       final servicesSnapshot = await servicesCollection.get();
 
       List<UserByServiceModel> sortedServices = [];
-
 
       for (final serviceDoc in servicesSnapshot.docs) {
         final serviceData = serviceDoc.data();
@@ -37,9 +41,10 @@ var loading=false.obs;
           sortedServices.add(UserByServiceModel.fromJson(serviceData));
         }
       }
-      sortedServices.sort((a, b) => b.averageRating!.compareTo(a.averageRating!));
+      sortedServices
+          .sort((a, b) => b.averageRating!.compareTo(a.averageRating!));
       print("service list ========> ${sortedServices.length}");
-      servicesList.value=sortedServices;
+      servicesList.value = sortedServices;
       servicesList.refresh();
       loading(false);
       return sortedServices;
@@ -48,7 +53,4 @@ var loading=false.obs;
       return null;
     }
   }
-
-
-
 }

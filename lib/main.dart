@@ -30,18 +30,16 @@ void main() async {
     DeviceOrientation.portraitDown,
   ]);
   Map<String, Map<String, String>> languages = await dep.init();
-  var _body;
   try {
     if (GetPlatform.isMobile) {
       final RemoteMessage? remoteMessage =
           await FirebaseMessaging.instance.getInitialMessage();
-      if (remoteMessage != null) {
-        _body = remoteMessage.data;
-      }
+      if (remoteMessage != null) {}
       await NotificationHelper.init(flutterLocalNotificationsPlugin);
       FirebaseMessaging.onBackgroundMessage(
           NotificationHelper.firebaseMessagingBackgroundHandler);
     }
+    // ignore: empty_catches
   } catch (e) {}
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       // navigation bar color

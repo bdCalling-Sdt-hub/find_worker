@@ -1,3 +1,4 @@
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:wrcontacts/core/app_routes.dart';
 import 'package:wrcontacts/utils/app_colors.dart';
 import 'package:wrcontacts/utils/app_strings.dart';
@@ -26,7 +27,6 @@ class _UserSignInState extends State<UserSignIn> {
   final _authController = Get.put(AuthenticationController());
   @override
   void initState() {
-    _authController.passwordController.clear();
     _authController.usernameController.clear();
     super.initState();
   }
@@ -110,28 +110,65 @@ class _UserSignInState extends State<UserSignIn> {
                         top: 16,
                         bottom: 8,
                       ),
-                      CustomTextField(
-                        keyboardType: TextInputType.number,
-                        textEditingController: controller.phoneController,
-                        isPassword: false,
-                        textAlign: TextAlign.start,
-                        hintText: AppStrings.phoneNumber,
-                        hintStyle: GoogleFonts.montserrat(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                            color: AppColors.black_40),
-                        inputTextStyle: GoogleFonts.montserrat(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 14,
-                            color: AppColors.black_100),
-                        fieldBorderColor: AppColors.blue_10,
-                        fieldBorderRadius: 8,
-                        validator: (value) {
-                          if (value.isEmpty) {
-                            return 'Enter your Phone Number'.tr;
-                          }
-                          return null;
-                        },
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Flexible(
+                            flex: 1,
+                            child: Container(
+                              alignment: Alignment.center,
+                              padding: const EdgeInsets.symmetric(vertical: 4),
+                              decoration: BoxDecoration(
+                                border:
+                                    Border.all(color: const Color(0xFFE2E2E2)),
+                                borderRadius: BorderRadius.circular(8),
+                                color: Colors.white,
+                              ),
+                              child: CountryCodePicker(
+                                onChanged: (value) {
+                                  _authController.phoneCode = value.dialCode!;
+                                  _authController.update();
+                                },
+                                showCountryOnly: false,
+                                showOnlyCountryWhenClosed: false,
+                                alignLeft: false,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            flex: 2,
+                            child: CustomTextField(
+                              textEditingController: controller.phoneController,
+                              keyboardType: TextInputType.number,
+                              maxLength: 10,
+                              textInputAction: TextInputAction.next,
+                              validator: (value) {
+                                if (value!.length > 10) {
+                                  return "Phone number not less than 10 digits"
+                                      .tr;
+                                } else if (value.length < 6) {
+                                  return "Phone number not more then 14 digits"
+                                      .tr;
+                                } else {
+                                  return null;
+                                }
+                              },
+                              textAlign: TextAlign.start,
+                              hintText: "Phone Number".tr,
+                              hintStyle: GoogleFonts.poppins(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
+                                  color: AppColors.black_40),
+                              inputTextStyle: GoogleFonts.poppins(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 14,
+                                  color: AppColors.black_100),
+                              fieldBorderColor: AppColors.blue_10,
+                              fieldBorderRadius: 8,
+                            ),
+                          ),
+                        ],
                       ),
                       SizedBox(
                         height: 24.h,
@@ -166,7 +203,8 @@ class _UserSignInState extends State<UserSignIn> {
                                   //   userType,
                                   // );
 
-                                  controller.loginWithPhoneGenerateOTP();
+                                  controller.loginWithPhoneGenerateOTP(
+                                      userType: userType, isSignIn: true);
                                 }
                               },
                               titleText: AppStrings.signIn,
