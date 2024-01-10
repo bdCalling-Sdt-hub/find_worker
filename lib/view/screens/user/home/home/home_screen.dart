@@ -1,33 +1,23 @@
-import 'dart:io';
-
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:wrcontacts/core/app_routes.dart';
 import 'package:wrcontacts/utils/app_colors.dart';
 import 'package:wrcontacts/utils/app_icons.dart';
-import 'package:wrcontacts/utils/app_images.dart';
 import 'package:wrcontacts/utils/app_strings.dart';
 import 'package:wrcontacts/view/screens/user/category/category_screen.dart';
 import 'package:wrcontacts/view/screens/user/home/Controller/home_controller.dart';
-import 'package:wrcontacts/view/screens/user/home/home/home_screen_data/home_screen_data.dart';
 import 'package:wrcontacts/view/screens/user/user_profile/Controller/profile_controller.dart';
 import 'package:wrcontacts/view/widgets/custom_loader.dart';
-
 import 'package:wrcontacts/view/widgets/text/custom_text.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
-
 import '../../../../../helper/Language/language_controller.dart';
 import '../../../../widgets/image/custom_image.dart';
-import '../../user_bottom_nav_bar/user_bottom_nav_bar_screen.dart';
-import 'inner_widgets/car_wash_section.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({super.key});
+  const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -36,18 +26,15 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final _homeController = Get.put(UserHomeController());
 
-  final _localizationController = Get.put(LocalizationController(sharedPreferences:Get.find()));
+  final _localizationController =
+      Get.put(LocalizationController(sharedPreferences: Get.find()));
 
   final _profileController = Get.put(UserProfileController());
 
   @override
   void initState() {
-
     super.initState();
-
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -120,67 +107,221 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ]),
-      body: Obx(()=> _homeController.loading.value?const CustomLoader():
-         RefreshIndicator(
-           onRefresh: ()async{
-           await  _homeController.getData(false);
-           },
-           child: SingleChildScrollView(
-            physics: const AlwaysScrollableScrollPhysics(),
-            child: Column(
-              children: [
-                SizedBox(height: 12.h,),
-                _categoryWidget(),
+      body: Obx(
+        () => _homeController.loading.value
+            ? const CustomLoader()
+            : RefreshIndicator(
+                onRefresh: () async {
+                  await _homeController.getData(false);
+                },
+                child: SingleChildScrollView(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: 12.h,
+                      ),
+                      _categoryWidget(),
 
-                /// <----------------- Car Wash --------------------->
-                _carWash(),
-                SizedBox(
-                  height: 20.h,
-                ),
-                _homeClean(),
-                SizedBox(
-                  height: 20.h,
-                ),
-                _airConditionMaintenance(),
-                SizedBox(
-                  height: 20.h,
-                ),
-
-                RichText(
-                    textAlign: TextAlign.center,
-                    text: TextSpan(
-                        text: AppStrings.didNotSeeWhat.tr,
-                        style: TextStyle(
-                            fontSize: 14.sp, color: const Color(0xFF333333)),
-                        children: [
-                          TextSpan(
-                            text:"\n${AppStrings.goto.tr} ",
-                            recognizer: TapGestureRecognizer()..onTap = () {
-                              Get.to(CategoryScreen(isBack: true,));
+                      /// <----------------- All Service List --------------------->
+                      CustomText(
+                        fontSize: 16.sp,
+                        fontWeight: FontWeight.w500,
+                        left: 20,
+                        bottom: 16.h,
+                        text: AppStrings.newServices,
+                      ),
+                      GridView.builder(
+                        shrinkWrap: true,
+                        padding: EdgeInsets.symmetric(horizontal: 20.w),
+                        physics: const NeverScrollableScrollPhysics(),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                crossAxisSpacing: 8,
+                                mainAxisSpacing: 8,
+                                mainAxisExtent: 180),
+                        itemCount: _homeController.allServiceList.length > 2
+                            ? 2
+                            : _homeController.allServiceList.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          var demoData = _homeController.allServiceList[index];
+                          return GestureDetector(
+                            onTap: () {
+                              Get.toNamed(AppRoute.userServiceDetailsScreen,
+                                  arguments: demoData);
                             },
-                            style: TextStyle(
-                                fontSize: 14.sp, color: const Color(0xFF333333)),
-                          ),
-                          TextSpan(
-                            text:AppStrings.categories.tr,
-                            recognizer: TapGestureRecognizer()..onTap = () {
-                            Get.to(CategoryScreen(isBack: true,));
-                            },
-                            style: TextStyle(
-                                fontSize: 18.sp,
-                                fontWeight: FontWeight.w500,
-                                color: const Color(0xFF0668E3)),
-                          ),
-                        ])),
-                SizedBox(height: 16,),
+                            child: Container(
+                              width: MediaQuery.of(context).size.width * .5,
+                              padding: const EdgeInsetsDirectional.symmetric(
+                                  horizontal: 8, vertical: 8),
+                              decoration: ShapeDecoration(
+                                color: Colors.white,
+                                shape: RoundedRectangleBorder(
+                                  side: const BorderSide(
+                                      width: 1, color: Color(0xFF6AA4EE)),
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  CachedNetworkImage(
+                                    imageUrl: demoData.image!,
+                                    placeholder: (context, url) =>
+                                        Shimmer.fromColors(
+                                            baseColor: Colors.grey.shade700,
+                                            highlightColor:
+                                                Colors.grey.shade400,
+                                            child: Container(
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              height: 100,
+                                              decoration: ShapeDecoration(
+                                                shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            4)),
+                                              ),
+                                            )),
+                                    errorWidget: (context, url, error) =>
+                                        Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      height: 100,
+                                      decoration: ShapeDecoration(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(4)),
+                                          color: Colors.grey.withOpacity(0.6)),
+                                    ),
+                                    imageBuilder: (context, imageProvider) =>
+                                        Container(
+                                      width: MediaQuery.of(context).size.width,
+                                      height: 100,
+                                      decoration: ShapeDecoration(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(4)),
+                                          color: Colors.grey,
+                                          image: DecorationImage(
+                                              image: imageProvider,
+                                              fit: BoxFit.cover)),
+                                    ),
+                                  ),
+                                  const SizedBox(height: 8),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Flexible(
+                                        child: CustomText(
+                                          text: demoData.providerName!,
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 14,
+                                          overflow: TextOverflow.ellipsis,
+                                          maxLines: 1,
+                                        ),
+                                      ),
+                                      Row(
+                                        children: [
+                                          const CustomImage(
+                                              imageType: ImageType.svg,
+                                              imageSrc: AppIcons.star),
+                                          CustomText(
+                                            text:
+                                                "(${demoData.averageRating.toString()})",
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                    height: 12,
+                                  ),
+                                  Row(
+                                    children: [
+                                      const CustomImage(
+                                          imageType: ImageType.svg,
+                                          imageSrc: AppIcons.location),
+                                      Flexible(
+                                        child: CustomText(
+                                          left: 4,
+                                          text: demoData.location!,
+                                          fontSize: 10,
+                                          fontWeight: FontWeight.w400,
+                                          overflow: TextOverflow.ellipsis,
+                                          maxLines: 1,
+                                        ),
+                                      )
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      ),
 
-                SizedBox(
-                  height: 200.h,
+                      //_carWash(),
+                      // SizedBox(
+                      //   height: 20.h,
+                      // ),
+                      // _homeClean(),
+                      // SizedBox(
+                      //   height: 20.h,
+                      // ),
+                      // _airConditionMaintenance(),
+                      // SizedBox(
+                      //   height: 20.h,
+                      // ),
+
+                      // RichText(
+                      //     textAlign: TextAlign.center,
+                      //     text: TextSpan(
+                      //         text: AppStrings.didNotSeeWhat.tr,
+                      //         style: TextStyle(
+                      //             fontSize: 14.sp,
+                      //             color: const Color(0xFF333333)),
+                      //         children: [
+                      //           TextSpan(
+                      //             text: "\n${AppStrings.goto.tr} ",
+                      //             recognizer: TapGestureRecognizer()
+                      //               ..onTap = () {
+                      //                 Get.to(CategoryScreen(
+                      //                   isBack: true,
+                      //                 ));
+                      //               },
+                      //             style: TextStyle(
+                      //                 fontSize: 14.sp,
+                      //                 color: const Color(0xFF333333)),
+                      //           ),
+                      //           TextSpan(
+                      //             text: AppStrings.categories.tr,
+                      //             recognizer: TapGestureRecognizer()
+                      //               ..onTap = () {
+                      //                 Get.to(CategoryScreen(
+                      //                   isBack: true,
+                      //                 ));
+                      //               },
+                      //             style: TextStyle(
+                      //                 fontSize: 18.sp,
+                      //                 fontWeight: FontWeight.w500,
+                      //                 color: const Color(0xFF0668E3)),
+                      //           ),
+                      //         ])),
+                      // SizedBox(
+                      //   height: 16,
+                      // ),
+
+                      SizedBox(
+                        height: 200.h,
+                      ),
+                    ],
+                  ),
                 ),
-              ],
-            ),
-        ),
-         ),
+              ),
       ),
     );
   }
@@ -194,18 +335,18 @@ class _HomeScreenState extends State<HomeScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               CustomText(
-                text:AppStrings.carWash.tr,
+                text: AppStrings.carWash.tr,
                 fontWeight: FontWeight.w500,
                 fontSize: 18.sp,
               ),
               GestureDetector(
                 onTap: () {
-                  Get.toNamed(AppRoute.carWashDetailsScreen,parameters:{
-                    "cat_id":"VBhuTZnI7ec0Bvy5IYIm",
-                    "cat_name":"Car Wash"
+                  Get.toNamed(AppRoute.carWashDetailsScreen, parameters: {
+                    "cat_id": "VBhuTZnI7ec0Bvy5IYIm",
+                    "cat_name": "Car Wash"
                   });
                 },
-                child:  CustomText(
+                child: CustomText(
                   color: AppColors.blue_100,
                   text: AppStrings.seeAll.tr,
                   fontSize: 14,
@@ -226,12 +367,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 crossAxisSpacing: 8,
                 mainAxisSpacing: 8,
                 mainAxisExtent: 180),
-            itemCount:_homeController.carWashList.length>2?2:_homeController.carWashList.length,
+            itemCount: _homeController.carWashList.length > 2
+                ? 2
+                : _homeController.carWashList.length,
             itemBuilder: (BuildContext context, int index) {
-              var demoData= _homeController.carWashList[index];
+              var demoData = _homeController.carWashList[index];
               return GestureDetector(
                 onTap: () {
-                  Get.toNamed(AppRoute.userServiceDetailsScreen,arguments:demoData);
+                  Get.toNamed(AppRoute.userServiceDetailsScreen,
+                      arguments: demoData);
                 },
                 child: Container(
                   width: MediaQuery.of(context).size.width * .5,
@@ -248,42 +392,40 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                  CachedNetworkImage(
-                  imageUrl:demoData.image!,
-                    placeholder: (context, url) => Shimmer.fromColors(
-                        baseColor: Colors.grey.shade700,
-                        highlightColor: Colors.grey.shade400,
-                        child: Container(
+                      CachedNetworkImage(
+                        imageUrl: demoData.image!,
+                        placeholder: (context, url) => Shimmer.fromColors(
+                            baseColor: Colors.grey.shade700,
+                            highlightColor: Colors.grey.shade400,
+                            child: Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: 100,
+                              decoration: ShapeDecoration(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(4)),
+                              ),
+                            )),
+                        errorWidget: (context, url, error) => Container(
                           width: MediaQuery.of(context).size.width,
                           height: 100,
                           decoration: ShapeDecoration(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(4)),
-                          ),
-                        )),
-                    errorWidget: (context, url, error) => Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: 100,
-                      decoration: ShapeDecoration(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(4)),
-                          color: Colors.grey.withOpacity(0.6)),
-                    ),
-                    imageBuilder: (context, imageProvider) => Container(
-                      width: MediaQuery.of(context).size.width,
-                         height: 100,
-                      decoration: ShapeDecoration(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(4)),
-
-                          color: Colors.grey,
-                          image: DecorationImage(
-                              image: imageProvider, fit: BoxFit.cover)),
-                    ),
-                  ),
-
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(4)),
+                              color: Colors.grey.withOpacity(0.6)),
+                        ),
+                        imageBuilder: (context, imageProvider) => Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: 100,
+                          decoration: ShapeDecoration(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(4)),
+                              color: Colors.grey,
+                              image: DecorationImage(
+                                  image: imageProvider, fit: BoxFit.cover)),
+                        ),
+                      ),
                       const SizedBox(height: 8),
-                       Row(
+                      Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Flexible(
@@ -297,7 +439,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           Row(
                             children: [
-                              CustomImage(
+                              const CustomImage(
                                   imageType: ImageType.svg,
                                   imageSrc: AppIcons.star),
                               CustomText(
@@ -310,7 +452,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       const SizedBox(
                         height: 12,
                       ),
-                       Row(
+                      Row(
                         children: [
                           const CustomImage(
                               imageType: ImageType.svg,
@@ -318,7 +460,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           Flexible(
                             child: CustomText(
                               left: 4,
-                              text:demoData.location!,
+                              text: demoData.location!,
                               fontSize: 10,
                               fontWeight: FontWeight.w400,
                               overflow: TextOverflow.ellipsis,
@@ -353,12 +495,12 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               GestureDetector(
                 onTap: () {
-                  Get.toNamed(AppRoute.carWashDetailsScreen,parameters:{
-                  "cat_id":"exKagBPgKKUVQ8QyYrO7",
-                  "cat_name":"Home Clean"
+                  Get.toNamed(AppRoute.carWashDetailsScreen, parameters: {
+                    "cat_id": "exKagBPgKKUVQ8QyYrO7",
+                    "cat_name": "Home Clean"
                   });
                 },
-                child:  CustomText(
+                child: CustomText(
                   color: AppColors.blue_100,
                   text: AppStrings.seeAll.tr,
                   fontSize: 14,
@@ -379,12 +521,15 @@ class _HomeScreenState extends State<HomeScreen> {
                 crossAxisSpacing: 8,
                 mainAxisSpacing: 8,
                 mainAxisExtent: 180),
-            itemCount: _homeController.homeCleanList.length>2?2:_homeController.homeCleanList.length,
+            itemCount: _homeController.homeCleanList.length > 2
+                ? 2
+                : _homeController.homeCleanList.length,
             itemBuilder: (BuildContext context, int index) {
-              var demoData= _homeController.homeCleanList[index];
+              var demoData = _homeController.homeCleanList[index];
               return GestureDetector(
                 onTap: () {
-                  Get.toNamed(AppRoute.userServiceDetailsScreen,arguments:demoData);
+                  Get.toNamed(AppRoute.userServiceDetailsScreen,
+                      arguments: demoData);
                 },
                 child: Container(
                   width: MediaQuery.of(context).size.width * .5,
@@ -394,7 +539,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     color: Colors.white,
                     shape: RoundedRectangleBorder(
                       side:
-                      const BorderSide(width: 1, color: Color(0xFF6AA4EE)),
+                          const BorderSide(width: 1, color: Color(0xFF6AA4EE)),
                       borderRadius: BorderRadius.circular(8),
                     ),
                   ),
@@ -402,7 +547,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       CachedNetworkImage(
-                        imageUrl:demoData.image!,
+                        imageUrl: demoData.image!,
                         placeholder: (context, url) => Shimmer.fromColors(
                             baseColor: Colors.grey.shade700,
                             highlightColor: Colors.grey.shade400,
@@ -428,13 +573,11 @@ class _HomeScreenState extends State<HomeScreen> {
                           decoration: ShapeDecoration(
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(4)),
-
                               color: Colors.grey,
                               image: DecorationImage(
                                   image: imageProvider, fit: BoxFit.cover)),
                         ),
                       ),
-
                       const SizedBox(height: 8),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -471,7 +614,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           Flexible(
                             child: CustomText(
                               left: 4,
-                              text:demoData.location!,
+                              text: demoData.location!,
                               fontSize: 10,
                               fontWeight: FontWeight.w400,
                               overflow: TextOverflow.ellipsis,
@@ -506,9 +649,9 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               GestureDetector(
                 onTap: () {
-                  Get.toNamed(AppRoute.carWashDetailsScreen,parameters:{
-                  "cat_id":"b0yWTYORILumrLmVpxrt",
-                  "cat_name":"Air Condition Maintenance"
+                  Get.toNamed(AppRoute.carWashDetailsScreen, parameters: {
+                    "cat_id": "b0yWTYORILumrLmVpxrt",
+                    "cat_name": "Air Condition Maintenance"
                   });
                 },
                 child: CustomText(
@@ -532,13 +675,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 crossAxisSpacing: 8,
                 mainAxisSpacing: 8,
                 mainAxisExtent: 180),
-            itemCount: _homeController.airConditionList.length>2?2:_homeController.airConditionList.length,
+            itemCount: _homeController.airConditionList.length > 2
+                ? 2
+                : _homeController.airConditionList.length,
             itemBuilder: (BuildContext context, int index) {
-              var demoData= _homeController.airConditionList[index];
+              var demoData = _homeController.airConditionList[index];
 
               return GestureDetector(
                 onTap: () {
-                  Get.toNamed(AppRoute.userServiceDetailsScreen,arguments:demoData);
+                  Get.toNamed(AppRoute.userServiceDetailsScreen,
+                      arguments: demoData);
                 },
                 child: Container(
                   width: MediaQuery.of(context).size.width * .5,
@@ -548,7 +694,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     color: Colors.white,
                     shape: RoundedRectangleBorder(
                       side:
-                      const BorderSide(width: 1, color: Color(0xFF6AA4EE)),
+                          const BorderSide(width: 1, color: Color(0xFF6AA4EE)),
                       borderRadius: BorderRadius.circular(8),
                     ),
                   ),
@@ -556,7 +702,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       CachedNetworkImage(
-                        imageUrl:demoData.image!,
+                        imageUrl: demoData.image!,
                         placeholder: (context, url) => Shimmer.fromColors(
                             baseColor: Colors.grey.shade700,
                             highlightColor: Colors.grey.shade400,
@@ -582,13 +728,11 @@ class _HomeScreenState extends State<HomeScreen> {
                           decoration: ShapeDecoration(
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(4)),
-
                               color: Colors.grey,
                               image: DecorationImage(
                                   image: imageProvider, fit: BoxFit.cover)),
                         ),
                       ),
-
                       const SizedBox(height: 8),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -625,7 +769,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           Flexible(
                             child: CustomText(
                               left: 4,
-                              text:demoData.location!,
+                              text: demoData.location!,
                               fontSize: 10,
                               fontWeight: FontWeight.w400,
                               overflow: TextOverflow.ellipsis,
@@ -645,7 +789,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-   _categoryWidget() {
+  _categoryWidget() {
     return SizedBox(
       height: 120.h,
       child: ListView.separated(
@@ -653,16 +797,16 @@ class _HomeScreenState extends State<HomeScreen> {
           physics: const AlwaysScrollableScrollPhysics(),
           padding: EdgeInsets.only(left: 20.w, right: 20.w),
           itemBuilder: (context, index) {
-            var data=_homeController.categoryList[index];
+            var data = _homeController.categoryList[index];
             return SizedBox(
               width: 66.w,
               child: GestureDetector(
-                onTap: (){
-              Get.toNamed(AppRoute.carWashDetailsScreen,parameters:{
-              "cat_id":data.id!,
-              "cat_name":data.name!,
-                "cat_arabic":data.nameArabic!,
-              });
+                onTap: () {
+                  Get.toNamed(AppRoute.carWashDetailsScreen, parameters: {
+                    "cat_id": data.id!,
+                    "cat_name": data.name!,
+                    "cat_arabic": data.nameArabic!,
+                  });
                 },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -676,13 +820,18 @@ class _HomeScreenState extends State<HomeScreen> {
                           border: Border.all(
                               color: const Color(0xFF6AA4EE), width: 1),
                           color: Colors.white),
-                      child: Image.network(data.image!,fit: BoxFit.fill,),
+                      child: Image.network(
+                        data.image!,
+                        fit: BoxFit.fill,
+                      ),
                     ),
                     SizedBox(
                       height: 10.h,
                     ),
                     Text(
-                    _localizationController.selectedIndex==0?  data.name!:data.nameArabic!,
+                      _localizationController.selectedIndex == 0
+                          ? data.name!
+                          : data.nameArabic!,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 10.sp,
@@ -700,7 +849,7 @@ class _HomeScreenState extends State<HomeScreen> {
               width: 14.w,
             );
           },
-          itemCount:_homeController.categoryList.length),
+          itemCount: _homeController.categoryList.length),
     );
   }
 }
