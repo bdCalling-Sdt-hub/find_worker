@@ -410,6 +410,7 @@ class AuthenticationController extends GetxController {
     print("===================$phoneCode${phoneController.text}");
     await FirebaseAuth.instance
         .verifyPhoneNumber(
+          
       phoneNumber: "$phoneCode${phoneController.text}",
       verificationCompleted: (PhoneAuthCredential credential) {},
       verificationFailed: (FirebaseAuthException e) {},
@@ -419,6 +420,7 @@ class AuthenticationController extends GetxController {
         update();
       },
       codeAutoRetrievalTimeout: (String verificationId) {},
+      
     )
         .then((value) {
       Get.toNamed(AppRoute.userOtpScreen, arguments: [userType, isSignIn]);
