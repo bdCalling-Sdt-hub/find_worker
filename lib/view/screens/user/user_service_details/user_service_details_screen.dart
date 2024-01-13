@@ -42,11 +42,11 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
     super.initState();
   }
 
-  interstitialAdd() {
-    Future.delayed(Duration(seconds: 3), () {
-      AdDsiplay().loadInterstitial();
-    });
-  }
+  // interstitialAdd() {
+  //   Future.delayed(const Duration(seconds: 3), () {
+  //     AdDsiplay().loadInterstitial();
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
