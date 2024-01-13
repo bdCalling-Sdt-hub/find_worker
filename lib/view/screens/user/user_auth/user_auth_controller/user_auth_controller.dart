@@ -410,7 +410,7 @@ class AuthenticationController extends GetxController {
     print("===================$phoneCode${phoneController.text}");
     await FirebaseAuth.instance
         .verifyPhoneNumber(
-          
+
       phoneNumber: "$phoneCode${phoneController.text}",
       verificationCompleted: (PhoneAuthCredential credential) {},
       verificationFailed: (FirebaseAuthException e) {},
@@ -644,7 +644,7 @@ class AuthenticationController extends GetxController {
     isAccountDeleteLoading(true);
     if (auth.currentUser!.email == accountDeleteCtrl.text) {
       await auth.currentUser!.delete().then((value) async {
-        localizationController.setLanguage(Locale('en', "US"));
+        localizationController.setLanguage(const Locale('en', "US"));
         accountDeleteCtrl.clear();
         await PrefsHelper.setString(AppConstants.logged, "");
         await GoogleSignIn().signOut();
