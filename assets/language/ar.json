@@ -174,7 +174,9 @@
   "Oops, user not found!": "عفوًا، لم يتم العثور على المستخدم!",
   "Hired Successful": "تم التوظيف بنجاح",
   "Select Options": "اشر على الخيارات",
-  "Direct call": "دعوة مباشرة",
-  "Waiting for Approval": "بانتظار الموافقة",
-  "Enter your password": "ادخل رقمك السري"
+  "Direct call": "الاتصال المباشر",
+  "Waiting for Approval": "انتظار الموافقة",
+  "Enter your password": "ادخل رقمك السري",
+
+  "New Services":"خدمات جديدة"
 }

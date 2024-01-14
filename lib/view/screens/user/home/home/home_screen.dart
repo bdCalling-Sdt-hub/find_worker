@@ -130,7 +130,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         fontWeight: FontWeight.w500,
                         left: 20,
                         bottom: 16.h,
-                        text: AppStrings.newServices,
+                        text: AppStrings.newServices.tr,
                       ),
                       GridView.builder(
                         shrinkWrap: true,
