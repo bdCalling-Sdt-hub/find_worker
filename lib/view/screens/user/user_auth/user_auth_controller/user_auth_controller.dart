@@ -410,7 +410,6 @@ class AuthenticationController extends GetxController {
     print("===================$phoneCode${phoneController.text}");
     await FirebaseAuth.instance
         .verifyPhoneNumber(
-
       phoneNumber: "$phoneCode${phoneController.text}",
       verificationCompleted: (PhoneAuthCredential credential) {},
       verificationFailed: (FirebaseAuthException e) {},
@@ -420,7 +419,6 @@ class AuthenticationController extends GetxController {
         update();
       },
       codeAutoRetrievalTimeout: (String verificationId) {},
-      
     )
         .then((value) {
       Get.toNamed(AppRoute.userOtpScreen, arguments: [userType, isSignIn]);
@@ -431,6 +429,9 @@ class AuthenticationController extends GetxController {
 
   void loginWithPhoneGenerateOTP(
       {required String userType, required bool isSignIn}) async {
+    isLoading = true;
+    update();
+
     var userData = await firebaseFireStore
         .collection(AppConstants.users)
         .where("phone", isEqualTo: phoneController.text)
@@ -453,12 +454,16 @@ class AuthenticationController extends GetxController {
             msg: "You have already created an account Sign up");
       }
     }
+    isLoading = false;
+    update();
   }
 
   void varifyPhoneOTP(
       {required String smsCode,
       required String userType,
       required bool isSignIn}) async {
+    isLoading = true;
+    update();
     PhoneAuthCredential credential = PhoneAuthProvider.credential(
         verificationId: getVerificationId, smsCode: smsCode);
 
@@ -482,6 +487,9 @@ class AuthenticationController extends GetxController {
         postDetailsToFireStore(userType);
       }
     }
+
+    isLoading = false;
+    update();
   }
 
   // Future<void> signInWithGoogle(String userType) async {

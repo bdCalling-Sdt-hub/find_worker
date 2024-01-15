@@ -22,7 +22,7 @@ class _UserOtpScreenState extends State<UserOtpScreen> {
   // late EmailOTP emailOTP;
 
   final TextEditingController otpController = TextEditingController();
-  bool isLoading = false;
+
   String userType = "";
   bool isSignIn = false;
 
@@ -60,8 +60,8 @@ class _UserOtpScreenState extends State<UserOtpScreen> {
               ],
             ),
           ),
-          child: LayoutBuilder(
-            builder: (BuildContext context, BoxConstraints constraints) {
+          child: GetBuilder<AuthenticationController>(
+            builder: (controller) {
               return SingleChildScrollView(
                 padding: const EdgeInsetsDirectional.symmetric(
                     horizontal: 20, vertical: 24),
@@ -180,38 +180,35 @@ class _UserOtpScreenState extends State<UserOtpScreen> {
                         ),
                       ],
                     ),
-                    isLoading
+                    controller.isLoading
                         ? const CustomElevatedLoadingButton()
-                        : GetBuilder<AuthenticationController>(
-                            builder: (controller) {
-                            return GestureDetector(
-                              onTap: () {
-                                // verifyEmailOTP();
+                        : GestureDetector(
+                            onTap: () {
+                              // verifyEmailOTP();
 
-                                print(
-                                    "OTP++++++++++++++++++++${otpController.text}");
+                              print(
+                                  "OTP++++++++++++++++++++${otpController.text}");
 
-                                controller.varifyPhoneOTP(
-                                    smsCode: otpController.text,
-                                    isSignIn: isSignIn,
-                                    userType: userType);
-                              },
-                              child: Container(
-                                  margin: const EdgeInsets.only(top: 252),
-                                  height: 56,
-                                  width: MediaQuery.of(context).size.width,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(8),
-                                      color: const Color(0xff0668E3)),
-                                  child: const Center(
-                                      child: CustomText(
-                                    text: AppStrings.verify,
-                                    color: Colors.white,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.w600,
-                                  ))),
-                            );
-                          })
+                              controller.varifyPhoneOTP(
+                                  smsCode: otpController.text,
+                                  isSignIn: isSignIn,
+                                  userType: userType);
+                            },
+                            child: Container(
+                                margin: const EdgeInsets.only(top: 252),
+                                height: 56,
+                                width: MediaQuery.of(context).size.width,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    color: const Color(0xff0668E3)),
+                                child: const Center(
+                                    child: CustomText(
+                                  text: AppStrings.verify,
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w600,
+                                ))),
+                          )
                   ],
                 ),
               );

@@ -189,30 +189,31 @@ class _UserSignInState extends State<UserSignIn> {
                       //     ),
                       //   ),
                       // ),
-                      controller.isLoading
-                          ? const CustomElevatedLoadingButton()
-                          : CustomButton(
-                              buttonWidth: MediaQuery.of(context).size.width,
-                              onPressed: () {
-                                if (loginFormKey.currentState!.validate()) {
-                                  // controller.loginUser(
-                                  //   controller.usernameController.text
-                                  //       .toString(),
-                                  //   controller.passwordController.text
-                                  //       .toString(),
-                                  //   userType,
-                                  // );
+                      // controller.isLoading
+                      //     ? const CustomElevatedLoadingButton()
+                      //     :
+                      CustomButton(
+                        buttonWidth: MediaQuery.of(context).size.width,
+                        onPressed: () {
+                          if (loginFormKey.currentState!.validate()) {
+                            // controller.loginUser(
+                            //   controller.usernameController.text
+                            //       .toString(),
+                            //   controller.passwordController.text
+                            //       .toString(),
+                            //   userType,
+                            // );
 
-                                  controller.loginWithPhoneGenerateOTP(
-                                      userType: userType, isSignIn: true);
-                                }
-                              },
-                              titleText: AppStrings.signIn,
-                              titleColor: AppColors.white,
-                              buttonBgColor: AppColors.blue_100,
-                              titleSize: 18,
-                              titleWeight: FontWeight.w600,
-                            ),
+                            controller.loginWithPhoneGenerateOTP(
+                                userType: userType, isSignIn: true);
+                          }
+                        },
+                        titleText: AppStrings.signIn,
+                        titleColor: AppColors.white,
+                        buttonBgColor: AppColors.blue_100,
+                        titleSize: 18,
+                        titleWeight: FontWeight.w600,
+                      ),
                       // const Align(
                       //   alignment: Alignment.center,
                       //   child: CustomText(
