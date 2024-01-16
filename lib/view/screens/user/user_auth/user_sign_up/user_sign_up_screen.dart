@@ -556,7 +556,7 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                                 const SizedBox(
                                   height: 24,
                                 ),
-                                controller.sendOtpLoading.value
+                                controller.isLoading
                                     ? const CustomElevatedLoadingButton()
                                     : CustomButton(
                                         buttonWidth:

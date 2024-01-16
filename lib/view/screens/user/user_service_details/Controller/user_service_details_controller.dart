@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:wrcontacts/core/share_pre.dart';
+import 'package:wrcontacts/helper/AdMob/ad_display.dart';
 import 'package:wrcontacts/helper/ApiService/api_service.dart';
 import 'package:wrcontacts/model/hire_model.dart';
 import 'package:wrcontacts/model/service_by_user_model.dart';
@@ -27,7 +28,8 @@ import '../../../../../model/review_model.dart';
 import '../../../../../utils/app_colors.dart';
 import '../inner_widgets/user_service_details_hire_now_bottom_modal.dart';
 
-class UserServiceDetailsController extends GetxController {
+class UserServiceDetailsController extends GetxController
+    with GetxServiceMixin {
   var rating = 1.0.obs;
   TextEditingController feedbackController = TextEditingController();
   FirebaseAuth _auth = FirebaseAuth.instance;
@@ -89,11 +91,6 @@ class UserServiceDetailsController extends GetxController {
       }
     }
   }
-
-
-
-
-
 
   getTopReviews(String userId) async {
     loading(true);
@@ -157,6 +154,7 @@ class UserServiceDetailsController extends GetxController {
       hireLoading(false);
     }
   }
+
   Future<void> launchPhoneDialer(String contactNumber) async {
     debugPrint("LunchDialer nubmer : $contactNumber");
     final Uri phoneUri = Uri(scheme: "tel", path: contactNumber);
@@ -168,8 +166,6 @@ class UserServiceDetailsController extends GetxController {
       throw ("Cannot dial");
     }
   }
-
-
 
   Future<void> hireDataPost(UserByServiceModel serviceModel, String number,
       UserModel hireUserData) async {
@@ -204,14 +200,20 @@ class UserServiceDetailsController extends GetxController {
           .collection(AppConstants.jobHistory)
           .doc(id)
           .set(jobBody);
-      await ApiService.sendNotification(content:"Congratulations! You're Hired!",userRole:AppConstants.serviceProviderType, historyId:id, fcmToken:hireUserData.fcmToken!, type:AppConstants.pending, receiverId:hireUserData.uid!);
+      await ApiService.sendNotification(
+          content: "Congratulations! You're Hired!",
+          userRole: AppConstants.serviceProviderType,
+          historyId: id,
+          fcmToken: hireUserData.fcmToken!,
+          type: AppConstants.pending,
+          receiverId: hireUserData.uid!);
 
       Fluttertoast.showToast(msg: "Hired Successful".tr);
       debugPrint("Hire Completed");
     } on Exception catch (e) {
       debugPrint("Opps!, Something error  $e ");
       // TODO
-    }finally{
+    } finally {
       hireLoading(false);
     }
   }
@@ -294,7 +296,7 @@ class UserServiceDetailsController extends GetxController {
           if (data['status'] == AppConstants.approved) {
             status = AppConstants.approved;
             print("========>Provider Status Approved");
-          } else if (data['status'] ==  AppConstants.canceled) {
+          } else if (data['status'] == AppConstants.canceled) {
             status = AppConstants.canceled;
             print("========>Provider Status Cancel");
           }
@@ -443,5 +445,22 @@ class UserServiceDetailsController extends GetxController {
             ),
           );
         });
+  }
+
+  // @override
+  // void onReady() {
+  //   Future.delayed(const Duration(seconds: 3), () {
+  //     AdDsiplay().loadInterstitial();
+  //   });
+
+  //   super.onReady();
+  // }
+
+  @override
+  void onInit() {
+    Future.delayed(const Duration(seconds: 1), () {
+      AdDsiplay().loadInterstitial();
+    });
+    super.onInit();
   }
 }

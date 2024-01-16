@@ -27,6 +27,6 @@ class CustomButton extends StatelessWidget {
           height: 20,
           width: 20,
           child: CircularProgressIndicator(color: Colors.white,),
-        ):Text(text));
+        ):Text(text,style: TextStyle(color: Colors.white),));
   }
 }

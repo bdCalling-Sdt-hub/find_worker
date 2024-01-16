@@ -429,6 +429,9 @@ class AuthenticationController extends GetxController {
 
   void loginWithPhoneGenerateOTP(
       {required String userType, required bool isSignIn}) async {
+    isLoading = true;
+    update();
+
     var userData = await firebaseFireStore
         .collection(AppConstants.users)
         .where("phone", isEqualTo: phoneController.text)
@@ -451,12 +454,16 @@ class AuthenticationController extends GetxController {
             msg: "You have already created an account Sign up");
       }
     }
+    isLoading = false;
+    update();
   }
 
   void varifyPhoneOTP(
       {required String smsCode,
       required String userType,
       required bool isSignIn}) async {
+    isLoading = true;
+    update();
     PhoneAuthCredential credential = PhoneAuthProvider.credential(
         verificationId: getVerificationId, smsCode: smsCode);
 
@@ -480,6 +487,9 @@ class AuthenticationController extends GetxController {
         postDetailsToFireStore(userType);
       }
     }
+
+    isLoading = false;
+    update();
   }
 
   // Future<void> signInWithGoogle(String userType) async {
@@ -642,7 +652,7 @@ class AuthenticationController extends GetxController {
     isAccountDeleteLoading(true);
     if (auth.currentUser!.email == accountDeleteCtrl.text) {
       await auth.currentUser!.delete().then((value) async {
-        localizationController.setLanguage(Locale('en', "US"));
+        localizationController.setLanguage(const Locale('en', "US"));
         accountDeleteCtrl.clear();
         await PrefsHelper.setString(AppConstants.logged, "");
         await GoogleSignIn().signOut();
