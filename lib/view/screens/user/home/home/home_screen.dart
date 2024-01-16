@@ -142,9 +142,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 crossAxisSpacing: 8,
                                 mainAxisSpacing: 8,
                                 mainAxisExtent: 180),
-                        itemCount: _homeController.allServiceList.length > 2
-                            ? 2
-                            : _homeController.allServiceList.length,
+                        itemCount: _homeController.allServiceList.length,
                         itemBuilder: (BuildContext context, int index) {
                           var demoData = _homeController.allServiceList[index];
                           return GestureDetector(

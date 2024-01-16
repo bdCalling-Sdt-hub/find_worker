@@ -389,6 +389,7 @@ class _MoreSignUpScreenState extends State<MoreSignUpScreen> {
                                             color: Colors.white,
                                           ),
                                           child: CountryCodePicker(
+                                            initialSelection: "+088",
                                             onChanged: (value) {
                                               authController.phoneCode =
                                                   value.dialCode!;

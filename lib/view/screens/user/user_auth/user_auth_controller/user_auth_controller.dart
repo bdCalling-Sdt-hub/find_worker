@@ -42,7 +42,7 @@ class AuthenticationController extends GetxController {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController dobController = TextEditingController();
 
-  String phoneCode = "+93";
+  String phoneCode = "+971";
 
   // Date TextFormField
   final TextEditingController dayController = TextEditingController();
