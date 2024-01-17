@@ -262,6 +262,7 @@ class UserHomeController extends GetxController {
       print("service list ========> ${sortedServices.length}");
       allServiceList.value = sortedServices;
       allServiceList.refresh();
+      update();
       return sortedServices;
     } catch (e) {
       print('Error: $e');

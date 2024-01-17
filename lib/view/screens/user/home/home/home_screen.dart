@@ -141,7 +141,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 crossAxisCount: 2,
                                 crossAxisSpacing: 8,
                                 mainAxisSpacing: 8,
-                                mainAxisExtent: 180),
+                                mainAxisExtent: 200),
                         itemCount: _homeController.allServiceList.length,
                         itemBuilder: (BuildContext context, int index) {
                           var demoData = _homeController.allServiceList[index];
@@ -222,6 +222,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                           maxLines: 1,
                                         ),
                                       ),
+                                      SizedBox(width:10.w,),
                                       Row(
                                         children: [
                                           const CustomImage(
@@ -236,7 +237,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ],
                                   ),
                                   const SizedBox(
-                                    height: 12,
+                                    height:4,
+                                  ),
+                                  Text(demoData.serviceName??"",maxLines: 1,overflow: TextOverflow.ellipsis,style: TextStyle(fontSize:12.sp,fontWeight: FontWeight.w500,color: Colors.grey
+                                  ),),
+                                  const SizedBox(
+                                    height:4,
                                   ),
                                   Row(
                                     children: [

@@ -63,7 +63,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 return Container(
                   margin: EdgeInsets.only(bottom:16.h),
                   alignment: Alignment.center,
-                  height: 130.h,
+                  height: 140.h,
                   child: GestureDetector(
                     onTap: (){
                       Get.toNamed(AppRoute.carWashDetailsScreen,parameters:{
