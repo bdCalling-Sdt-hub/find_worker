@@ -180,6 +180,7 @@ class _UserOtpScreenState extends State<UserOtpScreen> {
                         ),
                       ],
                     ),
+                    const SizedBox(height: 50,),
                     controller.isLoading
                         ? const CustomElevatedLoadingButton()
                         : GestureDetector(
@@ -195,7 +196,7 @@ class _UserOtpScreenState extends State<UserOtpScreen> {
                                   userType: userType);
                             },
                             child: Container(
-                                margin: const EdgeInsets.only(top: 252),
+
                                 height: 56,
                                 width: MediaQuery.of(context).size.width,
                                 decoration: BoxDecoration(

@@ -430,77 +430,105 @@ class _UserEditPersonalInformationState
                           ),
 
                            CustomText(
-                            text: AppStrings.phoneNumber.tr,
+                            text: AppStrings.email.tr,
                             color: AppColors.black_100,
                             fontWeight: FontWeight.w500,
                             top: 16,
                             bottom: 8,
                           ),
+                          CustomTextField(
+                            textEditingController:
+                            _profileController.emailCtrl,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "Please enter your email".tr;
+                              } else if (!RegExp(
+                                  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                  .hasMatch(
+                                  _profileController.emailCtrl.text)) {
+                                return "Please enter your valid email".tr;
+                              } else {
+                                return null;
+                              }
+                            },
+                            textAlign: TextAlign.start,
+                            hintText: AppStrings.enterYourEmail,
+                            hintStyle: GoogleFonts.poppins(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
+                                color: AppColors.black_40),
+                            inputTextStyle: GoogleFonts.poppins(
+                                fontWeight: FontWeight.w400,
+                                fontSize: 14,
+                                color: AppColors.black_100),
+                            fieldBorderColor: AppColors.blue_10,
+                            fieldBorderRadius: 8,
+                          ),
 
                           /// <------------------  Phone Number ------------------->
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Flexible(
-                                flex: 1,
-                                child: Container(
-                                  alignment: Alignment.center,
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 4),
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: const Color(0xFFE2E2E2)),
-                                    borderRadius: BorderRadius.circular(8),
-                                    color: Colors.white,
-                                  ),
-                                  child: CountryCodePicker(
-                                    initialSelection:
-                                        _profileController.phoneCode.value,
-                                    onChanged: (value) {
-                                    _profileController.phoneCode.value=value.dialCode!;
-                                    },
-                                    showCountryOnly: false,
-                                    showOnlyCountryWhenClosed: false,
-                                    alignLeft: false,
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(width: 8),
-                              Expanded(
-                                flex: 2,
-                                child: CustomTextField(
-                                  textEditingController:
-                                      _profileController.phoneCtrl,
-                                  keyboardType: TextInputType.number,
-                                  maxLength: 10,
-                                  textInputAction: TextInputAction.next,
-                                  validator: (value) {
-                                    if (value!.length > 10) {
-                                      return "Phone number not less than 10 digits"
-                                          .tr;
-                                    } else if (value.length < 6) {
-                                      return "Phone number not more then 14 digits"
-                                          .tr;
-                                    } else {
-                                      return null;
-                                    }
-                                  },
-                                  textAlign: TextAlign.start,
-                                  hintText: "Phone Number".tr,
-                                  hintStyle: GoogleFonts.poppins(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.w500,
-                                      color: AppColors.black_40),
-                                  inputTextStyle: GoogleFonts.poppins(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 14,
-                                      color: AppColors.black_100),
-                                  fieldBorderColor: AppColors.blue_10,
-                                  fieldBorderRadius: 8,
-                                ),
-                              ),
-                            ],
-                          ),
+                          // Row(
+                          //   crossAxisAlignment: CrossAxisAlignment.start,
+                          //   children: [
+                          //     Flexible(
+                          //       flex: 1,
+                          //       child: Container(
+                          //         alignment: Alignment.center,
+                          //         padding: const EdgeInsets.symmetric(
+                          //             vertical: 4),
+                          //         decoration: BoxDecoration(
+                          //           border: Border.all(
+                          //               color: const Color(0xFFE2E2E2)),
+                          //           borderRadius: BorderRadius.circular(8),
+                          //           color: Colors.white,
+                          //         ),
+                          //         child: CountryCodePicker(
+                          //           initialSelection:
+                          //               _profileController.phoneCode.value,
+                          //           onChanged: (value) {
+                          //           _profileController.phoneCode.value=value.dialCode!;
+                          //           },
+                          //           showCountryOnly: false,
+                          //           showOnlyCountryWhenClosed: false,
+                          //           alignLeft: false,
+                          //         ),
+                          //       ),
+                          //     ),
+                          //     const SizedBox(width: 8),
+                          //     Expanded(
+                          //       flex: 2,
+                          //       child: CustomTextField(
+                          //         textEditingController:
+                          //             _profileController.phoneCtrl,
+                          //         keyboardType: TextInputType.number,
+                          //         maxLength: 10,
+                          //         textInputAction: TextInputAction.next,
+                          //         validator: (value) {
+                          //           if (value!.length > 10) {
+                          //             return "Phone number not less than 10 digits"
+                          //                 .tr;
+                          //           } else if (value.length < 6) {
+                          //             return "Phone number not more then 14 digits"
+                          //                 .tr;
+                          //           } else {
+                          //             return null;
+                          //           }
+                          //         },
+                          //         textAlign: TextAlign.start,
+                          //         hintText: "Phone Number".tr,
+                          //         hintStyle: GoogleFonts.poppins(
+                          //             fontSize: 14,
+                          //             fontWeight: FontWeight.w500,
+                          //             color: AppColors.black_40),
+                          //         inputTextStyle: GoogleFonts.poppins(
+                          //             fontWeight: FontWeight.w400,
+                          //             fontSize: 14,
+                          //             color: AppColors.black_100),
+                          //         fieldBorderColor: AppColors.blue_10,
+                          //         fieldBorderRadius: 8,
+                          //       ),
+                          //     ),
+                          //   ],
+                          // ),
                            CustomText(
                             text: AppStrings.address.tr,
                             color: AppColors.black_100,

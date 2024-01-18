@@ -27,9 +27,9 @@ class _SpProfileLogOutAlertState extends State<SpProfileLogOutAlert> {
       elevation: 0,
       title: Column(
         children: [
-          const CustomText(
+           CustomText(
             maxLines: 2,
-            text: 'Do you want to logout your profile?',
+            text: 'Do you want to logout your profile?'.tr,
             fontWeight: FontWeight.w600,
             fontSize: 18,
             color: AppColors.black_100,

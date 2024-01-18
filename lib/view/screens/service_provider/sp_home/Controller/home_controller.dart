@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
+import '../../../../../core/share_pre.dart';
 import '../../../../../model/hire_model.dart';
 import '../../../../../model/service_model.dart';
 import '../../../../../model/user_model.dart';
@@ -282,14 +283,20 @@ Stream<List<HireModel>> getHistoryList() async* {
 //   }
 // }
 //
+var userId="";
 
-
-Stream<DocumentSnapshot> getItems() {
+Stream<DocumentSnapshot> getItems(){
   return FirebaseFirestore.instance.collection(AppConstants.users).doc(_auth.currentUser!.uid).snapshots().map(
         (DocumentSnapshot snapshot) {
       return snapshot;
     },
   );
+}
+
+
+
+getUserId()async{
+ userId= await PrefsHelper.getString(AppConstants.userId, );
 }
 
 

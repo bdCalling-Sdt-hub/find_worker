@@ -203,6 +203,7 @@ class AuthenticationController extends GetxController {
     userModel.fcmToken = token;
     userModel.phoneCode = phoneCode;
     userModel.gender = genderList[selectedGender];
+    await PrefsHelper.setString(AppConstants.userId, user.uid);
     try {
       await firebaseFireStore
           .collection(AppConstants.users)
@@ -245,70 +246,70 @@ class AuthenticationController extends GetxController {
 
   var loading = false.obs;
 
-  moreSignUpToFireStore(
-      {required String uid,
-      required String image,
-      required String type}) async {
-    loading(true);
-
-    await fcmToken();
-
-    UserModel userModel = UserModel();
-    userModel.email = emailController.text;
-    userModel.uid = uid;
-    userModel.userName = nameController.text.toString();
-    userModel.dob = selectedDate;
-    // userModel.dob = DateTime(int.parse(yearController.text),
-    //     int.parse(monthController.text), int.parse(dayController.text));
-    userModel.phone = phoneController.text.toString();
-    userModel.address = addressController.text.toString();
-    userModel.authType = AppConstants.socialMediaUser;
-    userModel.role = type;
-    //userModel.password = passController.text;
-    userModel.timestamp = DateTime.now();
-    userModel.status = "Online";
-    userModel.imageSrc = image;
-    userModel.averageRating = 0.0;
-    userModel.fcmToken = token;
-    userModel.phoneCode = phoneCode;
-    userModel.gender = genderList[selectedGender];
-    try {
-      await firebaseFireStore
-          .collection(AppConstants.users)
-          .doc(uid)
-          .set(userModel.toMap())
-          .then((value) {
-        Fluttertoast.showToast(
-            msg: "Account created successfully",
-            backgroundColor: AppColors.blue_100,
-            textColor: AppColors.black_100,
-            fontSize: 14,
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM);
-        PrefsHelper.setString(AppConstants.logged, type);
-        nameController.clear();
-        dayController.clear();
-        monthController.clear();
-        yearController.clear();
-        selectedGender = 0;
-        emailController.clear();
-        phoneController.clear();
-        addressController.clear();
-
-        if (type == AppConstants.userType) {
-          Get.offAll(UserBottomNavBarScreen(currentIndex: 0),
-              binding: UserBottomNavBinding());
-        } else {
-          Get.offAll(SpBottomNavBarScreen(currentIndex: 0),
-              binding: ProviderBottomNavBinding());
-        }
-      });
-    } on Exception catch (e) {
-      debugPrint("=====> Sign up catch error fire store $e");
-    } finally {
-      loading(false);
-    }
-  }
+  // moreSignUpToFireStore(
+  //     {required String uid,
+  //     required String image,
+  //     required String type}) async {
+  //   loading(true);
+  //
+  //   await fcmToken();
+  //
+  //   UserModel userModel = UserModel();
+  //   userModel.email = emailController.text;
+  //   userModel.uid = uid;
+  //   userModel.userName = nameController.text.toString();
+  //   userModel.dob = selectedDate;
+  //   // userModel.dob = DateTime(int.parse(yearController.text),
+  //   //     int.parse(monthController.text), int.parse(dayController.text));
+  //   userModel.phone = phoneController.text.toString();
+  //   userModel.address = addressController.text.toString();
+  //   userModel.authType = AppConstants.socialMediaUser;
+  //   userModel.role = type;
+  //   //userModel.password = passController.text;
+  //   userModel.timestamp = DateTime.now();
+  //   userModel.status = "Online";
+  //   userModel.imageSrc = image;
+  //   userModel.averageRating = 0.0;
+  //   userModel.fcmToken = token;
+  //   userModel.phoneCode = phoneCode;
+  //   userModel.gender = genderList[selectedGender];
+  //   try {
+  //     await firebaseFireStore
+  //         .collection(AppConstants.users)
+  //         .doc(uid)
+  //         .set(userModel.toMap())
+  //         .then((value) {
+  //       Fluttertoast.showToast(
+  //           msg: "Account created successfully",
+  //           backgroundColor: AppColors.blue_100,
+  //           textColor: AppColors.black_100,
+  //           fontSize: 14,
+  //           toastLength: Toast.LENGTH_SHORT,
+  //           gravity: ToastGravity.BOTTOM);
+  //       PrefsHelper.setString(AppConstants.logged, type);
+  //       nameController.clear();
+  //       dayController.clear();
+  //       monthController.clear();
+  //       yearController.clear();
+  //       selectedGender = 0;
+  //       emailController.clear();
+  //       phoneController.clear();
+  //       addressController.clear();
+  //
+  //       if (type == AppConstants.userType) {
+  //         Get.offAll(UserBottomNavBarScreen(currentIndex: 0),
+  //             binding: UserBottomNavBinding());
+  //       } else {
+  //         Get.offAll(SpBottomNavBarScreen(currentIndex: 0),
+  //             binding: ProviderBottomNavBinding());
+  //       }
+  //     });
+  //   } on Exception catch (e) {
+  //     debugPrint("=====> Sign up catch error fire store $e");
+  //   } finally {
+  //     loading(false);
+  //   }
+  // }
 
   // void loginUser(String email, String password, String userType) async {
   //   isLoading = true;
@@ -439,10 +440,17 @@ class AuthenticationController extends GetxController {
 
 //Check if user has Signed In
     if (isSignIn) {
+
       if (userData.docs.isNotEmpty) {
-        phoneCredentail(userType: userType, isSignIn: isSignIn);
+        var data=userData.docs.first.data();
+        if(data['role']==userType){
+          phoneCredentail(userType: userType, isSignIn: isSignIn);
+        }else{
+          Fluttertoast.showToast(msg: "You have already created a ${data['role'].toLowerCase()} account");
+        }
+
       } else {
-        Fluttertoast.showToast(msg: "You dont have any account Sign up");
+        Fluttertoast.showToast(msg: "You don't have any account sign up");
       }
     }
 //Check if user has Sign up
@@ -451,7 +459,7 @@ class AuthenticationController extends GetxController {
         phoneCredentail(userType: userType, isSignIn: isSignIn);
       } else {
         Fluttertoast.showToast(
-            msg: "You have already created an account Sign up");
+            msg: "You have already created an account Sign in");
       }
     }
     isLoading = false;
@@ -470,7 +478,10 @@ class AuthenticationController extends GetxController {
     //
     UserCredential userCredential = await auth.signInWithCredential(credential);
 
+    debugPrint("=====> user id : ${userCredential.user!.uid}");
+
     if (userCredential.user != null) {
+      await PrefsHelper.setString(AppConstants.userId, userCredential.user!.uid);
       if (isSignIn) {
         await PrefsHelper.setString(AppConstants.logged, userType);
         if (userType == AppConstants.userType) {

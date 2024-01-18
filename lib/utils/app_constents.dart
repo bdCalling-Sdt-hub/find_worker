@@ -25,6 +25,7 @@ static String socialMediaUser="SocialMediaUser";
 
 /// share data
  static String logged ="Logged";
+ static String userId="UserId";
 
 
  /// status job details and Hire

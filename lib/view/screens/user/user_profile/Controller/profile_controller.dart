@@ -49,6 +49,7 @@ class UserProfileController extends GetxController {
   TextEditingController dobMonthCtrl = TextEditingController();
   TextEditingController dobYearCtrl = TextEditingController();
   TextEditingController phoneCtrl = TextEditingController();
+  TextEditingController emailCtrl = TextEditingController();
   TextEditingController addressCtrl = TextEditingController();
   List<String> genderList = ["Male", "Female", "Others"];
   var selectGender = (-1).obs;
@@ -63,6 +64,7 @@ class UserProfileController extends GetxController {
     phoneCtrl.text = userData.value.phone ?? "";
     addressCtrl.text = userData.value.address ?? "";
     phoneCode.value = userData.value.phoneCode ?? "";
+    emailCtrl.text=userData.value.email??"";
     for (int i = 0; i < genderList.length; i++) {
       if (genderList[i] == userData.value.gender) {
         selectGender.value = i;
@@ -104,6 +106,7 @@ class UserProfileController extends GetxController {
         'imageSrc': imagePath.isNotEmpty ? url : userData.value.imageSrc,
         'gender': genderList[selectGender.value],
         'phone_code': phoneCode.value,
+        'email':emailCtrl.text,
       };
       await FirebaseFirestore.instance
           .collection(AppConstants.users)

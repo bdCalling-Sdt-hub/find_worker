@@ -125,6 +125,7 @@ class _UserSignInState extends State<UserSignIn> {
                                 color: Colors.white,
                               ),
                               child: CountryCodePicker(
+                                initialSelection: _authController.phoneCode,
                                 onChanged: (value) {
                                   _authController.phoneCode = value.dialCode!;
                                   _authController.update();

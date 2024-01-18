@@ -28,6 +28,7 @@ import '../../../widgets/custom_switch.dart';
 class SpHomeScreen extends StatefulWidget {
   const SpHomeScreen({super.key});
 
+
   @override
   State<SpHomeScreen> createState() => _SpHomeScreenState();
 }
@@ -37,6 +38,9 @@ class _SpHomeScreenState extends State<SpHomeScreen> {
   final _controller = ValueNotifier<bool>(false);
   final _homeController = Get.put(SpHomeController());
   final _profileController = Get.put(SpProfileController());
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -546,7 +550,7 @@ class _SpHomeScreenState extends State<SpHomeScreen> {
 
   Container _userProfile() {
     return Container(
-                          height: 115,
+                          height: 110,
                           padding: const EdgeInsets.all(16),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(8),

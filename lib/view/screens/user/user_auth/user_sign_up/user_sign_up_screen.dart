@@ -402,7 +402,7 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                                           color: Colors.white,
                                         ),
                                         child: CountryCodePicker(
-                                         
+                                         initialSelection:authController.phoneCode,
                                           onChanged: (value) {
                                             authController.phoneCode =
                                                 value.dialCode!;

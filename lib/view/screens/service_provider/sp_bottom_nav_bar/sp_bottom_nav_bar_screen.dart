@@ -20,9 +20,10 @@ import '../sp_profile/Controller/profile_controller.dart';
 
 class SpBottomNavBarScreen extends StatefulWidget {
 
-  SpBottomNavBarScreen({super.key, required this.currentIndex});
+  SpBottomNavBarScreen({super.key, required this.currentIndex,});
 
   late int currentIndex;
+
 
   @override
   State<SpBottomNavBarScreen> createState() => _SpBottomNavBarScreenState();
@@ -36,7 +37,7 @@ class _SpBottomNavBarScreenState extends State<SpBottomNavBarScreen> {
     super.initState();
   }
 
-  static  List<Widget> screens = <Widget>[
+    List<Widget> screens = <Widget>[
     SpHomeScreen(),
     SpJobHistoryScreen(),
     SpProfileScreen(),
