@@ -36,7 +36,7 @@ class _UserHistoryDetailsAlertState extends State<UserHistoryDetailsAlert> {
             loading: _controller.removeLoading.value
             ,height: 36.h,width: 120.w,),
         ),
-        SizedBox(width: 16.w,),
+
         CustomButton(onTap:(){
           Get.back();
         }, text:AppStrings.no.tr,height: 36.h,width: 120.w,)

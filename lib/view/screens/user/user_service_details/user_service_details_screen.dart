@@ -36,17 +36,18 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
   final _userServiceDetailsController = Get.put(UserServiceDetailsController());
   @override
   void initState() {
+
     _userServiceDetailsController
         .getTopReviews(userByServiceModel.providerUid!);
-    // interstitialAdd();
+     interstitialAdd();
     super.initState();
   }
 
-  // interstitialAdd() {
-  //   Future.delayed(const Duration(seconds: 3), () {
-  //     AdDsiplay().loadInterstitial();
-  //   });
-  // }
+  interstitialAdd() {
+    Future.delayed(const Duration(seconds: 3), () {
+      AdDsiplay().loadInterstitial();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

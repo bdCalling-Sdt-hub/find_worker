@@ -12,6 +12,7 @@ import 'package:wrcontacts/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../helper/Language/language_controller.dart';
 import '../../../../helper/SystemChromeHelper/system_chrome.dart';
 import '../../../../utils/app_strings.dart';
 import '../../../widgets/custom_back.dart';
@@ -26,6 +27,7 @@ class SpServicesScreen extends StatefulWidget {
 class _SpServicesScreenState extends State<SpServicesScreen> {
   final _serviceController= Get.put(ServiceController());
 
+  final _localizationController = Get.put(LocalizationController(sharedPreferences:Get.find()));
 
   @override
   void initState() {

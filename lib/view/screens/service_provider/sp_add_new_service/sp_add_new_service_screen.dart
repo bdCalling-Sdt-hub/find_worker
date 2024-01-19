@@ -190,7 +190,8 @@ class _SpAddNewServiceScreenState extends State<SpAddNewServiceScreen> {
                                   return GestureDetector(
                                     onTap: () {
                                       setState(() {
-                                     _controller.serviceTextCtrl.text=_controller.categoryList[index].name!;
+                                     _controller.serviceTextCtrl.text=_localizationController.selectedIndex==0?_controller.categoryList[index].name!:_controller.categoryList[index].nameArabic!;
+                                     _controller.selectService.value=_controller.categoryList[index].name!;
                                      _controller.selectServiceId.value=_controller.categoryList[index].id!;
                                      isSelected=false;
                                     _controller.selectedItem.value=index;

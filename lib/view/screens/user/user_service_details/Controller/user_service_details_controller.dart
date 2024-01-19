@@ -357,6 +357,9 @@ class UserServiceDetailsController extends GetxController
                 ),
                 OutlinedButton(
                   onPressed: () {
+                    _timer?.cancel();
+                     start.value = 300; // 5 minutes in seconds
+                     current.value = 0;
                     Get.back();
                   },
                   style: ButtonStyle(
@@ -422,6 +425,7 @@ class UserServiceDetailsController extends GetxController
                 ),
                 OutlinedButton(
                   onPressed: () {
+
                     Get.back();
                   },
                   style: ButtonStyle(
@@ -456,11 +460,11 @@ class UserServiceDetailsController extends GetxController
   //   super.onReady();
   // }
 
-  @override
-  void onInit() {
-    Future.delayed(const Duration(seconds: 1), () {
-      AdDsiplay().loadInterstitial();
-    });
-    super.onInit();
-  }
+  // @override
+  // void onInit() {
+  //   Future.delayed(const Duration(seconds: 1), () {
+  //     AdDsiplay().loadInterstitial();
+  //   });
+  //   super.onInit();
+  // }
 }

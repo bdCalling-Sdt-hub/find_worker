@@ -125,24 +125,24 @@ class _UserHireDetailsScreenState extends State<UserHireDetailsScreen> {
                           SizedBox(
                             width: 10.w,
                           ),
-                          InkWell(
-                            onTap: () {
-                              _controller.launchPhoneDialer(
-                                  _controller.hireDetails.value.contact!);
-                            },
-                            child: CircleAvatar(
-                              backgroundColor: AppColors.blue_100,
-                              radius: 20.r,
-                              child: Padding(
-                                padding: EdgeInsets.all(8.r),
-                                child: Icon(
-                                  Icons.call,
-                                  color: Colors.white,
-                                  size: 22.r,
-                                ),
-                              ),
-                            ),
-                          )
+                          // InkWell(
+                          //   onTap: () {
+                          //     _controller.launchPhoneDialer(
+                          //         _controller.hireDetails.value.contact!);
+                          //   },
+                          //   child: CircleAvatar(
+                          //     backgroundColor: AppColors.blue_100,
+                          //     radius: 20.r,
+                          //     child: Padding(
+                          //       padding: EdgeInsets.all(8.r),
+                          //       child: Icon(
+                          //         Icons.call,
+                          //         color: Colors.white,
+                          //         size: 22.r,
+                          //       ),
+                          //     ),
+                          //   ),
+                          // )
                         ],
                       ),
                       const SizedBox(
@@ -151,8 +151,8 @@ class _UserHireDetailsScreenState extends State<UserHireDetailsScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const CustomText(
-                            text: 'Contact',
+                           CustomText(
+                            text: 'Contact'.tr,
                           ),
                           Flexible(
                             child: CustomText(

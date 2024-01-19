@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:wrcontacts/core/share_pre.dart';
+import 'package:wrcontacts/utils/app_constents.dart';
 
 class AdDsiplay {
   bool displayRealAd = true;
@@ -19,22 +21,38 @@ class AdDsiplay {
       ? 'ca-app-pub-3940256099942544/3419835294' //  test Mode
       : 'ca-app-pub-3940256099942544/5662855259'; //  test Mode
 
-  loadInterstitial() {
-    InterstitialAd.load(
-        adUnitId: adUnitIdInterstitial,
-        request: const AdRequest(),
-        adLoadCallback: InterstitialAdLoadCallback(
-          // Called when an ad is successfully received.
-          onAdLoaded: (ad) {
-            debugPrint('$ad loaded.');
-            // Keep a reference to the ad so you can show it later.
-            showInterstitial(ad);
-          },
-          // Called when an ad request failed.
-          onAdFailedToLoad: (LoadAdError error) {
-            debugPrint('InterstitialAd failed to load: $error');
-          },
-        ));
+  loadInterstitial()async{
+
+   var adsCount = await PrefsHelper.getInt(AppConstants.adsCount);
+   debugPrint("=====> -------- Show ads : $adsCount");
+   if(adsCount==(-1)){
+     await PrefsHelper.setInt(AppConstants.adsCount,adsCount+2);
+   }else{
+     await PrefsHelper.setInt(AppConstants.adsCount,adsCount+1);
+   }
+
+
+     if(adsCount%5==0){
+       debugPrint("Show ads : $adsCount");
+       InterstitialAd.load(
+           adUnitId: adUnitIdInterstitial,
+           request: const AdRequest(),
+           adLoadCallback: InterstitialAdLoadCallback(
+             // Called when an ad is successfully received.
+             onAdLoaded: (ad) {
+               debugPrint('$ad loaded.');
+               // Keep a reference to the ad so you can show it later.
+               showInterstitial(ad);
+             },
+             // Called when an ad request failed.
+             onAdFailedToLoad: (LoadAdError error) {
+               debugPrint('InterstitialAd failed to load: $error');
+             },
+           ));
+     }
+
+
+
   }
 
   void showInterstitial(InterstitialAd ad) {

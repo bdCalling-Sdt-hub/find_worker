@@ -41,7 +41,7 @@ class _SpHistoryDetailsAlertState extends State<SpHistoryDetailsAlert> {
             _controller.removeJobHistory(widget.id);
           }, text:AppStrings.yes.tr,width: 120.w,loading:_controller.removeLoading.value,),
         ),
-        SizedBox(width: 24.w,),
+       // SizedBox(width: 24.w,),
         CustomButton(onTap:(){
           Get.back();
         }, text:AppStrings.no.tr,width: 120.w,)

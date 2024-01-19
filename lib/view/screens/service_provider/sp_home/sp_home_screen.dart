@@ -226,7 +226,7 @@ class _SpHomeScreenState extends State<SpHomeScreen> {
                                 CustomButton(onTap:(){
                                   Get.to(const SpAddNewServiceScreen());
 
-                                }, text:"Add Service",width: 200.w,height: 44.h,)
+                                }, text:"Add Service".tr,width: 200.w,height: 44.h,)
 
                               ],
                             ) : historyList.isEmpty?Container(
@@ -647,9 +647,9 @@ class _SpHomeScreenState extends State<SpHomeScreen> {
                                             SizedBox(
                                               width: 10.w,
                                             ),
-                                            const Flexible(
+                                             Flexible(
                                               child: CustomText(
-                                                text: "None",
+                                                text: "None".tr,
                                                 fontSize: 14,
                                                 maxLines: 1,
                                                 overflow:
@@ -677,7 +677,7 @@ class _SpHomeScreenState extends State<SpHomeScreen> {
                                                       .spaceBetween,
                                               children: [
                                                 CustomText(
-                                                  text: AppStrings.service +
+                                                  text: AppStrings.service.tr +
                                                       (index + 1).toString(),
                                                   color: AppColors.black_60,
                                                 ),

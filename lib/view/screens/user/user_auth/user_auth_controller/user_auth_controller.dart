@@ -406,7 +406,7 @@ class AuthenticationController extends GetxController {
 
 //Log in User with Phone Number
 
-  void phoneCredentail(
+  Future phoneCredentail(
       {required String userType, required bool isSignIn}) async {
     print("===================$phoneCode${phoneController.text}");
     await FirebaseAuth.instance
@@ -436,7 +436,7 @@ class AuthenticationController extends GetxController {
 
     var userData = await firebaseFireStore
         .collection(AppConstants.users)
-        .where("phone", isEqualTo: "529988831")
+        .where("phone", isEqualTo: phoneController.text)
         .get();
 
 //Check if user has Signed In
@@ -457,7 +457,8 @@ class AuthenticationController extends GetxController {
 //Check if user has Sign up
     else {
       if (userData.docs.isEmpty) {
-        phoneCredentail(userType: userType, isSignIn: isSignIn);
+      await  phoneCredentail(userType: userType, isSignIn: isSignIn);
+        isLoading=false;
       } else {
         Fluttertoast.showToast(
             msg: "You have already created an account Sign in");
@@ -646,10 +647,10 @@ class AuthenticationController extends GetxController {
         Get.back();
         Get.offAll(() => const OnboardScreen());
         await PrefsHelper.setString(AppConstants.logged, "");
+        await PrefsHelper.setInt(AppConstants.adsCount, (-1));
         debugPrint("=========> Successful sign out");
         isSignOutLoad(false);
       });
-      await GoogleSignIn().signOut();
     } on Exception catch (e) {
       debugPrint("=========> sign out catch error : $e");
     } finally {
@@ -667,9 +668,10 @@ class AuthenticationController extends GetxController {
         localizationController.setLanguage(const Locale('en', "US"));
         accountDeleteCtrl.clear();
         await PrefsHelper.setString(AppConstants.logged, "");
-        await GoogleSignIn().signOut();
+        await PrefsHelper.setInt(AppConstants.adsCount, (-1));
         Get.back();
         Get.offAll(() => const OnboardScreen());
+
         Fluttertoast.showToast(msg: AppStrings.accountDelete.tr);
         isAccountDeleteLoading(false);
       }).catchError((v) {

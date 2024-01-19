@@ -28,6 +28,8 @@ class AddNewServiceController extends GetxController{
       TextEditingController descriptionTextCtrl=TextEditingController();
       final formKey = GlobalKey<FormState>();
       var selectServiceId="".obs;
+      var selectService="".obs;
+
       var loading= false.obs;
       final ImagePicker picker = ImagePicker();
       late  XFile? image;
@@ -81,7 +83,7 @@ class AddNewServiceController extends GetxController{
               ServiceModel body=ServiceModel(
                   image: url,
                   id:id,
-                  serviceName:serviceTextCtrl.text,
+                  serviceName:selectService.value,
                   serviceId: selectServiceId.value,
                   location: addressTextCtrl.text,
                   providerUid:_auth.currentUser!.uid,

@@ -140,7 +140,7 @@ class _UserHistoryDetailsScreenState extends State<UserHistoryDetailsScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           CustomText(
-                            text: 'Contact',
+                            text: 'Contact'.tr,
                           ),
                           Flexible(
                             child: CustomText(
