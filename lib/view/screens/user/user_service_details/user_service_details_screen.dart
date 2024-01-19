@@ -154,8 +154,8 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const CustomText(
-                            text: 'Location',
+                           CustomText(
+                            text: 'Location'.tr,
                           ),
                           Flexible(
                             child: CustomText(
