@@ -8,6 +8,8 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../../../helper/Language/language_controller.dart';
+
 class SearchEndDrawer extends StatefulWidget {
 
   const SearchEndDrawer({super.key});
@@ -21,6 +23,9 @@ class _SearchEndDrawerState extends State<SearchEndDrawer> {
   int selectIndex= -1;
 
   final _searchController = Get.put(SearchAndFilterController());
+  final _localizationController = Get.put(LocalizationController(sharedPreferences:Get.find()));
+
+
 
 
   @override
@@ -46,7 +51,7 @@ class _SearchEndDrawerState extends State<SearchEndDrawer> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Filter',
+                'Filter'.tr,
                 style: GoogleFonts.poppins(
                   color: const Color(0xFF333333),
                   fontSize: 18,
@@ -72,7 +77,7 @@ class _SearchEndDrawerState extends State<SearchEndDrawer> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Category',
+                    'Category'.tr,
                     style: GoogleFonts.poppins(
                       color: const Color(0xFF333333),
                       fontSize: 16,
@@ -109,7 +114,7 @@ class _SearchEndDrawerState extends State<SearchEndDrawer> {
                           ),
                         ),
                         child: Text(
-                          _searchController.categoryList[index].name!,
+                          _localizationController.selectedIndex==0? _searchController.categoryList[index].name!: _searchController.categoryList[index].nameArabic!,
                           textAlign: TextAlign.center,
                           style: GoogleFonts.raleway(
                             color: index == selectIndex ? AppColors.white : AppColors.blue_100,
@@ -138,8 +143,10 @@ class _SearchEndDrawerState extends State<SearchEndDrawer> {
                 Get.back();
               }else{
                 _searchController.focusNode.unfocus();
+                _searchController.typeAheadController.text= _localizationController.selectedIndex==0? _searchController.categoryList[selectIndex].name!: _searchController.categoryList[selectIndex].nameArabic!;
                 _searchController.getSortedServicesByCategory(_searchController.categoryList[selectIndex].id!);
                 Get.back();
+                FocusScope.of(context).requestFocus(FocusNode());
               }
             },
           ),

@@ -46,7 +46,7 @@ class _CategoryByServiceScreenState extends State<CategoryByServiceScreen> {
       ),
       body: LayoutBuilder(builder: (BuildContext context, BoxConstraints constraints) {
         return  Obx(()=>_controller.loading.value?const CustomLoader()
-          : _controller.servicesList.isEmpty?const Center(child: Text("No data available"),) :SingleChildScrollView(
+          : _controller.servicesList.isEmpty? Center(child: Text("No service available!".tr),) :SingleChildScrollView(
             padding:  EdgeInsetsDirectional.symmetric(horizontal: 20.w),
             physics:const BouncingScrollPhysics(),
             child: GridView.builder(

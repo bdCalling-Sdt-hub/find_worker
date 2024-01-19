@@ -141,7 +141,7 @@
   "Hire Details": "Hire Details",
   "button after getting your current service to complete the service status.": "button after getting your current service to complete the service status.",
   "Your service has been completed successfully." : "Your service has been completed successfully.",
-  "Purchaser": "Purchaser",
+  "Purchaser": "User",
   "History": "History",
   "Housekeeper": "Housekeeper",
   "Home Maintenance": "Home Maintenance",
@@ -161,7 +161,7 @@
   "Services": "Services",
   "Enter service description": "Enter service description",
  "No Job History yet.": "No Job History yet.",
- "purchaser": "Purchaser",
+ "purchaser": "User",
  "Job History": "Job History",
  "waitingForProvidersResponse": "Waiting for Provider’s response",
  "noResponse": "No Response",
@@ -177,5 +177,8 @@
  "Hired Successful": "Hired Successful",
  "Select Options":"Select Options",
  "Direct call": "Direct call",
- "Waiting for Approval":"Waiting for Approval"
+ "Waiting for Approval":"Waiting for Approval",
+ "No Items Found!": "No Items Found!",
+ "No service available!": "No service available!",
+ "No hires here yet.": "No hires here yet."
 }

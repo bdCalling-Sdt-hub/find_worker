@@ -369,7 +369,7 @@ class UserServiceDetailsController extends GetxController
                           width: 1.0,
                           style: BorderStyle.solid))),
                   child: Text(
-                    "Cancel",
+                    "Cancel".tr,
                     style: TextStyle(
                         fontSize: 18.sp,
                         color: AppColors.blue_100,
@@ -434,7 +434,7 @@ class UserServiceDetailsController extends GetxController
                           width: 1.0,
                           style: BorderStyle.solid))),
                   child: Text(
-                    "Cancel",
+                    "Cancel".tr,
                     style: TextStyle(
                         fontSize: 18.sp,
                         color: AppColors.blue_100,

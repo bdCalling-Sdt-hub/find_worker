@@ -432,10 +432,11 @@ class AuthenticationController extends GetxController {
       {required String userType, required bool isSignIn}) async {
     isLoading = true;
     update();
+    debugPrint("Phone Number Sign in : ${phoneController.text}");
 
     var userData = await firebaseFireStore
         .collection(AppConstants.users)
-        .where("phone", isEqualTo: phoneController.text)
+        .where("phone", isEqualTo: "529988831")
         .get();
 
 //Check if user has Signed In

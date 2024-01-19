@@ -51,7 +51,7 @@ class _UserHireListScreenState extends State<UserHireListScreen> {
                           height: 80,
                           width: 80,
                         ),
-                        const Text("No Hires here yet.")
+                         Text("No hires here yet.".tr)
                       ],
                     ),
                   )

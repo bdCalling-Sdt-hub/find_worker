@@ -178,5 +178,8 @@
   "Waiting for Approval": "انتظار الموافقة",
   "Enter your password": "ادخل رقمك السري",
 
-  "New Services":"خدمات جديدة"
+  "New Services":"خدمات جديدة",
+  "No Items Found!": "لم يتم العثور على العناصر!",
+  "No service available!": "لا توجد خدمة متاحة!",
+  "No hires here yet.": "لا يوجد تعيينات هنا حتى الآن."
 }

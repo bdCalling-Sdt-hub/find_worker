@@ -20,6 +20,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shimmer/shimmer.dart';
 
+import '../../../../helper/Language/language_controller.dart';
+
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
 
@@ -30,6 +32,7 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final _searchController = Get.put(SearchAndFilterController());
+  final _localizationController = Get.put(LocalizationController(sharedPreferences:Get.find()));
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,15 +70,21 @@ class _SearchScreenState extends State<SearchScreen> {
                         flex: 4,
                         child: TypeAheadFormField(
 
+                          noItemsFoundBuilder: (context)=>Text("No Items Found!".tr),
                           textFieldConfiguration: TextFieldConfiguration(
+                            focusNode: _searchController.focusNode,
                             onChanged: (v){
                               if(v.isEmpty){
                                 _searchController.isSearch(-1);
+                                _searchController.typeAheadController.text=v;
+
                               }
                             },
+                            
+
                             decoration: InputDecoration(
                                 isDense: true,
-                                hintText: "Search by categories",
+                                hintText: "Search by categories".tr,
                                 contentPadding: EdgeInsets.symmetric(
                                     horizontal: 10.w, vertical: 15.h),
                                 prefixIconConstraints:
@@ -104,10 +113,12 @@ class _SearchScreenState extends State<SearchScreen> {
                             controller: _searchController.typeAheadController,
                           ),
 
+
+
                           suggestionsCallback: (pattern) =>
                               _searchController.getSuggestions(pattern),
                           itemBuilder: (context, suggestion) => ListTile(
-                            title: Text(suggestion.name!),
+                            title: Text(   _localizationController.selectedIndex==0?suggestion.name!:suggestion.nameArabic!),
                             dense: true,
                             contentPadding:
                                 EdgeInsets.symmetric(horizontal: 12.w),
@@ -123,7 +134,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                   suggestionsBox,
                           onSuggestionSelected: (suggestion) {
                             _searchController.typeAheadController.text =
-                                suggestion.name!;
+                            _localizationController.selectedIndex==0?suggestion.name!:suggestion.nameArabic!;
                             _searchController.selectCategory.value=suggestion.id!;
                             _searchController.getSortedServicesByCategory(suggestion.id!);
                                   debugPrint("Select category ${suggestion.id}");
@@ -192,11 +203,11 @@ class _SearchScreenState extends State<SearchScreen> {
           SizedBox(
             height: 20.h,
           ),
-          const CustomText(
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-            text: 'Top Featured Services',
-          ),
+          //  CustomText(
+          //   fontSize: 18,
+          //   fontWeight: FontWeight.w600,
+          //   text: 'Top Featured Services'.tr,
+          // ),
           SizedBox(height: 16.h),
           GridView.builder(
             shrinkWrap: true,
@@ -332,10 +343,10 @@ class _SearchScreenState extends State<SearchScreen> {
                         SizedBox(
                           height: 20.h,
                         ),
-                        const CustomText(
+                         CustomText(
                           fontSize: 18,
                           fontWeight: FontWeight.w600,
-                          text: 'Top Featured Services',
+                          text: 'Top Featured Services'.tr,
                         ),
                          SizedBox(height: 16.h),
                         MasonryGridView.builder(
@@ -348,7 +359,7 @@ class _SearchScreenState extends State<SearchScreen> {
                             return Container(
                               margin: EdgeInsets.only(bottom:16.h),
                               alignment: Alignment.center,
-                              height: 130.h,
+                              height: 140.h,
                               child: GestureDetector(
                                 onTap: (){
                                   _searchController.typeAheadController.text =
@@ -384,7 +395,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                       height: 8.h,
                                     ),
                                     Text(
-                                       data.name!,
+                                      _localizationController.selectedIndex==0? data.name!:data.nameArabic!,
                                       maxLines: 2,
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(fontSize:14.h),
