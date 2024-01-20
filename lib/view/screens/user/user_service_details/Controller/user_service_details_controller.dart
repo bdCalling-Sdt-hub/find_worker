@@ -26,6 +26,7 @@ import 'package:uuid/uuid.dart';
 
 import '../../../../../model/review_model.dart';
 import '../../../../../utils/app_colors.dart';
+import '../../user_hire_list/user_hire_details/user_hire_details_screen.dart';
 import '../inner_widgets/user_service_details_hire_now_bottom_modal.dart';
 
 class UserServiceDetailsController extends GetxController

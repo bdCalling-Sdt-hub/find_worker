@@ -179,9 +179,9 @@
   "Enter your password": "ادخل رقمك السري",
 
   "New Services":"خدمات جديدة",
-  "No Items Found!": "لم يتم العثور على العناصر!",
-  "No service available!": "لا توجد خدمة متاحة!",
-  "No hires here yet.": "لا يوجد تعيينات هنا حتى الآن.",
-  "None": "لا أحد",
+  "No Items Found!": "لا يوجد بيانات",
+  "No service available!": "الخدمة غير متاحة",
+  "No hires here yet.": "لا يوجد تعيينات",
+  "None": "لا شيئ",
   "No jobs pending": "لا توجد وظائف معلقة"
 }
