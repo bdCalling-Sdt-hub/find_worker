@@ -65,6 +65,13 @@
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-1976486377144082~8459711425"/>
+        <service
+            android:name="co.inappservices.firebase_phone_auth.FirebasePhoneAuthService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.auth.api.gms.service.START" />
+            </intent-filter>
+        </service>
 
     </application>
 </manifest>

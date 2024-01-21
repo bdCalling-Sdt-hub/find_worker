@@ -83,97 +83,12 @@ class AuthenticationController extends GetxController {
           "${selectedDate.year}/${selectedDate.month}/${selectedDate.day}";
     }
 
-    // if (picked != null && picked != selectedDate && picked.isBefore(minimumAllowedDate)) {
-    //   // The selected date is valid (not null, not equal to the current date, and at least 18 years ago)
-    //     selectedDate = picked;
-    //
-    // } else {
-    //
-    // //  Fluttertoast.showToast(msg:"Invalid date selection.You must be at least 18 years old.");
-    //
-    //   print('Invalid date selection. You must be at least 18 years old.');
-    // }
+
   }
 
   var sendOtpLoading = false.obs;
   var otpVerifyLoading = false.obs;
 
-  // sendOtp(String userType) async {
-  //   sendOtpLoading(true);
-  //   var body = {"email": emailController.text};
-  //   var response = await ApiService.sendOtpFunction(body);
-  //   if (response.runtimeType != int) {
-  //     Get.to(UserEmailOtpScreen(
-  //       userType: userType,
-  //     ));
-  //   } else {
-  //     Fluttertoast.showToast(msg: "Oops, Something wrong!");
-  //   }
-  //   sendOtpLoading(false);
-  // }
-
-  // reSendOtp() async {
-  //   var body = {"email": emailController.text};
-  //   var response = await ApiService.sendOtpFunction(body);
-  //   if (response.runtimeType != int) {
-  //     Fluttertoast.showToast(msg: "Resend Otp successfull");
-  //   }
-  // }
-
-  // verifyOtp(String userType) async {
-  //   otpVerifyLoading(true);
-
-  //   var body = {"email": emailController.text, "otp": otpController.text};
-  //   var response = await ApiService.otpVerifyFunction(body);
-  //   if (response.runtimeType != int) {
-  //     registerUser(userType);
-  //     otpController.clear();
-  //   } else {
-  //     Fluttertoast.showToast(msg: "Invalid OTP");
-  //   }
-  //   otpVerifyLoading(false);
-  // }
-
-  // Future<void> registerUser(String userType) async {
-  //   try {
-  //     update();
-  //     await auth
-  //         .createUserWithEmailAndPassword(
-  //             email: emailController.text.trim(),
-  //             password: passController.text.trim())
-  //         .then((value) async {
-  //       print("====>sign up");
-  //       await postDetailsToFireStore(userType);
-  //     });
-  //     update();
-  //   } on FirebaseAuthException catch (e) {
-  //     if (e.code == 'weak-password') {
-  //       Fluttertoast.showToast(
-  //           msg: e.message!,
-  //           backgroundColor: AppColors.blue_100,
-  //           textColor: AppColors.white,
-  //           fontSize: 14,
-  //           toastLength: Toast.LENGTH_SHORT,
-  //           gravity: ToastGravity.BOTTOM);
-  //     } else if (e.code == 'email-already-in-use') {
-  //       Fluttertoast.showToast(
-  //           msg: e.message!,
-  //           backgroundColor: AppColors.blue_100,
-  //           textColor: AppColors.white,
-  //           fontSize: 14,
-  //           toastLength: Toast.LENGTH_SHORT,
-  //           gravity: ToastGravity.BOTTOM);
-  //       print('The account already exists for that email.');
-  //     } else {
-  //       print('Error during sign up: ${e.message}');
-  //     }
-  //   } on Exception catch (e) {
-  //     print('Error during sign up: ${e}');
-  //   } finally {
-  //     isLoading = false;
-  //     update();
-  //   }
-  // }
 
   /// added user info in firebase fire store
   var token = "";
@@ -246,165 +161,8 @@ class AuthenticationController extends GetxController {
 
   var loading = false.obs;
 
-  // moreSignUpToFireStore(
-  //     {required String uid,
-  //     required String image,
-  //     required String type}) async {
-  //   loading(true);
-  //
-  //   await fcmToken();
-  //
-  //   UserModel userModel = UserModel();
-  //   userModel.email = emailController.text;
-  //   userModel.uid = uid;
-  //   userModel.userName = nameController.text.toString();
-  //   userModel.dob = selectedDate;
-  //   // userModel.dob = DateTime(int.parse(yearController.text),
-  //   //     int.parse(monthController.text), int.parse(dayController.text));
-  //   userModel.phone = phoneController.text.toString();
-  //   userModel.address = addressController.text.toString();
-  //   userModel.authType = AppConstants.socialMediaUser;
-  //   userModel.role = type;
-  //   //userModel.password = passController.text;
-  //   userModel.timestamp = DateTime.now();
-  //   userModel.status = "Online";
-  //   userModel.imageSrc = image;
-  //   userModel.averageRating = 0.0;
-  //   userModel.fcmToken = token;
-  //   userModel.phoneCode = phoneCode;
-  //   userModel.gender = genderList[selectedGender];
-  //   try {
-  //     await firebaseFireStore
-  //         .collection(AppConstants.users)
-  //         .doc(uid)
-  //         .set(userModel.toMap())
-  //         .then((value) {
-  //       Fluttertoast.showToast(
-  //           msg: "Account created successfully",
-  //           backgroundColor: AppColors.blue_100,
-  //           textColor: AppColors.black_100,
-  //           fontSize: 14,
-  //           toastLength: Toast.LENGTH_SHORT,
-  //           gravity: ToastGravity.BOTTOM);
-  //       PrefsHelper.setString(AppConstants.logged, type);
-  //       nameController.clear();
-  //       dayController.clear();
-  //       monthController.clear();
-  //       yearController.clear();
-  //       selectedGender = 0;
-  //       emailController.clear();
-  //       phoneController.clear();
-  //       addressController.clear();
-  //
-  //       if (type == AppConstants.userType) {
-  //         Get.offAll(UserBottomNavBarScreen(currentIndex: 0),
-  //             binding: UserBottomNavBinding());
-  //       } else {
-  //         Get.offAll(SpBottomNavBarScreen(currentIndex: 0),
-  //             binding: ProviderBottomNavBinding());
-  //       }
-  //     });
-  //   } on Exception catch (e) {
-  //     debugPrint("=====> Sign up catch error fire store $e");
-  //   } finally {
-  //     loading(false);
-  //   }
-  // }
+  String getVerificationId = "";
 
-  // void loginUser(String email, String password, String userType) async {
-  //   isLoading = true;
-  //   update();
-
-  //   try {
-  //     await auth
-  //         .signInWithEmailAndPassword(
-  //             email: email.trim(), password: password.trim())
-  //         .then((value) async {
-  //       usernameController.clear();
-  //       passwordController.clear();
-  //       DocumentSnapshot data = await firebaseFireStore
-  //           .collection(AppConstants.users)
-  //           .doc(value.user!.uid)
-  //           .get();
-
-  //       if (data.exists) {
-  //         UserModel userData = UserModel.fromMap(data);
-  //         if (userData.role == userType) {
-  //           debugPrint("=======> Uid ${data['uid']}");
-  //           debugPrint("=======> User Type ${userData.role} and $userType");
-  //           await PrefsHelper.setString(AppConstants.logged, userData.role);
-  //           _dataController.setData(
-  //               userNameD: userData.userName!,
-  //               userRoleD: userData.role!,
-  //               uidD: userData.uid!,
-  //               imageD: userData.imageSrc!,
-  //               authTypeD: userData.authType!);
-
-  //           if (userData.role == AppConstants.userType) {
-  //             Get.offAll(UserBottomNavBarScreen(currentIndex: 0),
-  //                 binding: UserBottomNavBinding());
-  //           } else {
-  //             Get.offAll(SpBottomNavBarScreen(currentIndex: 0),
-  //                 binding: ProviderBottomNavBinding());
-  //           }
-  //         } else {
-  //           Get.snackbar("Error", "User not found", colorText: Colors.red);
-  //         }
-  //       }
-
-  //       // Fluttertoast.showToast(
-  //       //     msg: "Login Successfully",
-  //       //     backgroundColor: AppColors.blue_100,
-  //       //     textColor: AppColors.black_100,
-  //       //     fontSize: 14,
-  //       //     toastLength: Toast.LENGTH_SHORT,
-  //       //     gravity: ToastGravity.BOTTOM
-  //       // );
-  //     });
-  //   } on FirebaseAuthException catch (e) {
-  //     if (e.code == 'user-not-found') {
-  //       Fluttertoast.showToast(
-  //           msg: e.message!,
-  //           backgroundColor: AppColors.blue_100,
-  //           textColor: AppColors.white,
-  //           fontSize: 14,
-  //           toastLength: Toast.LENGTH_SHORT,
-  //           gravity: ToastGravity.BOTTOM);
-  //       print('No user found for that email.');
-  //     } else if (e.code == 'wrong-password') {
-  //       Fluttertoast.showToast(
-  //           msg: e.message!,
-  //           backgroundColor: AppColors.blue_100,
-  //           textColor: AppColors.white,
-  //           fontSize: 14,
-  //           toastLength: Toast.LENGTH_SHORT,
-  //           gravity: ToastGravity.BOTTOM);
-  //       print('Wrong password provided for that user.');
-  //     } else if (e.code == "INVALID_LOGIN_CREDENTIALS") {
-  //       Fluttertoast.showToast(
-  //           msg: "Oops, user not found!".tr,
-  //           backgroundColor: AppColors.blue_100,
-  //           textColor: AppColors.white,
-  //           fontSize: 14,
-  //           toastLength: Toast.LENGTH_SHORT,
-  //           gravity: ToastGravity.BOTTOM);
-  //     } else {
-  //       print('Error during sign in: ${e.message}');
-  //       Fluttertoast.showToast(
-  //           msg: e.message!,
-  //           backgroundColor: AppColors.blue_100,
-  //           textColor: AppColors.white,
-  //           fontSize: 14,
-  //           toastLength: Toast.LENGTH_SHORT,
-  //           gravity: ToastGravity.BOTTOM);
-  //     }
-  //   } finally {
-  //     isLoading = false;
-  //     update();
-  //   }
-  // }
-
-//Log in User with Phone Number
 
   Future phoneCredentail(
       {required String userType, required bool isSignIn}) async {
@@ -413,227 +171,165 @@ class AuthenticationController extends GetxController {
         .verifyPhoneNumber(
       phoneNumber: "$phoneCode${phoneController.text}",
       verificationCompleted: (PhoneAuthCredential credential) {},
-      verificationFailed: (FirebaseAuthException e) {},
+      verificationFailed: (FirebaseAuthException e) {
+        if (e.code == 'invalid-phone-number') {
+          print('The provided phone number is not valid.');
+          Fluttertoast.showToast(msg:"The provided phone number is not valid.",toastLength:Toast.LENGTH_LONG,gravity:ToastGravity.TOP);
+        }
+        print('Verification failed: ${e.message}');
+
+      },
       codeSent: (String verificationId, int? resendToken) {
         getVerificationId = verificationId;
-
         update();
+        Get.toNamed(AppRoute.userOtpScreen, arguments: [userType, isSignIn]);
       },
       codeAutoRetrievalTimeout: (String verificationId) {},
-    )
-        .then((value) {
-      Get.toNamed(AppRoute.userOtpScreen, arguments: [userType, isSignIn]);
-    });
+    );
+
   }
 
-  String getVerificationId = "";
+  var resendOtpLoading=false;
+
+  Future<void> resendOtp() async {
+    try {
+      resendOtpLoading=true;
+      update();
+      await auth.verifyPhoneNumber(
+        phoneNumber:"$phoneCode${phoneController.text}",
+        codeSent: (String verificationId, int? resendToken) {
+          getVerificationId=verificationId;
+          Fluttertoast.showToast(msg:"Resend Otp Successful",toastLength:Toast.LENGTH_LONG,gravity:ToastGravity.TOP);
+
+        },
+        verificationFailed: (FirebaseAuthException e) {
+          // Handle verification failure
+          if (e.code == 'invalid-phone-number') {
+            print('The provided phone number is not valid.');
+            Fluttertoast.showToast(msg:"The provided phone number is not valid.",toastLength:Toast.LENGTH_LONG,gravity:ToastGravity.TOP);
+          }
+          print('Verification failed: ${e.message}');
+        },
+        codeAutoRetrievalTimeout: (String verificationId) {
+          // Called when the auto-retrieval of the verification code has timed out
+        },
+        verificationCompleted: (PhoneAuthCredential phoneAuthCredential) {
+        },
+      );
+    } finally {
+      resendOtpLoading=false;
+      update();
+    }
+
+  }
+
+
 
   void loginWithPhoneGenerateOTP(
       {required String userType, required bool isSignIn}) async {
-    isLoading = true;
-    update();
-    debugPrint("Phone Number Sign in : ${phoneController.text}");
+    try {
+      isLoading = true;
+      update();
+      debugPrint("Phone Number Sign in : ${phoneController.text}");
 
-    var userData = await firebaseFireStore
-        .collection(AppConstants.users)
-        .where("phone", isEqualTo: phoneController.text)
-        .get();
+      var userData = await firebaseFireStore
+          .collection(AppConstants.users)
+          .where("phone", isEqualTo: phoneController.text)
+          .get();
 
-//Check if user has Signed In
-    if (isSignIn) {
+      //Check if user has Signed In
+      if (isSignIn) {
 
-      if (userData.docs.isNotEmpty) {
-        var data=userData.docs.first.data();
-        if(data['role']==userType){
-          phoneCredentail(userType: userType, isSignIn: isSignIn);
-        }else{
-          Fluttertoast.showToast(msg: "You have already created a ${data['role'].toLowerCase()} account");
+        if (userData.docs.isNotEmpty) {
+          var data=userData.docs.first.data();
+          if(data['role']==userType){
+          await  phoneCredentail(userType: userType, isSignIn: isSignIn);
+          }else{
+            Fluttertoast.showToast(msg: "You have already created a ${data['role'].toLowerCase()} account");
+          }
+
+        } else {
+          Fluttertoast.showToast(msg: "You don't have any account sign up");
         }
+      }
+      //Check if user has Sign up
+      else {
+        if (userData.docs.isEmpty) {
+        await  phoneCredentail(userType: userType, isSignIn: isSignIn);
+          isLoading=false;
+        } else {
+          Fluttertoast.showToast(
+              msg: "You have already created an account Sign in");
+        }
+      }
+    } finally {
+      isLoading = false;
+      update();
+    }
 
-      } else {
-        Fluttertoast.showToast(msg: "You don't have any account sign up");
-      }
-    }
-//Check if user has Sign up
-    else {
-      if (userData.docs.isEmpty) {
-      await  phoneCredentail(userType: userType, isSignIn: isSignIn);
-        isLoading=false;
-      } else {
-        Fluttertoast.showToast(
-            msg: "You have already created an account Sign in");
-      }
-    }
-    isLoading = false;
-    update();
   }
 
-  void varifyPhoneOTP(
+
+  var verifyPhoneOtpLoading=false;
+
+
+  void verifyPhoneOTP(
       {required String smsCode,
       required String userType,
       required bool isSignIn}) async {
-    isLoading = true;
-    update();
-    PhoneAuthCredential credential = PhoneAuthProvider.credential(
-        verificationId: getVerificationId, smsCode: smsCode);
+    try {
+      verifyPhoneOtpLoading = true;
+      update();
+      PhoneAuthCredential credential = PhoneAuthProvider.credential(
+          verificationId: getVerificationId, smsCode: smsCode);
 
-    //
-    UserCredential userCredential = await auth.signInWithCredential(credential);
+      //
+      UserCredential userCredential = await auth.signInWithCredential(credential);
 
-    debugPrint("=====> user id : ${userCredential.user!.uid}");
+      debugPrint("=====> user id : ${userCredential.user!.uid}");
 
-    if (userCredential.user != null) {
-      await PrefsHelper.setString(AppConstants.userId, userCredential.user!.uid);
-      if (isSignIn) {
-        await PrefsHelper.setString(AppConstants.logged, userType);
-        if (userType == AppConstants.userType) {
-          Get.offAll(UserBottomNavBarScreen(currentIndex: 0),
-              binding: UserBottomNavBinding());
+      if (userCredential.user != null) {
+        await PrefsHelper.setString(AppConstants.userId, userCredential.user!.uid);
+        if (isSignIn) {
+          await PrefsHelper.setString(AppConstants.logged, userType);
+          if (userType == AppConstants.userType) {
+            Get.offAll(UserBottomNavBarScreen(currentIndex: 0),
+                binding: UserBottomNavBinding());
+          } else {
+            Get.offAll(
+                SpBottomNavBarScreen(
+                  currentIndex: 0,
+                ),
+                binding: ProviderBottomNavBinding());
+          }
         } else {
-          Get.offAll(
-              SpBottomNavBarScreen(
-                currentIndex: 0,
-              ),
-              binding: ProviderBottomNavBinding());
+          postDetailsToFireStore(userType);
+        }
+      }
+    } catch (e){
+      if (e is FirebaseAuthException) {
+        // Handle specific error codes
+        if (e.code == 'invalid-verification-code') {
+          // Incorrect OTP entered
+          Fluttertoast.showToast(
+              msg: "Incorrect OTP entered. Please try again.");
+          print("Incorrect OTP entered. Please try again.");
+
+        } else {
+          // Other FirebaseAuthException, handle accordingly
+          print("Error signing in: ${e.message}");
         }
       } else {
-        postDetailsToFireStore(userType);
+        // Handle other exceptions
+        print("Error signing in: $e");
       }
+    } finally {
+      verifyPhoneOtpLoading = false;
+      update();
     }
 
-    isLoading = false;
-    update();
+
   }
-
-  // Future<void> signInWithGoogle(String userType) async {
-  //   // Trigger the authentication flow
-  //   try {
-  //     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-
-  //     // Obtain the auth details from the request
-  //     final GoogleSignInAuthentication? googleAuth =
-  //         await googleUser?.authentication;
-
-  //     if (googleAuth != null) {
-  //       final credential = GoogleAuthProvider.credential(
-  //         accessToken: googleAuth.accessToken,
-  //         idToken: googleAuth.idToken,
-  //       );
-  //       UserCredential userData =
-  //           await FirebaseAuth.instance.signInWithCredential(credential);
-  //       print("=======> Google Sign in Complete ");
-  //       if (userData.user != null) {
-  //         DocumentSnapshot data = await FirebaseFirestore.instance
-  //             .collection(AppConstants.users)
-  //             .doc(userData.user!.uid)
-  //             .get();
-  //         if (data.exists) {
-  //           UserModel userData = UserModel.fromMap(data);
-  //           debugPrint("=======> Uid ${data['uid']}");
-  //           debugPrint("=======> User Type ${userData.role}");
-  //           if (userData.role == userType) {
-  //             await PrefsHelper.setString(AppConstants.logged, userData.role);
-  //             if (userData.role == AppConstants.userType) {
-  //               Get.offAll(UserBottomNavBarScreen(currentIndex: 0),
-  //                   binding: UserBottomNavBinding());
-  //               _dataController.setData(
-  //                   userNameD: userData.userName!,
-  //                   userRoleD: userData.role!,
-  //                   uidD: userData.uid!,
-  //                   imageD: userData.imageSrc!,
-  //                   authTypeD: userData.authType!);
-  //               usernameController.clear();
-  //               passwordController.clear();
-  //             } else {
-  //               Get.offAll(SpBottomNavBarScreen(currentIndex: 0),
-  //                   binding: ProviderBottomNavBinding());
-  //               _dataController.setData(
-  //                   userNameD: userData.userName!,
-  //                   userRoleD: userData.role!,
-  //                   uidD: userData.uid!,
-  //                   imageD: userData.imageSrc!,
-  //                   authTypeD: userData.authType!);
-  //               usernameController.clear();
-  //               passwordController.clear();
-  //             }
-  //           } else {
-  //             Fluttertoast.showToast(msg: "User not found");
-  //           }
-  //         } else {
-  //           Get.to(MoreSignUpScreen(
-  //               uid: userData.user!.uid,
-  //               email: userData.user!.email ?? "",
-  //               image: userData.user!.photoURL ?? "",
-  //               name: userData.user!.displayName ?? "",
-  //               userType: userType));
-  //         }
-  //       }
-  //     }
-  //   } on Exception catch (e) {
-  //     debugPrint("Oops, Something wrong error $e");
-  //   }
-  // }
-
-  // Future<void> appleInWithGoogle(String userType) async {
-  //   // Trigger the authentication flow
-  //   try {
-  //     final authProvider = AppleAuthProvider();
-
-  //     UserCredential userData =
-  //         await FirebaseAuth.instance.signInWithProvider(authProvider);
-  //     if (userData.user != null) {
-  //       print("=======> Apple Sign in Complete ");
-  //       DocumentSnapshot data = await FirebaseFirestore.instance
-  //           .collection(AppConstants.users)
-  //           .doc(userData.user!.uid)
-  //           .get();
-  //       if (data.exists) {
-  //         UserModel userData = UserModel.fromMap(data);
-  //         debugPrint("=======> Uid ${data['uid']}");
-  //         debugPrint("=======> User Type ${userData.role}");
-  //         if (userData.role == userType) {
-  //           await PrefsHelper.setString(AppConstants.logged, userData.role);
-  //           if (userData.role == AppConstants.userType) {
-  //             Get.offAll(
-  //               UserBottomNavBarScreen(currentIndex: 0),
-  //               binding: UserBottomNavBinding(),
-  //             );
-  //             _dataController.setData(
-  //                 userNameD: userData.userName!,
-  //                 userRoleD: userData.role!,
-  //                 uidD: userData.uid!,
-  //                 imageD: userData.imageSrc!,
-  //                 authTypeD: userData.authType!);
-  //             usernameController.clear();
-  //             passwordController.clear();
-  //           } else {
-  //             Get.offAll(SpBottomNavBarScreen(currentIndex: 0),
-  //                 binding: ProviderBottomNavBinding());
-  //             _dataController.setData(
-  //                 userNameD: userData.userName!,
-  //                 userRoleD: userData.role!,
-  //                 uidD: userData.uid!,
-  //                 imageD: userData.imageSrc!,
-  //                 authTypeD: userData.authType!);
-  //             usernameController.clear();
-  //             passwordController.clear();
-  //           }
-  //         } else {
-  //           Fluttertoast.showToast(msg: "User not found");
-  //         }
-  //       } else {
-  //         Get.to(MoreSignUpScreen(
-  //             uid: userData.user!.uid,
-  //             email: userData.user!.email ?? "",
-  //             image: userData.user!.photoURL ?? "",
-  //             name: userData.user!.displayName ?? "",
-  //             userType: userType));
-  //       }
-  //     }
-  //   } on Exception catch (e) {
-  //     debugPrint("Oops, Something wrong error $e");
-  //   }
-  // }
 
   ///  <------------- Sign out------------->
   var isSignOutLoad = false.obs;
@@ -663,7 +359,7 @@ class AuthenticationController extends GetxController {
   TextEditingController accountDeleteCtrl = TextEditingController();
   deleteController() async {
     isAccountDeleteLoading(true);
-    if (auth.currentUser!.email == accountDeleteCtrl.text) {
+    if (auth.currentUser!.phoneNumber == accountDeleteCtrl.text) {
       await auth.currentUser!.delete().then((value) async {
         localizationController.setLanguage(const Locale('en', "US"));
         accountDeleteCtrl.clear();
@@ -683,6 +379,42 @@ class AuthenticationController extends GetxController {
       isAccountDeleteLoading(false);
     }
   }
+
+
+  // var testVId="";
+  //
+  //
+  // Future<void> verifyPhoneNumber() async {
+  //   debugPrint("$phoneCode${phoneController.text}");
+  //   try {
+  //
+  //     await auth.verifyPhoneNumber(
+  //       phoneNumber:"$phoneCode${phoneController.text}",
+  //       verificationCompleted: (PhoneAuthCredential credential) async {
+  //         await auth.signInWithCredential(credential);
+  //       },
+  //       verificationFailed: (FirebaseAuthException e) {
+  //         if (e.code == 'invalid-phone-number') {
+  //           print('The provided phone number is not valid.');
+  //         }
+  //         print('Verification failed: ${e.message}');
+  //       },
+  //       codeSent: (String verificationId, int? resendToken) {
+  //         print('Code sent to ${phoneController.text}');
+  //
+  //           testVId = verificationId;
+  //
+  //       },
+  //       codeAutoRetrievalTimeout: (String verificationId) {
+  //         print('Auto retrieval timeout');
+  //       },
+  //     );
+  //   } catch (e) {
+  //     print('Error verifying phone number: $e');
+  //   }
+  // }
+  //
+
 
   @override
   void dispose() {

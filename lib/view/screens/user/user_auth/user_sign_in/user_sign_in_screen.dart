@@ -204,6 +204,7 @@ class _UserSignInState extends State<UserSignIn> {
                             //       .toString(),
                             //   userType,
                             // );
+                           // controller.verifyPhoneNumber();
 
                             controller.loginWithPhoneGenerateOTP(
                                 userType: userType, isSignIn: true);

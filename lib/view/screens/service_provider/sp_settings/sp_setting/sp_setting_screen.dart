@@ -176,10 +176,10 @@ class _SpSettingScreenState extends State<SpSettingScreen> {
                     ),
 
                     /// <------------- Change Password ------------>
-                    if(_profileController.userData.value.authType==AppConstants.normalUser)
-                      settingTile(title:AppStrings.changePassword.tr,  onTap: () {
-                        Get.toNamed(AppRoute.spChangePasswordScreen);
-                      }),
+                    // if(_profileController.userData.value.authType==AppConstants.normalUser)
+                    //   settingTile(title:AppStrings.changePassword.tr,  onTap: () {
+                    //     Get.toNamed(AppRoute.spChangePasswordScreen);
+                    //   }),
                     /// <------------- Terms Of Conditions Password ------------>
                       settingTile(title:AppStrings.termsOfConditions.tr,onTap: () {
                         Get.toNamed(AppRoute.spTermsOfConditionsScreen);

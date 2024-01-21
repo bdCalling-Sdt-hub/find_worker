@@ -83,7 +83,8 @@ class EditServiceController extends GetxController{
                 location: addressTextCtrl.text,
                 providerUid:model.providerUid,
                 description:descriptionTextCtrl.text,
-                  options: selectedOption.value
+                  options: selectedOption.value,
+              createAt: model.createAt
             );
             await firebaseStorage.collection(AppConstants.services).doc(model.id).update(body.toJson());
             await serviceController.getService();

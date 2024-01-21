@@ -187,27 +187,27 @@ class _SettingScreenState extends State<SettingScreen> {
                       //Customized
                     ],
                   ),
-                  const SizedBox(height: 30,),
-                  GestureDetector(
-                    onTap: (){
-                      Get.toNamed(AppRoute.changePasswordScreen);
-                    },
-                    child:    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        CustomText(
-                          text: AppStrings.changePassword.tr,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          color: AppColors.black_100,
-                        ),
-                        CustomImage(imageSrc: AppIcons.chevronRight,
-                          size: 18,
-                          imageType: ImageType.svg,
-                          imageColor: AppColors.black_100,
-                        )
-                      ],
-                    ),),
+                  // const SizedBox(height: 30,),
+                  // GestureDetector(
+                  //   onTap: (){
+                  //     Get.toNamed(AppRoute.changePasswordScreen);
+                  //   },
+                  //   child:    Row(
+                  //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  //     children: [
+                  //       CustomText(
+                  //         text: AppStrings.changePassword.tr,
+                  //         fontSize: 14,
+                  //         fontWeight: FontWeight.w400,
+                  //         color: AppColors.black_100,
+                  //       ),
+                  //       CustomImage(imageSrc: AppIcons.chevronRight,
+                  //         size: 18,
+                  //         imageType: ImageType.svg,
+                  //         imageColor: AppColors.black_100,
+                  //       )
+                  //     ],
+                  //   ),),
                   const SizedBox(height: 30,),
                   GestureDetector(
                     onTap: (){

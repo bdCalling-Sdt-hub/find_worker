@@ -27,7 +27,7 @@ class AppStrings {
   static const String male = "Male";
   static const String female = "Female";
   static const String others = "Others";
-  static const String phoneNumber = "Phone Number";
+  static const String phoneNumber = "Phone number";
   static const String address = "Address";
   static const String enterYourAddress = "Enter your address";
   static const String serviceType = "Service Type";

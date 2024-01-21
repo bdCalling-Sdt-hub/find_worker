@@ -29,7 +29,7 @@ class AccountDeleteAccount extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Expanded(child:Text("Enter your email to delete your account.".tr,style:TextStyle(fontWeight: FontWeight.w500,color: Colors.black,fontSize: 15.sp),),),
+          Expanded(child:Text("Enter your phone number to delete your account.".tr,style:TextStyle(fontWeight: FontWeight.w500,color: Colors.black,fontSize: 15.sp),),),
           InkWell(onTap:(){
             Get.back();
           }, child:Padding(
@@ -43,11 +43,11 @@ class AccountDeleteAccount extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(AppStrings.email.tr),
+          Text(AppStrings.phoneNumber.tr),
           SizedBox(height: 7.h,),
           CustomTextField(
             textEditingController: _authController.accountDeleteCtrl,
-            hintText:AppStrings.enterYourEmail.tr,
+            hintText:"Enter Your Phone Number".tr,
           ),
           SizedBox(height: 20.h,),
           Obx(()=>

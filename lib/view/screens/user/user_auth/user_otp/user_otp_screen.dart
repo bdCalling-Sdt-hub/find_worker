@@ -167,9 +167,9 @@ class _UserOtpScreenState extends State<UserOtpScreen> {
                           fontWeight: FontWeight.w600,
                           color: AppColors.black_100,
                         ),
-                        GestureDetector(
+                     controller.resendOtpLoading?const CircularProgressIndicator(color:AppColors.blue_80,): GestureDetector(
                           onTap: () {
-                            // Get.to(() => resendOtpToEmail());
+                            controller.resendOtp();
                           },
                           child: const CustomText(
                             text: AppStrings.resend,
@@ -181,7 +181,7 @@ class _UserOtpScreenState extends State<UserOtpScreen> {
                       ],
                     ),
                     const SizedBox(height: 50,),
-                    controller.isLoading
+                    controller.verifyPhoneOtpLoading
                         ? const CustomElevatedLoadingButton()
                         : GestureDetector(
                             onTap: () {
@@ -189,8 +189,7 @@ class _UserOtpScreenState extends State<UserOtpScreen> {
 
                               print(
                                   "OTP++++++++++++++++++++${otpController.text}");
-
-                              controller.varifyPhoneOTP(
+                              controller.verifyPhoneOTP(
                                   smsCode: otpController.text,
                                   isSignIn: isSignIn,
                                   userType: userType);
