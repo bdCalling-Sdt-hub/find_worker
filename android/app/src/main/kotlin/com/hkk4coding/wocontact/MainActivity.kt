@@ -1,4 +1,4 @@
-package com.hkk4coding.wrcontacts
+package com.hkk4coding.wocontact
 
 import io.flutter.embedding.android.FlutterActivity
 
