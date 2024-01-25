@@ -247,7 +247,7 @@ class UserServiceDetailsController extends GetxController
         .update({"status": AppConstants.canceled,});
     Get.back();
   } finally {
-    cancelLoading(true);
+    cancelLoading(false);
   }
 
 }
@@ -309,6 +309,7 @@ class UserServiceDetailsController extends GetxController
       } else {
         print("=======> Not Response timer cancel");
         isAlreadyHire(false);
+        current.value = 0;
         _timer?.cancel();
         await cancelHire();
         noResponseBottomShit();
@@ -417,7 +418,7 @@ class UserServiceDetailsController extends GetxController
                     child:cancelLoading.value? const SizedBox(
                         height: 20,
                         width: 20,
-                        child: CircularProgressIndicator(color: Colors.white,)): Text(
+                        child: CircularProgressIndicator(color: AppColors.blue_100,)): Text(
                       "Cancel".tr,
                       style: TextStyle(
                           fontSize: 18.sp,

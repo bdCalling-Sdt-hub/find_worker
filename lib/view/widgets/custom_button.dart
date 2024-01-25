@@ -21,12 +21,11 @@ class CustomButton extends StatelessWidget {
          ),
           backgroundColor: color??const Color(0xff0668E3),
             minimumSize:Size(width??Get.width, height??50.h),
-
         ),
         child:loading? const SizedBox(
           height: 20,
           width: 20,
           child: CircularProgressIndicator(color: Colors.white,),
-        ):Text(text,style: TextStyle(color: Colors.white),));
+        ):Text(text,style: const TextStyle(color: Colors.white),));
   }
 }

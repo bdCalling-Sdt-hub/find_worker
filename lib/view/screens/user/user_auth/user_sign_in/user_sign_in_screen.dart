@@ -3,8 +3,8 @@ import 'package:wrcontacts/core/app_routes.dart';
 import 'package:wrcontacts/utils/app_colors.dart';
 import 'package:wrcontacts/utils/app_strings.dart';
 import 'package:wrcontacts/view/screens/user/user_auth/user_auth_controller/user_auth_controller.dart';
+import 'package:wrcontacts/view/widgets/custom_button.dart';
 
-import 'package:wrcontacts/view/widgets/buttons/custom_button.dart';
 import 'package:wrcontacts/view/widgets/custom_elevated_loading_button/custom_elevated_loading_button.dart';
 import 'package:wrcontacts/view/widgets/text/custom_text.dart';
 import 'package:wrcontacts/view/widgets/text_field/custom_text_field.dart';
@@ -193,28 +193,26 @@ class _UserSignInState extends State<UserSignIn> {
                       // controller.isLoading
                       //     ? const CustomElevatedLoadingButton()
                       //     :
-                      CustomButton(
-                        buttonWidth: MediaQuery.of(context).size.width,
-                        onPressed: () {
-                          if (loginFormKey.currentState!.validate()) {
-                            // controller.loginUser(
-                            //   controller.usernameController.text
-                            //       .toString(),
-                            //   controller.passwordController.text
-                            //       .toString(),
-                            //   userType,
-                            // );
-                           // controller.verifyPhoneNumber();
+                      Obx(()=>
+                          CustomButton(
+                            loading:controller.isLoading.value ,
+                            onTap: () {
+                              if (loginFormKey.currentState!.validate()) {
+                                // controller.loginUser(
+                                //   controller.usernameController.text
+                                //       .toString(),
+                                //   controller.passwordController.text
+                                //       .toString(),
+                                //   userType,
+                                // );
+                                // controller.verifyPhoneNumber();
 
-                            controller.loginWithPhoneGenerateOTP(
-                                userType: userType, isSignIn: true);
-                          }
-                        },
-                        titleText: AppStrings.signIn,
-                        titleColor: AppColors.white,
-                        buttonBgColor: AppColors.blue_100,
-                        titleSize: 18,
-                        titleWeight: FontWeight.w600,
+                                controller.loginWithPhoneGenerateOTP(
+                                    userType: userType, isSignIn: true);
+                              }
+                            },
+                            text:AppStrings.signIn,
+                          ),
                       ),
                       // const Align(
                       //   alignment: Alignment.center,

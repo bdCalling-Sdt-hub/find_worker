@@ -81,7 +81,7 @@ class AppStrings {
   static const String accept = "Accept";
 
   static const String notification = "Notification";
-  static const String welcomeToTheFindWorker = "Welcome to the Find Worker.";
+  //static const String welcomeToTheFindWorker = "Welcome to the Find Worker.";
 
   static const String profile = "Profile";
   static const String personalInformation = "Personal Information";

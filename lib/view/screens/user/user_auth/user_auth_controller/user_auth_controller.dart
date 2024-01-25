@@ -24,7 +24,7 @@ class AuthenticationController extends GetxController {
   final _dataController = Get.put(DataController());
 
   bool isObscure = true;
-  bool isLoading = false;
+  RxBool isLoading = false.obs;
   bool rememberMe = false;
 
   final registerFormKey = GlobalKey<FormState>();
@@ -169,7 +169,8 @@ class AuthenticationController extends GetxController {
   Future phoneCredentail(
       {required String userType, required bool isSignIn}) async {
     print("===================$phoneCode${phoneController.text}");
-    await FirebaseAuth.instance
+    await auth.setSettings(appVerificationDisabledForTesting: true);
+    await auth
         .verifyPhoneNumber(
       phoneNumber: "$phoneCode${phoneController.text}",
       verificationCompleted: (PhoneAuthCredential credential) {},
@@ -230,7 +231,7 @@ class AuthenticationController extends GetxController {
   void loginWithPhoneGenerateOTP(
       {required String userType, required bool isSignIn}) async {
     try {
-      isLoading = true;
+      isLoading(true);
       update();
       debugPrint("Phone Number Sign in : ${phoneController.text}");
 
@@ -258,14 +259,14 @@ class AuthenticationController extends GetxController {
       else {
         if (userData.docs.isEmpty) {
         await  phoneCredentail(userType: userType, isSignIn: isSignIn);
-          isLoading=false;
+        isLoading(false);
         } else {
           Fluttertoast.showToast(
               msg: "You have already created an account Sign in");
         }
       }
     } finally {
-      isLoading = false;
+      isLoading(false);
       update();
     }
 

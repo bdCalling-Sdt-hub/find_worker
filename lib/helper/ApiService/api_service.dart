@@ -84,7 +84,7 @@ class ApiService {
         "mutable_content": true,
         "notification": {
           "title":
-          "Find Worker",
+          "WoContact",
           "body": content
         },
         "data": {"status":type,"userRole":userRole}

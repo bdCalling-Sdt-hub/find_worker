@@ -3,7 +3,7 @@ import 'package:wrcontacts/utils/app_colors.dart';
 import 'package:wrcontacts/utils/app_icons.dart';
 import 'package:wrcontacts/utils/app_strings.dart';
 import 'package:wrcontacts/view/screens/user/user_auth/user_auth_controller/user_auth_controller.dart';
-import 'package:wrcontacts/view/widgets/buttons/custom_button.dart';
+import 'package:wrcontacts/view/widgets/custom_button.dart';
 import 'package:wrcontacts/view/widgets/custom_elevated_loading_button/custom_elevated_loading_button.dart';
 import 'package:wrcontacts/view/widgets/image/custom_image.dart';
 import 'package:wrcontacts/view/widgets/text/custom_text.dart';
@@ -574,27 +574,22 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
                                 const SizedBox(
                                   height: 24,
                                 ),
-                                controller.isLoading
-                                    ? const CustomElevatedLoadingButton()
-                                    : CustomButton(
-                                        buttonWidth:
-                                            MediaQuery.of(context).size.width,
-                                        onPressed: () {
-                                          if (controller
-                                              .registerFormKey.currentState!
-                                              .validate()) {
-                                            controller
-                                                .loginWithPhoneGenerateOTP(
-                                                    isSignIn: false,
-                                                    userType: userType);
-                                          }
-                                        },
-                                        titleText: AppStrings.signUp,
-                                        titleColor: AppColors.white,
-                                        buttonBgColor: AppColors.blue_100,
-                                        titleSize: 18,
-                                        titleWeight: FontWeight.w600,
-                                      ),
+                              Obx(()=>
+                                 CustomButton(
+                                          loading:controller.isLoading.value ,
+                                          onTap: () {
+                                            if (controller
+                                                .registerFormKey.currentState!
+                                                .validate()) {
+                                              controller
+                                                  .loginWithPhoneGenerateOTP(
+                                                      isSignIn: false,
+                                                      userType: userType);
+                                            }
+                                          },
+                                  text:AppStrings.signUp,
+                                        ),
+                              ),
                                 const SizedBox(
                                   height: 24,
                                 ),
