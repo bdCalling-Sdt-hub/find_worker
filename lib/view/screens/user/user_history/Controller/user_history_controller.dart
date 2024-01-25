@@ -138,7 +138,7 @@ var removeLoading=false.obs;
         }
       }else{
         Get.back();
-        Fluttertoast.showToast(msg:"Hire details not found!",toastLength: Toast.LENGTH_LONG,gravity: ToastGravity.CENTER);
+        Fluttertoast.showToast(msg:"Hire details not found!".tr,toastLength: Toast.LENGTH_LONG,gravity: ToastGravity.CENTER);
       }
       Future.delayed(const Duration(seconds:1),(){
         hireLoading(false);

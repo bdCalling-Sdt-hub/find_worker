@@ -114,10 +114,10 @@ class UserProfileController extends GetxController {
           .update(data);
       await getProfile();
       Get.back();
-      Fluttertoast.showToast(msg: "Profile update complete!",toastLength: Toast.LENGTH_LONG);
+      Fluttertoast.showToast(msg: "Profile update complete!".tr,toastLength: Toast.LENGTH_LONG);
     } on Exception catch (e) {
       debugPrint("Update Profile error $e");
-      Fluttertoast.showToast(msg: "Oops!, Profile update something error!");
+      Fluttertoast.showToast(msg: "Oops!, Profile update something error!".tr);
     } finally {
       loading(false);
     }

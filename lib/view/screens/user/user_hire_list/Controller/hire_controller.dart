@@ -126,7 +126,7 @@ class HireController extends GetxController {
         }
       }else{
         Get.back();
-        Fluttertoast.showToast(msg:"Hire details not found!",toastLength: Toast.LENGTH_LONG,gravity: ToastGravity.CENTER);
+        Fluttertoast.showToast(msg:"Hire details not found!".tr,toastLength: Toast.LENGTH_LONG,gravity: ToastGravity.CENTER);
       }
       Future.delayed(const Duration(seconds:1),(){
         hireLoading(false);
@@ -161,7 +161,7 @@ class HireController extends GetxController {
 
     } on Exception catch (e) {
       completeLoading(false);
-      Fluttertoast.showToast(msg:"Oops,something wrong");
+      Fluttertoast.showToast(msg:"Oops,something wrong".tr);
     }finally{
       completeLoading(false);
     }
@@ -195,7 +195,7 @@ class HireController extends GetxController {
       debugPrint("=========> Complete Cancel");
     } on Exception catch (e) {
       cancelWorkLoading(false);
-      Fluttertoast.showToast(msg:"Oops,something wrong");
+      Fluttertoast.showToast(msg:"Oops,something wrong".tr);
     }finally{
       cancelWorkLoading(false);
     }
@@ -225,7 +225,7 @@ class HireController extends GetxController {
 
     } on Exception catch (e) {
       startWorkLoading(false);
-      Fluttertoast.showToast(msg:"Oops,something wrong");
+      Fluttertoast.showToast(msg:"Oops,something wrong".tr);
     }finally{
       startWorkLoading(false);
     }

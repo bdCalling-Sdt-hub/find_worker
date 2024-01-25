@@ -28,7 +28,7 @@ final FirebaseAuth _auth =FirebaseAuth.instance;
           confirmPassCtrl.clear();
           currentPassCtrl.clear();
           newPassCtrl.clear();
-          Fluttertoast.showToast(msg:"Password updated successfully",toastLength: Toast.LENGTH_LONG);
+          Fluttertoast.showToast(msg:"Password updated successfully".tr,toastLength: Toast.LENGTH_LONG);
           Get.back();
         }).catchError((error) {
           Fluttertoast.showToast(msg:"Error changing password");

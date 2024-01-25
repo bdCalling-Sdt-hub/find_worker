@@ -65,7 +65,7 @@ getJobHistory(String jobId) async {
       }
         }else{
           Get.back();
-          Fluttertoast.showToast(msg:"Job details not found!",toastLength: Toast.LENGTH_LONG,gravity: ToastGravity.CENTER);
+          Fluttertoast.showToast(msg:"Job details not found!".tr,toastLength: Toast.LENGTH_LONG,gravity: ToastGravity.CENTER);
 
         }
     Future.delayed(const Duration(seconds:1),(){
@@ -105,7 +105,7 @@ completeService(HireModel hireModel,)async{
 
   } on Exception catch (e) {
     completeLoading(false);
-    Fluttertoast.showToast(msg:"Oops,something wrong");
+    Fluttertoast.showToast(msg:"Oops,something wrong".tr);
   }finally{
     completeLoading(false);
   }
@@ -136,7 +136,7 @@ completeService(HireModel hireModel,)async{
      debugPrint("=========> Complete Accepted");
    } on Exception catch (e) {
      acceptWorkLoading(false);
-     Fluttertoast.showToast(msg:"Oops,something wrong");
+     Fluttertoast.showToast(msg:"Oops,something wrong".tr);
    }finally{
      acceptWorkLoading(false);
    }
@@ -165,7 +165,7 @@ completeService(HireModel hireModel,)async{
      debugPrint("=========> Complete Cancel");
    } on Exception catch (e) {
      cancelWorkLoading(false);
-     Fluttertoast.showToast(msg:"Oops,something wrong");
+     Fluttertoast.showToast(msg:"Oops,something wrong".tr);
    }finally{
      cancelWorkLoading(false);
    }
@@ -194,7 +194,7 @@ completeService(HireModel hireModel,)async{
 
    } on Exception catch (e) {
      startWorkLoading(false);
-     Fluttertoast.showToast(msg:"Oops,something wrong");
+     Fluttertoast.showToast(msg:"Oops,something wrong".tr);
    }finally{
      startWorkLoading(false);
    }

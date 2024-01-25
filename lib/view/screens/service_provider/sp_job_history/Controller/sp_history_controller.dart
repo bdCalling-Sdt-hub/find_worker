@@ -93,7 +93,7 @@ class SpHistoryController extends GetxController{
       Get.back();
       Get.back();
     } on Exception catch (e) {
-      Fluttertoast.showToast(msg:"Oops, Something is wrong");
+      Fluttertoast.showToast(msg:"Oops, Something is wrong".tr);
       debugPrint("======>Oops, Something is wrong");
     } finally {
       removeLoading(false);
@@ -147,7 +147,7 @@ class SpHistoryController extends GetxController{
         }
       }else{
         Get.back();
-       Fluttertoast.showToast(msg:"Job details not found!",toastLength: Toast.LENGTH_LONG,gravity: ToastGravity.CENTER);
+       Fluttertoast.showToast(msg:"Job details not found!".tr,toastLength: Toast.LENGTH_LONG,gravity: ToastGravity.CENTER);
       }
       Future.delayed(const Duration(seconds:1),(){
         getJobHistoryDetailsLoading(false);

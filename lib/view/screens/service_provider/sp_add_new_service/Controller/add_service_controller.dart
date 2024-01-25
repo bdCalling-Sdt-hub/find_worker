@@ -70,7 +70,7 @@ class AddNewServiceController extends GetxController{
   addService()async{
     if(!addServiceLoad.value){
       if(imagePath.isEmpty){
-        Fluttertoast.showToast(msg:"Please Select Image",toastLength:Toast.LENGTH_LONG,gravity:ToastGravity.CENTER);
+        Fluttertoast.showToast(msg:"Please Select Image".tr,toastLength:Toast.LENGTH_LONG,gravity:ToastGravity.CENTER);
       }else{
         if(formKey.currentState!.validate()){
           addServiceLoad(true);
@@ -93,7 +93,7 @@ class AddNewServiceController extends GetxController{
               );
               await firebaseStorage.collection(AppConstants.services).doc(id).set(body.toJson());
                 Get.find<SpHomeController>().getService();
-              Fluttertoast.showToast(msg:"Service Added Successful",toastLength:Toast.LENGTH_LONG,gravity:ToastGravity.CENTER);
+              Fluttertoast.showToast(msg:"Service Added Successful".tr,toastLength:Toast.LENGTH_LONG,gravity:ToastGravity.CENTER);
               await serviceController.getService();
               serviceTextCtrl.clear();
               selectServiceId.value="";
@@ -104,7 +104,7 @@ class AddNewServiceController extends GetxController{
               selectedItem.value=(-1);
               Get.back();
             }else{
-              Fluttertoast.showToast(msg:"This Service Already Added",toastLength:Toast.LENGTH_LONG,gravity:ToastGravity.CENTER);
+              Fluttertoast.showToast(msg:"This Service Already Added".tr,toastLength:Toast.LENGTH_LONG,gravity:ToastGravity.CENTER);
            //   Get.snackbar("Error","This Service Already Added");
             }
 

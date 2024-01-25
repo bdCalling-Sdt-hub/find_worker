@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:wrcontacts/controller/data_controller.dart';
 import 'package:wrcontacts/core/app_routes.dart';
 import 'package:wrcontacts/core/share_pre.dart';
@@ -43,6 +44,7 @@ class AuthenticationController extends GetxController {
   final TextEditingController dobController = TextEditingController();
 
   String phoneCode = "+971";
+  //String signUpPhoneCode = "+971";
 
   // Date TextFormField
   final TextEditingController dayController = TextEditingController();
@@ -295,12 +297,16 @@ class AuthenticationController extends GetxController {
           if (userType == AppConstants.userType) {
             Get.offAll(UserBottomNavBarScreen(currentIndex: 0),
                 binding: UserBottomNavBinding());
+            phoneCode="+971";
+            phoneController.clear();
           } else {
             Get.offAll(
                 SpBottomNavBarScreen(
                   currentIndex: 0,
                 ),
                 binding: ProviderBottomNavBinding());
+            phoneCode="+971";
+            phoneController.clear();
           }
         } else {
           postDetailsToFireStore(userType);
@@ -340,9 +346,11 @@ class AuthenticationController extends GetxController {
       isSignOutLoad(true);
       await auth.signOut().then((value) async {
         localizationController.setLanguage(Locale('en', "US"));
+        localizationController.setSelectIndex(0);
         Get.back();
         Get.offAll(() => const OnboardScreen());
         await PrefsHelper.setString(AppConstants.logged, "");
+
         await PrefsHelper.setInt(AppConstants.adsCount, (-1));
         debugPrint("=========> Successful sign out");
         isSignOutLoad(false);
@@ -362,6 +370,7 @@ class AuthenticationController extends GetxController {
     if (auth.currentUser!.phoneNumber == accountDeleteCtrl.text) {
       await auth.currentUser!.delete().then((value) async {
         localizationController.setLanguage(const Locale('en', "US"));
+        localizationController.setSelectIndex(0);
         accountDeleteCtrl.clear();
         await PrefsHelper.setString(AppConstants.logged, "");
         await PrefsHelper.setInt(AppConstants.adsCount, (-1));
@@ -375,7 +384,7 @@ class AuthenticationController extends GetxController {
       });
       isAccountDeleteLoading(false);
     } else {
-      Fluttertoast.showToast(msg: "Email Not matching");
+      Fluttertoast.showToast(msg: "Phone number not matching");
       isAccountDeleteLoading(false);
     }
   }

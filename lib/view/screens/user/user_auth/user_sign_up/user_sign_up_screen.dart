@@ -29,6 +29,23 @@ class _UserSignUpScreenState extends State<UserSignUpScreen> {
     setState(() {});
   }
 
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    authController.phoneCode="+971";
+    authController.phoneController.clear();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    authController.phoneCode="+971";
+    authController.phoneController.clear();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<AuthenticationController>(

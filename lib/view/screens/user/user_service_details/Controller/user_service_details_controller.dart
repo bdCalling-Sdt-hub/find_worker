@@ -132,32 +132,42 @@ class UserServiceDetailsController extends GetxController
 
   RxInt start = 300.obs; // 5 minutes in seconds
   RxInt current = 0.obs;
+  RxBool isAlreadyHire=false.obs;
+  late UserByServiceModel hireServiceModel;
+  var hireId = "";
+  late UserModel hireUserData;
 
-  hireNow(UserByServiceModel servicedata, String number,
-      UserModel currentUserData) async {
+  hireNow(UserByServiceModel servicedata,UserModel currentUserData) async {
     hireLoading(true);
     start.value = 300;
     try {
-      var result = await getCheckTime(servicedata);
+      if(!isAlreadyHire.value){
+        hireServiceModel=servicedata;
+        hireUserData=currentUserData;
+      }
+
+      var result = await getCheckTime(hireServiceModel);
       if (result == -1) {
-        await hireDataPost(servicedata, number, currentUserData);
-        timerSystem(servicedata);
+        if(!isAlreadyHire.value){
+          await hireDataPost(hireServiceModel, hireUserData);
+          timerSystem(hireServiceModel);
+        }
       } else {
         current.value = result;
-        timerSystem(servicedata);
+        waitingResponseBottomShit();
       }
       print("======> After Hiring Time $result");
       // await hireDataPost(userdata, number, currentUserData);
     } catch (e) {
       debugPrint("Opps error $e");
-      Fluttertoast.showToast(msg: "Oops, Something error!,Please try again");
+      Fluttertoast.showToast(msg: "Oops, Something error!,Please try again".tr);
     } finally {
       hireLoading(false);
     }
   }
 
   Future<void> launchPhoneDialer(String contactNumber) async {
-    debugPrint("LunchDialer nubmer : $contactNumber");
+    debugPrint("LunchDialer number : $contactNumber");
     final Uri phoneUri = Uri(scheme: "tel", path: contactNumber);
     try {
       if (!await UrlLauncher.launchUrl(phoneUri)) {
@@ -168,11 +178,12 @@ class UserServiceDetailsController extends GetxController
     }
   }
 
-  Future<void> hireDataPost(UserByServiceModel serviceModel, String number,
+  Future<void> hireDataPost(UserByServiceModel serviceModel,
       UserModel hireUserData) async {
     try {
       hireLoading(true);
       var id = uuid.v4();
+      hireId=id;
       Map<String, dynamic> hireBody = {
         "id": id,
         "service_id": serviceModel.id,
@@ -208,7 +219,7 @@ class UserServiceDetailsController extends GetxController
           fcmToken: hireUserData.fcmToken!,
           type: AppConstants.pending,
           receiverId: hireUserData.uid!);
-
+      isAlreadyHire(true);
       Fluttertoast.showToast(msg: "Hired Successful".tr);
       debugPrint("Hire Completed");
     } on Exception catch (e) {
@@ -218,9 +229,30 @@ class UserServiceDetailsController extends GetxController
       hireLoading(false);
     }
   }
+  var cancelLoading=false.obs;
+    cancelHire()async{
+  try {
+    cancelLoading(true);
+    await _firebaseFirestore
+        .collection(AppConstants.users)
+        .doc(_auth.currentUser!.uid)
+        .collection(AppConstants.hireHistory)
+        .doc(hireId)
+        .update({"status": AppConstants.canceled,});
+    await _firebaseFirestore
+        .collection(AppConstants.users)
+        .doc(hireServiceModel.providerUid)
+        .collection(AppConstants.jobHistory)
+        .doc(hireId)
+        .update({"status": AppConstants.canceled,});
+    Get.back();
+  } finally {
+    cancelLoading(true);
+  }
 
+}
   Future<int> getCheckTime(UserByServiceModel serviceData) async {
-    DateTime fiveMinutesAgo = DateTime.now().subtract(Duration(minutes: 5));
+    DateTime fiveMinutesAgo = DateTime.now().subtract(const Duration(minutes: 5));
 
     print("Service Id ====> ${serviceData.id}");
 
@@ -263,15 +295,24 @@ class UserServiceDetailsController extends GetxController
         if (result.isNotEmpty) {
           _timer?.cancel();
           current.value = 0;
+          isAlreadyHire(false);
           Fluttertoast.showToast(msg: "Service Provider Request $result");
           Get.back();
+          if(result==AppConstants.approved){
+            Get.to(UserHireDetailsScreen(
+              hireId:hireId,
+            ));
+          }
         }
         debugPrint(current.value.toString());
         print("=======>Status Get Result  $result");
       } else {
+        print("=======> Not Response timer cancel");
+        isAlreadyHire(false);
         _timer?.cancel();
-        Get.back();
-        noResponseBottomShit(); // Stop the timer when it reaches 0
+        await cancelHire();
+        noResponseBottomShit();
+        print("=======> Not Response timer cancel and bottom sheet");// Stop the timer when it reaches 0
       }
     });
     // waitingResponseBottomShit();
@@ -356,28 +397,33 @@ class UserServiceDetailsController extends GetxController
                 SizedBox(
                   height: 24.h,
                 ),
-                OutlinedButton(
-                  onPressed: () {
-                    _timer?.cancel();
-                     start.value = 300; // 5 minutes in seconds
-                     current.value = 0;
-                    Get.back();
-                  },
-                  style: ButtonStyle(
-                      minimumSize: MaterialStateProperty.all(
-                          Size(double.infinity, 56.h)),
-                      shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10.r))),
-                      side: MaterialStateProperty.all(const BorderSide(
+                Obx(()=>
+                   OutlinedButton(
+                    onPressed: ()async {
+                      _timer?.cancel();
+                       start.value = 300; // 5 minutes in seconds
+                       current.value = 0;
+                    await  cancelHire();
+                    },
+                    style: ButtonStyle(
+                        minimumSize: MaterialStateProperty.all(
+                            Size(double.infinity, 56.h)),
+                        shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.r))),
+                        side: MaterialStateProperty.all(const BorderSide(
+                            color: AppColors.blue_100,
+                            width: 1.0,
+                            style: BorderStyle.solid))),
+                    child:cancelLoading.value? const SizedBox(
+                        height: 20,
+                        width: 20,
+                        child: CircularProgressIndicator(color: Colors.white,)): Text(
+                      "Cancel".tr,
+                      style: TextStyle(
+                          fontSize: 18.sp,
                           color: AppColors.blue_100,
-                          width: 1.0,
-                          style: BorderStyle.solid))),
-                  child: Text(
-                    "Cancel".tr,
-                    style: TextStyle(
-                        fontSize: 18.sp,
-                        color: AppColors.blue_100,
-                        fontWeight: FontWeight.w600),
+                          fontWeight: FontWeight.w600),
+                    ),
                   ),
                 ),
               ],
@@ -420,7 +466,10 @@ class UserServiceDetailsController extends GetxController
                 SizedBox(
                   height: 24.h,
                 ),
-                CustomButton(onTap: () {}, text: AppStrings.tryAgain.tr),
+                CustomButton(onTap: () {
+                  Get.back();
+                  hireNow(hireServiceModel, hireUserData);
+                }, text: AppStrings.tryAgain.tr),
                 SizedBox(
                   height: 16.h,
                 ),

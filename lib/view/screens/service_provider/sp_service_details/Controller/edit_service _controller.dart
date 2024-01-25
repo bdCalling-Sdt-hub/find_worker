@@ -88,7 +88,7 @@ class EditServiceController extends GetxController{
             );
             await firebaseStorage.collection(AppConstants.services).doc(model.id).update(body.toJson());
             await serviceController.getService();
-            Fluttertoast.showToast(msg:"Service Update Successful");
+            Fluttertoast.showToast(msg:"Service Update Successful".tr);
             return body;
         } on Exception catch (e) {
           debugPrint("Add error. Reason ${e.toString()}");

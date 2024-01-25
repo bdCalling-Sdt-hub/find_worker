@@ -396,7 +396,6 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
                                               //_userServiceDetailsController.hireDataPost(userByServiceModel, "${userData.phoneCode} ${userData.phone}", userData);
                                               _userServiceDetailsController.hireNow(
                                                   userByServiceModel,
-                                                  "${userData.phoneCode} ${userData.phone}",
                                                   userData);
 
                                               // showModalBottomSheet(
