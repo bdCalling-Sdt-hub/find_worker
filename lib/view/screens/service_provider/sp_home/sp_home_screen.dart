@@ -22,6 +22,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:lite_rolling_switch/lite_rolling_switch.dart';
 
+import '../../../../helper/Language/language_controller.dart';
 import '../../../../model/hire_model.dart';
 import '../../../widgets/custom_switch.dart';
 
@@ -38,6 +39,7 @@ class _SpHomeScreenState extends State<SpHomeScreen> {
   final _controller = ValueNotifier<bool>(false);
   final _homeController = Get.put(SpHomeController());
   final _profileController = Get.put(SpProfileController());
+  final _localizationController =Get.find<LocalizationController>();
 
 
 
@@ -312,7 +314,7 @@ class _SpHomeScreenState extends State<SpHomeScreen> {
                                               SizedBox(width: 10.w,),
                                               Flexible(
                                                 child: CustomText(
-                                                  text:data.serviceName!,
+                                                  text: _localizationController.selectIndex==0?data.serviceName!:data.serviceNameArabic!,
                                                   fontWeight: FontWeight.w500,
                                                   left: 4,
                                                 ),

@@ -23,7 +23,8 @@ class EditServiceController extends GetxController{
   final FirebaseStorage _storage = FirebaseStorage.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  TextEditingController serviceTextCtrl=TextEditingController();
+   TextEditingController serviceTextCtrl=TextEditingController();
+   TextEditingController serviceArabicTextCtrl=TextEditingController();
   TextEditingController addressTextCtrl=TextEditingController();
   TextEditingController descriptionTextCtrl=TextEditingController();
   final formKey = GlobalKey<FormState>();
@@ -79,6 +80,7 @@ class EditServiceController extends GetxController{
                 image:imagePath.isNotEmpty?url:model.image!,
                 id:model.id!,
                 serviceName:serviceTextCtrl.text,
+                serviceNameArabic: serviceArabicTextCtrl.text,
                 serviceId: selectServiceId.value,
                 location: addressTextCtrl.text,
                 providerUid:model.providerUid,

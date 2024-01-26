@@ -183,5 +183,17 @@
   "No service available!": "الخدمة غير متاحة",
   "No hires here yet.": "لا يوجد تعيينات",
   "None": "لا شيئ",
-  "No jobs pending": "لا توجد وظائف معلقة"
+  "No jobs pending": "لا توجد وظائف معلقة",
+  "Please Select Image": "اختيار صورة",
+  "Service Added Successful": "تمت إضافة الخدمة بنجاح",
+  "This Service Already Added": "تمت إضافة هذه الخدمة سابقاً",
+  "Job details not found!": "لم يتم العثور على تفاصيل الوظيفة!",
+  "Oops,something wrong": "هناك خطأ ما",
+  "Profile update complete!": "اكتمل تحديث الملف الشخصي!",
+  "Oops!, Profile update something error!": "عفوًا، حدث خطأ ما في الملف الشخصي!",
+  "Service Update Successful": "تم تحديث الخدمة بنجاح",
+  "Password updated successfully": "تم تحديث كلمة السر بنجاح",
+  "Hire details not found!": "لم يتم العثور على تفاصيل التوظيف!",
+  "Oops, Something error!,Please try again": "عفوًا، حدث خطأ ما! يرجى المحاولة مرة أخرى"
+
 }

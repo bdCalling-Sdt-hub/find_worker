@@ -105,7 +105,7 @@ class _SpServicesScreenState extends State<SpServicesScreen> {
                                             },
                                             contentPadding: EdgeInsets.zero,
                                             dense: true,
-                                            title: Text(data.serviceName!),
+                                            title: Text(_localizationController.selectIndex==0?data.serviceName!:data.serviceNameArabic!),
                                             trailing: const Icon(Icons.keyboard_arrow_right_sharp),
                                           );
                                         }),

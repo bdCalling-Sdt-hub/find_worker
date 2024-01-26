@@ -182,5 +182,20 @@
  "No service available!": "No service available!",
  "No hires here yet.": "No hires here yet.",
  "None": "None",
- "No jobs pending": "No jobs pending"
+ "No jobs pending": "No jobs pending",
+ "Please Select Image": "Please Select Image",
+ "Service Added Successful": "Service Added Successful",
+ "This Service Already Added": "This Service Already Added",
+ "Job details not found!": "Job details not found!",
+ "Oops,something wrong": "Oops,something wrong",
+ "Profile update complete!": "Profile update complete!",
+ "Oops!, Profile update something error!": "Oops!, Profile update something error!",
+ "Service Update Successful": "Service Update Successful",
+ "Password updated successfully": "Password updated successfully",
+ "Hire details not found!": "Hire details not found!",
+ "Oops, Something error!,Please try again": "Oops, Something error!,Please try again"
+
+
+
+
 }

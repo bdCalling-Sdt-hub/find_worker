@@ -239,7 +239,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   const SizedBox(
                                     height:4,
                                   ),
-                                  Text(demoData.serviceName??"",maxLines: 1,overflow: TextOverflow.ellipsis,style: TextStyle(fontSize:12.sp,fontWeight: FontWeight.w500,color: Colors.grey
+                                  Text( _localizationController.selectedIndex == 0?demoData.serviceName??"":demoData.serviceNameArabic??"",maxLines: 1,overflow: TextOverflow.ellipsis,style: TextStyle(fontSize:12.sp,fontWeight: FontWeight.w500,color: Colors.grey
                                   ),),
                                   const SizedBox(
                                     height:4,

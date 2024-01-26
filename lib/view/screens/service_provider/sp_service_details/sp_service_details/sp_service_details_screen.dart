@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../helper/AdMob/ad_display.dart';
+import '../../../../../helper/Language/language_controller.dart';
 import '../../../../widgets/custom_back.dart';
 
 class SpServiceDetailsScreen extends StatefulWidget {
@@ -25,7 +26,7 @@ class SpServiceDetailsScreen extends StatefulWidget {
 
 class _SpServiceDetailsScreenState extends State<SpServiceDetailsScreen> {
 
-
+  final _localizationController =Get.find<LocalizationController>();
   ServiceModel  data= Get.arguments;
   Rx<ServiceModel>  serviceModel= ServiceModel().obs;
   update(ServiceModel value){
@@ -118,7 +119,7 @@ class _SpServiceDetailsScreenState extends State<SpServiceDetailsScreen> {
                           ),
                           Flexible(
                             child: CustomText(
-                              text: serviceModel.value.serviceName!,
+                              text:_localizationController.selectIndex==0? serviceModel.value.serviceName!:serviceModel.value.serviceNameArabic!,
                               fontWeight: FontWeight.w600,
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,

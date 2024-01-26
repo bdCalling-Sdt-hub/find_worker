@@ -111,6 +111,7 @@ Stream<List<HireModel>> getHistoryList() async* {
                 id: hireHistory['id'],
                 serviceId: hireHistory['service_id'],
                 serviceName: serviceData['category_name'],
+                serviceNameArabic: serviceData['category_arabic'],
                 uid: hireHistory['hiring_user_id'],
                 status: hireHistory['status'],
                 createAt: hireHistory['create_at'].toDate(),

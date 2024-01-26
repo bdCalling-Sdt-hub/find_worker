@@ -15,6 +15,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
+import '../../../../../helper/Language/language_controller.dart';
+
 class UserHireListScreen extends StatefulWidget {
   const UserHireListScreen({super.key});
 
@@ -24,6 +26,8 @@ class UserHireListScreen extends StatefulWidget {
 
 class _UserHireListScreenState extends State<UserHireListScreen> {
   final _controller = Get.put(HireController());
+  final _localizationController = Get.put(LocalizationController(sharedPreferences:Get.find()));
+
 
   @override
   void initState() {
@@ -262,9 +266,9 @@ class _UserHireListScreenState extends State<UserHireListScreen> {
                                                   ),
                                                   Flexible(
                                                     child: CustomText(
-                                                      text: _controller
+                                                      text:_localizationController.selectIndex==0? _controller
                                                           .hireList[index]
-                                                          .serviceName!,
+                                                          .serviceName! : _controller.hireList[index].serviceNameArabic??"",
                                                       fontSize: 14,
                                                       fontWeight:
                                                           FontWeight.w600,

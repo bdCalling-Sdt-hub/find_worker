@@ -21,6 +21,7 @@ import 'package:shimmer/shimmer.dart';
 import 'package:wrcontacts/view/widgets/custom_button.dart';
 
 import '../../../../helper/AdMob/ad_display.dart';
+import '../../../../helper/Language/language_controller.dart';
 
 class UserServiceDetailsScreen extends StatefulWidget {
   const UserServiceDetailsScreen({super.key});
@@ -34,6 +35,7 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
   UserByServiceModel userByServiceModel = Get.arguments;
 
   final _userServiceDetailsController = Get.put(UserServiceDetailsController());
+  final _localizationController = Get.put(LocalizationController(sharedPreferences:Get.find()));
   @override
   void initState() {
 
@@ -179,7 +181,7 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
                           ),
                           Flexible(
                             child: CustomText(
-                              text: userByServiceModel.serviceName!,
+                              text:_localizationController.selectIndex==0? userByServiceModel.serviceName??"":userByServiceModel.serviceNameArabic??"",
                               fontWeight: FontWeight.w600,
                               left: 4,
                               overflow: TextOverflow.ellipsis,
@@ -197,8 +199,8 @@ class _UserServiceDetailsScreenState extends State<UserServiceDetailsScreen> {
                         ),
                       if (_userServiceDetailsController
                           .topReviewList.isNotEmpty)
-                        const CustomText(
-                          text: 'Top Reviews',
+                         CustomText(
+                          text: 'Top Reviews'.tr,
                           fontSize: 18,
                           fontWeight: FontWeight.w500,
                           bottom: 16,

@@ -15,6 +15,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
+import '../../../../../helper/Language/language_controller.dart';
 import '../../../../../helper/SystemChromeHelper/system_chrome.dart';
 import '../../../../widgets/custom_back.dart';
 
@@ -27,6 +28,8 @@ class UserHistoryScreen extends StatefulWidget {
 
 class _UserHistoryScreenState extends State<UserHistoryScreen> {
   final _controller = Get.put(UserHistoryController());
+  final _localizationController = Get.put(LocalizationController(sharedPreferences:Get.find()));
+
   @override
   void initState() {
     SystemChromeHelper.enableSystemChrome();
@@ -231,9 +234,9 @@ class _UserHistoryScreenState extends State<UserHistoryScreen> {
                                             ),
                                             Flexible(
                                               child: CustomText(
-                                                text: _controller
+                                                text:_localizationController.selectIndex==0? _controller
                                                     .historyList[index]
-                                                    .serviceName!,
+                                                    .serviceName??"" : _controller.historyList[index].serviceNameArabic??"",
                                                 fontSize: 10,
                                                 maxLines: 1,
                                                 overflow:

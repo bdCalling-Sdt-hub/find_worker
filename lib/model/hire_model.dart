@@ -15,6 +15,7 @@ class HireModel {
   String? status;
   double? averageRating;
   String? serviceName;
+  String? serviceNameArabic;
   String? serviceId;
   String? image;
   String? contact;
@@ -30,6 +31,7 @@ class HireModel {
     this.status,
     this.averageRating,
     this.serviceName,
+    this.serviceNameArabic,
     this.serviceId,
     this.image,
     this.contact,
@@ -46,6 +48,7 @@ class HireModel {
     status: json["status"],
     averageRating: json["average_rating"],
     serviceName: json["service_name"],
+      serviceNameArabic: json["category_arabic"],
     serviceId: json["service_id"],
     image: json["image"],
     contact: json["contact"],
@@ -69,5 +72,6 @@ class HireModel {
     "create_at": createAt,
     "fcmToken":userFcmToken,
     "userType":userRole,
+    "category_arabic":serviceNameArabic
   };
 }

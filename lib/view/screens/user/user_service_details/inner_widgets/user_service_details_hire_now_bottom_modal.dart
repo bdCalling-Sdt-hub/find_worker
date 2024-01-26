@@ -12,6 +12,8 @@ import 'package:wrcontacts/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../../helper/Language/language_controller.dart';
+
 
 class UserServiceDetailsHireNoeBottomModal extends StatefulWidget {
   UserServiceDetailsHireNoeBottomModal({super.key,required  this.userModel,required this.number,required this.userImage,required this.userByServiceModel});
@@ -29,6 +31,8 @@ class UserServiceDetailsHireNoeBottomModal extends StatefulWidget {
 class _UserServiceDetailsHireNoeBottomModalState extends State<UserServiceDetailsHireNoeBottomModal> {
 
   final _controller =Get.put(UserServiceDetailsController());
+  final _localizationController = Get.put(LocalizationController(sharedPreferences:Get.find()));
+
 
   @override
   Widget build(BuildContext context) {
@@ -132,7 +136,7 @@ class _UserServiceDetailsHireNoeBottomModalState extends State<UserServiceDetail
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                        Text(AppStrings.service.tr,style:TextStyle(fontWeight:FontWeight.w500,color:Colors.black,fontSize: 18),),
-                      Flexible(child: Text(widget.userByServiceModel.serviceName!,style:TextStyle(fontWeight:FontWeight.w500,color:Colors.black,fontSize: 18),),
+                      Flexible(child: Text(_localizationController.selectIndex==0?widget.userByServiceModel.serviceName??"" : widget.userByServiceModel.serviceNameArabic??"",style:TextStyle(fontWeight:FontWeight.w500,color:Colors.black,fontSize: 18),),
                       ),
 
 

@@ -9,6 +9,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class UserByServiceModel {
   final String? id;
   final String? serviceName;
+  final String? serviceNameArabic;
   final String? serviceCatId;
   final String? image;
   final String? location;
@@ -34,12 +35,14 @@ class UserByServiceModel {
     this.averageRating,
     this.description,
     this.options,
-    this.createAt
+    this.createAt,
+    this.serviceNameArabic
   });
 
   factory UserByServiceModel.fromJson(Map<String, dynamic> json) => UserByServiceModel(
     id: json["id"],
     serviceName: json["category_name"],
+     serviceNameArabic: json["category_arabic"],
     serviceCatId: json["category_id"],
     providerName:json["provider_name"],
     image: json["image"],
@@ -63,6 +66,7 @@ class UserByServiceModel {
     "average_rating": averageRating,
     "description": description,
     "options":options,
-    "create_at":createAt
+    "create_at":createAt,
+    "category_arabic":serviceNameArabic
   };
 }

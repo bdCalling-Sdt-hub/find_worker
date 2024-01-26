@@ -15,6 +15,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:shimmer/shimmer.dart';
 
+import '../../../../../helper/Language/language_controller.dart';
 import '../Controller/user_history_controller.dart';
 
 class UserHistoryDetailsScreen extends StatefulWidget {
@@ -30,8 +31,10 @@ class UserHistoryDetailsScreen extends StatefulWidget {
 class _UserHistoryDetailsScreenState extends State<UserHistoryDetailsScreen> {
 
   final _controller=Get.put(UserHistoryController());
+  final _localizationController = Get.put(LocalizationController(sharedPreferences:Get.find()));
 
-@override
+
+  @override
   void initState() {
     _controller.getHireDetails(widget.hireId);
     super.initState();
@@ -206,7 +209,7 @@ class _UserHistoryDetailsScreenState extends State<UserHistoryDetailsScreen> {
                             text: AppStrings.service.tr,
                           ),
                           CustomText(
-                            text: _controller.hireDetails.value.serviceName!,
+                            text:_localizationController.selectIndex==0? _controller.hireDetails.value.serviceName??"" : _controller.hireDetails.value.serviceNameArabic??"",
                             fontWeight: FontWeight.w500,
                             left: 4,
                           ),

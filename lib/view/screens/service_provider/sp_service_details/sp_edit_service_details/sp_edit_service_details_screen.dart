@@ -19,6 +19,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../../../helper/Language/language_controller.dart';
 import '../Controller/edit_service _controller.dart';
 
 class SpEditServiceScreen extends StatefulWidget {
@@ -33,6 +34,8 @@ class SpEditServiceScreen extends StatefulWidget {
 }
 class _SpEditServiceScreenState extends State<SpEditServiceScreen> {
   final _controller = Get.put(EditServiceController());
+  final _localizationController = Get.put(LocalizationController(sharedPreferences:Get.find()));
+
 
 
   @override
@@ -43,6 +46,7 @@ class _SpEditServiceScreenState extends State<SpEditServiceScreen> {
     _controller.descriptionTextCtrl.text=widget.serviceModel.description!;
     _controller.addressTextCtrl.text=widget.serviceModel.location!;
     _controller.serviceTextCtrl.text=widget.serviceModel.serviceName!;
+    _controller.serviceArabicTextCtrl.text=widget.serviceModel.serviceNameArabic!;
     _controller.selectServiceId.value=widget.serviceModel.serviceId!;
     super.initState();
   }
@@ -199,6 +203,7 @@ class _SpEditServiceScreenState extends State<SpEditServiceScreen> {
                                   onTap: () {
                                     setState(() {
                                       _controller.serviceTextCtrl.text=_controller.categoryList[index].name!;
+                                      _controller.serviceArabicTextCtrl.text=_controller.categoryList[index].nameArabic!;
                                       _controller.selectServiceId.value=_controller.categoryList[index].id!;
                                       isSelected=false;
                                       selectedItem=index;
@@ -229,7 +234,7 @@ class _SpEditServiceScreenState extends State<SpEditServiceScreen> {
                                             ),
                                           ),
                                           CustomText(
-                                            text: _controller.categoryList[index].name!,
+                                           text: _localizationController.selectedIndex==0?  _controller.categoryList[index].name!:_controller.categoryList[index].nameArabic!,
                                             color: AppColors.black_100,
                                             left: 10,
                                           ),
@@ -252,7 +257,7 @@ class _SpEditServiceScreenState extends State<SpEditServiceScreen> {
                         CustomTextField(
                           textEditingController: _controller.addressTextCtrl,
                           textAlign: TextAlign.start,
-                          hintText: 'Enter your address',
+                          hintText: 'Enter your address'.tr,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return "Address Not Be Empty".tr;

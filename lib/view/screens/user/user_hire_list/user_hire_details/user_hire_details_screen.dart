@@ -14,6 +14,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import '../../../../../helper/AdMob/ad_display.dart';
+import '../../../../../helper/Language/language_controller.dart';
 import '../../../../widgets/custom_back.dart';
 import '../../../../widgets/custom_button.dart';
 import '../../../../widgets/custom_outline_button.dart';
@@ -28,6 +29,8 @@ class UserHireDetailsScreen extends StatefulWidget {
 
 class _UserHireDetailsScreenState extends State<UserHireDetailsScreen> {
   final _controller = Get.put(HireController());
+  final _localizationController = Get.put(LocalizationController(sharedPreferences:Get.find()));
+
 
   @override
   void initState() {
@@ -249,7 +252,7 @@ class _UserHireDetailsScreenState extends State<UserHireDetailsScreen> {
                             text: AppStrings.service.tr,
                           ),
                           CustomText(
-                            text: _controller.hireDetails.value.serviceName!,
+                            text:_localizationController.selectIndex==0? _controller.hireDetails.value.serviceName!:_controller.hireDetails.value.serviceNameArabic!,
                             fontWeight: FontWeight.w500,
                             left: 4,
                           ),

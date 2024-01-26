@@ -33,6 +33,7 @@ class _SearchScreenState extends State<SearchScreen> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final _searchController = Get.put(SearchAndFilterController());
   final _localizationController = Get.put(LocalizationController(sharedPreferences:Get.find()));
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -217,7 +218,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 crossAxisCount: 2,
                 crossAxisSpacing: 8,
                 mainAxisSpacing: 8,
-                mainAxisExtent: 180
+                mainAxisExtent: 200
             ),
             itemCount:_searchController.servicesList.length, itemBuilder: (BuildContext context, int index) {
             var demoData= _searchController.servicesList[index];
@@ -280,7 +281,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       children: [
                         Flexible(
                           child: CustomText(
-                            text: demoData.serviceName!,
+                            text:_localizationController.selectIndex==0? demoData.serviceName!:demoData.serviceNameArabic!,
                             fontWeight: FontWeight.w500,
                             fontSize: 14,
                             overflow: TextOverflow.ellipsis,
@@ -300,7 +301,12 @@ class _SearchScreenState extends State<SearchScreen> {
                       ],
                     ),
                     const SizedBox(
-                      height: 12,
+                      height: 4,
+                    ),
+                    Text( _localizationController.selectedIndex == 0?demoData.serviceName??"":demoData.serviceNameArabic??"",maxLines: 1,overflow: TextOverflow.ellipsis,style: TextStyle(fontSize:12.sp,fontWeight: FontWeight.w500,color: Colors.grey
+                    ),),
+                    const SizedBox(
+                      height: 4,
                     ),
                     Row(
                       children: [

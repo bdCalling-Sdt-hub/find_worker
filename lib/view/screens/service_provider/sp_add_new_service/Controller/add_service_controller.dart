@@ -29,6 +29,7 @@ class AddNewServiceController extends GetxController{
       final formKey = GlobalKey<FormState>();
       var selectServiceId="".obs;
       var selectService="".obs;
+      var selectServiceArabic="".obs;
 
       var loading= false.obs;
       final ImagePicker picker = ImagePicker();
@@ -89,7 +90,8 @@ class AddNewServiceController extends GetxController{
                   providerUid:_auth.currentUser!.uid,
                   description:descriptionTextCtrl.text,
                   options: selectedOption.value,
-                   createAt: DateTime.now()
+                   createAt: DateTime.now(),
+                serviceNameArabic: selectServiceArabic.value,
               );
               await firebaseStorage.collection(AppConstants.services).doc(id).set(body.toJson());
                 Get.find<SpHomeController>().getService();
