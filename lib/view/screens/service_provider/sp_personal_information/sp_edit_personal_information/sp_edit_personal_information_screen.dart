@@ -141,44 +141,46 @@ class _SpEditPersonalInformationState
                                   alignment: Alignment.bottomRight,
                                   child: GestureDetector(
                                     onTap: () {
-                                      showDialog(
-                                          context: context,
-                                          builder: (context) => AlertDialog(
-                                            title: Text(
-                                              "Select Source",
-                                              style: TextStyle(
-                                                  fontSize: 18.sp,
-                                                  fontWeight: FontWeight.w500),
-                                            ),
-                                            content: Column(
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: [
-                                                ListTile(
-                                                  onTap: () {
-                                                    _profileController.picImage(
-                                                        ImageSource.camera);
-                                                    Get.back();
-                                                  },
-                                                  leading: const Icon(
-                                                      Icons.photo_camera),
-                                                  title: const Text(
-                                                    "Take Photo",
-                                                  ),
-                                                ),
-                                                ListTile(
-                                                  onTap: () {
-                                                    _profileController.picImage(
-                                                        ImageSource.gallery);
-                                                    Get.back();
-                                                  },
-                                                  leading: const Icon(Icons.photo),
-                                                  title: const Text(
-                                                    "Choose from Gallery",
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ));
+                                      _profileController.picImage(
+                                          ImageSource.gallery);
+                                      // showDialog(
+                                      //     context: context,
+                                      //     builder: (context) => AlertDialog(
+                                      //       title: Text(
+                                      //         "Select Source",
+                                      //         style: TextStyle(
+                                      //             fontSize: 18.sp,
+                                      //             fontWeight: FontWeight.w500),
+                                      //       ),
+                                      //       content: Column(
+                                      //         mainAxisSize: MainAxisSize.min,
+                                      //         children: [
+                                      //           ListTile(
+                                      //             onTap: () {
+                                      //               _profileController.picImage(
+                                      //                   ImageSource.camera);
+                                      //               Get.back();
+                                      //             },
+                                      //             leading: const Icon(
+                                      //                 Icons.photo_camera),
+                                      //             title: const Text(
+                                      //               "Take Photo",
+                                      //             ),
+                                      //           ),
+                                      //           ListTile(
+                                      //             onTap: () {
+                                      //               _profileController.picImage(
+                                      //                   ImageSource.gallery);
+                                      //               Get.back();
+                                      //             },
+                                      //             leading: const Icon(Icons.photo),
+                                      //             title: const Text(
+                                      //               "Choose from Gallery",
+                                      //             ),
+                                      //           ),
+                                      //         ],
+                                      //       ),
+                                      //     ));
                                     },
                                     child: Container(
                                       decoration: const BoxDecoration(
@@ -218,7 +220,7 @@ class _SpEditPersonalInformationState
                                   ),
                                   CustomTextField(
                                     textAlign: TextAlign.start,
-                                    hintText: 'Enter Your Name',
+                                    hintText: 'Enter your full name'.tr,
                                     textEditingController:
                                     _profileController.nameCtrl,
                                     hintStyle: GoogleFonts.poppins(
@@ -254,7 +256,7 @@ class _SpEditPersonalInformationState
                                                 color: AppColors.white,
                                                 borderRadius: BorderRadius.circular(8),
                                                 border: Border.all(
-                                                    color: Color(0xffE2E2E2)
+                                                    color: const Color(0xffE2E2E2)
                                                   // color: controller.year.isEmpty ? const Color(0xffE2E2E2) : AppColors.blue_100
                                                 )),
                                             child: TextFormField(
@@ -262,8 +264,9 @@ class _SpEditPersonalInformationState
                                               textAlign: TextAlign.center,
                                               validator: (value) {
                                                 if (value!.isEmpty) {
-                                                  return "Empty";
+                                                  return 'Enter your full name'.tr;
                                                 }
+                                                return null;
                                               },
                                               keyboardType: TextInputType.datetime,
                                               decoration: const InputDecoration(
@@ -294,7 +297,7 @@ class _SpEditPersonalInformationState
                                                 color: AppColors.white,
                                                 borderRadius: BorderRadius.circular(8),
                                                 border: Border.all(
-                                                    color: Color(0xffE2E2E2)
+                                                    color: const Color(0xffE2E2E2)
                                                   //    color: controller.year.isEmpty ? const Color(0xffE2E2E2) : AppColors.blue_100
                                                 )),
                                             child: TextFormField(
@@ -304,7 +307,7 @@ class _SpEditPersonalInformationState
                                               keyboardType: TextInputType.datetime,
                                               validator: (value) {
                                                 if (value!.isEmpty) {
-                                                  return "Empty";
+                                                  return "Empty".tr;
                                                 }
                                                 return null;
                                               },
@@ -336,7 +339,7 @@ class _SpEditPersonalInformationState
                                                 color: AppColors.white,
                                                 borderRadius: BorderRadius.circular(8),
                                                 border: Border.all(
-                                                    color: Color(0xffE2E2E2)
+                                                    color: const Color(0xffE2E2E2)
                                                   //   color: controller.year.isEmpty ? const Color(0xffE2E2E2) : AppColors.blue_100
                                                 )),
                                             child: TextFormField(
@@ -346,9 +349,9 @@ class _SpEditPersonalInformationState
                                               _profileController.dobYearCtrl,
                                               validator: (value) {
                                                 if (value!.isEmpty) {
-                                                  return "Empty";
+                                                  return "Empty".tr;
                                                 } else if (value.length < 4) {
-                                                  return "Valid Year";
+                                                  return "Valid Year".tr;
                                                 }
                                               },
                                               decoration: const InputDecoration(
@@ -417,7 +420,7 @@ class _SpEditPersonalInformationState
                                               const SizedBox(width: 8),
                                               Text(
                                                 _profileController
-                                                    .genderList[index],
+                                                    .genderList[index].tr,
                                                 style: GoogleFonts.poppins(
                                                     color: AppColors.black_100,
                                                     fontSize: 14,
@@ -451,7 +454,7 @@ class _SpEditPersonalInformationState
                                       }
                                     },
                                     textAlign: TextAlign.start,
-                                    hintText: AppStrings.enterYourEmail,
+                                    hintText: AppStrings.enterYourEmail.tr,
                                     hintStyle: GoogleFonts.poppins(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w500,
@@ -548,7 +551,7 @@ class _SpEditPersonalInformationState
                                     textEditingController:
                                     _profileController.addressCtrl,
                                     textAlign: TextAlign.start,
-                                    hintText: 'Enter your address',
+                                    hintText: 'Enter your address'.tr,
                                     hintStyle: GoogleFonts.poppins(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w400,

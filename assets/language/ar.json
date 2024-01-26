@@ -194,6 +194,7 @@
   "Service Update Successful": "تم تحديث الخدمة بنجاح",
   "Password updated successfully": "تم تحديث كلمة السر بنجاح",
   "Hire details not found!": "لم يتم العثور على تفاصيل التوظيف!",
-  "Oops, Something error!,Please try again": "عفوًا، حدث خطأ ما! يرجى المحاولة مرة أخرى"
+  "Oops, Something error!,Please try again": "عفوًا، حدث خطأ ما! يرجى المحاولة مرة أخرى",
+  "Empty": "فارغ"
 
 }

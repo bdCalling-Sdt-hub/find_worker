@@ -1,3 +1,4 @@
+import 'package:wrcontacts/helper/Language/language_controller.dart';
 import 'package:wrcontacts/utils/app_colors.dart';
 import 'package:wrcontacts/utils/app_constents.dart';
 import 'package:wrcontacts/utils/app_icons.dart';
@@ -34,6 +35,7 @@ class SpJobHistoryDetailsScreen extends StatefulWidget {
 
 class _SpJobDetailsScreenState extends State<SpJobHistoryDetailsScreen> {
   final _controller = Get.put(SpHistoryController());
+  final _localizationController = Get.find<LocalizationController>();
 
   @override
   void initState() {
@@ -95,8 +97,8 @@ class _SpJobDetailsScreenState extends State<SpJobHistoryDetailsScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              const CustomText(
-                                text: 'Contact',
+                               CustomText(
+                                text: 'Contact'.tr,
                               ),
                               Flexible(
                                 child: CustomText(
@@ -164,7 +166,7 @@ class _SpJobDetailsScreenState extends State<SpJobHistoryDetailsScreen> {
                                 text: AppStrings.service.tr,
                               ),
                               CustomText(
-                                text: _controller.jobDetails.value.serviceName!,
+                                text: _localizationController.selectIndex==0? _controller.jobDetails.value.serviceName!:_controller.jobDetails.value.serviceNameArabic!,
                                 fontWeight: FontWeight.w500,
                                 left: 4,
                               ),
@@ -176,8 +178,8 @@ class _SpJobDetailsScreenState extends State<SpJobHistoryDetailsScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              const CustomText(
-                                text: AppStrings.time,
+                               CustomText(
+                                text: AppStrings.time.tr,
                               ),
                               CustomText(
                                 text: DateFormat.jm()

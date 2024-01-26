@@ -141,44 +141,46 @@ class _UserEditPersonalInformationState
                           alignment: Alignment.bottomRight,
                           child: GestureDetector(
                             onTap: () {
-                              showDialog(
-                                  context: context,
-                                  builder: (context) => AlertDialog(
-                                        title: Text(
-                                          "Select Source",
-                                          style: TextStyle(
-                                              fontSize: 18.sp,
-                                              fontWeight: FontWeight.w500),
-                                        ),
-                                        content: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            ListTile(
-                                              onTap: () {
-                                                _profileController.picImage(
-                                                    ImageSource.camera);
-                                                Get.back();
-                                              },
-                                              leading: const Icon(
-                                                  Icons.photo_camera),
-                                              title: const Text(
-                                                "Take Photo",
-                                              ),
-                                            ),
-                                            ListTile(
-                                              onTap: () {
-                                                _profileController.picImage(
-                                                    ImageSource.gallery);
-                                                Get.back();
-                                              },
-                                              leading: const Icon(Icons.photo),
-                                              title: const Text(
-                                                "Choose from Gallery",
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ));
+                              _profileController.picImage(
+                                  ImageSource.gallery);
+                              // showDialog(
+                              //     context: context,
+                              //     builder: (context) => AlertDialog(
+                              //           title: Text(
+                              //             "Select Source",
+                              //             style: TextStyle(
+                              //                 fontSize: 18.sp,
+                              //                 fontWeight: FontWeight.w500),
+                              //           ),
+                              //           content: Column(
+                              //             mainAxisSize: MainAxisSize.min,
+                              //             children: [
+                              //               ListTile(
+                              //                 onTap: () {
+                              //                   _profileController.picImage(
+                              //                       ImageSource.camera);
+                              //                   Get.back();
+                              //                 },
+                              //                 leading: const Icon(
+                              //                     Icons.photo_camera),
+                              //                 title: const Text(
+                              //                   "Take Photo",
+                              //                 ),
+                              //               ),
+                              //               ListTile(
+                              //                 onTap: () {
+                              //                   _profileController.picImage(
+                              //                       ImageSource.gallery);
+                              //                   Get.back();
+                              //                 },
+                              //                 leading: const Icon(Icons.photo),
+                              //                 title: const Text(
+                              //                   "Choose from Gallery",
+                              //                 ),
+                              //               ),
+                              //             ],
+                              //           ),
+                              //         ));
                             },
                             child: Container(
                               decoration: const BoxDecoration(
@@ -218,7 +220,7 @@ class _UserEditPersonalInformationState
                           ),
                           CustomTextField(
                             textAlign: TextAlign.start,
-                            hintText: 'Enter Your Name',
+                            hintText: 'Enter your full name'.tr,
                             textEditingController:
                                 _profileController.nameCtrl,
                             hintStyle: GoogleFonts.poppins(
@@ -262,8 +264,9 @@ class _UserEditPersonalInformationState
                                   textAlign: TextAlign.center,
                                   validator: (value) {
                                     if (value!.isEmpty) {
-                                      return "Empty";
+                                      return "Empty".tr;
                                     }
+                                    return null;
                                   },
                                   keyboardType: TextInputType.datetime,
                                   decoration: const InputDecoration(
@@ -304,7 +307,7 @@ class _UserEditPersonalInformationState
                                   keyboardType: TextInputType.datetime,
                                   validator: (value) {
                                     if (value!.isEmpty) {
-                                      return "Empty";
+                                      return "Empty".tr;
                                     }
                                     return null;
                                   },
@@ -346,7 +349,7 @@ class _UserEditPersonalInformationState
                                       _profileController.dobYearCtrl,
                                   validator: (value) {
                                     if (value!.isEmpty) {
-                                      return "Empty";
+                                      return "Empty".tr;
                                     } else if (value.length < 4) {
                                       return "Valid Year";
                                     }
@@ -417,7 +420,7 @@ class _UserEditPersonalInformationState
                                           const SizedBox(width: 8),
                                           Text(
                                             _profileController
-                                                .genderList[index],
+                                                .genderList[index].tr,
                                             style: GoogleFonts.poppins(
                                                 color: AppColors.black_100,
                                                 fontSize: 14,
@@ -452,7 +455,7 @@ class _UserEditPersonalInformationState
                               }
                             },
                             textAlign: TextAlign.start,
-                            hintText: AppStrings.enterYourEmail,
+                            hintText: AppStrings.enterYourEmail.tr,
                             hintStyle: GoogleFonts.poppins(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w500,
@@ -541,7 +544,7 @@ class _UserEditPersonalInformationState
                             textEditingController:
                                 _profileController.addressCtrl,
                             textAlign: TextAlign.start,
-                            hintText: 'Enter your address',
+                            hintText: 'Enter your address'.tr,
                             hintStyle: GoogleFonts.poppins(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w400,

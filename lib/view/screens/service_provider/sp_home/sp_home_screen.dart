@@ -688,9 +688,11 @@ class _SpHomeScreenState extends State<SpHomeScreen> {
                                                 ),
                                                 Flexible(
                                                   child: CustomText(
-                                                    text: _homeController
+                                                    text: _localizationController.selectIndex==0?_homeController
                                                         .serviceList[index]
-                                                        .serviceName!,
+                                                        .serviceName!:_homeController
+                                                        .serviceList[index]
+                                                        .serviceNameArabic!,
                                                     fontSize: 14,
                                                     maxLines: 1,
                                                     overflow:
