@@ -134,7 +134,7 @@ class _SpEditServiceScreenState extends State<SpEditServiceScreen> {
                           bottom: 8,
                         ),
                         TextFormField(
-                          controller: _controller.serviceTextCtrl,
+                          controller:_localizationController.selectIndex==0? _controller.serviceTextCtrl:_controller.serviceArabicTextCtrl,
                           readOnly: true,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
