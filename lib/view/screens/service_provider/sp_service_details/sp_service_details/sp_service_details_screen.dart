@@ -1,14 +1,14 @@
-import 'package:wrcontacts/core/app_routes.dart';
-import 'package:wrcontacts/model/service_model.dart';
-import 'package:wrcontacts/utils/app_colors.dart';
-import 'package:wrcontacts/utils/app_icons.dart';
-import 'package:wrcontacts/utils/app_strings.dart';
-import 'package:wrcontacts/view/screens/service_provider/sp_service_details/sp_edit_service_details/sp_edit_service_details_screen.dart';
-import 'package:wrcontacts/view/widgets/app_bar/custom_app_bar.dart';
-import 'package:wrcontacts/view/widgets/buttons/bottom_nav_button.dart';
-import 'package:wrcontacts/view/widgets/buttons/custom_button.dart';
-import 'package:wrcontacts/view/widgets/image/custom_image.dart';
-import 'package:wrcontacts/view/widgets/text/custom_text.dart';
+import 'package:wocontacts/core/app_routes.dart';
+import 'package:wocontacts/model/service_model.dart';
+import 'package:wocontacts/utils/app_colors.dart';
+import 'package:wocontacts/utils/app_icons.dart';
+import 'package:wocontacts/utils/app_strings.dart';
+import 'package:wocontacts/view/screens/service_provider/sp_service_details/sp_edit_service_details/sp_edit_service_details_screen.dart';
+import 'package:wocontacts/view/widgets/app_bar/custom_app_bar.dart';
+import 'package:wocontacts/view/widgets/buttons/bottom_nav_button.dart';
+import 'package:wocontacts/view/widgets/buttons/custom_button.dart';
+import 'package:wocontacts/view/widgets/image/custom_image.dart';
+import 'package:wocontacts/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

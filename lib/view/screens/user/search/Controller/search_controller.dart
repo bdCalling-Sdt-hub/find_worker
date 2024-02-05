@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:wrcontacts/model/category_model.dart';
-import 'package:wrcontacts/utils/app_constents.dart';
+import 'package:wocontacts/model/category_model.dart';
+import 'package:wocontacts/utils/app_constents.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:get/get.dart';

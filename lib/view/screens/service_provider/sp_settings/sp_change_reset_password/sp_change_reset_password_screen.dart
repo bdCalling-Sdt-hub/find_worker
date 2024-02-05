@@ -1,11 +1,11 @@
 
-import 'package:wrcontacts/core/app_routes.dart';
-import 'package:wrcontacts/utils/app_colors.dart';
-import 'package:wrcontacts/utils/app_strings.dart';
-import 'package:wrcontacts/view/widgets/app_bar/custom_app_bar.dart';
-import 'package:wrcontacts/view/widgets/buttons/bottom_nav_button.dart';
-import 'package:wrcontacts/view/widgets/text/custom_text.dart';
-import 'package:wrcontacts/view/widgets/text_field/custom_text_field.dart';
+import 'package:wocontacts/core/app_routes.dart';
+import 'package:wocontacts/utils/app_colors.dart';
+import 'package:wocontacts/utils/app_strings.dart';
+import 'package:wocontacts/view/widgets/app_bar/custom_app_bar.dart';
+import 'package:wocontacts/view/widgets/buttons/bottom_nav_button.dart';
+import 'package:wocontacts/view/widgets/text/custom_text.dart';
+import 'package:wocontacts/view/widgets/text_field/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';

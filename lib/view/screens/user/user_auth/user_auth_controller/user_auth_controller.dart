@@ -1,15 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:wrcontacts/controller/data_controller.dart';
-import 'package:wrcontacts/core/app_routes.dart';
-import 'package:wrcontacts/core/share_pre.dart';
-import 'package:wrcontacts/helper/Language/language_controller.dart';
-import 'package:wrcontacts/model/user_model.dart';
-import 'package:wrcontacts/utils/app_colors.dart';
-import 'package:wrcontacts/utils/app_constents.dart';
-import 'package:wrcontacts/utils/app_strings.dart';
-import 'package:wrcontacts/view/screens/service_provider/sp_bottom_nav_bar/sp_bottom_nav_bar_screen.dart';
-import 'package:wrcontacts/view/screens/user/user_bottom_nav_bar/user_bottom_nav_bar_screen.dart';
+import 'package:wocontacts/controller/data_controller.dart';
+import 'package:wocontacts/core/app_routes.dart';
+import 'package:wocontacts/core/share_pre.dart';
+import 'package:wocontacts/helper/Language/language_controller.dart';
+import 'package:wocontacts/model/user_model.dart';
+import 'package:wocontacts/utils/app_colors.dart';
+import 'package:wocontacts/utils/app_constents.dart';
+import 'package:wocontacts/utils/app_strings.dart';
+import 'package:wocontacts/view/screens/service_provider/sp_bottom_nav_bar/sp_bottom_nav_bar_screen.dart';
+import 'package:wocontacts/view/screens/user/user_bottom_nav_bar/user_bottom_nav_bar_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -169,7 +169,7 @@ class AuthenticationController extends GetxController {
   Future phoneCredentail(
       {required String userType, required bool isSignIn}) async {
     print("===================$phoneCode${phoneController.text}");
-    await auth.setSettings(appVerificationDisabledForTesting: true);
+    await auth.setSettings(appVerificationDisabledForTesting: false);
     await auth
         .verifyPhoneNumber(
       phoneNumber: "$phoneCode${phoneController.text}",

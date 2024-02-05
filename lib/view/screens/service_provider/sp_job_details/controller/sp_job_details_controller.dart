@@ -1,7 +1,7 @@
-import 'package:wrcontacts/model/hire_model.dart';
-import 'package:wrcontacts/utils/app_constents.dart';
-import 'package:wrcontacts/view/screens/service_provider/sp_home/Controller/home_controller.dart';
-import 'package:wrcontacts/view/screens/service_provider/sp_job_details/inner_widgets/sp_job_details_alert.dart';
+import 'package:wocontacts/model/hire_model.dart';
+import 'package:wocontacts/utils/app_constents.dart';
+import 'package:wocontacts/view/screens/service_provider/sp_home/Controller/home_controller.dart';
+import 'package:wocontacts/view/screens/service_provider/sp_job_details/inner_widgets/sp_job_details_alert.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';

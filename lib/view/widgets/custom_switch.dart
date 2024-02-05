@@ -1,4 +1,4 @@
-import 'package:wrcontacts/utils/app_colors.dart';
+import 'package:wocontacts/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomSwicth extends StatefulWidget {

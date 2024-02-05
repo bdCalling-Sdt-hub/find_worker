@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:wrcontacts/core/share_pre.dart';
-import 'package:wrcontacts/utils/app_constents.dart';
+import 'package:wocontacts/core/share_pre.dart';
+import 'package:wocontacts/utils/app_constents.dart';
 
 class AdDsiplay {
   bool displayRealAd = true;

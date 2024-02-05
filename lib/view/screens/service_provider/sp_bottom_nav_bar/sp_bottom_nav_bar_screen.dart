@@ -1,16 +1,16 @@
 import 'dart:io';
 
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:wrcontacts/helper/SystemChromeHelper/system_chrome.dart';
-import 'package:wrcontacts/utils/app_colors.dart';
-import 'package:wrcontacts/utils/app_icons.dart';
-import 'package:wrcontacts/utils/app_strings.dart';
-import 'package:wrcontacts/view/screens/service_provider/sp_home/sp_home_screen.dart';
-import 'package:wrcontacts/view/screens/service_provider/sp_job_history/sp_job_history/sp_job_history_screen.dart';
-import 'package:wrcontacts/view/screens/service_provider/sp_profile/sp_profile_screen.dart';
-import 'package:wrcontacts/view/screens/user/home/home/home_screen.dart';
-import 'package:wrcontacts/view/widgets/image/custom_image.dart';
-import 'package:wrcontacts/view/widgets/text/custom_text.dart';
+import 'package:wocontacts/helper/SystemChromeHelper/system_chrome.dart';
+import 'package:wocontacts/utils/app_colors.dart';
+import 'package:wocontacts/utils/app_icons.dart';
+import 'package:wocontacts/utils/app_strings.dart';
+import 'package:wocontacts/view/screens/service_provider/sp_home/sp_home_screen.dart';
+import 'package:wocontacts/view/screens/service_provider/sp_job_history/sp_job_history/sp_job_history_screen.dart';
+import 'package:wocontacts/view/screens/service_provider/sp_profile/sp_profile_screen.dart';
+import 'package:wocontacts/view/screens/user/home/home/home_screen.dart';
+import 'package:wocontacts/view/widgets/image/custom_image.dart';
+import 'package:wocontacts/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../sp_home/Controller/home_controller.dart';

@@ -1,24 +1,24 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:wrcontacts/model/service_by_user_model.dart';
-import 'package:wrcontacts/model/user_model.dart';
-import 'package:wrcontacts/utils/app_colors.dart';
-import 'package:wrcontacts/utils/app_constents.dart';
-import 'package:wrcontacts/utils/app_icons.dart';
-import 'package:wrcontacts/utils/app_strings.dart';
-import 'package:wrcontacts/view/screens/user/user_service_details/Controller/user_service_details_controller.dart';
-import 'package:wrcontacts/view/screens/user/user_service_details/inner_widgets/user_service_details_hire_now_bottom_modal.dart';
+import 'package:wocontacts/model/service_by_user_model.dart';
+import 'package:wocontacts/model/user_model.dart';
+import 'package:wocontacts/utils/app_colors.dart';
+import 'package:wocontacts/utils/app_constents.dart';
+import 'package:wocontacts/utils/app_icons.dart';
+import 'package:wocontacts/utils/app_strings.dart';
+import 'package:wocontacts/view/screens/user/user_service_details/Controller/user_service_details_controller.dart';
+import 'package:wocontacts/view/screens/user/user_service_details/inner_widgets/user_service_details_hire_now_bottom_modal.dart';
 
-import 'package:wrcontacts/view/widgets/app_bar/custom_app_bar.dart';
-import 'package:wrcontacts/view/widgets/custom_loader.dart';
-import 'package:wrcontacts/view/widgets/image/custom_image.dart';
-import 'package:wrcontacts/view/widgets/text/custom_text.dart';
+import 'package:wocontacts/view/widgets/app_bar/custom_app_bar.dart';
+import 'package:wocontacts/view/widgets/custom_loader.dart';
+import 'package:wocontacts/view/widgets/image/custom_image.dart';
+import 'package:wocontacts/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:shimmer/shimmer.dart';
-import 'package:wrcontacts/view/widgets/custom_button.dart';
+import 'package:wocontacts/view/widgets/custom_button.dart';
 
 import '../../../../helper/AdMob/ad_display.dart';
 import '../../../../helper/Language/language_controller.dart';

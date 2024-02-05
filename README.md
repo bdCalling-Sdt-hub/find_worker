@@ -1,4 +1,4 @@
-# wrcontacts
+# wocontacts
 
 "A new Flutter project."
 

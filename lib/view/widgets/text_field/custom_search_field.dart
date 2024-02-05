@@ -1,5 +1,5 @@
-import 'package:wrcontacts/utils/app_colors.dart';
-import 'package:wrcontacts/utils/app_icons.dart';
+import 'package:wocontacts/utils/app_colors.dart';
+import 'package:wocontacts/utils/app_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';

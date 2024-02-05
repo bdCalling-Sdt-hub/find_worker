@@ -1,13 +1,13 @@
 import 'package:country_code_picker/country_code_picker.dart';
-import 'package:wrcontacts/core/app_routes.dart';
-import 'package:wrcontacts/utils/app_colors.dart';
-import 'package:wrcontacts/utils/app_strings.dart';
-import 'package:wrcontacts/view/screens/user/user_auth/user_auth_controller/user_auth_controller.dart';
-import 'package:wrcontacts/view/widgets/custom_button.dart';
+import 'package:wocontacts/core/app_routes.dart';
+import 'package:wocontacts/utils/app_colors.dart';
+import 'package:wocontacts/utils/app_strings.dart';
+import 'package:wocontacts/view/screens/user/user_auth/user_auth_controller/user_auth_controller.dart';
+import 'package:wocontacts/view/widgets/custom_button.dart';
 
-import 'package:wrcontacts/view/widgets/custom_elevated_loading_button/custom_elevated_loading_button.dart';
-import 'package:wrcontacts/view/widgets/text/custom_text.dart';
-import 'package:wrcontacts/view/widgets/text_field/custom_text_field.dart';
+import 'package:wocontacts/view/widgets/custom_elevated_loading_button/custom_elevated_loading_button.dart';
+import 'package:wocontacts/view/widgets/text/custom_text.dart';
+import 'package:wocontacts/view/widgets/text_field/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';

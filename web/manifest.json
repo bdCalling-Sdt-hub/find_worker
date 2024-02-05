@@ -1,6 +1,6 @@
 {
-    "name": "wrcontacts",
-    "short_name": "wrcontacts",
+    "name": "wocontacts",
+    "short_name": "wocontacts",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

@@ -1,6 +1,6 @@
 
 
-import 'package:wrcontacts/view/screens/user/user_auth/user_forget_password/forget_alert_dialog.dart';
+import 'package:wocontacts/view/screens/user/user_auth/user_forget_password/forget_alert_dialog.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';

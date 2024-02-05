@@ -1,10 +1,10 @@
-import 'package:wrcontacts/utils/app_colors.dart';
-import 'package:wrcontacts/utils/app_images.dart';
-import 'package:wrcontacts/utils/app_strings.dart';
-import 'package:wrcontacts/view/screens/user/user_auth/user_auth_controller/user_auth_controller.dart';
-import 'package:wrcontacts/view/widgets/custom_elevated_loading_button/custom_elevated_loading_button.dart';
-import 'package:wrcontacts/view/widgets/image/custom_image.dart';
-import 'package:wrcontacts/view/widgets/text/custom_text.dart';
+import 'package:wocontacts/utils/app_colors.dart';
+import 'package:wocontacts/utils/app_images.dart';
+import 'package:wocontacts/utils/app_strings.dart';
+import 'package:wocontacts/view/screens/user/user_auth/user_auth_controller/user_auth_controller.dart';
+import 'package:wocontacts/view/widgets/custom_elevated_loading_button/custom_elevated_loading_button.dart';
+import 'package:wocontacts/view/widgets/image/custom_image.dart';
+import 'package:wocontacts/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';

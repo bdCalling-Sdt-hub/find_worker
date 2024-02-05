@@ -1,14 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:wrcontacts/model/service_by_user_model.dart';
-import 'package:wrcontacts/model/user_model.dart';
-import 'package:wrcontacts/utils/app_colors.dart';
-import 'package:wrcontacts/utils/app_icons.dart';
-import 'package:wrcontacts/utils/app_strings.dart';
-import 'package:wrcontacts/view/screens/user/user_service_details/Controller/user_service_details_controller.dart';
-import 'package:wrcontacts/view/widgets/custom_button.dart';
+import 'package:wocontacts/model/service_by_user_model.dart';
+import 'package:wocontacts/model/user_model.dart';
+import 'package:wocontacts/utils/app_colors.dart';
+import 'package:wocontacts/utils/app_icons.dart';
+import 'package:wocontacts/utils/app_strings.dart';
+import 'package:wocontacts/view/screens/user/user_service_details/Controller/user_service_details_controller.dart';
+import 'package:wocontacts/view/widgets/custom_button.dart';
 
-import 'package:wrcontacts/view/widgets/image/custom_image.dart';
-import 'package:wrcontacts/view/widgets/text/custom_text.dart';
+import 'package:wocontacts/view/widgets/image/custom_image.dart';
+import 'package:wocontacts/view/widgets/text/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
